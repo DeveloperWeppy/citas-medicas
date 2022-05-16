@@ -15,6 +15,9 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
+            $table->integer('price')->unsigned();//con esto se indica que nuca va a ser un número negativo
+            $table->integer('duration_in_days');
             $table->timestamps();
         });
     }

@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'telefono', 'pw_decrypte', 'password',
     ];
 
     /**
@@ -37,4 +38,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //erlación de un usuario a una subscripcion
+    public function subscription(){
+        return $this->hasOne(Subscription::class);
+    }
+
+    /**como se llama una instancia de subscription, entonces se llama directamente la función de esa instancia
+     QUÉ INFORMACIÓN SE CONDENSA CON ESTA FUNCIÓN?
+     1. Si la relación entre el usuario y la subscripcion no existen, entonces retorna null, es aquí donde entra a operar el helper de optional, que si no devuelve
+     un booleano sino null. Pero como se espera un booleano... se condiciona ?? que si lo anterior devuelve null, entonces cambie a falso
+     
+     2. Si subscription si existe, pero si quizas lka subscripcion no esta activa, entonces retorna false
+     3. Si si existe una subscripción, es decir que esta activa, se cumple la función por ende devuelcve true**/
+    public function hasActiveSubscription(){
+        return optional($this->subscription->isActive() ?? false);//esto retorna booleano
+    }
 }
