@@ -41,7 +41,7 @@
                 
                 <!--cabecera del contenedor--->
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-eye"></i> Ver Usuarios Registrados</h3>
+                    <h3 class="card-title"><i class="fas fa-eye"></i>Usuarios Registrados</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -53,12 +53,11 @@
                 <div class="card-body">
                    
                     <!--tabla de datos--->
-                    <table id="example" class="display table table-striped table-bordered table-responsive" style="width:100%">
+                    <table id="listarusuarios" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Usuario</th>
+                                <th>Id</th>
                                 <th>Correo</th>
-                                <th>Rol</th>
                                 <th>Estado</th>
                                 <th>Fecha y Hora</th>
                                 <th>Acciones</th>
@@ -104,6 +103,7 @@
                                 @endforeach--}}
                         </tbody>
                     </table>
+                    <x-modal-editar-usuario></x-modal-editar-usuario>
                 </div>
             </div>
         </div>
@@ -119,64 +119,109 @@
 
 <script src="/js/datatable.js"></script>
     <script>
-      var url = "{{route('usuarios.get')}}";
-      $('#example').DataTable( {
-        ajax: {
-          headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-          url: url,
-          dataType:'json',
-        },
-        columns: [
-          {data: 'name'},
-          {data: 'email'},
-        ]
-      } );
+      $(document).ready(function() {
+
+          //load data of users
+          var table = $('#listarusuarios').DataTable({
+            
+                ajax: '',
+                language: {
+                "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
+                },
+                serverSide: true,
+                processing: true,
+                aaSorting:[[0,"asc"]],
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'email', name: 'email'},
+                    {data: 'status', name: 'status'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'action', name: 'action',
+                    render: function(data,t,r,meta){
+                          return "<button class='btn btn-danger' onClick='ConfirmarBorrado("+data+")'>Eliminar</button>";
+                      }
+                    },
+                ]
+            });
+
+        });
+        function ConfirmarBorrado(idUser){
+            $('#idUser').val(idUser);
+            $('#modal_EditarDivisa').modal('show');
+        }
+      
+        //form of register of user
        $('#quickForm').validate({
             rules: {
-                name: {
-                required: true,
-              },
-              lastname:{
-                required: true,
-              },
-              identificacion:{
-                required: true,
-              },
               email: {
                 required: true,
-              },
-              telefono: {
-                required: true,
-                minlength:7
+                email: true,
               },
               password: {
                 required: true,
                 minlength: 8
               },
+              nit: {
+                required: true,
+              },
+              name: {
+                required: true,
+              },
+              address: {
+                required: true,
+              },
+              city: {
+                required: true,
+              },
+              name_contact: {
+                required: true,
+              },
+              num_phone_contact: {
+                required: true,
+                minlength:7
+              },
+              email_contact: {
+                required: true,
+                email: true,
+              },
+              imgLogo: {
+                required: true,
+              },
             },
             messages: {
-                name: {
-                required: "Por favor ingrese el nombre de usuario",
-              },
-              lastname: {
-                required: "Por favor ingrese el apellido de usuario",
-              },
-              identificacion: {
-                required: "Por favor ingrese el nùmero de cèdula",
-              },
               email: {
                 required: "Por favor ingrese un Correo Electrónico",
                 email: "Ingrese una dirección de correo válida",
               },
-              telefono: {
-                required: "Por favor ingrese un Número de Teléfono o Celular",
-                minlength: "Ingrese un número válido",
-              },
               password: {
                 required: "Por favor ingrese una Contraseña",
                 minlength: "Debe tener al menos 8 caracteres la contraseña",
+              },
+              nit: {
+                required: "Por favor ingrese un NIT",
+              },
+              name: {
+                required: "Por favor ingrese el nombre de usuario",
+              },
+              address: {
+                required: "Por favor ingrese una dirección",
+              },
+              city: {
+                required: "Por favor ingrese la ciudad",
+              },
+              name_contact: {
+                required: "Por favor ingrese el nombre de contácto",
+              },
+              num_phone_contact: {
+                required: "Por favor ingrese un Número de Teléfono o Celular",
+                minlength: "Ingrese un número válido",
+              },
+              email_contact: {
+                required: "Por favor ingrese un Correo Electrónico de Contácto",
+                email: "Ingrese una dirección de correo válida",
+              },
+              imgLogo: {
+                required: "Por favor cargue el logo de la empresa",
               },
             },
             errorElement: 'span',
@@ -220,7 +265,7 @@
                         }
                     }).done(function(respuesta){
                         //console.log(respuesta);
-                        if (!respuesta.error) {
+                       if (!respuesta.error) {
 
                           Swal.fire({
                                 title: 'Usuario registrado exitosamente.',
@@ -242,7 +287,7 @@
                                     timer: 4000
                                 });
                             },2000);
-                        }
+                        } 
                     }).fail(function(resp){
                         console.log(resp);
                     });
@@ -250,21 +295,28 @@
             }
           });
        
-        $(document).ready(function() {
-            //proceso de actualizacion datos
         
-           
-          /*Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-          )*/
-        });
 
         
         $(function () {
          
-
+          //para la imagen agg
+        $('#imgSalida').attr("src", "/images/user.png");
+            $('#customFile').change(function (e) {
+                addImage(e);
+            });
+            function addImage(e) {
+                var file = e.target.files[0],
+                        imageType = /image.*/;
+                if (!file.type.match(imageType))
+                    return;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var result = e.target.result;
+                    $('#imgSalida').attr("src", result);
+                }
+                reader.readAsDataURL(file);
+            }
             //validacion de campos vacios para formulario de editar datos de usuario
           $('#edit_user').validate({
             rules: {

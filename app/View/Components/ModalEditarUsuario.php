@@ -11,9 +11,10 @@ class ModalEditarUsuario extends Component
      *
      * @return void
      */
+    //public $idUser;
     public function __construct()
     {
-        //
+        //$this->idUser = $idUser;
     }
 
     /**
