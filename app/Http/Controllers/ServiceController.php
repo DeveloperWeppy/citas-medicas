@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BenefitsPlan;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class BenefitsPlanController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class BenefitsPlanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BenefitsPlan  $benefitsPlan
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(BenefitsPlan $benefitsPlan)
+    public function show(Service $service)
     {
         //
     }
@@ -52,10 +52,10 @@ class BenefitsPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BenefitsPlan  $benefitsPlan
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(BenefitsPlan $benefitsPlan)
+    public function edit(Service $service)
     {
         //
     }
@@ -64,10 +64,10 @@ class BenefitsPlanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BenefitsPlan  $benefitsPlan
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BenefitsPlan $benefitsPlan)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -75,10 +75,10 @@ class BenefitsPlanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BenefitsPlan  $benefitsPlan
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BenefitsPlan $benefitsPlan)
+    public function destroy(Service $service)
     {
         //
     }

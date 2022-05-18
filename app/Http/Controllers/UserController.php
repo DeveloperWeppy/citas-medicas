@@ -16,7 +16,7 @@ class UserController extends Controller
             $usuarios = User::orderBy('id', 'asc')->get();
             return datatables()->of($usuarios)
                 ->addColumn('action', function ($row) {
-                    $html = '<button class="btn btn-success" data-toggle="modal" data-target="#modal_EditarDivisa">
+                    $html = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modal_EditarDivisa">
                     <i class="fas fa-edit"></i> Editar</button> ';
                     $html .= '<button data-rowid="' . $row->id . '" class="btn btn-xs btn-danger btn-delete">Eliminar</button>';
                     return $html;

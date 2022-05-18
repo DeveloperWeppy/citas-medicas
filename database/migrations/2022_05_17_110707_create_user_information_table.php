@@ -20,9 +20,9 @@ class CreateUserInformationTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('num_phone')->nullable();
-            $table->string('name_contact');
-            $table->string('num_phone_contact');
-            $table->string('email_contact');
+            $table->string('name_contact')->nullable();
+            $table->string('num_phone_contact')->nullable();
+            $table->string('email_contact')->nullable();
             $table->string('city');
             $table->timestamps();
         });

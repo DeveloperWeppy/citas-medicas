@@ -249,6 +249,14 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Usuarios',
+            'url'         => 'admin/usuarios',
+            'icon'        => 'fas fa-users',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+        ['header' => 'GESTIÓN DE PLANES'],
+        [
             'text'        => 'PLanes',
             'url'         => 'admin/planes',
             'icon'        => 'fas fa-cube',
@@ -256,12 +264,13 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Usuarios',
-            'url'         => 'admin/usuarios',
-            'icon'        => 'fas fa-users',
+            'text'        => 'Beneficios',
+            'url'         => 'admin/beneficios',
+            'icon'        => 'fas fa-hand-holding-medical',
             //'label'       => 4,
             'label_color' => 'success',
         ],
+        
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

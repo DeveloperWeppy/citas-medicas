@@ -37,11 +37,11 @@
           <x-form-rgister-user></x-form-rgister-user>
 
             <!------CONTENEDOR DE TABLA------->
-            <div class="card card-primary">
+            <div class="card card-primary card-outline">
                 
                 <!--cabecera del contenedor--->
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-eye"></i>Usuarios Registrados</h3>
+                    <h3 class="card-title"><i class="fas fa-eye"></i> Usuarios Registrados</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -137,9 +137,9 @@
                     {data: 'status', name: 'status'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'action', name: 'action',
-                    render: function(data,t,r,meta){
+                   /*  render: function(data,t,r,meta){
                           return "<button class='btn btn-danger' onClick='ConfirmarBorrado("+data+")'>Eliminar</button>";
-                      }
+                      } */
                     },
                 ]
             });
