@@ -23,6 +23,6 @@ class InactivarUsuario extends Component
      */
     public function render()
     {
-        return view('components.inactivar-usuario');
+        return view('components.usuarios.inactivar-usuario');
     }
 }

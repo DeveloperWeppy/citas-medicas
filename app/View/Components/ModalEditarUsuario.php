@@ -24,6 +24,6 @@ class ModalEditarUsuario extends Component
      */
     public function render()
     {
-        return view('components.modal-editar-usuario');
+        return view('components.usuarios.modal-editar-usuario');
     }
 }

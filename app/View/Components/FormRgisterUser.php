@@ -23,6 +23,6 @@ class FormRgisterUser extends Component
      */
     public function render()
     {
-        return view('components.form-rgister-user');
+        return view('components.usuarios.form-rgister-user');
     }
 }

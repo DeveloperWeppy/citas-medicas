@@ -17,6 +17,7 @@ class CreateConveniosTable extends Migration
             $table->id();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->integer('status')->default(0);
             $table->foreignId('responsable_id')->unique()->references('id')->on('user_information');
             $table->timestamps();
         });

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Convenio extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'start_date',
+        'end_date',
+        'status',
+        'responsable_id',
+    ];
+
+    public function responsable(){
+        return $this->hasOne(UserInformation::class);
+    }
 }

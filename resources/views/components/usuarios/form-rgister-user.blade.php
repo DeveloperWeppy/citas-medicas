@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modalCustom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modalCustom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" aria-hidden="true" data-keyboard="false">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header bg-success">
@@ -86,6 +86,11 @@
                                     <input type="text" name="city" id="txcity" class="form-control " placeholder="Ciudad" autocomplete="off">
                                 </div>
                             </div>
+                        </div>
+
+                        <h4>HORARIOS DE ATENCIÓN</h4>
+                        <div class="row">
+
                         </div>
                        
                     </div>
