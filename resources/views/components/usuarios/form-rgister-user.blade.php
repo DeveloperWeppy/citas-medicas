@@ -90,7 +90,43 @@
 
                         <h4>HORARIOS DE ATENCIÓN</h4>
                         <div class="row">
+                            <div class="col-6">
+                                <p>Atención en la Mañana</p>
+                                <div class="row">
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">De</label>
+                                            <input type="time" class="form-control" name="" id="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">A</label>
+                                            <input type="time" class="form-control" name="" id="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="col-6">
+                                <p>Atención en la Tarde</p>
+                                <div class="row">
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">De</label>
+                                            <input type="time" class="form-control" name="" id="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">A</label>
+                                            <input type="time" class="form-control" name="" id="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                        
                     </div>

@@ -17,6 +17,7 @@ class Service extends Model
         'start_date',
         'end_date',
         'redeemed_available',
+        'observation',
         'status',
         'category_id',
         'convenio_id',
