@@ -9,6 +9,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //RUTAS DE GESTIÓN DE USUARIOS
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
     Route::post('/usuarios/store', [UserController::class, 'store'])->name('usuarios.store');
     Route::post('/usuarios/status', [UserController::class, 'status'])->name('usuarios.status');
 

@@ -13,7 +13,9 @@
        <h3>Administrar Usuarios</h3>
       </div>
       <div class="col-sm-6">
-        <x-adminlte-button label="Nuevo Usuario" icon="fas fa-plus" data-toggle="modal" data-target="#modalCustom" class="bg-teal float-sm-right"/>
+        <a href="{{ route('usuarios.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
+          Nuevo Usuario
+        </a>
       </div>
     </div>
   </div>

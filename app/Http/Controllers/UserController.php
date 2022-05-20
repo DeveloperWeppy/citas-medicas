@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Convenio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserInformation;
@@ -24,6 +25,11 @@ class UserController extends Controller
         }
         
         return view('admin.users.index');
+    }
+
+    public function create()
+    {
+        return view('admin.users.create');
     }
 
     public function store(Request $request)
@@ -73,17 +79,31 @@ class UserController extends Controller
                     'city'=> $request->city,
                 );
 
-                if (UserInformation::create($register_user_info)) {
-                    $error = false;
-                    $mensaje = 'Registro Exitoso!';
+                if ($responsable = UserInformation::create($register_user_info)) {
+                    $id_user_responsable = $responsable->id;
+                    $register_convenio= array(
+                        'start_date' => $request->start_date,
+                        'end_date' => $request->end_date,
+                        'responsable_id' => $request->$id_user_responsable,
+                    );
+
+                    if (Convenio::create($register_convenio)) {
+                        $error = false;
+                        $mensaje = 'Registro Exitoso!';
+                    } else {
+                        $error = true;
+                        $mensaje = 'Error! Se presento un problema al registrar los datos de Información de convenio, intenta de nuevo.';
+                    }
+                    
+                    
                 } else {
                     $error = true;
-                    $mensaje = 'Error! Se presento un problema al registrar los datos, intenta de nuevo.';
+                    $mensaje = 'Error! Se presento un problema al registrar los datos de Información de contácto, intenta de nuevo.';
                 }
                 
             } else {
                 $error = true;
-                $mensaje = 'Error! Se presento un problema al registrar los datos, intenta de nuevo.';
+                $mensaje = 'Error! Se presento un problema al registras datos de usuario, intenta de nuevo.';
             }
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
