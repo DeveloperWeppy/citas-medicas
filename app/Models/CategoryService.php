@@ -12,6 +12,6 @@ class CategoryService extends Model
     protected $fillable = [
         'name',
         'description',
+        'observation',
     ];
-
 }

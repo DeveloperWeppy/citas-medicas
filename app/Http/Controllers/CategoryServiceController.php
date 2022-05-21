@@ -14,7 +14,8 @@ class CategoryServiceController extends Controller
      */
     public function index()
     {
-        //
+        $categorys = CategoryService::get();
+        return view('admin.categorys.index')->with('categorys', $categorys);
     }
 
     /**

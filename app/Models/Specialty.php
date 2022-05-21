@@ -12,5 +12,6 @@ class Specialty extends Model
     protected $fillable = [
         'name',
         'description',
+        'observation',
     ];
 }

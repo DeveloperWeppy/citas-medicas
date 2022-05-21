@@ -14,7 +14,8 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        //
+        $specialityes = Specialty::get();
+        return view('admin.specialityes.index')->with('specialityes', $specialityes);;
     }
 
     /**

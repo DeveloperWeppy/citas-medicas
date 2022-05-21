@@ -271,7 +271,21 @@ return [
             //'label'       => 4,
             'label_color' => 'success',
         ],
-        
+        [
+            'text'        => 'Categorías',
+            'url'         => 'admin/categorias',
+            'icon'        => 'fas fa-project-diagram',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Especialidades',
+            'url'         => 'admin/especialidades',
+            'icon'        => 'fas fa-user-md',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
