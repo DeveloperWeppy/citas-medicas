@@ -35,9 +35,6 @@
     <div class="row">
         <div class="col-12">
 
-          <!----- FORMULARIO DE REGISTRO DE USUARIO ---->
-          <x-form-rgister-user></x-form-rgister-user>
-
             <!------CONTENEDOR DE TABLA------->
             <div class="card card-primary card-outline">
                 

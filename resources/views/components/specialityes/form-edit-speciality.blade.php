@@ -1,32 +1,33 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
+<div class="modal fade" id="modal_EditarEspecialidad-{{$idspeciality}}" tabindex="-1" aria-labelledby="exampleModalLabel" 
 data-backdrop="static" aria-hidden="true" data-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-success">
-          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Registrar Especialidad</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Actualizar Especialidad</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" id="quickForm" method="post">
+        <form action="" id="editSpeciality" method="post">
+            <input type="hidden" name="id" value="{{ $speciality->id }}">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <input type="text" name="name" id="" class="form-control " placeholder="Nombre" autocomplete="off">
+                            <input type="text" name="name" id="" class="form-control " placeholder="Nombre" value="{{ $speciality->name }}" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3"></textarea>
+                            <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3">{{ $speciality->description }}</textarea>
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <textarea class="form-control" name="observation" placeholder="Observación(opcional)" id="" maxlength="499" rows="3"></textarea>
+                            <textarea class="form-control" name="observation" placeholder="Observación(opcional)" id="" maxlength="499" rows="3">{{ $speciality->observation }}</textarea>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ class CreateCategoryServicesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description', 500);
-            $table->string('observation', 500);
+            $table->string('observation', 500)->nullable();
             $table->timestamps();
         });
     }

@@ -53,7 +53,7 @@
                 <div class="card-body">
                    
                     <!--tabla de datos--->
-                    <table id="example" class="display table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="display table table-striped table-bordered " style="width:100%"> 
                         <thead>
                             <tr>
                                 <th>Nombre de la Especialidad</th>
@@ -65,27 +65,36 @@
                         <tbody>
                                 @foreach($specialityes as $key => $value)
 
-                                {{-- @php
-                                        $class_status = $value->estado == 1 ? 'warning' : 'dark';
-                                        $text_status = $value->estado == 1 ? 'Activo' : 'Inactivo';
-                                    @endphp --}}
-
-                                <tr>
+                                @php
+                                    $descri = substr ($value->description, 0,40);
+                                    $obser = substr ($value->observation, 0,40);
+                                @endphp
+                                <tr class="odd">
                                     <td>{{$value->name}}</td>
-                                    <td>{{$value->description}}</td>
-                                     <td>{{$value->observation}}</td>
-                                  {{--   <td class="text-center">
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal_EditarUsuario-{{$value->id}}">
-                                            <i class="fas fa-edit"></i> 
-                                        </button>
-                                         <x-modal-editar-usuario idusuario="{{$value->id}}"></x-modal-editar-usuario>
+                                    <td style="width:30%; ">{{$descri}} ...</td>
 
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#modal_EliminarUsuario-{{$value->id}}">
-                                            <i class="fas fa-trash"></i> 
+                                    @if (!empty($value->observation))
+                                      <td style="width:30%">{{$obser}}...</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    
+                                    <td class="text-center">
+                                        <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modal_EditarEspecialidad-{{$value->id}}">
+                                            <i class="fas fa-edit"></i>  Editar
                                         </button>
+                                         <x-form-edit-speciality idspeciality="{{$value->id}}"></x-form-edit-speciality>
 
-                                        <x-modal-eliminar-usuario idusuario="{{$value->id}}" nombre="{{$value->name}}"></x-modal-eliminar-usuario>
-                                    </td> --}}
+                                       {{--  <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_EliminarEspecialidad-{{$value->id}}">
+                                            <i class="fas fa-trash"></i> Eliminar
+                                        </button> --}} 
+
+                                        <button class="btn btn-xs btn-danger" id="eliminarEspecialidad" onclick="eliminarEspecialidad({{$value->id}})">
+                                          <i class="fas fa-trash"></i> Eliminar
+                                      </button> 
+
+                                        {{-- <x-delete-speciality idspeciality="{{$value->id}}" nombre="{{$value->name}}"></x-delete-speciality> --}}
+                                    </td>
                                 </tr> 
                                 @endforeach
                         </tbody>
@@ -105,10 +114,68 @@
 
 <script src="/js/datatable.js"></script>
     <script>
-      $(document).ready(function() {
 
-         
-        });
+        function eliminarEspecialidad(id){
+                Swal.fire({
+                    title: 'Eliminar Especialidad',
+                    text: "¿Estas seguro de eliminar la especialidad?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Si, eliminar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "{{route('especialidades.destroy','"{{$id}}"')}}"; 
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            type: "GET",
+                            encoding:"UTF-8",
+                            url: url,
+                            dataType:'json',
+                            beforeSend:function(){
+                                Swal.fire({
+                                    text: 'Eliminando especialidad, espere...',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                                });
+                               /*  setTimeout(function(){
+                                location.reload();
+                                },2000); */
+                            }
+                        }).done(function(respuesta){
+                            //console.log(respuesta);
+                            if (!respuesta.error) {
+                                Swal.fire({
+                                    title: 'Esepecialidad Eliminada!',
+                                    icon: 'success',
+                                    showConfirmButton: true,
+                                    timer: 2000
+                                });
+                                setTimeout(function(){
+                                location.reload();
+                                },2000);
+                            } else {
+                                setTimeout(function(){
+                                    Swal.fire({
+                                        title: espuesta.mensaje,
+                                        icon: 'error',
+                                        showConfirmButton: true,
+                                        timer: 4000
+                                    });
+                                },2000);
+                            }
+                        }).fail(function(resp){
+                            console.log(resp);
+                        });
+                    }
+                })
+            }
+
       
         //form of register of user
        $('#quickForm').validate({
@@ -147,7 +214,7 @@
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('usuarios.store')}}";
+                    var url = "{{route('especialidades.store')}}";
 
                     $.ajax({
                         headers: {
@@ -164,17 +231,21 @@
                           Swal.fire({
                                 title: 'Validando datos, espere por favor...',
                                 button: false,
-                                timer: 3000
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
                             });
                         }
                     }).done(function(respuesta){
-                        //console.log(respuesta);
+                        console.log(respuesta.error);
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Usuario registrado exitosamente.',
+                                title: respuesta.mensaje,
                                 icon: 'success',
-                                button: true,
+                                confirmButtonText: "Ok",
                                 timer: 2000
                             });
 
@@ -187,13 +258,19 @@
                               Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
-                                    button: false,
+                                    confirmButtonText: "Ok",
                                     timer: 4000
                                 });
                             },2000);
                         } 
                     }).fail(function(resp){
                         console.log(resp);
+                       /*  Swal.fire({
+                                    title: resp.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: false,
+                                    timer: 4000
+                                }); */
                     });
                   });
             }
@@ -205,24 +282,23 @@
         $(function () {
          
             //validacion de campos vacios para formulario de editar datos de usuario
-          $('#edit_user').validate({
+            $('#editSpeciality').validate({
             rules: {
-                name: {
+              name: {
                 required: true,
               },
-              email: {
+              description: {
                 required: true,
               },
-              },
+            },
             messages: {
                 name: {
-                required: "Por favor ingrese un nombre de usuario",
+                required: "Por favor ingrese el nombre de la especialidad",
               },
-              email: {
-                required: "Por favor ingrese un Correo Electrónico",
-                email: "Ingrese una dirección de correo válida",
+              description: {
+                required: "Por favor ingrese una descripción de la especialidad",
               },
-              },
+            },
             errorElement: 'span',
             errorPlacement: function (error, element) {
               error.addClass('invalid-feedback');
@@ -233,6 +309,75 @@
             },
             unhighlight: function (element, errorClass, validClass) {
               $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form){
+                // agregar datas
+                $('#editSpeciality').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#editSpeciality');
+                    var formData = new FormData(this);
+                    //var updateId = formData.find('input[name="id"]').val()
+                    //ruta
+                    
+                    var url = "{{route('especialidades.update')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                       if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                confirmButtonText: "Ok",
+                                timer: 2000
+                            });
+
+                            setTimeout(function(){
+                                location.reload();
+                            },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: "Ok",
+                                    timer: 4000
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        console.log(resp);
+                       /*  Swal.fire({
+                                    title: resp.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: false,
+                                    timer: 4000
+                                }); */
+                    });
+                  });
             }
           });
 

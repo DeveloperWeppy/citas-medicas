@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     //ROUTES FOR MANAGEMENT USERS
-    Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
-    Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
-    Route::post('/usuarios/store', [UserController::class, 'store'])->name('usuarios.store');
-    Route::post('/usuarios/status', [UserController::class, 'status'])->name('usuarios.status');
+    Route::controller(UserController::class)
+    ->group(function () {
+        Route::get('/usuarios', 'index')->name('usuarios.index');
+        Route::get('/usuarios/create', 'create')->name('usuarios.create');
+        Route::post('/usuarios/store', 'store')->name('usuarios.store');
+        Route::post('/usuarios/status', 'status')->name('usuarios.status');
+    });
+    
 
     //ROUTES FOR MANAGEMENT PLANS
     Route::get('/planes', [PlanController::class, 'index'])->name('plane.index');
@@ -24,7 +28,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
     Route::get('/categorias', [CategoryServiceController::class, 'index'])->name('categorias.index');
+    Route::post('/categorias/store', [CategoryServiceController::class, 'store'])->name('categorias.store');
 
     //ROUTES FOR MANAGEMENT SPECIALITYES
-    Route::get('/especialidades', [SpecialtyController::class, 'index'])->name('especialidades.index');
+    Route::controller(SpecialtyController::class)
+    ->group(function () {
+        Route::get('/especialidades', 'index')->name('especialidades.index');
+        Route::get('/especialidades/get', 'getEspecialidades')->name('especialidades.getEspecialidades');
+        Route::post('/especialidades/store', 'store')->name('especialidades.store');
+        Route::post('/especialidades/update', 'update')->name('especialidades.update');
+        Route::get('/especialidades/destroy/{id}', 'destroy')->name('especialidades.destroy');
+    });
 });
