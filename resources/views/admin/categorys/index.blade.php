@@ -63,29 +63,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach($categorys as $key => $value)
+                              @foreach($categorys as $key => $value)
+                                @php
+                                  $descri = substr ($value->description, 0,40);
+                                  $obser = substr ($value->observation, 0,40);
+                                @endphp
 
-                                {{-- @php
-                                        $class_status = $value->estado == 1 ? 'warning' : 'dark';
-                                        $text_status = $value->estado == 1 ? 'Activo' : 'Inactivo';
-                                    @endphp --}}
+                                <tr class="odd">
+                                  <td>{{$value->name}}</td>
+                                  <td style="width:30%; ">{{$descri}} ...</td>
 
-                                <tr>
-                                    <td>{{$value->name}}</td>
-                                    <td>{{$value->description}}</td>
-                                     <td>{{$value->observation}}</td>
-                                  {{--   <td class="text-center">
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal_EditarUsuario-{{$value->id}}">
-                                            <i class="fas fa-edit"></i> 
-                                        </button>
-                                         <x-modal-editar-usuario idusuario="{{$value->id}}"></x-modal-editar-usuario>
+                                  @if (!empty($value->observation))
+                                    <td style="width:30%">{{$obser}}...</td>
+                                  @else
+                                      <td></td>
+                                  @endif
+                                  
+                                  <td class="text-center">
+                                      <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modal_EditarEspecialidad-{{$value->id}}">
+                                          <i class="fas fa-edit"></i>  Editar
+                                      </button>
+                                      <x-form-edit-category idcategory="{{$value->id}}"></x-form-edit-category>
 
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#modal_EliminarUsuario-{{$value->id}}">
-                                            <i class="fas fa-trash"></i> 
-                                        </button>
-
-                                        <x-modal-eliminar-usuario idusuario="{{$value->id}}" nombre="{{$value->name}}"></x-modal-eliminar-usuario>
-                                    </td> --}}
+                                      <button class="btn btn-xs btn-danger" id="" onclick="eliminarCategoria({{$value->id}})">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button> 
+                                  </td>
                                 </tr> 
                                 @endforeach
                         </tbody>
@@ -105,10 +108,66 @@
 
 <script src="/js/datatable.js"></script>
     <script>
-      $(document).ready(function() {
-
-         
-        });
+      
+      
+      function eliminarCategoria(id){
+            //console.log("soy id"+id);
+                Swal.fire({
+                    title: 'Eliminar Categoría',
+                    text: "¿Estas seguro de eliminar la categoría?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Si, eliminar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "categorias/destroy/"+id;
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            type: "GET",
+                            encoding:"UTF-8",
+                            url: url,
+                            dataType:'json',
+                            beforeSend:function(){
+                                Swal.fire({
+                                    text: 'Eliminando categoría, espere...',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                                });
+                            }
+                        }).done(function(respuesta){
+                            //console.log(respuesta);
+                            if (!respuesta.error) {
+                                Swal.fire({
+                                    title: 'Categoría Eliminada!',
+                                    icon: 'success',
+                                    showConfirmButton: true,
+                                    timer: 2000
+                                });
+                                setTimeout(function(){
+                                location.reload();
+                                },2000);
+                            } else {
+                                setTimeout(function(){
+                                    Swal.fire({
+                                        title: respuesta.mensaje,
+                                        icon: 'error',
+                                        showConfirmButton: true,
+                                        timer: 4000
+                                    });
+                                },2000);
+                            }
+                        }).fail(function(resp){
+                            console.log(resp);
+                        });
+                    }
+                })
+        }
       
         //form of register of user
        $('#quickForm').validate({
@@ -147,7 +206,7 @@
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('usuarios.store')}}";
+                    var url = "{{route('categorias.store')}}";
 
                     $.ajax({
                         headers: {
@@ -164,7 +223,11 @@
                           Swal.fire({
                                 title: 'Validando datos, espere por favor...',
                                 button: false,
-                                timer: 3000
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
                             });
                         }
                     }).done(function(respuesta){
@@ -172,9 +235,9 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Usuario registrado exitosamente.',
+                                title: respuesta.mensaje,
                                 icon: 'success',
-                                button: true,
+                                confirmButtonText: "Ok",
                                 timer: 2000
                             });
 
@@ -187,13 +250,13 @@
                               Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
-                                    button: false,
+                                    confirmButtonText: "Ok",
                                     timer: 4000
                                 });
                             },2000);
                         } 
                     }).fail(function(resp){
-                        console.log(resp);
+                        //console.log(resp);
                     });
                   });
             }
@@ -205,24 +268,24 @@
         $(function () {
          
             //validacion de campos vacios para formulario de editar datos de usuario
-          $('#edit_user').validate({
+        //validacion de campos vacios para formulario de editar datos de especialidad
+        $('#editCategory').validate({
             rules: {
-                name: {
+              name: {
                 required: true,
               },
-              email: {
+              description: {
                 required: true,
               },
-              },
+            },
             messages: {
                 name: {
-                required: "Por favor ingrese un nombre de usuario",
+                required: "Por favor ingrese el nombre de la especialidad",
               },
-              email: {
-                required: "Por favor ingrese un Correo Electrónico",
-                email: "Ingrese una dirección de correo válida",
+              description: {
+                required: "Por favor ingrese una descripción de la especialidad",
               },
-              },
+            },
             errorElement: 'span',
             errorPlacement: function (error, element) {
               error.addClass('invalid-feedback');
@@ -233,41 +296,79 @@
             },
             unhighlight: function (element, errorClass, validClass) {
               $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form){
+                // agregar datas
+                $('#editCategory').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#editCategory');
+                    var formData = new FormData(this);
+                    //var updateId = formData.find('input[name="id"]').val()
+                    //ruta
+                    
+                    var url = "{{route('categorias.update')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                       if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                confirmButtonText: "Ok",
+                                timer: 2000
+                            });
+
+                            setTimeout(function(){
+                                location.reload();
+                            },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: "Ok",
+                                    timer: 4000
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        console.log(resp);
+                       /*  Swal.fire({
+                                    title: resp.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: false,
+                                    timer: 4000
+                                }); */
+                    });
+                  });
             }
           });
 
+
         });
-
-        
-
-        jQuery(document).on("click", ".change-status", function() {
-                var $element = jQuery(this);
-                var id = $element.attr('id');
-                var url = "{{ route('usuarios.status') }}";
-                var data = {
-                    id: id
-                }
-                jQuery.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    encoding: "UTF-8",
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    beforeSend:function(){
-                        $element.val('Cargando');
-                    },
-                    success: function(response) {
-                        if (response.status == 1) {
-                            $element.find('span').removeAttr('class').attr('class', '');
-                            $element.find('span').addClass('btn');
-                            $element.find('span').addClass(response.class_status);
-                            $element.find('span').text(response.text_status);
-                        }
-                    }
-                });
-            });
         </script>
 @stop

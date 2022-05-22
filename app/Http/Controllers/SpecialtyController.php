@@ -24,38 +24,6 @@ class SpecialtyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getEspecialidades()
-    {
-        $data = array();
-        $specialityes = Specialty::all();
-        foreach ($specialityes as $key => $value) {
-
-            /* $class_status = ($value->active == 1)? "success" : "danger";
-            $text_status = ($value->active == 1)? "Activo" : "Inactivo"; */
-
-            $ruta_editar = route('specialityes.editar', $value->id);
-
-            $info = [
-                $value->id,
-                $value->name,
-                $value->description,
-                $value->observation,
-                /* '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
-                date("Y-m-d H:m", strtotime($value->created_at)), */
-                '
-                <a href="'.$ruta_editar.'" class="btn btn-success"><i class="bi bi-pencil"></i></a>
-                <button type="button" class="btn btn-danger" onclick="eliminarUsuario('.$value->id.');"><i class="bi bi-trash"></i></button>
-                '
-            ];
-
-            $data[] = $info;
-
-        }
-
-        echo json_encode([
-            'data' => $data
-        ]);
-    }
 
     public function create()
     {
@@ -80,7 +48,7 @@ class SpecialtyController extends Controller
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrada la especialidad "' . $namespeciality;
         } else {
-            
+
             $register_speciality = array(
                 'name' => $namespeciality,
                 'description' => $request->description,
@@ -94,10 +62,8 @@ class SpecialtyController extends Controller
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registrar la especialidad, intenta de nuevo.';
             }
-            
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
-
     }
 
     /**
@@ -141,7 +107,7 @@ class SpecialtyController extends Controller
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrada la especialidad "' . $namespeciality;
         } else {
-            
+
             $update_speciality = array(
                 'name' => $namespeciality,
                 'description' => $request->description,
@@ -155,7 +121,6 @@ class SpecialtyController extends Controller
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registrar la especialidad, intenta de nuevo.';
             }
-            
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
@@ -171,7 +136,7 @@ class SpecialtyController extends Controller
         $error = false;
         $mensaje = '';
 
-        if(Specialty::findOrFail($id)->delete()){
+        if (Specialty::findOrFail($id)->delete()) {
             $error = false;
         } else {
             $error = true;

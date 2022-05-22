@@ -85,15 +85,9 @@
                                         </button>
                                          <x-form-edit-speciality idspeciality="{{$value->id}}"></x-form-edit-speciality>
 
-                                       {{--  <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_EliminarEspecialidad-{{$value->id}}">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                        </button> --}} 
-
-                                        <button class="btn btn-xs btn-danger" id="eliminarEspecialidad" onclick="eliminarEspecialidad({{$value->id}})">
+                                        <button class="btn btn-xs btn-danger" id="" onclick="eliminarEspecialidad({{$value->id}})">
                                           <i class="fas fa-trash"></i> Eliminar
                                       </button> 
-
-                                        {{-- <x-delete-speciality idspeciality="{{$value->id}}" nombre="{{$value->name}}"></x-delete-speciality> --}}
                                     </td>
                                 </tr> 
                                 @endforeach
@@ -116,6 +110,7 @@
     <script>
 
         function eliminarEspecialidad(id){
+            //console.log("soy id"+id);
                 Swal.fire({
                     title: 'Eliminar Especialidad',
                     text: "¿Estas seguro de eliminar la especialidad?",
@@ -125,7 +120,7 @@
                     confirmButtonText: 'Si, eliminar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        var url = "{{route('especialidades.destroy','"{{$id}}"')}}"; 
+                        var url = "especialidades/destroy/"+id;
                         $.ajax({
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -143,9 +138,6 @@
                                         Swal.showLoading()
                                     },
                                 });
-                               /*  setTimeout(function(){
-                                location.reload();
-                                },2000); */
                             }
                         }).done(function(respuesta){
                             //console.log(respuesta);
@@ -174,7 +166,7 @@
                         });
                     }
                 })
-            }
+        }
 
       
         //form of register of user
@@ -239,7 +231,7 @@
                             });
                         }
                     }).done(function(respuesta){
-                        console.log(respuesta.error);
+                       // console.log(respuesta.error);
                        if (!respuesta.error) {
 
                           Swal.fire({
@@ -281,7 +273,7 @@
         
         $(function () {
          
-            //validacion de campos vacios para formulario de editar datos de usuario
+            //validacion de campos vacios para formulario de editar datos de especialidad
             $('#editSpeciality').validate({
             rules: {
               name: {
@@ -382,37 +374,5 @@
           });
 
         });
-
-        
-
-        jQuery(document).on("click", ".change-status", function() {
-                var $element = jQuery(this);
-                var id = $element.attr('id');
-                var url = "{{ route('usuarios.status') }}";
-                var data = {
-                    id: id
-                }
-                jQuery.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    encoding: "UTF-8",
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    beforeSend:function(){
-                        $element.val('Cargando');
-                    },
-                    success: function(response) {
-                        if (response.status == 1) {
-                            $element.find('span').removeAttr('class').attr('class', '');
-                            $element.find('span').addClass('btn');
-                            $element.find('span').addClass(response.class_status);
-                            $element.find('span').text(response.text_status);
-                        }
-                    }
-                });
-            });
         </script>
 @stop

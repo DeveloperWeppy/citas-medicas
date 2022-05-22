@@ -36,7 +36,32 @@ class CategoryServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        $namecategory = $request->name;
+        $validar_category = CategoryService::where('name', $namecategory)->count();
+
+        if ($validar_category > 0) {
+            $error = true;
+            $mensaje = 'Error! Ya se encuentra registrada la categoría "' . $namecategory;
+        } else {
+
+            $register_category = array(
+                'name' => $namecategory,
+                'description' => $request->description,
+                'observation' => $request->observation,
+            );
+
+            if (CategoryService::create($register_category)) {
+                $error = false;
+                $mensaje = 'Registro de Categoria Exitoso!';
+            } else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al registrar la categoría, intenta de nuevo.';
+            }
+        }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     /**
@@ -70,7 +95,32 @@ class CategoryServiceController extends Controller
      */
     public function update(Request $request, CategoryService $categoryService)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        $namecategory = $request->name;
+        $validar_categoria = CategoryService::where('name', $namecategory)->count();
+
+        if ($validar_categoria > 0) {
+            $error = true;
+            $mensaje = 'Error! Ya se encuentra registrada la categoría "' . $namecategory;
+        } else {
+
+            $update_category = array(
+                'name' => $namecategory,
+                'description' => $request->description,
+                'observation' => $request->observation,
+            );
+
+            if (CategoryService::findOrFail($request->id)->update($update_category)) {
+                $error = false;
+                $mensaje = 'Categoría Actualizada Exitosamente!';
+            } else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al registrar la categoría, intenta de nuevo.';
+            }
+        }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     /**
@@ -79,8 +129,18 @@ class CategoryServiceController extends Controller
      * @param  \App\Models\CategoryService  $categoryService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryService $categoryService)
+    public function destroy($id)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        if (CategoryService::findOrFail($id)->delete()) {
+            $error = false;
+        } else {
+            $error = true;
+            $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+        }
+
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 }

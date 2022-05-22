@@ -11,20 +11,52 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
+        /*   if ($request->ajax()) {
             $usuarios = User::orderBy('id', 'asc')->get();
+
             return datatables()->of($usuarios)
                 ->addColumn('action', function ($row) {
-                    $html = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modal_EditarDivisa">
-                    <i class="fas fa-edit"></i> Editar</button> ';
-                    $html .= '<button data-rowid="' . $row->id . '" class="btn btn-xs btn-danger btn-delete">Eliminar</button>';
+                    $ruta_editar = route('usuarios.edit', $row->id);
+                    $html = '<a class="btn btn-xs btn-success" href="' . $ruta_editar . '">
+                    <i class="fas fa-edit"></i> Editar</a> ';
+                    $html .= '<button type="button" onclick="eliminarUsuario(' . $row->id . '); class="btn btn-xs btn-danger btn-delete">Eliminar</button>';
                     return $html;
-                })->toJson();//
+                })->toJson(); //
         }
-        
+ */
         return view('admin.users.index');
+    }
+    public function getUsuarios()
+    {
+        $data = array();
+        $usuarios = User::all();
+        foreach ($usuarios as $key => $value) {
+
+            $class_status = ($value->active == 1) ? "success" : "danger";
+            $text_status = ($value->active == 1) ? "Activo" : "Inactivo";
+
+            $ruta_editar = route('usuarios.edit', $value->id);
+
+            $info = [
+                $value->id,
+                //$value->roles[0]->name,
+                $value->email,
+                '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                date("Y-m-d H:m", strtotime($value->created_at)),
+                '
+                <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                '
+            ];
+
+            $data[] = $info;
+        }
+
+        echo json_encode([
+            'data' => $data
+        ]);
     }
 
     public function create()
@@ -49,13 +81,11 @@ class UserController extends Controller
         } else if ($validar_nit > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado un usuario con este ni "' . $request->nit . '".';
-            
-            
-         } else{
-             # validamos si existe la imagen en el request
-             $image = $request->file('imgLogo')->store('public/logosPrestadores');
-             $url = Storage::url($image);
-             
+        } else {
+            # validamos si existe la imagen en el request
+            $image = $request->file('imgLogo')->store('public/logosPrestadores');
+            $url = Storage::url($image);
+
             $register_user = array(
                 'logo' => $url,
                 'email' => $request->email,
@@ -69,19 +99,19 @@ class UserController extends Controller
                 $id_user = $user_add->id;
                 $register_user_info = array(
                     'user_id' => $id_user,
-                    'nit'=> $request->nit,
-                    'name'=> $request->name,
-                    'address'=> $request->address,
-                    'num_phone'=> $request->num_phone,
-                    'name_contact'=> $request->name_contact,
-                    'num_phone_contact'=> $request->num_phone_contact,
-                    'email_contact'=> $request->email_contact,
-                    'city'=> $request->city,
+                    'nit' => $request->nit,
+                    'name' => $request->name,
+                    'address' => $request->address,
+                    'num_phone' => $request->num_phone,
+                    'name_contact' => $request->name_contact,
+                    'num_phone_contact' => $request->num_phone_contact,
+                    'email_contact' => $request->email_contact,
+                    'city' => $request->city,
                 );
 
                 if ($responsable = UserInformation::create($register_user_info)) {
                     $id_user_responsable = $responsable->id;
-                    $register_convenio= array(
+                    $register_convenio = array(
                         'start_date' => $request->start_date,
                         'end_date' => $request->end_date,
                         'responsable_id' => $request->$id_user_responsable,
@@ -94,13 +124,10 @@ class UserController extends Controller
                         $error = true;
                         $mensaje = 'Error! Se presento un problema al registrar los datos de Información de convenio, intenta de nuevo.';
                     }
-                    
-                    
                 } else {
                     $error = true;
                     $mensaje = 'Error! Se presento un problema al registrar los datos de Información de contácto, intenta de nuevo.';
                 }
-                
             } else {
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registras datos de usuario, intenta de nuevo.';
@@ -108,5 +135,4 @@ class UserController extends Controller
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
-
 }
