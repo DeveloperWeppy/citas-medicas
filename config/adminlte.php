@@ -265,8 +265,8 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Beneficios',
-            'url'         => 'admin/beneficios',
+            'text'        => 'Servicios',
+            'url'         => 'admin/servicios',
             'icon'        => 'fas fa-hand-holding-medical',
             //'label'       => 4,
             'label_color' => 'success',

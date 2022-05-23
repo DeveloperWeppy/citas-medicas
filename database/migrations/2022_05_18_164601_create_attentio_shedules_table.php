@@ -15,12 +15,12 @@ class CreateAttentioShedulesTable extends Migration
     {
         Schema::create('attentio_shedules', function (Blueprint $table) {
             $table->id();
-            $table->string('day');
-            $table->time('open_morning');
-            $table->time('close_morning');
-            $table->time('open_afternoon');
-            $table->time('close_afternoon');
-            $table->foreignId('responsable_id')->unique()->references('id')->on('user_information');
+            $table->string('day')->nullable();
+            $table->time('open_morning')->nullable();
+            $table->time('close_morning')->nullable();
+            $table->time('open_afternoon')->nullable();
+            $table->time('close_afternoon')->nullable();
+            $table->foreignId('responsable_id')->references('id')->on('user_information');
             $table->timestamps();
         });
     }

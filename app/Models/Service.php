@@ -20,7 +20,6 @@ class Service extends Model
         'observation',
         'status',
         'category_id',
-        'convenio_id',
         'specialty_id',
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttentioShedule;
 use App\Models\Convenio;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,25 +14,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        /*   if ($request->ajax()) {
-            $usuarios = User::orderBy('id', 'asc')->get();
-
-            return datatables()->of($usuarios)
-                ->addColumn('action', function ($row) {
-                    $ruta_editar = route('usuarios.edit', $row->id);
-                    $html = '<a class="btn btn-xs btn-success" href="' . $ruta_editar . '">
-                    <i class="fas fa-edit"></i> Editar</a> ';
-                    $html .= '<button type="button" onclick="eliminarUsuario(' . $row->id . '); class="btn btn-xs btn-danger btn-delete">Eliminar</button>';
-                    return $html;
-                })->toJson(); //
-        }
- */
         return view('admin.users.index');
     }
     public function getUsuarios()
     {
         $data = array();
-        $usuarios = User::all();
+        $usuarios = User::with('roles')->whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'Admin');
+        })->get();
         foreach ($usuarios as $key => $value) {
 
             $class_status = ($value->active == 1) ? "success" : "danger";
@@ -70,6 +60,11 @@ class UserController extends Controller
         $mensaje = '';
 
         $contraseña = $request->password;
+        $dia = $request->day == null ? 'sin dia' : $request->day;
+        $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
+        $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
+        $apertura_afternoon = $request->open_afternoon == null ? 'sin horario' : $request->open_afternoon;
+        $cierre_afternoon = $request->close_afternoon == null ? 'sin horario' : $request->close_afternoon;
 
         //consulta para validar si ya existe un usuario registrado o no
         $validar_email = User::where('email', $request->email)->count();
@@ -80,7 +75,7 @@ class UserController extends Controller
             $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $request->email . '". Intente con otro.';
         } else if ($validar_nit > 0) {
             $error = true;
-            $mensaje = 'Error! Ya se encuentra registrado un usuario con este ni "' . $request->nit . '".';
+            $mensaje = 'Error! Ya se encuentra registrado un usuario con este nit "' . $request->nit . '".';
         } else {
             # validamos si existe la imagen en el request
             $image = $request->file('imgLogo')->store('public/logosPrestadores');
@@ -114,19 +109,37 @@ class UserController extends Controller
                     $register_convenio = array(
                         'start_date' => $request->start_date,
                         'end_date' => $request->end_date,
-                        'responsable_id' => $request->$id_user_responsable,
+                        'responsable_id' => $id_user_responsable,
                     );
 
                     if (Convenio::create($register_convenio)) {
-                        $error = false;
+
+                        for ($i = 0; $i < 7; ++$i) {
+                            //dump((float)$montos[$i]);
+    
+                            $register_horario_atencion = AttentioShedule::create([
+                                'day' => $dia[$i],
+                                'open_morning' => $apertura_morning[$i],
+                                'close_morning' => $cierre_morning[$i],
+                                'open_afternoon' => $apertura_afternoon[$i],
+                                'close_afternoon' => $cierre_afternoon[$i],
+                                'responsable_id' => $id_user_responsable,
+                            ]);
+                        }
+                        if ($register_horario_atencion->save()) {
+                            $error = false;
                         $mensaje = 'Registro Exitoso!';
+                        } else {
+                            $error = true;
+                        $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
+                        }
                     } else {
                         $error = true;
-                        $mensaje = 'Error! Se presento un problema al registrar los datos de Información de convenio, intenta de nuevo.';
+                        $mensaje = 'Error! Se presento un problema al registrar la Información de convenio, intenta de nuevo.';
                     }
                 } else {
                     $error = true;
-                    $mensaje = 'Error! Se presento un problema al registrar los datos de Información de contácto, intenta de nuevo.';
+                    $mensaje = 'Error! Se presento un problema al registrar la Información de contácto, intenta de nuevo.';
                 }
             } else {
                 $error = true;

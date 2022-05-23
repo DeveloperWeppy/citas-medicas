@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Gestión de Planes')
+@section('title', 'Administrar Planes')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)

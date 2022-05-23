@@ -24,9 +24,8 @@ class CreateServicesTable extends Migration
             $table->integer('redeemed_available')->unsigned();//cantidad de redimidos que tendrá el servicio
             $table->string('observation', 500)->nullable();
             $table->integer('status')->default(1);
-            $table->foreignId('category_id')->unique()->references('id')->on('category_services');
-            $table->foreignId('convenio_id')->unique()->references('id')->on('convenios');
-            $table->foreignId('specialty_id')->unique()->references('id')->on('specialties');
+            $table->foreignId('category_id')->references('id')->on('category_services');
+            $table->foreignId('specialty_id')->nullable()->references('id')->on('specialties');
             $table->timestamps();
         });
     }

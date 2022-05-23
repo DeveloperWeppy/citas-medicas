@@ -6,7 +6,7 @@
           <div class="col-sm-4">
               <div class="form-group">
                   <label for="">Día</label>
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Lunes" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Lunes" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -48,7 +48,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Martes" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Martes" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -85,7 +85,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Miercoles" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Miercoles" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -122,7 +122,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Jueves" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Jueves" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -159,7 +159,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Viernes" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Viernes" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -196,7 +196,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Sábado" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Sábado" >
               </div>
           </div>
             <div class="col-sm-4">
@@ -233,7 +233,7 @@
         <div class="row">
           <div class="col-sm-4">
               <div class="form-group">
-                  <input type="text" class="form-control" name="day[]" id="" placeholder="Domingo" disabled>
+                  <input type="text" class="form-control" name="day[]" id="" value="Domingo" >
               </div>
           </div>
             <div class="col-sm-4">

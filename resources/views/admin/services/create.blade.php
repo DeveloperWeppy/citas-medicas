@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Registro de Conveio')
+@section('title', 'Registro de Servicio')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -10,12 +10,12 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Convenio</h3>
+       <h3>Administrar Servicio</h3>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-            <li class="breadcrumb-item active">Registrar Información del Convenio</li>
+            <li class="breadcrumb-item active">Registrar Información del Servicio</li>
             </ol>
       </div>
     </div>
@@ -25,13 +25,12 @@
 @section('content')
 
 <div class="container-fluid">
-  <x-form-rgister-user></x-form-rgister-user>
+  <x-form-register-service></x-form-register-service>
 </div>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
 @stop
 
 @section('js')
@@ -39,74 +38,25 @@
 <script src="/js/datatable.js"></script>
     <script>
 
-      /*  ==========================================
-          SHOW UPLOADED IMAGE
-      * ========================================== */
-      function readURL(input) {
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-
-              reader.onload = function (e) {
-                  $('#imageResult')
-                      .attr('src', e.target.result);
-              };
-              reader.readAsDataURL(input.files[0]);
-          }
-      }
-
-      $(function () {
-          $('#upload').on('change', function () {
-              readURL(input);
-          });
-      });
-
-      /*  ==========================================
-          SHOW UPLOADED IMAGE NAME
-      * ========================================== */
-      var input = document.getElementById( 'upload' );
-      var infoArea = document.getElementById( 'upload-label' );
-
-      input.addEventListener( 'change', showFileName );
-      function showFileName( event ) {
-        var input = event.srcElement;
-        var fileName = input.files[0].name;
-        infoArea.textContent = 'File name: ' + fileName;
-      }
         //form of register of user
        $('#quickForm').validate({
             rules: {
-              email: {
-                required: true,
-                email: true,
-              },
-              password: {
-                required: true,
-                minlength: 8
-              },
-              nit: {
+                name: {
                 required: true,
               },
-              name: {
+              description: {
                 required: true,
               },
-              address: {
+              price_normal: {
                 required: true,
               },
-              city: {
+              price_discount: {
                 required: true,
               },
-              name_contact: {
+              redeemed_available: {
                 required: true,
               },
-              num_phone_contact: {
-                required: true,
-                minlength:7
-              },
-              email_contact: {
-                required: true,
-                email: true,
-              },
-              imgLogo: {
+              category_id: {
                 required: true,
               },
               start_date: {
@@ -117,45 +67,29 @@
               },
             },
             messages: {
-              email: {
-                required: "Por favor ingrese un Correo Electrónico",
-                email: "Ingrese una dirección de correo válida",
+                name: {
+                    required: "Por favor ingrese el nombre del Servicio",
               },
-              password: {
-                required: "Por favor ingrese una Contraseña",
-                minlength: "Debe tener al menos 8 caracteres la contraseña",
+              description: {
+                required: "Por favor ingrese una descripción",
               },
-              nit: {
-                required: "Por favor ingrese un NIT",
+              price_normal: {
+                required: "Por favor ingrese el precio normal",
               },
-              name: {
-                required: "Por favor ingrese el nombre de usuario",
+              price_discount: {
+                required: "Por favor ingrese el precio con descuento",
               },
-              address: {
-                required: "Por favor ingrese una dirección",
+              redeemed_available: {
+                required: "Por favor ingrese la cantidad de redimidos disponibles",
               },
-              city: {
-                required: "Por favor ingrese la ciudad",
-              },
-              name_contact: {
-                required: "Por favor ingrese el nombre de contácto",
-              },
-              num_phone_contact: {
-                required: "Por favor ingrese un Número de Teléfono o Celular",
-                minlength: "Ingrese un número válido",
-              },
-              email_contact: {
-                required: "Por favor ingrese un Correo Electrónico de Contácto",
-                email: "Ingrese una dirección de correo válida",
-              },
-              imgLogo: {
-                required: "Por favor cargue el logo de la empresa",
+              category_id: {
+                required: "Por favor seleccione la categoría",
               },
               start_date: {
-                required: "Seleccione la fecha de inicio del convenio",
+                required: "Seleccione la fecha de inicio del Servicio",
               },
               end_date: {
-                required: "Seleccione la fecha de finalización del convenio",
+                required: "Seleccione la fecha de finalización del Servicio",
               },
             },
             errorElement: 'span',
@@ -177,7 +111,7 @@
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('usuarios.store')}}";
+                    var url = "{{route('servicios.store')}}";
 
                     $.ajax({
                         headers: {
@@ -206,14 +140,14 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Usuario registrado exitosamente.',
+                                title: 'Servicio registrado exitosamente.',
                                 icon: 'success',
                                 button: true,
                                 timer: 2000
                             });
 
                             setTimeout(function(){
-                                location.href = "{{route('usuarios.index')}}";
+                                location.href = "{{route('servicios.index')}}";
                             },2000);
 
                         } else {

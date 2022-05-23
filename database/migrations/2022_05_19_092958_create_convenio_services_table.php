@@ -15,8 +15,8 @@ class CreateConvenioServicesTable extends Migration
     {
         Schema::create('convenio_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('convenio_id')->unique()->references('id')->on('convenios');
-            $table->foreignId('service_id')->unique()->references('id')->on('services');
+            $table->foreignId('convenio_id')->references('id')->on('convenios');
+            $table->foreignId('service_id')->references('id')->on('services');
             $table->timestamps();
         });
     }

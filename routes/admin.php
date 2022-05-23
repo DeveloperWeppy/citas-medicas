@@ -3,6 +3,7 @@
 use App\Http\Controllers\BenefitsPlanController;
 use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\UserController;
 use App\Models\CategoryService;
@@ -26,7 +27,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/planes', [PlanController::class, 'index'])->name('plane.index');
 
     //ROUTES FOR MANAGEMENT BENEFITS OF PLANES
-    Route::get('/beneficios', [BenefitsPlanController::class, 'index'])->name('beneficios.index');
+    Route::controller(ServiceController::class)
+    ->group(function () { 
+        Route::get('/servicios', 'index')->name('servicios.index');
+        Route::get('/servicios/obtener', 'getServicios')->name('servicios.obtener');
+        Route::post('/servicios/store', 'store')->name('servicios.store');
+        Route::get('/servicios/create', 'create')->name('servicios.create');
+        Route::get('/servicios/edit/{id}', 'edit')->name('servicios.edit');
+    });
+    
 
     //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
     Route::controller(CategoryServiceController::class)
