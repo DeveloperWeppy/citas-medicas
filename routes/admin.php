@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BenefitsPlanController;
 use App\Http\Controllers\CategoryServiceController;
+use App\Http\Controllers\InterestsController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SpecialtyController;
@@ -24,7 +25,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //ROUTES FOR MANAGEMENT PLANS
-    Route::get('/planes', [PlanController::class, 'index'])->name('plane.index');
+    Route::controller(PlanController::class)
+    ->group(function () { 
+        Route::get('/planes', 'index')->name('plane.index');
+        Route::get('/planes/create', 'create')->name('plane.create');
+        Route::get('/planes/obtener', 'getPlanes')->name('plane.obtener');
+        Route::post('/planes/store', 'store')->name('plane.store');
+    });
+    
 
     //ROUTES FOR MANAGEMENT BENEFITS OF PLANES
     Route::controller(ServiceController::class)
@@ -34,8 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/servicios/store', 'store')->name('servicios.store');
         Route::get('/servicios/create', 'create')->name('servicios.create');
         Route::get('/servicios/edit/{id}', 'edit')->name('servicios.edit');
+        Route::get('/servicios/update', 'update')->name('usuarios.update');
     });
-    
 
     //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
     Route::controller(CategoryServiceController::class)
@@ -46,7 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/categorias/destroy/{id}', 'destroy')->name('categorias.destroy');
         });
 
-
     //ROUTES FOR MANAGEMENT SPECIALITYES
     Route::controller(SpecialtyController::class)
         ->group(function () {
@@ -55,4 +62,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/especialidades/update', 'update')->name('especialidades.update');
             Route::get('/especialidades/destroy/{id}', 'destroy')->name('especialidades.destroy');
         });
+
+        //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
+    Route::controller(InterestsController::class)
+    ->group(function () {
+        Route::get('/intereses', 'index')->name('intereses.index');
+        Route::post('/intereses/store', 'store')->name('intereses.store');
+        Route::post('/intereses/update', 'update')->name('intereses.update');
+        Route::get('/intereses/destroy/{id}', 'destroy')->name('intereses.destroy');
+    });
 });

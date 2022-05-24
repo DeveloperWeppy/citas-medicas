@@ -10,10 +10,13 @@ class Plan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'slug',
         'price',
         'duration_in_days',
-        'is_group'
+        'is_group',
+        'status',
+        'description',
     ];
 
     public function subscriptions(){

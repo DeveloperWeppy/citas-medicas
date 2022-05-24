@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConvenioServices;
 use App\Models\Service;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
+use App\Models\CategoryService;
+use App\Models\UserInformation;
+use App\Models\ConvenioServices;
 
 class ServiceController extends Controller
 {
@@ -98,7 +101,6 @@ class ServiceController extends Controller
             if ($servicio = Service::create($register_service)) {
                 $id_service = $servicio->id;
                 for ($i = 0; $i < sizeof($responsable_convenio); ++$i) {
-                    //dump((float)$montos[$i]);
 
                     $register_services_prestador = ConvenioServices::create([
                         'convenio_id'  => $responsable_convenio[$i],
@@ -138,9 +140,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        //edit service
+        $service = Service::findOrFail($id);
+
+        return view('admin.services.edit')->with('service', $service);
     }
 
     /**

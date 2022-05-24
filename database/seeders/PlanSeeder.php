@@ -15,12 +15,14 @@ class PlanSeeder extends Seeder
     public function run()
     {
         Plan::create([
+            'name' => 'Plan Individual',
             'slug' => 'mensual',
             'price' => 5000000,
             'duration_in_days' => 30,
         ]);
 
         Plan::create([
+            'name' => 'Plan Grupal',
             'slug' => 'anual',
             'price' => 120000000,
             'duration_in_days' => 365,

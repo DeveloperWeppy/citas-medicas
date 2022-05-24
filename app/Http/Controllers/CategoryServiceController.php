@@ -99,12 +99,6 @@ class CategoryServiceController extends Controller
         $mensaje = '';
 
         $namecategory = $request->name;
-        $validar_categoria = CategoryService::where('name', $namecategory)->count();
-
-        if ($validar_categoria > 0) {
-            $error = true;
-            $mensaje = 'Error! Ya se encuentra registrada la categoría "' . $namecategory;
-        } else {
 
             $update_category = array(
                 'name' => $namecategory,
@@ -119,7 +113,7 @@ class CategoryServiceController extends Controller
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registrar la categoría, intenta de nuevo.';
             }
-        }
+        
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 

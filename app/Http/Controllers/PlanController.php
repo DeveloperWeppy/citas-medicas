@@ -17,6 +17,49 @@ class PlanController extends Controller
         return view('admin.planes.index');
     }
 
+    public function getPlanes()
+    {
+        $data = array();
+        $is_group = '';
+        $planes = Plan::get();
+        foreach ($planes as $key => $value) {
+
+            $class_status = ($value->active == 1) ? "success" : "danger";
+            $text_status = ($value->active == 1) ? "Activo" : "Inactivo";
+
+            $ruta_editar = route('servicios.edit', $value->id);
+
+            if ($value->is_groupd == 0) {
+                $is_group = 'No';
+            } else {
+                $is_group = 'Sí';
+            }
+
+            $info = [
+                $value->id,
+                $value->name,
+                self::convertirVa($value->price),
+                '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                $is_group,
+                '
+                <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                '
+            ];
+
+            $data[] = $info;
+        }
+
+        echo json_encode([
+            'data' => $data
+        ]);
+    }
+
+    function convertirVa($monto){
+        $valor = number_format($monto, 2, ',', '.');
+        return $valor;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +67,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.planes.create');
     }
 
     /**

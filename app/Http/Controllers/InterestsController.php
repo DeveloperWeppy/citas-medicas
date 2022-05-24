@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Specialty;
+use App\Models\Interests;
 use Illuminate\Http\Request;
 
-class SpecialtyController extends Controller
+class InterestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        $specialityes = Specialty::get();
-        return view('admin.specialityes.index')->with('specialityes', $specialityes);
+        $intereses = Interests::get();
+        return view('admin.intereses.index')->with('intereses', $intereses);
     }
 
     /**
@@ -23,8 +23,6 @@ class SpecialtyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function create()
     {
         //
@@ -41,26 +39,26 @@ class SpecialtyController extends Controller
         $error = false;
         $mensaje = '';
 
-        $namespeciality = $request->name;
-        $validar_speciality = Specialty::where('name', $namespeciality)->count();
+        $nameinterest = $request->name;
+        $validar_interest = Interests::where('name', $nameinterest)->count();
 
-        if ($validar_speciality > 0) {
+        if ($validar_interest > 0) {
             $error = true;
-            $mensaje = 'Error! Ya se encuentra registrada la especialidad "' . $namespeciality;
+            $mensaje = 'Error! Ya se encuentra registrado el interés "' . $nameinterest;
         } else {
 
-            $register_speciality = array(
-                'name' => $namespeciality,
+            $register_interest = array(
+                'name' => $nameinterest,
                 'description' => $request->description,
-                'observation' => $request->observation,
+                'category_id' => $request->category_id,
             );
 
-            if (Specialty::create($register_speciality)) {
+            if (Interests::create($register_interest)) {
                 $error = false;
-                $mensaje = 'Registro de Especialidad Exitoso!';
+                $mensaje = 'Registro de Interés Exitoso!';
             } else {
                 $error = true;
-                $mensaje = 'Error! Se presento un problema al registrar la especialidad, intenta de nuevo.';
+                $mensaje = 'Error! Se presento un problema al registrar el interés, intenta de nuevo.';
             }
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
@@ -69,10 +67,10 @@ class SpecialtyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Specialty  $specialty
+     * @param  \App\Models\Interests  $interests
      * @return \Illuminate\Http\Response
      */
-    public function show(Specialty $specialty)
+    public function show(Interests $interests)
     {
         //
     }
@@ -80,10 +78,10 @@ class SpecialtyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Specialty  $specialty
+     * @param  \App\Models\Interests  $interests
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specialty $specialty)
+    public function edit(Interests $interests)
     {
         //
     }
@@ -92,28 +90,27 @@ class SpecialtyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Specialty  $specialty
+     * @param  \App\Models\Interests  $interests
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Specialty $specialty)
+    public function update(Request $request, Interests $interests)
     {
         $error = false;
         $mensaje = '';
 
-        $namespeciality = $request->name;
+        $nameinterest = $request->name;
 
-            $update_speciality = array(
-                'name' => $namespeciality,
+            $update_interest = array(
+                'name' => $nameinterest,
                 'description' => $request->description,
-                'observation' => $request->observation,
             );
 
-            if (Specialty::findOrFail($request->id)->update($update_speciality)) {
+            if (Interests::findOrFail($request->id)->update($update_interest)) {
                 $error = false;
-                $mensaje = 'Especialidad Actualizada Exitosamente!';
+                $mensaje = 'Interés Actualizado Exitosamente!';
             } else {
                 $error = true;
-                $mensaje = 'Error! Se presento un problema al actualizar la especialidad, intenta de nuevo.';
+                $mensaje = 'Error! Se presento un problema al actualizar los datos del interés, intenta de nuevo.';
             }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
@@ -121,7 +118,7 @@ class SpecialtyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Specialty  $specialty
+     * @param  \App\Models\Interests  $interests
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -129,7 +126,7 @@ class SpecialtyController extends Controller
         $error = false;
         $mensaje = '';
 
-        if (Specialty::findOrFail($id)->delete()) {
+        if (Interests::findOrFail($id)->delete()) {
             $error = false;
         } else {
             $error = true;
