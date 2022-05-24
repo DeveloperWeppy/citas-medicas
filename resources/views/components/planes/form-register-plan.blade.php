@@ -55,7 +55,7 @@
                                 <fieldset class="border p-2">
                                     <legend class="float-none w-auto p-2">Servicios</legend>
                                     @if ($services->isEmpty())
-                                        <span>No hay servicios registrados.</span>
+                                        <span class="font-weight-bolder font-italic">No hay servicios registrados.</span>
                                     @else
                                         @foreach ($services as $index => $item)
                                             <div class="col-sm-4">
