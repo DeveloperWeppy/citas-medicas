@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="number" name="redeemed_available" id="" class="form-control " placeholder="Duración en Días" autocomplete="off">
+                                        <input type="number" name="duration_in_days" id="" class="form-control " placeholder="Duración en Días" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -25,7 +25,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="number" name="price_normal" id="" class="form-control " placeholder="Precio" autocomplete="off">
+                                        <input type="number" name="price" id="" class="form-control " placeholder="Precio" autocomplete="off">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">.00</span>
                                             </div>
@@ -37,7 +37,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                            <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
                                             <label class="custom-control-label" for="customSwitch3">¿Es Plan Grupal? 
                                                 <span id="valor" class="badge bg-info text-white font-italic" style="font-size: 16px;">No</span></label>
                                         </div>

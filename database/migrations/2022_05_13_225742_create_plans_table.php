@@ -17,11 +17,11 @@ class CreatePlansTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->integer('price')->unsigned();//con esto se indica que nuca va a ser un número negativo
+            $table->integer('price')->unsigned(); //con esto se indica que nuca va a ser un número negativo
             $table->integer('duration_in_days');
             $table->integer('is_group')->default(0);
             $table->integer('status')->default(1);
-            $table->string('description', 500);
+            $table->string('description', 500)->nullable();
             $table->timestamps();
         });
     }

@@ -57,22 +57,10 @@
               description: {
                 required: true,
               },
-              price_normal: {
+              duration_in_days: {
                 required: true,
               },
-              price_discount: {
-                required: true,
-              },
-              redeemed_available: {
-                required: true,
-              },
-              category_id: {
-                required: true,
-              },
-              start_date: {
-                required: true,
-              },
-              end_date: {
+              price: {
                 required: true,
               },
             },
@@ -83,23 +71,11 @@
               description: {
                 required: "Por favor ingrese una descripción",
               },
-              price_normal: {
-                required: "Por favor ingrese el precio normal",
+              duration_in_days: {
+                required: "Por favor ingrese la duración del Plan",
               },
-              price_discount: {
-                required: "Por favor ingrese el precio con descuento",
-              },
-              redeemed_available: {
-                required: "Por favor ingrese la cantidad de redimidos disponibles",
-              },
-              category_id: {
-                required: "Por favor seleccione la categoría",
-              },
-              start_date: {
-                required: "Seleccione la fecha de inicio del Plan",
-              },
-              end_date: {
-                required: "Seleccione la fecha de finalización del Plan",
+              price: {
+                required: "Por favor ingrese el precio del Plan",
               },
             },
             errorElement: 'span',
