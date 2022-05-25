@@ -34,4 +34,18 @@ class Service extends Model
     public function speciality(){
         return $this->hasMany(Specialty::class);
     }
+
+    public function nombre_categoria()
+    {
+  
+      //relación para poder mostrar el nombre de la categoria
+      return $this->belongsTo(CategoryService::class, 'category_id');
+    }
+
+    public function nombre_especialidad()
+    {
+  
+      //relación para poder mostrar el nombre de la categoria
+      return $this->belongsTo(Specialty::class, 'specialty_id ');
+    }
 }

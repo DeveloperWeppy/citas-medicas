@@ -93,24 +93,30 @@
                                 </div>
                             </div>
                                 <div class="row">
-                                    <p>A continuación selecciona a cuál(es) prestadores ofertan este servicio.</p>
+                                    <p class="ml-3">A continuación selecciona a cuál(es) prestadores ofertan este servicio.</p>
                                 </div>
                             <div class="row">
-                                @if ($convenios->isEmpty())
-                                    <span class="font-weight-bolder font-italic">No hay convenios aún registrados</span>
-                                @else
-                                    @foreach ($convenios as $index => $item)
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" checked="" name="convenios[]" value="{{$item->id}}">
-                                                    <label class="form-check-label">{{$item->name}}</label>
-                                                </div>
+                                <div class="col-12">
+                                    <fieldset class="border p-2">
+                                        <legend class="float-none w-auto p-2">Prestadores de Servicio</legend>
+                                        @if ($convenios->isEmpty())
+                                            <span class="font-weight-bolder font-italic">No hay convenios aún registrados</span>
+                                        @else
+                                            <div class="row">
+                                                @foreach ($convenios as $index => $item)
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" checked="" name="convenios[]" value="{{$item->id}}">
+                                                                <label class="form-check-label">{{$item->name}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-                                
+                                        @endif
+                                    </fieldset>
+                                </div>
                             </div>
                             
                    </div>

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Registro de Servicio')
+@section('title', 'Actualizar Plan')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -10,12 +10,12 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Servicio</h3>
+       <h3>Administrar Plan</h3>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-            <li class="breadcrumb-item active">Actualizar Servicio de <span>{{$service->name}}</span></li>
+            <li class="breadcrumb-item active">Actualizar Información del Plan <span>{{$plan->name}}</span></li>
             </ol>
       </div>
     </div>
@@ -25,7 +25,7 @@
 @section('content')
 
 <div class="container-fluid">
-  <x-form-edit-service idService="{{$service->id}}"></x-form-edit-service>
+  <x-form-edit-plan idPlan="{{$plan->id}}"></x-form-edit-plan>
 </div>
 @stop
 
@@ -35,22 +35,38 @@
 @stop
 
 @section('js')
-
-<script src="/js/datatable.js"></script>
     <script>
 
-          $(function () {
+        $(function () {
+            var texto = $('#valor').text();
             var texto2 = $('#valor_status').text();
-            console.log(texto2);
+            
+            if (texto == "Sí") {
+                $('#customSwitch3').prop("checked", true);
+            } else {
+                $('#customSwitch3').prop("checked", false);
+            } 
 
-            if (texto2 == 'Activo') {
+            if (texto2 == "Activo") {
                 $('#status').prop("checked", true);
             } else {
                 $('#status').prop("checked", false);
             } 
-          });
+        });
 
-           //event for switch of status of plan
+        //event for switch of type of plan (group or individual)
+        $('#customSwitch3').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#valor').text('Si').val();
+            }
+            else {
+                checked = false;
+                $('#valor').text('No').val();
+           }
+        });
+
+        //event for switch of status of plan
         $('#status').change(function() {
             if($(this).is(":checked")) {
                 checked = true;
@@ -61,8 +77,9 @@
                 $('#valor_status').text('Inactivo').val();
            }
         });
+
         //form of register of user
-       $('#editService').validate({
+       $('#editPlan').validate({
             rules: {
                 name: {
                 required: true,
@@ -70,49 +87,25 @@
               description: {
                 required: true,
               },
-              price_normal: {
+              duration_in_days: {
                 required: true,
               },
-              price_discount: {
-                required: true,
-              },
-              redeemed_available: {
-                required: true,
-              },
-              category_id: {
-                required: true,
-              },
-              start_date: {
-                required: true,
-              },
-              end_date: {
+              price: {
                 required: true,
               },
             },
             messages: {
                 name: {
-                    required: "Por favor ingrese el nombre del Servicio",
+                    required: "Por favor ingrese el nombre del Plan",
               },
               description: {
                 required: "Por favor ingrese una descripción",
               },
-              price_normal: {
-                required: "Por favor ingrese el precio normal",
+              duration_in_days: {
+                required: "Por favor ingrese la duración del Plan",
               },
-              price_discount: {
-                required: "Por favor ingrese el precio con descuento",
-              },
-              redeemed_available: {
-                required: "Por favor ingrese la cantidad de redimidos disponibles",
-              },
-              category_id: {
-                required: "Por favor seleccione la categoría",
-              },
-              start_date: {
-                required: "Seleccione la fecha de inicio del Servicio",
-              },
-              end_date: {
-                required: "Seleccione la fecha de finalización del Servicio",
+              price: {
+                required: "Por favor ingrese el precio del Plan",
               },
             },
             errorElement: 'span',
@@ -128,13 +121,13 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#quickForm').on('submit', function(e) {
+                $('#editPlan').on('submit', function(e) {
                 event.preventDefault();
-                var $thisForm = $('#quickForm');
+                var $thisForm = $('#editPlan');
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('servicios.store')}}";
+                    var url = "{{route('plane.store')}}";
 
                     $.ajax({
                         headers: {
@@ -163,14 +156,14 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Servicio registrado exitosamente.',
+                                title: 'Plan registrado exitosamente.',
                                 icon: 'success',
                                 button: true,
                                 timer: 2000
                             });
 
                             setTimeout(function(){
-                                location.href = "{{route('servicios.index')}}";
+                                location.href = "{{route('plane.index')}}";
                             },2000);
 
                         } else {
@@ -191,10 +184,5 @@
           });
        
         
-
-        
-        $(function () {
-
-        });
         </script>
 @stop

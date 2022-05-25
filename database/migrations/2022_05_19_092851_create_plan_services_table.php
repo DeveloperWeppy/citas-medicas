@@ -15,8 +15,8 @@ class CreatePlanServicesTable extends Migration
     {
         Schema::create('plan_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plan_id')->unique()->references('id')->on('plans');
-            $table->foreignId('service_id')->unique()->references('id')->on('services');
+            $table->foreignId('plan_id')->references('id')->on('plans');
+            $table->foreignId('service_id')->references('id')->on('services');
             $table->timestamps();
         });
     }

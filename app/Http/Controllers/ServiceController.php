@@ -27,14 +27,15 @@ class ServiceController extends Controller
         $usuarios = Service::get();
         foreach ($usuarios as $key => $value) {
 
-            $class_status = ($value->active == 1) ? "success" : "danger";
-            $text_status = ($value->active == 1) ? "Activo" : "Inactivo";
+            $class_status = ($value->status == 1) ? "success" : "danger";
+            $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
 
+            $ruta_view_service = route('servicios.show', $value->id);
             $ruta_editar = route('servicios.edit', $value->id);
 
             $info = [
                 $value->id,
-                $value->name,
+                '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name .'</a>',
                 $value->price_normal,
                 $value->price_discount,
                 '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
@@ -83,7 +84,10 @@ class ServiceController extends Controller
         if ($validar_name > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado el servicio "' . $name_service . '". Intente con otro.';
-        } else {
+        } else if($responsable_convenio == null) {
+            $error = true;
+            $mensaje = 'Error! No seleccionaste ningún convenio para este servicio';
+        }else {
             $register_service = array(
                 'name' => $request->name,
                 'description' => $request->description,
@@ -129,9 +133,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return view('admin.services.show')->with('service', $service);
     }
 
     /**

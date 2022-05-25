@@ -20,12 +20,12 @@ class UserController extends Controller
     {
         $data = array();
         $usuarios = User::with('roles')->whereDoesntHave('roles', function ($query) {
-            $query->where('name', 'Admin');
+            $query->whereIn('name', ['Admin', 'Cliente']);
         })->get();
         foreach ($usuarios as $key => $value) {
 
-            $class_status = ($value->active == 1) ? "success" : "danger";
-            $text_status = ($value->active == 1) ? "Activo" : "Inactivo";
+            $class_status = ($value->status == 1) ? "success" : "danger";
+            $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
 
             $ruta_editar = route('usuarios.edit', $value->id);
 

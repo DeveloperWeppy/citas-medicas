@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/planes/create', 'create')->name('plane.create');
         Route::get('/planes/obtener', 'getPlanes')->name('plane.obtener');
         Route::post('/planes/store', 'store')->name('plane.store');
+        Route::get('/planes/edit/{id}', 'edit')->name('plane.edit');
+        Route::get('/planes/detalle-plan/{id}', 'show')->name('plane.show');
     });
     
 
@@ -43,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/servicios/create', 'create')->name('servicios.create');
         Route::get('/servicios/edit/{id}', 'edit')->name('servicios.edit');
         Route::get('/servicios/update', 'update')->name('usuarios.update');
+        Route::get('/servicios/detalle-servicio/{id}', 'show')->name('servicios.show');
     });
 
     //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES

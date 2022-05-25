@@ -156,7 +156,7 @@
                                     title: respuesta.mensaje,
                                     icon: "error",
                                     button: false,
-                                    timer: 4000
+                                    timer: 5000
                                 });
                             },2000);
                         } 

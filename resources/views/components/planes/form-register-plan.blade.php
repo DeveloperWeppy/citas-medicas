@@ -51,25 +51,33 @@
                                 </div>
                                 
                             </div>
+
                             <div class="row">
-                                <fieldset class="border p-2">
-                                    <legend class="float-none w-auto p-2">Servicios</legend>
-                                    @if ($services->isEmpty())
-                                        <span class="font-weight-bolder font-italic">No hay servicios registrados.</span>
-                                    @else
-                                        @foreach ($services as $index => $item)
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" checked="" name="servicios[]" value="{{$item->id}}">
-                                                        <label class="form-check-label">{{$item->name}}</label>
+                                <p class="ml-2">Seleccione a continuación los servicios que estarán asociados a este nuevo Plan.</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <fieldset class="border p-2">
+                                        <legend class="float-none w-auto p-2">Servicios</legend>
+                                        @if ($services->isEmpty())
+                                            <span class="font-weight-bolder font-italic">No hay servicios registrados.</span>
+                                        @else
+                                            <div class="row">
+                                                @foreach ($services as $index => $item)
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" checked="" name="servicios[]" value="{{$item->id}}">
+                                                                <label class="form-check-label">{{$item->name}}</label>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                        @endforeach
-                                    @endif
-                                    
-                                </fieldset>
+                                        @endif
+                                        
+                                    </fieldset>
+                                </div>
                             </div>
                             
                    </div>

@@ -3,7 +3,30 @@
         <div class="col-12">
            <div class="card card-default">
                <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-plus"></i> Editar datos del Servicio</h3>
+                   <div class="row">
+                       <div class="col-sm-6">
+                            <h3 class="card-title"><i class="fas fa-plus"></i> Editar datos del Servicio</h3>
+                       </div>
+
+                       <div class="col-sm-6">
+                           <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    @if ($service->status == 0)
+                                        <input type="checkbox" name="status" class="custom-control-input" id="status" value="off">
+                                        <label class="custom-control-label" for="status">Estado: 
+                                            <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Inactivo</span></label>
+                                    @else
+                                        <input type="checkbox" name="status" class="custom-control-input" id="status" value="on">
+                                        <label class="custom-control-label" for="status">Estado
+                                            <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Activo</span></label>
+                                    @endif
+                                    
+                                </div>
+                           </div>
+                            
+                        </div>
+                   </div>
+                 
                </div>
   
                <form action="" method="post" id="editService">
@@ -101,19 +124,32 @@
                                 </div>
                             </div>
                                 <div class="row">
-                                    <p>A continuación selecciona a cuál(es) prestadores ofertan este servicio.</p>
+                                    <p class="ml-3">A continuación selecciona a cuál(es) prestadores ofertan este servicio.</p>
                                 </div>
+
                             <div class="row">
-                                @foreach ($info_convenio as $index => $item)
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="convenios[]" value="{{$item['datos']['id']}}">
-                                                <label class="form-check-label">{{$item['datos']['name']}}</label>
+                                <div class="col-12">
+                                    <fieldset class="border p-2">
+                                        <legend class="float-none w-auto p-2">Prestadores de Servicio</legend>
+                                        @if ($info_convenio == null)
+                                            <span class="font-weight-bolder font-italic">No hay prestadores de servicios registrados.</span>
+                                        @else
+                                            <div class="row">
+                                                @foreach ($info_convenio as $index => $item)
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" checked="" name="convenios[]" value="{{$item['datos']['id']}}">
+                                                                <label class="form-check-label">{{$item['datos']['name']}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                        @endif
+                                        
+                                    </fieldset>
+                                </div>
                             </div>
                             
                    </div>
