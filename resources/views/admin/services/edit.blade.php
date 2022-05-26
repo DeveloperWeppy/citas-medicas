@@ -128,13 +128,13 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#quickForm').on('submit', function(e) {
+                $('#editService').on('submit', function(e) {
                 event.preventDefault();
-                var $thisForm = $('#quickForm');
+                var $thisForm = $('#editService');
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('servicios.store')}}";
+                    var url = "{{route('servicios.update')}}";
 
                     $.ajax({
                         headers: {
@@ -163,7 +163,7 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Servicio registrado exitosamente.',
+                                title: 'Servicio actualizado exitosamente.',
                                 icon: 'success',
                                 button: true,
                                 timer: 2000
@@ -184,7 +184,7 @@
                             },2000);
                         } 
                     }).fail(function(resp){
-                        console.log(resp);
+                        //console.log(resp);
                     });
                   });
             }

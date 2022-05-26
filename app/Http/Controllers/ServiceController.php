@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
             $info = [
                 $value->id,
-                '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name .'</a>',
+                '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
                 $value->price_normal,
                 $value->price_discount,
                 '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
@@ -79,15 +79,15 @@ class ServiceController extends Controller
         $category_id = $request->category_id;
         $responsable_convenio = $request->convenios;
         //consulta para validar si ya existe un usuario registrado o no
-        $validar_name= Service::where('name', $name_service)->count();
+        $validar_name = Service::where('name', $name_service)->count();
 
         if ($validar_name > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado el servicio "' . $name_service . '". Intente con otro.';
-        } else if($responsable_convenio == null) {
+        } else if ($responsable_convenio == null) {
             $error = true;
             $mensaje = 'Error! No seleccionaste ningún convenio para este servicio';
-        }else {
+        } else {
             $register_service = array(
                 'name' => $request->name,
                 'description' => $request->description,
@@ -119,7 +119,7 @@ class ServiceController extends Controller
                     $error = true;
                     $mensaje = 'Error! Se presento un problema al registrar los prestadores del servicio, intenta de nuevo.';
                 }
-            }else{
+            } else {
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registrar el servicio, intenta de nuevo.';
             }
@@ -162,7 +162,78 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        $estado = 0;
+
+        $id_Service = $request->id;
+        $name_service = $request->name;
+        $category_id = $request->category_id;
+        $responsable_convenio = $request->convenios;
+
+        $status_service = $request->id;
+
+        if ($status_service == "on") {
+            $estado = 1;
+        } else {
+            $estado = 0;
+        }
+
+        //consulta para validar si ya existe un usuario registrado o no
+        $validar_name = Service::where('name', $name_service)->where('id', '<>', $id_Service)->get()->count();
+
+        if ($validar_name > 0) {
+            $error = true;
+            $mensaje = 'Error! Ya se encuentra registrado el servicio "' . $name_service . '". Intente con otro.';
+        } else if ($responsable_convenio == null) {
+            $error = true;
+            $mensaje = 'Error! No seleccionaste ningún convenio para este servicio';
+        } else {
+            $update_service = array(
+                'name' => $request->name,
+                'description' => $request->description,
+                'price_normal' => $request->price_normal,
+                'price_discount' => $request->price_discount,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'redeemed_available' => $request->redeemed_available,
+                'observation' => $request->observation,
+                'status' => $estado,
+                'category_id' => $category_id,
+                'specialty_id' => $request->specialty_id,
+            );
+
+            if ($servicio = Service::findOrFail($id_Service)->update($update_service)) {
+                //$id_service = $servicio->id;
+
+                $register_services_prestador = array();
+                for ($i = 0; $i < sizeof($responsable_convenio); ++$i) {
+                    $exists_convenio_service = ConvenioServices::where('service_id', $request->id)->where('convenio_id', $responsable_convenio[$i])->count();
+
+                    if ($exists_convenio_service == 0) {
+                        $register_services_prestador = ConvenioServices::create([
+                            'convenio_id'  => $responsable_convenio[$i],
+                            'service_id'  => $request->id,
+                        ]);
+                        $error = false;
+                        $mensaje = 'Actualización de Servicio Exitoso!';
+                    }
+                }
+
+                /*  if ($register_services_prestador->save()) {
+                    $error = false;
+                    $mensaje = 'Actualización de Servicio Exitoso!';
+                } else {
+                    $error = true;
+                    $mensaje = 'Error! Se presento un problema al registrar los prestadores del servicio, intenta de nuevo.';
+                } */
+            } else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al registrar el servicio, intenta de nuevo.';
+            }
+        }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     /**

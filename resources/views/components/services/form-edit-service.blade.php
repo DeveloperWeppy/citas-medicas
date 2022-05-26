@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-12">
            <div class="card card-default">
+            <form action="" method="post" id="editService">
                <div class="card-header">
+                   
                    <div class="row">
                        <div class="col-sm-6">
                             <h3 class="card-title"><i class="fas fa-plus"></i> Editar datos del Servicio</h3>
@@ -29,7 +31,8 @@
                  
                </div>
   
-               <form action="" method="post" id="editService">
+               
+                   <input type="hidden" name="id" value="{{$service->id}}">
                    <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-8">
@@ -101,7 +104,10 @@
                                         <label>Categoría</label>
                                         <select class="custom-select" name="category_id">
                                             @foreach ($categorys as $item)
-                                                <option value="{{$item->id}} {{($item->id == $service->category_id) ? 'selected':'' }}">{{$item->name}}</option>
+                                            {{-- @php
+                                                $selected = $service->category_id == $item->id ? 'selected="selected"' : '';
+                                            @endphp --}}
+                                                <option value="{{$item->id}}" {{($item->id == $service->category_id) ? 'selected':'' }}>{{$item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -158,7 +164,7 @@
                     <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>
                     <button type="submit" class="btn btn-success float-right">Guardar</button>
                     </div>
-               </form>
+            </form>
   
            </div>
           

@@ -26,27 +26,27 @@ Route::group(['middleware' => 'auth'], function () {
 
     //ROUTES FOR MANAGEMENT PLANS
     Route::controller(PlanController::class)
-    ->group(function () { 
-        Route::get('/planes', 'index')->name('plane.index');
-        Route::get('/planes/create', 'create')->name('plane.create');
-        Route::get('/planes/obtener', 'getPlanes')->name('plane.obtener');
-        Route::post('/planes/store', 'store')->name('plane.store');
-        Route::get('/planes/edit/{id}', 'edit')->name('plane.edit');
-        Route::get('/planes/detalle-plan/{id}', 'show')->name('plane.show');
-    });
-    
+        ->group(function () {
+            Route::get('/planes', 'index')->name('plane.index');
+            Route::get('/planes/create', 'create')->name('plane.create');
+            Route::get('/planes/obtener', 'getPlanes')->name('plane.obtener');
+            Route::post('/planes/store', 'store')->name('plane.store');
+            Route::get('/planes/edit/{id}', 'edit')->name('plane.edit');
+            Route::get('/planes/detalle-plan/{id}', 'show')->name('plane.show');
+        });
+
 
     //ROUTES FOR MANAGEMENT BENEFITS OF PLANES
     Route::controller(ServiceController::class)
-    ->group(function () { 
-        Route::get('/servicios', 'index')->name('servicios.index');
-        Route::get('/servicios/obtener', 'getServicios')->name('servicios.obtener');
-        Route::post('/servicios/store', 'store')->name('servicios.store');
-        Route::get('/servicios/create', 'create')->name('servicios.create');
-        Route::get('/servicios/edit/{id}', 'edit')->name('servicios.edit');
-        Route::get('/servicios/update', 'update')->name('usuarios.update');
-        Route::get('/servicios/detalle-servicio/{id}', 'show')->name('servicios.show');
-    });
+        ->group(function () {
+            Route::get('/servicios', 'index')->name('servicios.index');
+            Route::get('/servicios/obtener', 'getServicios')->name('servicios.obtener');
+            Route::post('/servicios/store', 'store')->name('servicios.store');
+            Route::get('/servicios/create', 'create')->name('servicios.create');
+            Route::get('/servicios/edit/{id}', 'edit')->name('servicios.edit');
+            Route::post('/servicios/update', 'update')->name('servicios.update');
+            Route::get('/servicios/detalle-servicio/{id}', 'show')->name('servicios.show');
+        });
 
     //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
     Route::controller(CategoryServiceController::class)
@@ -66,12 +66,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/especialidades/destroy/{id}', 'destroy')->name('especialidades.destroy');
         });
 
-        //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
+    //ROUTES FOR MANAGEMENT CATEGORYS OF SERVICES
     Route::controller(InterestsController::class)
-    ->group(function () {
-        Route::get('/intereses', 'index')->name('intereses.index');
-        Route::post('/intereses/store', 'store')->name('intereses.store');
-        Route::post('/intereses/update', 'update')->name('intereses.update');
-        Route::get('/intereses/destroy/{id}', 'destroy')->name('intereses.destroy');
-    });
+        ->group(function () {
+            Route::get('/intereses', 'index')->name('intereses.index');
+            Route::post('/intereses/store', 'store')->name('intereses.store');
+            Route::post('/intereses/update', 'update')->name('intereses.update');
+            Route::get('/intereses/destroy/{id}', 'destroy')->name('intereses.destroy');
+        });
 });
