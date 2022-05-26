@@ -36,15 +36,17 @@
 
 @section('js')
     <script>
-
+        $('#cantidad_personas').hide();
         $('#customSwitch3').change(function() {
             if($(this).is(":checked")) {
                 checked = true;
                 $('#valor').text('Si').val();
+                $('#cantidad_personas').show();
             }
             else {
                 checked = false;
                 $('#valor').text('No').val();
+                $('#cantidad_personas').hide();
            }
         });
 

@@ -49,3 +49,44 @@
               user-select: none; /* Non-prefixed version, currently
                                  supported by Chrome, Edge, Opera and Firefox */
 }
+
+.reloj {
+    color: #0d1420;
+    width: auto;
+    font-size: 15px;
+    font-family: Arial;
+    letter-spacing: 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid #34c2b5; 
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+} 
+
+@media only screen and (min-width: 200px) {
+	.reloj {
+	    color: #0d1420;
+	    font-size: 15px;
+	    font-family: Arial;
+	    letter-spacing: 5px;
+	    text-align: center;
+	    background-color: transparent;
+	    border: 2px solid #34c2b5; 
+        padding: 5px 5px 5px 5px;
+	    border-radius: 5px;
+	}
+}
+
+@media only screen and (min-width: 960px) {
+	.reloj {
+	    color: #0d1420;
+	    font-size: 15;
+	    font-family: Arial;
+	    letter-spacing: 5px;
+	    text-align: center;
+	    background-color: transparent;
+	    border: 2px solid #34c2b5; 
+        padding: 5px 5px 5px 5px;
+	    border-radius: 5px;
+	}
+} 

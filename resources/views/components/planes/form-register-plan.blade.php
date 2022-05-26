@@ -34,7 +34,7 @@
                                 <div class="col-sm-6">
                                     
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 mt-2">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
@@ -43,6 +43,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="number" name="cant_people" id="cantidad_personas" class="form-control " placeholder="Cantidad de Personas Permitidas" autocomplete="off">
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3"></textarea>

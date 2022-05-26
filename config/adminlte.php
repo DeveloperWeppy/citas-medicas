@@ -243,14 +243,14 @@ return [
             'text' => 'search',
         ],
         [
-            'text'        => 'Dashboard',
-            'url'         => 'admin/dasboard',
-            'icon'        => 'fas fa-tachometer-alt-average',
+            'text'        => 'Inicio',
+            'url'         => 'admin/inicio',
+            'icon'        => 'fas fa-home',
             //'label'       => 4,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Usuarios',
+            'text'        => 'Convenios',
             'url'         => 'admin/usuarios',
             'icon'        => 'fas fa-users',
             //'label'       => 4,

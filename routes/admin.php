@@ -11,6 +11,8 @@ use App\Models\CategoryService;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio'])->name('inicio.index');
+
 
     //ROUTES FOR MANAGEMENT USERS
     Route::controller(UserController::class)

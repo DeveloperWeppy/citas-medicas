@@ -81,6 +81,7 @@ class PlanController extends Controller
     public function store(Request $request)
     {
         $type_plan = 0;
+        $cantidad_personas = 0;
         $error = false;
         $mensaje = '';
 
@@ -92,8 +93,10 @@ class PlanController extends Controller
 
         if ($group_or_no == "on") {
             $type_plan = 1;
+            $cantidad_personas = $request->cant_people;
         } else {
             $type_plan = 0;
+            $cantidad_personas = 1;
         }
         
 
@@ -110,6 +113,7 @@ class PlanController extends Controller
                 'price' => $request->price,
                 'duration_in_days' => $request->duration_in_days,
                 'is_group' => $type_plan,
+                'cant_people' => $cantidad_personas,
                 'status' => 1,
                 'description' => $request->description,
             );

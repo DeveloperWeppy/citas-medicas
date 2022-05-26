@@ -114,7 +114,7 @@
                    </div>
   
                    <div class="card-footer">
-                    <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>
+                    <a href="{{ route('plane.index') }}" class="btn btn-default">Cancelar</a>
                     <button type="submit" class="btn btn-success float-right">Guardar</button>
                     </div>
                </form>

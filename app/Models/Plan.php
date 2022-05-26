@@ -17,6 +17,7 @@ class Plan extends Model
         'is_group',
         'status',
         'description',
+        'cant_people',
     ];
 
     public function subscriptions(){

@@ -20,6 +20,7 @@ class CreatePlansTable extends Migration
             $table->integer('price')->unsigned(); //con esto se indica que nuca va a ser un número negativo
             $table->integer('duration_in_days');
             $table->integer('is_group')->default(0);
+            $table->integer('cant_people')->default(1);//cantidad de personas que tendrá el plan
             $table->integer('status')->default(1);
             $table->string('description', 500)->nullable();
             $table->timestamps();
