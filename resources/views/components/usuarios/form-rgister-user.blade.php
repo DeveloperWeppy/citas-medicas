@@ -105,7 +105,7 @@
                    </div>
   
                    <div class="card-footer">
-                    <a href="{{ route('usuarios.index') }}" class="btn btn-default">Cancelar</a>
+                    <a href="{{ route('convenios.index') }}" class="btn btn-default">Cancelar</a>
                     <button type="submit" class="btn btn-success float-right">Guardar</button>
                     </div>
                </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Interests;
+use App\Models\InterestsClient;
 use Illuminate\Http\Request;
 
 class InterestsController extends Controller
@@ -18,6 +19,12 @@ class InterestsController extends Controller
         return view('admin.intereses.index')->with('intereses', $intereses);
     }
 
+    public function view()
+    {
+        $intereses = InterestsClient::get();
+        return view('cliente.intereses.index')->with('intereses', $intereses);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

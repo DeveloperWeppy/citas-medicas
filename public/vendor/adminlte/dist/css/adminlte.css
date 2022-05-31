@@ -10210,6 +10210,14 @@ a.text-success:hover, a.text-success:focus {
   color: #17a2b8 !important;
 }
 
+.text-deal{
+  color: #34c2b5 !important;
+}
+
+a.text-deal:hover, a.text-deal:focus {
+  color: #34c2b5 !important;
+}
+
 a.text-info:hover, a.text-info:focus {
   color: #0f6674 !important;
 }

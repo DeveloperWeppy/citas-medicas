@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Administrar Convenios')
+@section('title', 'Subscriptores')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -10,12 +10,9 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Usuarios</h3>
+       
       </div>
       <div class="col-sm-6">
-        <a href="{{ route('usuarios.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
-          Nuevo Usuario
-        </a>
       </div>
     </div>
   </div>
@@ -40,7 +37,7 @@
                 
                 <!--cabecera del contenedor--->
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-eye"></i> Usuarios Registrados</h3>
+                    <h3 class="card-title"><i class="fas fa-eye"></i> Subscriptores Registrados</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -52,14 +49,14 @@
                 <div class="card-body">
                    
                     <!--tabla de datos--->
-                    <table id="listarusuarios" class="display table table-striped table-bordered" style="width:100%">
+                    <table id="listarsubscriptores" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Correo</th>
                                 <th>Estado</th>
-                                <th>Fecha y Hora</th>
-                                <th>Acciones</th>
+                                <th>Fecha de Registro</th>
+                                <th>Ver Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,12 +82,12 @@
 
         });
        
-        var tabla_usuarios = $('#listarusuarios').DataTable({
+        var tabla_usuarios = $('#listarsubscriptores').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
                 },
                 "order": [[ 0, "desc" ]],
-                "ajax": "{{route('usuarios.obtener')}}",
+                "ajax": "{{route('subscriptores.obtener')}}",
             });
 
             function eliminarEspecialidad(id){

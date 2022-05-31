@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\UserInformation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,11 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+       
         return view('home');
     }
 
     public function inicio()
     {
-        return view('admin.home');
+        $id_user = auth()->id();
+
+        $client = Client::where('user_id', $id_user)->first();
+        $prestador = UserInformation::where('user_id', $id_user)->first();
+        
+        $name_client = $client->name;
+        return view('admin.home')->with('name_client', $name_client);
     }
 }

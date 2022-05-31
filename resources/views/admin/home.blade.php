@@ -16,7 +16,15 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h3>Administrador Citas Médicas</h3>
+        @role('Admin')
+          @can('usuarios.index')
+            <h3>Administrador Citas Médicas</h3>
+          @endcan
+        @else
+          <h3 >¡Bienvenido, <span class="text-uppercase font-weight-bold text-deal">{{ $name_client }}!</span></h3> 
+        @endrole
+        
+        
       </div>
       <div class="col-sm-6">
         

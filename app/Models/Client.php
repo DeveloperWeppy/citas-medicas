@@ -28,7 +28,6 @@ class Client extends Model
 
     public function usuario()
     {
-      //con esto hago la relación de por cada capital establecido pertenece a un cuadre de caja, es decir a un capital en efectivo diario
       return $this->hasOne(User::class);
     }
 }
