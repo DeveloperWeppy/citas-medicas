@@ -27,11 +27,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'inicio.index'])->syncRoles([$role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'usuarios.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'plane.index'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'servicios.index'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'servicios.index'])->syncRoles([$role1, $role2, $role3]);
         Permission::create(['name' => 'categorias.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'especialidades.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'intereses.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'clientes.index'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'servicios.create'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'servicios.acciones'])->syncRoles([$role1, $role2]);
 
         //client user permissions
         Permission::create(['name' => 'plan.index'])->assignRole($role4);

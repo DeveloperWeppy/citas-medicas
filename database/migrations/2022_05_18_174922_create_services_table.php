@@ -18,10 +18,10 @@ class CreateServicesTable extends Migration
             $table->string('name');
             $table->string('description', 500);
             $table->integer('price_normal')->unsigned();
-            $table->integer('price_discount')->unsigned();
+            $table->integer('price_discount')->unsigned()->nullable();
+            $table->integer('percentage_discount')->unsigned()->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->integer('redeemed_available')->unsigned();//cantidad de redimidos que tendrá el servicio
             $table->string('observation', 500)->nullable();
             $table->integer('status')->default(1);
             $table->foreignId('category_id')->references('id')->on('category_services');

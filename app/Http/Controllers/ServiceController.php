@@ -95,7 +95,7 @@ class ServiceController extends Controller
                 'price_discount' => $request->price_discount,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
-                'redeemed_available' => $request->redeemed_available,
+                'percentage_discount' => $request->percentage_discount,
                 'observation' => $request->observation,
                 'status' => 1,
                 'category_id' => $category_id,

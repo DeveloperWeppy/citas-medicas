@@ -13,17 +13,16 @@
        <h3> Mis Intereses</h3>
       </div>
       <div class="col-sm-6">
-        <a href="{{ route('plane.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
-          Nuevo Plan
-        </a>
+        <button type="button" class="btn btn-success float-sm-right" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-plus"></i>Registrar Mis Intereses
+        </button>
+          <x-register-mys-interests></x-register-mys-interests>
       </div>
     </div>
   </div>
 @stop
 
 @section('content')
-
-<div class="container-fluid">
 
     <div class="row">
       <div class="mb-3">
@@ -35,41 +34,32 @@
     <div class="row">
         <div class="col-12">
           <!------CONTENEDOR DE TABLA------->
-          <div class="card card-primary card-outline">
+            <div class="card card-primary card-outline">
                 
-            <!--cabecera del contenedor--->
-            <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-eye"></i> Planes Registrados</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
+
+                <!--cuerpo del contenedor--->
+                <div class="card-body">
+                    <div class="row">
+                        @if ($intereses->isEmpty())
+                                <span class="font-weight-bolder font-italic">Aún no has registrado tus interéses</span>
+                            @else
+                                @foreach ($intereses as $index => $item)
+                                    <div class="col-12 col-sm-4">
+                                        <div class="info-box bg-light">
+                                            <div class="info-box-content">
+                                                <span class="info-box-text text-center text-muted">{{$item->find($item->id)->nombre_interes->name}}</span>
+                                                <button class="btn btn-xs btn-danger" id="" onclick="eliminarInteres({{$item->id}})">
+                                                    <i class="fas fa-trash"></i> 
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                    </div>
                 </div>
             </div>
-
-            <!--cuerpo del contenedor--->
-            <div class="card-body">
-               
-                <!--tabla de datos--->
-                <table id="listarplanes" class="display table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre del Plan</th>
-                            <th>Precio</th>
-                            <th>Estado</th>
-                            <th>¿Es Grupal?</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
         </div>
-        </div>
-    </div>
-</div>
 @stop
 
 @section('css')
@@ -78,52 +68,132 @@
 
 @section('js')
 
-<script src="/js/datatable.js"></script>
     <script>
-      $(document).ready(function() {});
+          function eliminarInteres(id){
+            //console.log("soy id"+id);
+                Swal.fire({
+                    title: 'Quitar Interés',
+                    text: "¿Estas seguro de quitar este item de la lista de intereses?",
+                    icon: 'question',
+                    showCancelButton: 'Cancelar',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Si, eliminar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "/intereses/destroy-client/"+id;
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            type: "GET",
+                            encoding:"UTF-8",
+                            url: url,
+                            dataType:'json',
+                            beforeSend:function(){
+                                Swal.fire({
+                                    text: 'Quitando interés, espere...',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                                });
+                            }
+                        }).done(function(respuesta){
+                            console.log(respuesta);
+                            if (!respuesta.error) {
+                                Swal.fire({
+                                    title: 'Interés Quitado!',
+                                    icon: 'success',
+                                    showConfirmButton: true,
+                                    timer: 2000
+                                });
+                                setTimeout(function(){
+                                location.reload();
+                                },2000);
+                            } else {
+                                setTimeout(function(){
+                                    Swal.fire({
+                                        title: respuesta.mensaje,
+                                        icon: 'error',
+                                        showConfirmButton: true,
+                                        timer: 4000
+                                    });
+                                },2000);
+                            }
+                        }).fail(function(resp){
+                            console.log(resp);
+                        });
+                    }
+                })
+        }
 
-        var tabla_usuarios = $('#listarplanes').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
-                },
-                "order": [[ 0, "desc" ]],
-                "ajax": "{{route('plane.obtener')}}",
-            });
+        // agregar data
+        $('#quickForm').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#quickForm');
+                    var formData = new FormData(this);
+
+                    //ruta
+                    var url = "{{route('misintereses.store')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                       if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                confirmButtonText: "Ok",
+                                timer: 2000
+                            });
+
+                            setTimeout(function(){
+                                location.reload();
+                            },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: "Ok",
+                                    timer: 4000
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        //console.log(resp);
+                    });
+                  });
+      $(document).ready(function() {
+
+      });
 
         $(function () {
 
         });
-
-        
-
-        jQuery(document).on("click", ".change-status", function() {
-                var $element = jQuery(this);
-                var id = $element.attr('id');
-                var url = "{{ route('usuarios.status') }}";
-                var data = {
-                    id: id
-                }
-                jQuery.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    encoding: "UTF-8",
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    beforeSend:function(){
-                        $element.val('Cargando');
-                    },
-                    success: function(response) {
-                        if (response.status == 1) {
-                            $element.find('span').removeAttr('class').attr('class', '');
-                            $element.find('span').addClass('btn');
-                            $element.find('span').addClass(response.class_status);
-                            $element.find('span').text(response.text_status);
-                        }
-                    }
-                });
-            });
         </script>
 @stop

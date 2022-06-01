@@ -10,12 +10,18 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Servicios</h3>
+        @role('Prestador')
+            <h3>Nuestros Servicios</h3>
+        @else
+            <h3>Administrar Servicios</h3>
+        @endrole
       </div>
       <div class="col-sm-6">
-        <a href="{{ route('servicios.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
-          Nuevo Servicio
-        </a>
+        @can('servicios.create')
+            <a href="{{ route('servicios.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
+                Nuevo Servicio
+            </a>
+        @endcan
       </div>
     </div>
   </div>
@@ -62,7 +68,9 @@
                                 <th>Estado</th>
                                 <th>Inicio del Servicio</th>
                                 <th>Fin del Servicio</th>
-                                <th>Acciones</th>
+                                @can('servicios.acciones')
+                                    <th>Acciones</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>

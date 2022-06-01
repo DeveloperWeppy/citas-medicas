@@ -43,11 +43,6 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Nº de Redimidos disponibles</label>
-                                        <input type="number" name="redeemed_available" id="" class="form-control " placeholder="Nº de Redimidos disponibles" 
-                                        value="{{$service->redeemed_available}}" autocomplete="off">
-                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="">Precio Normal</label>

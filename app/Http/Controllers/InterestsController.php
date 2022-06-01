@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Interests;
 use App\Models\InterestsClient;
 use Illuminate\Http\Request;
@@ -21,7 +22,12 @@ class InterestsController extends Controller
 
     public function view()
     {
-        $intereses = InterestsClient::get();
+        $id_user = auth()->id();
+
+        $cliente = Client::where('user_id',$id_user)->first();
+        $id_client = $cliente->id;
+        
+        $intereses = InterestsClient::where('client_id',$id_client)->get();
         return view('cliente.intereses.index')->with('intereses', $intereses);
     }
     
@@ -68,6 +74,37 @@ class InterestsController extends Controller
                 $mensaje = 'Error! Se presento un problema al registrar el interés, intenta de nuevo.';
             }
         }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function store_client(Request $request)
+    {
+        
+        $id_user = auth()->id();
+
+        $cliente = Client::where('user_id',$id_user)->first();
+        $id_client = $cliente->id;
+
+        $error = false;
+        $mensaje = '';
+
+        $intereses = $request->intereses;
+
+            for ($i = 0; $i < sizeof($intereses); ++$i) {
+
+                $register_intereses_cliente = InterestsClient::updateOrCreate([
+                    'interest_id'  => $intereses[$i],
+                    'client_id'  => $id_client,
+                ]);
+            }
+
+            if ($register_intereses_cliente->save()) {
+                $error = false;
+                $mensaje = 'Se han registrado tus intereses!';
+            } else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al registrar la categoría, intenta de nuevo.';
+            }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
@@ -134,6 +171,21 @@ class InterestsController extends Controller
         $mensaje = '';
 
         if (Interests::findOrFail($id)->delete()) {
+            $error = false;
+        } else {
+            $error = true;
+            $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+        }
+
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function destroy_client($id)
+    {
+        $error = false;
+        $mensaje = '';
+
+        if (InterestsClient::findOrFail($id)->delete()) {
             $error = false;
         } else {
             $error = true;

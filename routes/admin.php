@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/admin/usuarios/obtener', 'getUsuarios')->name('usuarios.obtener');
             Route::get('/admin/convenios/create', 'create')->name('usuarios.create');
             Route::get('/admin/usuarios/edit/{id}', 'edit')->name('usuarios.edit');
-            Route::post('/admin/usuarios/store', 'store')->name('usuarios.store');
+            Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
         });
 
@@ -85,5 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 
             //client
             Route::get('/intereses', 'view')->name('intereses.view');
+            Route::post('/intereses/store', 'store_client')->name('misintereses.store');
+            Route::get('/intereses/destroy-client/{id}', 'destroy_client')->name('misintereses.destroy');
         });
 });

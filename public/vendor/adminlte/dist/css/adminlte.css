@@ -2947,6 +2947,38 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.5);
 }
 
+.btn-outline-citasmedicas{
+  color: #34c2b5 ;
+  border-color: #34c2b5 ;
+}
+
+.btn-outline-citasmedicas:hover{
+  color: #fff;
+  background-color: #34c2b5 ;
+  border-color: #34c2b5 ;
+}
+
+.btn-outline-citasmedicas:focus, .btn-outline-citasmedicas.focus {
+  box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.5);
+}
+
+.btn-outline-citasmedicas.disabled, .btn-outline-citasmedicas:disabled {
+  color: #34c2b5;
+  background-color: transparent;
+}
+
+.btn-outline-citasmedicas:not(:disabled):not(.disabled):active, .btn-outline-citasmedicas:not(:disabled):not(.disabled).active,
+.show > .btn-outline-citasmedicas.dropdown-toggle {
+  color: #fff;
+  background-color: #34c2b5;
+  border-color: #34c2b5;
+}
+
+.btn-outline-citasmedicas:not(:disabled):not(.disabled):active:focus, .btn-outline-citasmedicas:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-citasmedicas.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.5);
+}
+
 .btn-outline-success {
   color: #28a745;
   border-color: #28a745;

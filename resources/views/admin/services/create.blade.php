@@ -37,7 +37,21 @@
 
 <script src="/js/datatable.js"></script>
     <script>
-
+      $('#div-porcentaje-descuento').hide();
+        $('#customSwitch3').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#label_texto_descuento').text('Porcentaje de Descuento').val();
+                $('#div-porcentaje-descuento').show();
+                $('#div-precio-descuento').hide();
+            }
+            else {
+                checked = false;
+                $('#label_texto_descuento').text('Precio con Descuento').val();
+                $('#div-precio-descuento').show();
+                $('#div-porcentaje-descuento').hide();
+           }
+        });
         //form of register of user
        $('#quickForm').validate({
             rules: {

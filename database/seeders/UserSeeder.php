@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         //crear usuario con rol
         User::create([
+            'name' => 'Admin',
             'logo' => '',
             'email' => 'admin@citasmedicas.com',
             'password' => bcrypt('12345678'),
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
         ])->assignRole('Admin');
 
         $cliente = User::create([
+            'name' => 'manuel',
             'logo' => '',
             'email' => 'client@mail.com',
             'password' => bcrypt('12345678'),

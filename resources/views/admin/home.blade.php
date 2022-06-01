@@ -13,27 +13,39 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
-<div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
-        @role('Admin')
-          @can('usuarios.index')
-            <h3>Administrador Citas Médicas</h3>
-          @endcan
-        @else
-          <h3 >¡Bienvenido, <span class="text-uppercase font-weight-bold text-deal">{{ $name_client }}!</span></h3> 
-        @endrole
-        
-        
-      </div>
-      <div class="col-sm-6">
-        
-        <div id="relojnumerico" class="reloj float-sm-right" onload="cargarReloj();">
-            <!-- Acá mostraremos el reloj desde JavaScript --> 
+      <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            @role('Admin')
+              @can('usuarios.index')
+                <h3>Administrador Citas Médicas</h3>
+              @endcan
+            @else
+              <h3>¡Bienvenido, <span class="text-uppercase font-weight-bold text-deal">{{ $name_client }}!</span></h3> 
+            @endrole
+            
+            
+          </div>
+          <div class="col-12 col-sm-6">
+
+            @role('Cliente')
+            @if (!optional(auth()->user())->hasActiveSubscription())
+                <a class="btn btn-outline-citasmedicas" href="#"> Subscribirse <i class="fas fa-hand-point-up"></i></a>
+            @endif
+            @endrole
+          </div>
         </div>
       </div>
+      
+      <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+        
+          <div id="relojnumerico" class="reloj float-sm-right" onload="cargarReloj();">
+              <!-- Acá mostraremos el reloj desde JavaScript --> 
+          </div>
+      </div>
+     
     </div>
-  </div>
 @stop
 
 @section('content')

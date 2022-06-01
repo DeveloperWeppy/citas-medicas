@@ -82,6 +82,7 @@ class UserController extends Controller
             $url = Storage::url($image);
 
             $register_user = array(
+                'name' => $request->name,
                 'logo' => $url,
                 'email' => $request->email,
                 'password' => Hash::make($contraseña),

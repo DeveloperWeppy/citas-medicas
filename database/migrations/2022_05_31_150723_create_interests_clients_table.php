@@ -15,8 +15,8 @@ class CreateInterestsClientsTable extends Migration
     {
         Schema::create('interests_clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('interest_id')->references('id')->on('interests');
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('interest_id')->references('id')->on('interests')->constrained();
+            $table->foreignId('client_id')->references('id')->on('clients')->constrained();
             $table->timestamps();
         });
     }

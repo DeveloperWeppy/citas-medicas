@@ -16,8 +16,14 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
+                                </div>
+
+                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="number" name="redeemed_available" id="" class="form-control " placeholder="Nº de Redimidos disponibles" autocomplete="off">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                            <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
+                                            <label class="custom-control-label" for="customSwitch3" id="label_texto_descuento">Precio con Descuento
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -32,14 +38,21 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3" id="div-precio-descuento">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="number" name="price_discount" id="" class="form-control " placeholder="Precio con Descuento" autocomplete="off">
+                                        <input type="number" name="price_discount" id="precio_decuento" class="form-control " placeholder="Precio con Descuento" autocomplete="off">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">.00</span>
                                             </div>
+                                    </div>
+
+                                    <div class="input-group mb-3" id="div-porcentaje-descuento">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                        <input type="number" name="price_discount" id="precio_decuento" class="form-control " placeholder="Porcentaje de descuento de 0 a 100" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

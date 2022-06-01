@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Resolvers\PaymentPlatformResolver;
 
 class SubscriptionController extends Controller
 {
@@ -12,6 +13,15 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $paymentPlatformResolver;
+
+    public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
+    {
+        $this->middleware(['auth', 'unsubscribed']);
+
+        $this->paymentPlatformResolver = $paymentPlatformResolver;
+    }
+    
     public function index()
     {
         //
