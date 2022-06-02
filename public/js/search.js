@@ -1,0 +1,7 @@
+import {search} from "./export_search.js";
+parse = require('node-html-parser');
+const mysearchp = document.querySelector("#mysearch");
+const ul_add_lip = document.querySelector("#showlist");
+const myurlp ="/historial-redimidos/buscar";
+const searchproduct = new search(myurlp,mysearchp,ul_add_lip);
+searchproduct.InputSearch();

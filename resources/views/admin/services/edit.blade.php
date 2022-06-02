@@ -76,7 +76,7 @@
               price_discount: {
                 required: true,
               },
-              redeemed_available: {
+              percentage_discount: {
                 required: true,
               },
               category_id: {
@@ -102,8 +102,8 @@
               price_discount: {
                 required: "Por favor ingrese el precio con descuento",
               },
-              redeemed_available: {
-                required: "Por favor ingrese la cantidad de redimidos disponibles",
+              percentage_discount: {
+                required: "Por favor ingrese el porcentaje de descuento",
               },
               category_id: {
                 required: "Por favor seleccione la categoría",

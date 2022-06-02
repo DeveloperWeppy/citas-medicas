@@ -10,15 +10,17 @@
                    <div class="card-body">
       
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <input type="text" name="name" id="" class="form-control " placeholder="Nombre del Servicio" autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+
+                                <div class="col-sm-6">
+                                    
                                 </div>
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
@@ -52,7 +54,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">%</span>
                                         </div>
-                                        <input type="number" name="price_discount" id="precio_decuento" class="form-control " placeholder="Porcentaje de descuento de 0 a 100" autocomplete="off">
+                                        <input type="number" name="percentage_discount" id="precio_decuento" class="form-control " placeholder="Porcentaje de descuento de 0 a 100" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

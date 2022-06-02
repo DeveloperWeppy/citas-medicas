@@ -260,9 +260,17 @@ return [
         ],
         [
             'text'        => 'Redimidos',
-            'url'         => 'historial-redimidos',
+            'url'         => 'mis-redimidos',
             'icon'        => 'fas fa-tasks',
             'can'         => 'redimidos.index',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Historial Redimidos',
+            'url'         => 'historial-redimidos',
+            'icon'        => 'fas fa-tasks',
+            //'can'         => 'redimidos.index',
             //'label'       => 4,
             'label_color' => 'success',
         ],

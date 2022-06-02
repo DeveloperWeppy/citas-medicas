@@ -10,11 +10,11 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Usuarios</h3>
+       <h3>Administrar Convenios</h3>
       </div>
       <div class="col-sm-6">
         <a href="{{ route('usuarios.create') }}" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i>
-          Nuevo Usuario
+          Nuevo Convenio
         </a>
       </div>
     </div>
@@ -40,7 +40,7 @@
                 
                 <!--cabecera del contenedor--->
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-eye"></i> Usuarios Registrados</h3>
+                    <h3 class="card-title"><i class="fas fa-eye"></i> Convenios Registrados</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>

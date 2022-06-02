@@ -39,5 +39,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'plan.index'])->assignRole($role4);
         Permission::create(['name' => 'redimidos.index'])->assignRole($role4);
         Permission::create(['name' => 'interesescliente.index'])->assignRole($role4);
+
+        //managent of services permissions
+        Permission::create(['name' => 'historialredimidos.index'])->assignRole($role3);
     }
 }

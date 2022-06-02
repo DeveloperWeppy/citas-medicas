@@ -63,6 +63,10 @@
                                             @endif
                                         
                                         </p>
+                                        @if ($plan->is_group == 1)
+                                        <p class="text-sm">Cantidad de Beneficiarios
+                                            <b class="d-block">{{$plan->cant_people}}</b>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

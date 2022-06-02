@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InterestsController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\RedeemedServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/admin/planes/store', 'store')->name('plane.store');
             Route::get('/admin/planes/edit/{id}', 'edit')->name('plane.edit');
             Route::get('/admin/planes/detalle-plan/{id}', 'show')->name('plane.show');
+            Route::post('/admin/planes/update', 'update')->name('plane.update');
         });
 
 
@@ -87,5 +89,17 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/intereses', 'view')->name('intereses.view');
             Route::post('/intereses/store', 'store_client')->name('misintereses.store');
             Route::get('/intereses/destroy-client/{id}', 'destroy_client')->name('misintereses.destroy');
+        });
+
+         //ROUTES FOR MANAGEMENT REDEEMED SERVICES
+        Route::controller(RedeemedServiceController::class)
+        ->group(function () {
+            //service provider
+            Route::get('/historial-redimidos', 'index')->name('redimidos.index');
+            Route::get('/historial-redimidos/obtener', 'getRedimidos')->name('redimidos.obtener');
+            Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
+
+            //client
+            Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
         });
 });

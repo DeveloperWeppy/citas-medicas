@@ -2,11 +2,35 @@
     <div class="row">
         <div class="col-12">
            <div class="card card-default">
-               <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-plus"></i> Editar datos del Plan</h3>
-               </div>
+                <form action="" method="post" id="editPlan">
+                    <div class="card-header">
+                        
+                        
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="card-title"><i class="fas fa-plus"></i> Editar datos del Plan</h3>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                            <input type="checkbox" name="statuss" class="custom-control-input" id="status">
+                                                <label class="custom-control-label" for="status">Estado: 
+                                            @if ($plan->status == 0)
+                                                
+                                                    <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Inactivo</span></label>
+                                            @else
+                                                    <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Activo</span></label>
+                                            @endif
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
   
-               <form action="" method="post" id="editPlan">
+               
                    <div class="card-body">
       
                             <div class="row">
@@ -40,13 +64,12 @@
                                 <div class="col-sm-6 mt-3">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            @if ($plan->is_group == 0)
-                                                <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3" value="off">
+                                            <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3" >
                                                 <label class="custom-control-label" for="customSwitch3">¿Es Plan Grupal? 
+                                            @if ($plan->is_group == 0)
+                                                
                                                     <span id="valor" class="badge bg-info text-white font-italic" style="font-size: 16px;">No</span></label>
                                             @else
-                                                <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3" value="on">
-                                                <label class="custom-control-label" for="customSwitch3">¿Es Plan Grupal? 
                                                     <span id="valor" class="badge bg-info text-white font-italic" style="font-size: 16px;">Sí</span></label>
                                             @endif
                                             
@@ -56,18 +79,11 @@
 
                                 <div class="col-sm-6 mt-3">
                                     <div class="form-group">
-                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            @if ($plan->status == 0)
-                                                <input type="checkbox" name="status" class="custom-control-input" id="status" value="off">
-                                                <label class="custom-control-label" for="status">Estado: 
-                                                    <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Inactivo</span></label>
-                                            @else
-                                                <input type="checkbox" name="status" class="custom-control-input" id="status" value="on">
-                                                <label class="custom-control-label" for="status">Estado
-                                                    <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Activo</span></label>
-                                            @endif
-                                            
-                                        </div>
+                                        @if ($plan->is_group == 1)
+                                            <input type="number" name="cant_people" id="cantidad_personas" class="form-control " value="{{$plan->cant_people}}" placeholder="Cantidad de Personas Permitidas" autocomplete="off">
+                                        @else
+                                            <input type="number" name="cant_people" id="cantidad_personas" class="form-control " placeholder="Cantidad de Personas Permitidas" autocomplete="off">
+                                        @endif
                                     </div>
                                 </div>
 
@@ -111,15 +127,15 @@
                                 </div>
                             </div>
                             
-                   </div>
-  
-                   <div class="card-footer">
-                    <a href="{{ route('plane.index') }}" class="btn btn-default">Cancelar</a>
-                    <button type="submit" class="btn btn-success float-right">Guardar</button>
-                    </div>
-               </form>
-  
-           </div>
+                        </div>
+                        <input type="hidden" name="id" value="{{$plan->id}}">
+                        <div class="card-footer">
+                                <a href="{{ route('plane.index') }}" class="btn btn-default">Cancelar</a>
+                                <button type="submit" class="btn btn-success float-right">Actualizar</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
           
         </div>
        

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RedeemedService;
 use Illuminate\Http\Request;
+use App\Models\RedeemedService;
+use Illuminate\Support\Facades\DB;
 
 class RedeemedServiceController extends Controller
 {
@@ -14,9 +15,43 @@ class RedeemedServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.redimidos.index');
     }
 
+    public function getRedimidos()
+    {
+        $data = array();
+        $redimidos = RedeemedService::get();
+        foreach ($redimidos as $key => $value) {
+
+            $info = [
+                $value->id,
+                $value->find($value->id)->nombre_cliente->name,
+                $value->find($value->id)->nombre_servicio->name,
+                $value->created_at,
+            ];
+
+            $data[] = $info;
+        }
+
+        echo json_encode([
+            'data' => $data
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $data = trim($request->valor);
+        $result = DB::table('users')
+        ->where('name','like','%'.$data.'%')
+        //->orwhere('barcode','like','%'.$data.'%')
+        ->limit(5)
+        ->get();
+        return response()->json([
+            "estado"=>1,
+            "result" => $result
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

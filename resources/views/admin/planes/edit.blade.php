@@ -36,15 +36,30 @@
 
 @section('js')
     <script>
-
+      $('#cantidad_personas').show();
+          //event for switch of type of plan (group or individual)
+          $('#customSwitch3').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#valor').text('Si').val();
+                $('#cantidad_personas').show();
+            }
+            else {
+                checked = false;
+                $('#valor').text('No').val();
+                $('#cantidad_personas').hide();
+           }
+        });
         $(function () {
             var texto = $('#valor').text();
             var texto2 = $('#valor_status').text();
             
             if (texto == "Sí") {
                 $('#customSwitch3').prop("checked", true);
+                $('#cantidad_personas').show();
             } else {
                 $('#customSwitch3').prop("checked", false);
+                $('#cantidad_personas').hide();
             } 
 
             if (texto2 == "Activo") {
@@ -54,17 +69,7 @@
             } 
         });
 
-        //event for switch of type of plan (group or individual)
-        $('#customSwitch3').change(function() {
-            if($(this).is(":checked")) {
-                checked = true;
-                $('#valor').text('Si').val();
-            }
-            else {
-                checked = false;
-                $('#valor').text('No').val();
-           }
-        });
+      
 
         //event for switch of status of plan
         $('#status').change(function() {
@@ -127,7 +132,7 @@
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('plane.store')}}";
+                    var url = "{{route('plane.update')}}";
 
                     $.ajax({
                         headers: {
@@ -152,17 +157,17 @@
                             });
                         }
                     }).done(function(respuesta){
-                        //console.log(respuesta);
+                        //console.log(respuesta.dato);
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Plan registrado exitosamente.',
+                                title: 'Plan actualizado exitosamente.',
                                 icon: 'success',
                                 button: true,
                                 timer: 2000
                             });
 
-                            setTimeout(function(){
+                           setTimeout(function(){
                                 location.href = "{{route('plane.index')}}";
                             },2000);
 

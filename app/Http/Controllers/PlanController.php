@@ -21,7 +21,7 @@ class PlanController extends Controller
     public function getPlanes()
     {
         $data = array();
-        $is_group = '';
+        $grupo = '';
         $planes = Plan::get();
         foreach ($planes as $key => $value) {
 
@@ -31,10 +31,10 @@ class PlanController extends Controller
             $ruta_editar = route('plane.edit', $value->id);
             $ruta_view_plan = route('plane.show', $value->id);
 
-            if ($value->is_groupd == 0) {
-                $is_group = 'No';
+            if ($value->is_group == 0) {
+                $grupo = 'No';
             } else {
-                $is_group = 'Sí';
+                $grupo = 'Sí';
             }
 
             $info = [
@@ -42,7 +42,7 @@ class PlanController extends Controller
                 '<a href="' . $ruta_view_plan . '" class="text-info">' .  $value->name .'</a>',
                 self::convertirVa($value->price),
                 '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
-                $is_group,
+                $grupo,
                 '
                 <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
                 <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
@@ -87,7 +87,7 @@ class PlanController extends Controller
 
         $name_plan = $request->name;
         $group_or_no = $request->is_group;
-        //consulta para validar si ya existe un usuario registrado o no
+        //consulta para validar si ya existe un plan registrado o no
         $validar_name= Plan::where('name', $name_plan)->count();
         $servicios = $request->servicios;
 
@@ -176,7 +176,78 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        //
+        $type_plan = 0;
+        $estado = 0;
+        $cantidad_personas = 0;
+        $error = false;
+        $mensaje = '';
+
+        $id_plan = $request->id;
+        $name_plan = $request->name;
+        $group_or_no = $request->is_group;
+        //consulta para validar si ya existe un plan registrado o no
+
+        $validar_name = Plan::where('name', $name_plan)->where('id', '<>', $id_plan)->get()->count();
+
+        $servicios = $request->servicios;
+
+        if ($group_or_no == "on") {
+            $type_plan = 1;
+            $cantidad_personas = $request->cant_people;
+        } else {
+            $type_plan = 0;
+            $cantidad_personas = 1;
+        }
+
+        $status_plan = $request->statuss;
+
+        if ($status_plan == "on") {
+            $estado = 1;
+        } else {
+            $estado = 0;
+        }
+        
+
+        if ($validar_name > 0) {
+            $error = true;
+            $mensaje = 'Error! Ya se encuentra registrado el plan "' . $name_plan . '". Intente con otro.';
+        } else if($servicios == null) {
+            $error = true;
+            $mensaje = 'Error! No seleccionaste ningún servicio para este plan';
+        }else {
+            $update_plan = array(
+                'name' => $request->name,
+                'slug' => $request->name,
+                'price' => $request->price,
+                'duration_in_days' => $request->duration_in_days,
+                'is_group' => $type_plan,
+                'cant_people' => $cantidad_personas,
+                'status' => $estado,
+                'description' => $request->description,
+            );
+
+            if ($plan = Plan::findOrFail($id_plan)->update($update_plan)) {
+                for ($i = 0; $i < sizeof($servicios); ++$i) {
+
+                    $register_plans_services = PlanServices::updateOrCreate([
+                        'plan_id'  => $id_plan,
+                        'service_id'  => $servicios[$i],
+                    ]);
+                }
+
+                if ($register_plans_services->save()) {
+                    $error = false;
+                    $mensaje = 'Actualización de Plan Exitoso!!';
+                } else {
+                    $error = true;
+                    $mensaje = 'Error! Se presentó un problema al registrar este plan, intenta de nuevo.';
+                }
+            }else{
+                $error = true;
+                $mensaje = 'Error! Se presentó un problema al registrar este plan, intenta de nuevo.';
+            }
+        }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje, 'dato' => $request->statuss));
     }
 
     /**

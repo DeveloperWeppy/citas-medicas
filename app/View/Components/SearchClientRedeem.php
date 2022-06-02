@@ -2,10 +2,9 @@
 
 namespace App\View\Components;
 
-use App\Models\Service;
 use Illuminate\View\Component;
 
-class FormRegisterPlan extends Component
+class SearchClientRedeem extends Component
 {
     /**
      * Create a new component instance.
@@ -24,7 +23,6 @@ class FormRegisterPlan extends Component
      */
     public function render()
     {
-        $services = Service::where('status', 1)->get(['id', 'name']);
-        return view('components.planes.form-register-plan')->with('services', $services);
+        return view('components.redimir.search-client-redeem');
     }
 }

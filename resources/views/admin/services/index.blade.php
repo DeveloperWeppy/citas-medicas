@@ -64,7 +64,7 @@
                                 <th>Id</th>
                                 <th>Nombre del Servicio</th>
                                 <th>Precio Normal</th>
-                                <th>Precio con descuento</th>
+                                <th>Precio o porcentaje con descuento</th>
                                 <th>Estado</th>
                                 <th>Inicio del Servicio</th>
                                 <th>Fin del Servicio</th>

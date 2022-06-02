@@ -13,13 +13,12 @@
                        <div class="col-sm-6">
                            <div class="form-group">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                    @if ($service->status == 0)
-                                        <input type="checkbox" name="status" class="custom-control-input" id="status" value="off">
+                                    <input type="checkbox" name="statuss" class="custom-control-input" id="status" >
                                         <label class="custom-control-label" for="status">Estado: 
+
+                                    @if ($service->status == 0)
                                             <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Inactivo</span></label>
                                     @else
-                                        <input type="checkbox" name="status" class="custom-control-input" id="status" value="on">
-                                        <label class="custom-control-label" for="status">Estado
                                             <span id="valor_status" class="badge bg-info text-white font-italic" style="font-size: 16px;">Activo</span></label>
                                     @endif
                                     
@@ -35,15 +34,14 @@
                    <input type="hidden" name="id" value="{{$service->id}}">
                    <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="">Nombre del Servicio</label>
                                         <input type="text" name="name" id="" class="form-control " placeholder="Nombre del Servicio" 
                                             autocomplete="off" value="{{$service->name}}">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                </div>
+
                                 <div class="col-sm-6">
                                     <label for="">Precio Normal</label>
                                     <div class="input-group mb-3">
@@ -58,16 +56,30 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="">Precio con Descuento</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
-                                        </div>
-                                        <input type="number" name="price_discount" id="" class="form-control " placeholder="Precio con Descuento" value="{{$service->price_discount}}" autocomplete="off">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">.00</span>
+                                    @if ($service->price_discount != null)
+                                        <label for="">Precio con Descuento</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                             </div>
-                                    </div>
+                                            <input type="number" name="price_discount" id="" class="form-control " placeholder="Precio con Descuento" value="{{$service->price_discount}}" autocomplete="off">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($service->percentage_discount != null)
+                                        <label for="">Porcentaje de Descuento</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                            <input type="number" name="percentage_discount" id="" class="form-control " placeholder="Precio con Descuento" value="{{$service->percentage_discount}}" autocomplete="off">
+                                                
+                                        </div>
+                                    @endif
+                                    
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -157,7 +169,7 @@
   
                    <div class="card-footer">
                     <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>
-                    <button type="submit" class="btn btn-success float-right">Guardar</button>
+                    <button type="submit" class="btn btn-success float-right">Actualizar</button>
                     </div>
             </form>
   

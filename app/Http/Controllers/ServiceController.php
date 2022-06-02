@@ -33,11 +33,19 @@ class ServiceController extends Controller
             $ruta_view_service = route('servicios.show', $value->id);
             $ruta_editar = route('servicios.edit', $value->id);
 
+            $valor = 0;
+
+            if ($value->price_discount != null && $value->percentage_discount == null) {
+                $valor = self::convertirVa($value->price_discount);
+            } else if ($value->price_discount == null && $value->percentage_discount != null) {
+                $valor = $value->percentage_discount . '%';
+            }
+
             $info = [
                 $value->id,
                 '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
-                $value->price_normal,
-                $value->price_discount,
+                self::convertirVa($value->price_normal),
+                $valor,
                 '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
                 $value->start_date,
                 $value->end_date,
@@ -172,7 +180,7 @@ class ServiceController extends Controller
         $category_id = $request->category_id;
         $responsable_convenio = $request->convenios;
 
-        $status_service = $request->id;
+        $status_service = $request->statuss;
 
         if ($status_service == "on") {
             $estado = 1;
@@ -180,7 +188,7 @@ class ServiceController extends Controller
             $estado = 0;
         }
 
-        //consulta para validar si ya existe un usuario registrado o no
+        //consulta para validar si ya existe un servicio registrado o no
         $validar_name = Service::where('name', $name_service)->where('id', '<>', $id_Service)->get()->count();
 
         if ($validar_name > 0) {
@@ -197,7 +205,7 @@ class ServiceController extends Controller
                 'price_discount' => $request->price_discount,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
-                'redeemed_available' => $request->redeemed_available,
+                'percentage_discount' => $request->percentage_discount,
                 'observation' => $request->observation,
                 'status' => $estado,
                 'category_id' => $category_id,
@@ -245,5 +253,10 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+    }
+
+    function convertirVa($monto){
+        $valor = number_format($monto, 2, ',', '.');
+        return $valor;
     }
 }

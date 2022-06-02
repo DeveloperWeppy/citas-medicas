@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRedeemedServicesTable extends Migration
+class CreateDiagnosticRedeemedServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRedeemedServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('redeemed_services', function (Blueprint $table) {
+        Schema::create('diagnostic_redeemed_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('prestador_id')->references('id')->on('user_information');
-            $table->foreignId('client_id')->references('id')->on('clients');
-            $table->foreignId('service_id')->references('id')->on('services');
+            $table->foreignId('redeemed_service_id')->references('id')->on('redeemed_services');
+            $table->string('code');
+            $table->string('description', 500);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRedeemedServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('redeemed_services');
+        Schema::dropIfExists('diagnostic_redeemed_services');
     }
 }

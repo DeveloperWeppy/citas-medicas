@@ -12,7 +12,12 @@
                                 <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <p class="text-muted">Precio Con Descuento: <b class="d-block">${{convertirVa($service->price_discount)}}</b></p>
+                                            @if ($service->price_discount != null && $service->percentage_discount == null)
+                                                <p class="text-muted">Precio Con Descuento: <b class="d-block">${{convertirVa($service->price_discount)}}</b></p>
+                                            @elseif($service->price_discount == null && $service->percentage_discount != null)
+                                                <p class="text-muted">Porcentaje de Descuento: <b class="d-block">{{$service->percentage_discount}} %</b></p>
+                                            @endif
+                                            
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="text-muted">Precio Normal: <b class="d-block">${{convertirVa($service->price_normal)}}</b></p>
