@@ -13,6 +13,8 @@ class Client extends Model
         'user_id',
         'name',
         'last_name',
+        'number_identication',
+        'photo',
         'age',
         'date_of_birth',
         'address',

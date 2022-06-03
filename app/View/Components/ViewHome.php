@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Client;
 use App\Models\Plan;
 use App\Models\Service;
 use App\Models\UserInformation;
@@ -29,9 +30,11 @@ class ViewHome extends Component
         $planes = Plan::count();
         $servicios = Service::count();
         $convenios = UserInformation::count();
+        $clientes = Client::count();
         return view('components.view-home')
             ->with('planes', $planes)
             ->with('servicios', $servicios)
-            ->with('convenios', $convenios);
+            ->with('convenios', $convenios)
+            ->with('clientes', $clientes);
     }
 }

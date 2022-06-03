@@ -18,6 +18,8 @@ class CreateClientsTable extends Migration
             $table->foreignId('user_id')->unique()->references('id')->on('users');
             $table->string('name');
             $table->string('last_name');
+            $table->string('number_identication');
+            $table->string('photo');
             $table->string('age');
             $table->date('date_of_birth');
             $table->string('address');

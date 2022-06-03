@@ -1,5 +1,4 @@
 import {search} from "./export_search.js";
-parse = require('node-html-parser');
 const mysearchp = document.querySelector("#mysearch");
 const ul_add_lip = document.querySelector("#showlist");
 const myurlp ="/historial-redimidos/buscar";

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\RedeemedService;
 use Illuminate\Support\Facades\DB;
@@ -42,9 +43,9 @@ class RedeemedServiceController extends Controller
     public function search(Request $request)
     {
         $data = trim($request->valor);
-        $result = DB::table('users')
+        $result = DB::table('clients')
         ->where('name','like','%'.$data.'%')
-        //->orwhere('barcode','like','%'.$data.'%')
+        ->orwhere('number_identication','like','%'.$data.'%')
         ->limit(5)
         ->get();
         return response()->json([
@@ -52,14 +53,28 @@ class RedeemedServiceController extends Controller
             "result" => $result
         ]);
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function redimir($id)
     {
-        //
+        $consultar_user = Client::find($id);
+        $user_id = $consultar_user->user_id;
+        $name_client= $consultar_user->name;
+
+        $subscrito = '';
+
+        if (!optional($user_id)->hasActiveSubscription()) {
+            $subscrito = 'no';
+        }else{
+            $subscrito = 'si';
+        }
+        return view('admin.redimidos.redimir')->with('subscrito', $subscrito)
+                    ->with('name_client', $name_client);
     }
 
     /**

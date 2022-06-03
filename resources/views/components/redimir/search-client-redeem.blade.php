@@ -12,15 +12,8 @@ data-backdrop="static" aria-hidden="true" data-keyboard="false" aria-hidden="tru
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                            <div class="input-group">
-                                <input type="search" class="form-control form-control-lg" id="mysearch" placeholder="Buscar cliente por número de cédula">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default" disabled>
-                                    <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                                <ul id="showlist" tabindex='1' class="list-group"></ul>
-                            </div>
+                      <div class="search"> <i class="fas fa-search icon"></i> <input type="text" id="mysearch" class="form-control"  placeholder="Buscar un producto"></div>
+                      <ul id="showlist" tabindex='1' class="list-group"></ul>
                     </div>
                 </div>
             </div>

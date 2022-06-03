@@ -10,12 +10,12 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3><i class="fas fa-history"></i> Historial de Redimidos de Clientes</h3>
+          @if ($subscrito == 'si')
+            <h3><i class="fas fa-check-circle"></i> Redimir Servicio al cliente <strong class="text-uppercase text-info">{{$name_client}}</strong></h3>
+          @endif
+       
       </div>
       <div class="col-sm-6">
-        <button type="button" class="btn btn-success float-sm-right" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-check-circle"></i> Redimir Nuevo
-        </button>
           <x-search-client-redeem></x-search-client-redeem>
       </div>
     </div>
@@ -41,20 +41,22 @@
                 
                 <!--cuerpo del contenedor--->
                 <div class="card-body">
-                   
-                    <!--tabla de datos--->
-                    <table id="listarredimidos" class="display table table-striped table-bordered " style="width:100%"> 
-                        <thead>
-                            <tr>
-                                <th>Nº de Redimido</th>
-                                <th>Cliente</th>
-                                <th>Servicio</th>
-                                <th>Fecha y hora de redención</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-12">
+                            @if ($subscrito == 'si')
+                                
+                            @else
+                                <div class="text-center">
+                                    <img src="/images/payment.png" class="full" alt="">
+                                    <h2 class="text-info">¡Ops!</h2>
+                                    <h4>El cliente <strong class="text-uppercase text-info">{{$name_client}}</strong> no presenta actualmente una subscripción activa,
+                                        por lo tanto no podrá disfrutar de los beneficios de tus servicios
+                                    </h4>
+                                </div>
+                            @endif
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,13 +74,6 @@
 <script src="/js/datatable.js"></script>
 <script src="/js/search.js" type="module"></script>
     <script>
-         var tabla_usuarios = $('#listarredimidos').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
-                },
-                "order": [[ 0, "desc" ]],
-                "ajax": "{{route('redimidos.obtener')}}",
-            });
         
         $(function () {
 

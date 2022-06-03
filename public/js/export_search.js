@@ -4,7 +4,6 @@ export class search{
         this.mysearch = mysearchp;
         this.ul_add_li = ul_add_lip;
         this.idli = "mylist";
-        this.pcantidad = document.querySelector("#pcantidad");
     }
     InputSearch() {
         this.mysearch.addEventListener("input", (e) => {
@@ -52,30 +51,39 @@ export class search{
         } else {
             this.ul_add_li.innerHTML = "";
             this.ul_add_li.innerHTML += `
-                    <p style="color:red;"><br>No se encontro</p>
+                    <p style="color:red;"><br>No se encontró el cliente</p>
                 `;
         }
         }
     }
-    // <p class="card-text"<P. venta $ : ${item.purchase_price}</p></P. venta>
     Show_list_each_data(arrayp,valor,n){
         for (let item of arrayp) {
             n++;
             let nombre = item.name;
-            //console.log(nombre)
+            let image = '';
+            let id = item.id;
+
+            if (item.logo == null) {
+                image = '/images/user.png';
+            } else {
+                image = item.photo;
+            }
+            //console.log(item.name);
             this.ul_add_li.innerHTML +=`
-            <li> id="${n+this.idli}" value="${item.name}" class="list-group-item"  style="">
-                    <div< class="d-flex flex-row " style="" >
-                    <div< class="p-2 text-center divimg" style="" >
-                        <img< src="/logosPrestadores/${item.logo}" class="img-thumbnail" width="50" height="50" >
-                    </div>
-                    <div class="p-2">
-                            <strong<${nombre.substr(0,valor.length)}</strong>
-                            ${nombre.substr(valor.length)}
-                            
-                    </div>
-                    </div>
-            </li>
+            <a href="${'redimimir-servicio/'+id}">
+                <li id="${n+this.idli}" value="${item.name}" class="list-group-item"  style="">
+                        <div class="d-flex flex-row " style="" >
+                            <div class="p-2 text-center divimg" style="" >
+                                <img src="${image}" class="img-thumbnail" width="50" height="50" >
+                            </div>
+                            <div class="p-2">
+                                    <strong>${nombre.substr(0,valor.length)} </strong>
+                                    ${nombre.substr(valor.length)} - ${item.number_identication}
+                                    
+                            </div>
+                        </div>
+                </li>
+            </a>
             `;
         }
     }

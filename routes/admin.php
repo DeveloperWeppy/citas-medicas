@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/historial-redimidos', 'index')->name('redimidos.index');
             Route::get('/historial-redimidos/obtener', 'getRedimidos')->name('redimidos.obtener');
             Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
+            Route::get('/redimimir-servicio/{id}', 'redimir')->name('redimidos.redimir');
 
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
