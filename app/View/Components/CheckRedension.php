@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Client;
 use Illuminate\View\Component;
 
 class CheckRedension extends Component
@@ -11,9 +12,10 @@ class CheckRedension extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $clientId;
+    public function __construct($clientId)
     {
-        //
+        $this->clientId = $clientId;
     }
 
     /**
@@ -23,6 +25,8 @@ class CheckRedension extends Component
      */
     public function render()
     {
-        return view('components.check-redension');
+        $client = Client::find($this->clientId);
+
+        return view('components.redimir.check-redension')->with('client', $client);
     }
 }

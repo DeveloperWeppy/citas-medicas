@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\RedeemedService;
@@ -67,14 +68,16 @@ class RedeemedServiceController extends Controller
         $name_client= $consultar_user->name;
 
         $subscrito = '';
+        $client_id = $id;
 
         if (!optional($user_id)->hasActiveSubscription()) {
-            $subscrito = 'no';
-        }else{
             $subscrito = 'si';
+        }else{
+            $subscrito = 'no';
         }
+        //dd($subscrito);
         return view('admin.redimidos.redimir')->with('subscrito', $subscrito)
-                    ->with('name_client', $name_client);
+                    ->with('name_client', $name_client)->with('client_id', $client_id);
     }
 
     /**

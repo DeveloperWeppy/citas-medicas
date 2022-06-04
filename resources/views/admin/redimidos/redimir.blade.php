@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Especialidades de Servicios')
+@section('title', 'Redimir Servicio')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -34,32 +34,32 @@
      
     </div>
     <div class="row">
-        <div class="col-12">
 
-            <!------CONTENEDOR DE TABLA------->
-            <div class="card card-primary card-outline">
-                
-                <!--cuerpo del contenedor--->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            @if ($subscrito == 'si')
-                                
-                            @else
-                                <div class="text-center">
-                                    <img src="/images/payment.png" class="full" alt="">
-                                    <h2 class="text-info">¡Ops!</h2>
-                                    <h4>El cliente <strong class="text-uppercase text-info">{{$name_client}}</strong> no presenta actualmente una subscripción activa,
-                                        por lo tanto no podrá disfrutar de los beneficios de tus servicios
-                                    </h4>
-                                </div>
-                            @endif
+            @if ($subscrito == 'si')
+                <x-check-redension clientId="{{$client_id}}"></x-check-redension>
+            @else
+                <!------CONTENEDOR DE NO SUBSCRITO------->
+                <div class="card card-primary card-outline">
+                    
+                    <!--cuerpo del contenedor--->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
                             
+                                    <div class="text-center">
+                                        <img src="/images/Xpayment.png" class="full" alt="x-imagen-user">
+                                        <h2 class="text-info">¡Ops!</h2>
+                                        <h4>El cliente <strong class="text-uppercase text-info">{{$name_client}}</strong> no presenta actualmente una subscripción activa,
+                                            por lo tanto no podrá disfrutar de los beneficios de tus servicios
+                                        </h4>
+                                    </div>
+                                
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @endif
     </div>
 </div>
 @stop
