@@ -35,7 +35,6 @@
 
 @section('js')
 
-<script src="/js/datatable.js"></script>
     <script>
       $('#div-porcentaje-descuento').hide();
         $('#customSwitch3').change(function() {

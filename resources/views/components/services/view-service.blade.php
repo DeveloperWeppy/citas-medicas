@@ -78,14 +78,14 @@
                                             @endif
                                         </p>
                                         <p class="text-sm">Categoría del Servicio
-                                            <b class="d-block">{{$service->find($service->category_id)->nombre_categoria->name}}</b>
+                                            <b class="d-block">{{$service->find($service->id)->nombre_categoria->name}}</b>
                                         </p>
 
                                         <p class="text-sm">Especialidad del Servicio
                                             @if ($service->specialty_id == null)
                                                 <b class="d-block">No tiene especialidad este servicio</b>
                                             @else
-                                                <b class="d-block">{{$service->find($service->specialty_id)->nombre_especialidad->name}}</b>
+                                                <b class="d-block">{{$service->find($service->id)->nombre_especialidad->name}}</b>
                                             
                                             @endif
                                             

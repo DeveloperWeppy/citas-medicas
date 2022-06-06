@@ -51,7 +51,7 @@
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
-                                          <input type="text" name="name" id="txnombres" class="form-control " placeholder="Nombre" autocomplete="off">
+                                          <input type="text" name="name" id="txnombres" class="form-control " placeholder="Nombre de Entidad" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryService;
 use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\RedeemedService;
+use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
 class RedeemedServiceController extends Controller
@@ -19,20 +21,41 @@ class RedeemedServiceController extends Controller
     {
         return view('admin.redimidos.index');
     }
+    public function index_diagnostico($id)
+    {
+        $id_service_redeemed = $id;
+        return view('admin.redimidos.diagnostico')->with('id_service_redeemed',$id_service_redeemed);
+    }
 
     public function getRedimidos()
     {
         $data = array();
         $redimidos = RedeemedService::get();
         foreach ($redimidos as $key => $value) {
+            
+            $id_service = $value->service_id ;
+            $service = Service::find($id_service);
+
+            $id_category = $service->category_id;
+            $category = CategoryService::find($id_category);
+
+            $name_category = $category->name;
+
+            $ruta_diagnosticar = route('redimidos.index_diagnostico', $value->id);
 
             $info = [
                 $value->id,
                 $value->find($value->id)->nombre_cliente->name,
+                $value->find($value->id)->nombre_cliente->number_identication,
                 $value->find($value->id)->nombre_servicio->name,
-                $value->created_at,
+                date_format($value->created_at,"Y-m-d,  g:i a"),
             ];
 
+            if ($name_category == "Salud") {
+                $info[] = '<a href="' . $ruta_diagnosticar . '" class="btn btn-block bg-gradient-secondary btn-xs"><i class="fas fa-edit"></i> Registrar Diagnóstico</a>';
+            } else {
+                $info[] = 'No Aplica';
+            }
             $data[] = $info;
         }
 
@@ -88,7 +111,24 @@ class RedeemedServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        $register_redeem_service = array(
+            'prestador_id' => $request->prestador_id,
+            'client_id' => $request->id_client,
+            'service_id' => $request->id_service,
+        );
+
+        if (RedeemedService::create($register_redeem_service)) {
+            $error = false;
+            $mensaje = 'Se ha redimido correctamente el servicio!';
+        } else {
+            $error = true;
+            $mensaje = 'Error! Se presento un problema al registrar los prestadores del servicio, intenta de nuevo.';
+        }
+        
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     /**

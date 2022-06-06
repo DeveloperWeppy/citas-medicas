@@ -21,4 +21,10 @@ class ConvenioServices extends Model
     public function servicios(){
         return $this->hasMany(Service::class);
     }
+
+    public function nombre_servicios()
+    {
+      //relación para poder mostrar el nombre de la categoria
+      return $this->belongsTo(Service::class, 'service_id');
+    }
 }

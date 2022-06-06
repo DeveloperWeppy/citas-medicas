@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Service;
+use App\Models\Convenio;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
 use App\Models\CategoryService;
 use App\Models\UserInformation;
 use App\Models\ConvenioServices;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -24,38 +27,92 @@ class ServiceController extends Controller
     public function getServicios()
     {
         $data = array();
-        $usuarios = Service::get();
-        foreach ($usuarios as $key => $value) {
 
-            $class_status = ($value->status == 1) ? "success" : "danger";
-            $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
+        $user_login = Auth::user()->id;
+        $user = User::find($user_login);
+        
+        if ($user->hasRole('Admin') || $user->hasRole('Gestor')) {
+            $servicios = Service::get();
+            foreach ($servicios as $key => $value) {
 
-            $ruta_view_service = route('servicios.show', $value->id);
-            $ruta_editar = route('servicios.edit', $value->id);
+                $class_status = ($value->status == 1) ? "success" : "danger";
+                $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
 
-            $valor = 0;
+                $ruta_view_service = route('servicios.show', $value->id);
+                $ruta_editar = route('servicios.edit', $value->id);
 
-            if ($value->price_discount != null && $value->percentage_discount == null) {
-                $valor = self::convertirVa($value->price_discount);
-            } else if ($value->price_discount == null && $value->percentage_discount != null) {
-                $valor = $value->percentage_discount . '%';
+                $valor = 0;
+
+                if ($value->price_discount != null && $value->percentage_discount == null) {
+                    $valor = self::convertirVa($value->price_discount);
+                } else if ($value->price_discount == null && $value->percentage_discount != null) {
+                    $valor = $value->percentage_discount . '%';
+                }
+
+                $info = [
+                    $value->id,
+                    '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
+                    self::convertirVa($value->price_normal),
+                    $valor,
+                    '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                    $value->start_date,
+                    $value->end_date,
+                    '
+                    <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                    <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                    '
+                ];
+
+                $data[] = $info;
             }
+        }else{
 
-            $info = [
-                $value->id,
-                '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
-                self::convertirVa($value->price_normal),
-                $valor,
-                '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
-                $value->start_date,
-                $value->end_date,
-                '
-                <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
-                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
-                '
-            ];
+            $user_information = UserInformation::where('user_id', $user_login)->first();
+            $id_user_information = $user_information->id;
 
-            $data[] = $info;
+            $convenio = Convenio::where('responsable_id', $id_user_information)->first();
+            $id_convenio = $convenio->id;
+
+            $services = ConvenioServices::where('convenio_id', $id_convenio)->get();
+
+            foreach ($services as $key => $value) {
+                $services_uid = $value->service_id;
+
+                $servicios = Service::where('id', $services_uid)->get();
+                foreach ($servicios as $key => $value) {
+
+                    $class_status = ($value->status == 1) ? "success" : "danger";
+                    $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
+
+                    $ruta_view_service = route('servicios.show', $value->id);
+                    $ruta_editar = route('servicios.edit', $value->id);
+
+                    $valor = 0;
+
+                    if ($value->price_discount != null && $value->percentage_discount == null) {
+                        $valor = self::convertirVa($value->price_discount);
+                    } else if ($value->price_discount == null && $value->percentage_discount != null) {
+                        $valor = $value->percentage_discount . '%';
+                    }
+
+                    $info = [
+                        $value->id,
+                        '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
+                        self::convertirVa($value->price_normal),
+                        $valor,
+                        '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                        $value->start_date,
+                        $value->end_date,
+                        '
+                        <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                        <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                        '
+                    ];
+
+                    $data[] = $info;
+                }
+            }
+            
         }
 
         echo json_encode([

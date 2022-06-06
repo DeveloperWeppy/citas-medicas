@@ -206,7 +206,7 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Usuario registrado exitosamente.',
+                                title: 'Convenio registrado exitosamente.',
                                 icon: 'success',
                                 button: true,
                                 timer: 2000

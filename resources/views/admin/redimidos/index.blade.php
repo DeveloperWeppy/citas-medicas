@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Especialidades de Servicios')
+@section('title', 'Redimidos de Servicios')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3><i class="fas fa-history"></i> Historial de Redimidos de Clientes</h3>
+       <h3><i class="fas fa-history " style="color:#34c2b5;"></i> Historial de Redimidos de Clientes</h3>
       </div>
       <div class="col-sm-6">
         <button type="button" class="btn btn-success float-sm-right" data-toggle="modal" data-target="#exampleModal">
@@ -46,10 +46,12 @@
                     <table id="listarredimidos" class="display table table-striped table-bordered " style="width:100%"> 
                         <thead>
                             <tr>
-                                <th>Nº de Redimido</th>
+                                <th>Nº</th>
                                 <th>Cliente</th>
+                                <th>Nº Cédula</th>
                                 <th>Servicio</th>
                                 <th>Fecha y hora de redención</th>
+                                <th>Diagnóstico</th>
                             </tr>
                         </thead>
                         <tbody>
