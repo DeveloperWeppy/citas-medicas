@@ -2,9 +2,9 @@
 @section('title', 'Registro de Diagnóstico')
 
 <!--integrar plugins necesarios-->
-@section('plugins.Datatables', true)
 @section('plugins.jqueryValidation', true)
 @section('plugins.Sweetalert2', true)
+@section('plugins.Select2', true)
 
 @section('content_header')
 <div class="container-fluid">
@@ -34,5 +34,92 @@
 @stop
 
 @section('js')
+  <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2();
 
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+    theme: 'bootstrap4'
+    });
+
+    var loadbancosco = $('#select_diagnostics');
+
+    loadbancosco.empty();
+              $.ajax({
+                    url: "{{ route('redimidos.get_diagnostics') }}",
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend:function(){
+                    },
+                    success: function (response) {
+                      //console.log(response);
+                        $.each(response.data, function (key, value) {
+                          loadbancosco.append("<option value='" + value.id + "'>" + value.clave + " - " + value.descripcion + "</option>");
+                        });
+                    },
+                    error : function(){
+                      $('.loader').hide();
+                        alert('Hubo un error al obtener los códigos cie10!');
+                    }
+                  });
+  });
+
+              // agregar data
+              $('#register_diagnostic').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#register_diagnostic');
+                    var formData = new FormData(this);
+
+                    //ruta
+                    var url = "{{route('redimidos.store_diagnostico')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                       if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                button: true,
+                                timer: 2000
+                            });
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    button: false
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        //console.log(resp);
+                    });
+              });
+  </script>
 @stop

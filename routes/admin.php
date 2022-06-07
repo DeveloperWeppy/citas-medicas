@@ -44,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/admin/planes/edit/{id}', 'edit')->name('plane.edit');
             Route::get('/admin/planes/detalle-plan/{id}', 'show')->name('plane.show');
             Route::post('/admin/planes/update', 'update')->name('plane.update');
+
+            //client
+            Route::get('/mi-plan', 'index_client')->name('miplan.index');
         });
 
 
@@ -101,9 +104,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
             Route::get('/redimimir-servicio/{id}', 'redimir')->name('redimidos.redimir');
             Route::get('/redimimir-diagnostico/{id}', 'index_diagnostico')->name('redimidos.index_diagnostico');
+            
+            //diagnostics
             Route::post('/redimimir-diagnostico/store', 'store_diagnostico')->name('redimidos.store_diagnostico');
+            Route::get('/loaddiagnostics', 'getDiagnostics')->name('redimidos.get_diagnostics');
 
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
+            Route::get('/mis-redimidos/obtener', 'getMisRedimidos')->name('misredimidosclient.obtener');
         });
 });

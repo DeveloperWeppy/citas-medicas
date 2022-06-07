@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use App\Models\PlanServices;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlanController extends Controller
 {
@@ -16,6 +18,29 @@ class PlanController extends Controller
     public function index()
     {
         return view('admin.planes.index');
+    }
+
+    public function index_client()
+    {
+        $user_login = Auth::user()->id;
+        $user_name = Auth::user()->name;
+
+        $verificar_subs = Subscription::where('user_id', $user_login)->count();
+        $dato = '';
+        if ($verificar_subs > 0) {
+            $get_subscription = Subscription::where('user_id', $user_login)->first();
+
+            $idplan = $get_subscription->plan_id;
+
+            $plan = Plan::find($idplan);
+
+            $dato = 'valido';
+            return view('cliente.plan.index')->with('plan', $plan)->with('dato', $dato);
+        }else{
+            $dato = 'invalido';
+            return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name);
+        }
+        
     }
 
     public function getPlanes()

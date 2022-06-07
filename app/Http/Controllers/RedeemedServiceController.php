@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryService;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Client;
-use Illuminate\Http\Request;
-use App\Models\RedeemedService;
 use App\Models\Service;
+use Illuminate\Http\Request;
+use App\Models\CategoryService;
+use App\Models\RedeemedService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\DiagnosticRedeemedService;
 
 class RedeemedServiceController extends Controller
 {
@@ -21,6 +24,12 @@ class RedeemedServiceController extends Controller
     {
         return view('admin.redimidos.index');
     }
+
+    public function index_client()
+    {
+        return view('cliente.misredimidos.index');
+    }
+
     public function index_diagnostico($id)
     {
         $id_service_redeemed = $id;
@@ -62,6 +71,60 @@ class RedeemedServiceController extends Controller
         echo json_encode([
             'data' => $data
         ]);
+    }
+
+    public function getMisRedimidos()
+    {
+        $user_login = Auth::user()->id;
+        $client = Client::where('user_id',$user_login)->first();
+        $id_client = $client->id;
+
+        $data = array();
+        $redimidos = RedeemedService::where('client_id', $id_client)->get();
+
+        foreach ($redimidos as $key => $value) {
+
+            $servicio = Service::find($value->service_id);
+            $valor_normal = self::convertirVa($servicio->price_normal);
+            $valor_discount = $servicio->price_normal;
+            $porcentaje_descuento = $servicio->percentage_discount;
+
+            $valor = 0;
+
+            if ($valor_discount != null && $porcentaje_descuento == null) {
+                $valor = self::convertirVa($value->valor_discount);
+            } else if ($value->valor_discount == null && $porcentaje_descuento != null) {
+                $valor = $porcentaje_descuento . '%';
+            }
+
+            $info = [
+                $value->id,
+                $value->find($value->id)->nombre_servicio->name,
+                $valor_normal,
+                $valor,
+                $value->find($value->id)->nombre_prestador_servicio->name,
+                date_format($value->created_at, "Y-m-d,  g:i a"),
+            ];
+
+            $data[] = $info;
+        }
+
+        echo json_encode([
+            'data' => $data
+        ]);
+    }
+
+    public function getDiagnostics()
+    {
+        try {
+            $codes_cie10 = DB::select(
+                'SELECT id, clave, descripcion FROM diagnosticoscie10'
+            );
+            $response = ['data' => $codes_cie10];
+        } catch (\Exception $exception) {
+            return response()->json(['message' => 'There was an error retrieving the records'], 500);
+        }
+        return response()->json($response);
     }
 
     public function search(Request $request)
@@ -135,22 +198,49 @@ class RedeemedServiceController extends Controller
     {
         $error = false;
         $mensaje = '';
+        $service_redemed_id = $request->redeemed_service_id;
+        $id_diagnostic = $request->code;
 
-        $register_redeem_service = array(
-            'prestador_id' => $request->prestador_id,
-            'code' => $request->id_client,
-            'description' => $request->id_service,
+        $service_redemed = DB::select(
+            'select clave, descripcion from diagnosticoscie10 where id='.$id_diagnostic
         );
 
-        if (RedeemedService::create($register_redeem_service)) {
-            $error = false;
-            $mensaje = 'Diagnóstico registrado exitosamente!';
-        } else {
-            $error = true;
-            $mensaje = 'Error! Se presento un problema al registrar el diagnóstico del servicio, intenta de nuevo.';
+        foreach ($service_redemed as $key => $value) {
+            $codigo = $value->clave;
+            $descripcion = $value->descripcion;
+
         }
+        $search_register_diagnostic_now = DiagnosticRedeemedService::whereDate('created_at', '=', Carbon::now()->format('Y-m-d'))
+                                        ->where('redeemed_service_id',$service_redemed_id)->where('code', $codigo)->count();
+
+        if ($search_register_diagnostic_now > 0) {
+            $error = true;
+            $mensaje = '¡Ops! Ya registraste este diagnóstico a este cliente el día de hoy!';
+        } else {
+              //$mensaje = 'valor '.$service_redemed;
+                $register_redeem_diagnostics = DiagnosticRedeemedService::create([
+                    'redeemed_service_id' => $service_redemed_id,
+                    'code' => $codigo,
+                    'description' => $descripcion,
+                ]);
+
+                if ($register_redeem_diagnostics->save()) {
+                    $error = false;
+                    $mensaje = 'Diagnóstico registrado exitosamente!';
+                } else {
+                    $error = true;
+                    $mensaje = 'Error! Se presento un problema al registrar el diagnóstico del servicio, intenta de nuevo.';
+                } 
+        }
+        
+      
 
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    function convertirVa($monto){
+        $valor = number_format($monto, 2, ',', '.');
+        return $valor;
     }
 
     /**
