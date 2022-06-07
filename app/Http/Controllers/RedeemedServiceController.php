@@ -24,7 +24,7 @@ class RedeemedServiceController extends Controller
     public function index_diagnostico($id)
     {
         $id_service_redeemed = $id;
-        return view('admin.redimidos.diagnostico')->with('id_service_redeemed',$id_service_redeemed);
+        return view('admin.redimidos.diagnostico')->with('id_service_redeemed', $id_service_redeemed);
     }
 
     public function getRedimidos()
@@ -32,8 +32,8 @@ class RedeemedServiceController extends Controller
         $data = array();
         $redimidos = RedeemedService::get();
         foreach ($redimidos as $key => $value) {
-            
-            $id_service = $value->service_id ;
+
+            $id_service = $value->service_id;
             $service = Service::find($id_service);
 
             $id_category = $service->category_id;
@@ -48,7 +48,7 @@ class RedeemedServiceController extends Controller
                 $value->find($value->id)->nombre_cliente->name,
                 $value->find($value->id)->nombre_cliente->number_identication,
                 $value->find($value->id)->nombre_servicio->name,
-                date_format($value->created_at,"Y-m-d,  g:i a"),
+                date_format($value->created_at, "Y-m-d,  g:i a"),
             ];
 
             if ($name_category == "Salud") {
@@ -68,12 +68,12 @@ class RedeemedServiceController extends Controller
     {
         $data = trim($request->valor);
         $result = DB::table('clients')
-        ->where('name','like','%'.$data.'%')
-        ->orwhere('number_identication','like','%'.$data.'%')
-        ->limit(5)
-        ->get();
+            ->where('name', 'like', '%' . $data . '%')
+            ->orwhere('number_identication', 'like', '%' . $data . '%')
+            ->limit(5)
+            ->get();
         return response()->json([
-            "estado"=>1,
+            "estado" => 1,
             "result" => $result
         ]);
     }
@@ -88,19 +88,19 @@ class RedeemedServiceController extends Controller
     {
         $consultar_user = Client::find($id);
         $user_id = $consultar_user->user_id;
-        $name_client= $consultar_user->name;
+        $name_client = $consultar_user->name;
 
         $subscrito = '';
         $client_id = $id;
 
         if (!optional($user_id)->hasActiveSubscription()) {
             $subscrito = 'si';
-        }else{
+        } else {
             $subscrito = 'no';
         }
         //dd($subscrito);
         return view('admin.redimidos.redimir')->with('subscrito', $subscrito)
-                    ->with('name_client', $name_client)->with('client_id', $client_id);
+            ->with('name_client', $name_client)->with('client_id', $client_id);
     }
 
     /**
@@ -127,7 +127,29 @@ class RedeemedServiceController extends Controller
             $error = true;
             $mensaje = 'Error! Se presento un problema al registrar los prestadores del servicio, intenta de nuevo.';
         }
-        
+
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function store_diagnostico(Request $request)
+    {
+        $error = false;
+        $mensaje = '';
+
+        $register_redeem_service = array(
+            'prestador_id' => $request->prestador_id,
+            'code' => $request->id_client,
+            'description' => $request->id_service,
+        );
+
+        if (RedeemedService::create($register_redeem_service)) {
+            $error = false;
+            $mensaje = 'Diagnóstico registrado exitosamente!';
+        } else {
+            $error = true;
+            $mensaje = 'Error! Se presento un problema al registrar el diagnóstico del servicio, intenta de nuevo.';
+        }
+
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 

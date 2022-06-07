@@ -10,14 +10,12 @@
                    <div class="card-body">
       
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" name="name" id="" class="form-control " placeholder="Nombre del Servicio" autocomplete="off">
-                                    </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted">Nombre del Cliente: <b class="d-block">{{$name_clien}}</b></p>
                                 </div>
 
                                 <div class="col-sm-6">
-                                    
+                                    <p class="text-muted">Identificación del Cliente: <b class="d-block">{{$identification_client}}</b></p>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -38,7 +36,7 @@
                             </div>
                             
                    </div>
-  
+                   <input type="hidden" name="redeemed_service_id" value="{{$idServiceRedeemed}}">
                    <div class="card-footer">
                     <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>
                     <button type="submit" class="btn btn-success float-right">Guardar</button>

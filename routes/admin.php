@@ -27,12 +27,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
         });
 
-        //ROUTES FOR MANAGEMENT CLIENTS
+    //ROUTES FOR MANAGEMENT CLIENTS
     Route::controller(ClientController::class)
-    ->group(function () {
-        Route::get('/admin/subscriptores', 'index')->name('subscriptores.index');
-        Route::get('/admin/subscriptores/obtener', 'getClientes')->name('subscriptores.obtener');
-    });
+        ->group(function () {
+            Route::get('/admin/subscriptores', 'index')->name('subscriptores.index');
+            Route::get('/admin/subscriptores/obtener', 'getClientes')->name('subscriptores.obtener');
+        });
 
     //ROUTES FOR MANAGEMENT PLANS
     Route::controller(PlanController::class)
@@ -91,8 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/intereses/destroy-client/{id}', 'destroy_client')->name('misintereses.destroy');
         });
 
-         //ROUTES FOR MANAGEMENT REDEEMED SERVICES
-        Route::controller(RedeemedServiceController::class)
+    //ROUTES FOR MANAGEMENT REDEEMED SERVICES
+    Route::controller(RedeemedServiceController::class)
         ->group(function () {
             //service provider
             Route::get('/historial-redimidos', 'index')->name('redimidos.index');
@@ -101,6 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
             Route::get('/redimimir-servicio/{id}', 'redimir')->name('redimidos.redimir');
             Route::get('/redimimir-diagnostico/{id}', 'index_diagnostico')->name('redimidos.index_diagnostico');
+            Route::post('/redimimir-diagnostico/store', 'store_diagnostico')->name('redimidos.store_diagnostico');
 
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
