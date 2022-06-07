@@ -18,7 +18,7 @@
                                     <p class="text-muted">Identificación del Cliente: <b class="d-block">{{$identification_client}}</b></p>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>C</label>
                                         <select class="custom-select" name="specialty_id">
