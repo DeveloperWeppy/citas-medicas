@@ -251,6 +251,14 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Miembros',
+            'url'         => 'miembros-plan',
+            'icon'        => 'fas fa-users',
+            'can'         => 'plan.index',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Mi Plan',
             'url'         => 'mi-plan',
             'icon'        => 'fas fa-box-open',

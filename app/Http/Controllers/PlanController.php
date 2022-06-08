@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Client;
 use App\Models\PlanServices;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\NumbersMembersAvailable;
 
 class PlanController extends Controller
 {
@@ -25,6 +27,12 @@ class PlanController extends Controller
         $user_login = Auth::user()->id;
         $user_name = Auth::user()->name;
 
+        $info_client = Client::where('user_id', $user_login)->first();
+        $is_owner = $info_client->is_owner;
+
+        $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $is_owner)->first();
+        $total_miembros_por_registrar= $consultar_numero_client_for_owner->registered_members;
+
         $verificar_subs = Subscription::where('user_id', $user_login)->count();
         $dato = '';
         if ($verificar_subs > 0) {
@@ -35,7 +43,8 @@ class PlanController extends Controller
             $plan = Plan::find($idplan);
 
             $dato = 'valido';
-            return view('cliente.plan.index')->with('plan', $plan)->with('dato', $dato);
+            return view('cliente.plan.index')->with('plan', $plan)->with('dato', $dato)
+                        ->with('total_miembros_por_registrar', $total_miembros_por_registrar)->with('is_owner', $is_owner)->with('user_name', $user_name);
         }else{
             $dato = 'invalido';
             return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name);

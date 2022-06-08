@@ -28,6 +28,7 @@ class CreateClientsTable extends Migration
             $table->string('num_phone');
             $table->string('city')->nullable();
             $table->string('department')->nullable();
+            $table->integer('is_owner')->default(1);
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();

@@ -32,7 +32,19 @@
 
 @section('content')
 
-@if (optional(auth()->user())->hasActiveSubscription())
+@if ($is_owner == 1)
+  @if (optional(auth()->user())->hasActiveSubscription())
+
+  @if ($plan->is_group > 0)
+
+      @if ($total_miembros_por_registrar > 0)
+        <x-note-members-registered cantidadmiembros="{{$plan->cant_people}}" idPlan="{{$plan->id}}"></x-note-members-registered>
+
+        <x-register-member></x-register-member>
+      @endif
+   
+  @endif
+
     <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
   @else
       <!------CONTENEDOR DE NO SUBSCRITO------->
@@ -45,7 +57,7 @@
                 
                         <div class="text-center">
                             <img src="/images/Xpayment.png" class="full" alt="x-imagen-user">
-                            <h2 class="text-info">¡Ops!{{optional(auth()->user())->hasActiveSubscription()}}</h2>
+                            <h2 class="text-info">¡Ops!</h2>
                             <h4>Estimado cliente <strong class="text-uppercase text-info">{{$user_name}}</strong> no presenta actualmente una subscripción activa,
                                 por lo tanto no dispones de ningún plan. No olvides subscribirte y disfrutar de todos los beneficios que tiene <strong class="text-uppercase text-info">
                                   citasmedicas.es</strong> para tí. <i class="fas fa-laugh-wink text-info"></i>
@@ -58,32 +70,125 @@
         </div>
     </div>
   @endif
+@else
+  <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
+@endif
+
   
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
 @stop
 
 @section('js')
     <script>
 
-        $(function () {
-            var texto = $('#valor').text();
-            var texto2 = $('#valor_status').text();
-            
-            if (texto == "Sí") {
-                $('#customSwitch3').prop("checked", true);
-            } else {
-                $('#customSwitch3').prop("checked", false);
-            } 
+         //form of register of user
+         $('#quickForm').validate({
+            rules: {
+              name: {
+                required: true,
+              },
+              lastname: {
+                required: true,
+              },
+              number_identication: {
+                required: true,
+                minlength:7
+              },
+              email: {
+                required: true,
+                email: true,
+              },
+            },
+            messages: {
+                name: {
+                required: "Por favor ingrese el nombre del miembro",
+              },
+              lastname: {
+                required: "Por favor ingrese el apellido del miembro",
+              },
+              number_identication: {
+                required: "Por favor ingrese un número de identificación",
+                minlength: "Ingrese un número de identificación válido",
+              },
+              required: "Por favor ingrese un Correo Electrónico",
+                email: "Ingrese una dirección de correo válida",
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form){
+                // agregar data
+                $('#quickForm').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#quickForm');
+                    var formData = new FormData(this);
 
-            if (texto2 == "Activo") {
-                $('#status').prop("checked", true);
-            } else {
-                $('#status').prop("checked", false);
-            } 
+                    //ruta
+                    var url = "{{route('miplan.store_member')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                       if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                confirmButtonText: "Ok"
+                            });
+
+                            setTimeout(function(){
+                                location.reload();
+                            },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    confirmButtonText: "Ok"
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        //console.log(resp);
+                    });
+                  });
+            }
+          });
+        $(function () {
         });
        
         

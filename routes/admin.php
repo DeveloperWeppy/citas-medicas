@@ -4,6 +4,7 @@ use App\Http\Controllers\BenefitsPlanController;
 use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InterestsController;
+use App\Http\Controllers\MembersClientController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RedeemedServiceController;
 use App\Http\Controllers\ServiceController;
@@ -32,6 +33,17 @@ Route::group(['middleware' => 'auth'], function () {
         ->group(function () {
             Route::get('/admin/subscriptores', 'index')->name('subscriptores.index');
             Route::get('/admin/subscriptores/obtener', 'getClientes')->name('subscriptores.obtener');
+
+            Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
+        });
+
+    //ROUTES FOR MANAGEMENT MEMBERS CLIENT
+    Route::controller(MembersClientController::class)
+        ->group(function () {
+            Route::get('/miembros-plan', 'index')->name('miembros.index');
+            Route::get('/miembros-plan/obtener', 'getClientes')->name('subscriptores.obtener');
+
+            Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
         });
 
     //ROUTES FOR MANAGEMENT PLANS
