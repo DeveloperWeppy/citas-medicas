@@ -22,4 +22,11 @@ class MembersClient extends Model
     public function cliente_propietario_subscripcion(){
         return $this->hasMany(User::class);
     }
+
+    public function nombre_cliente()
+    {
+  
+      //relación para poder mostrar el nombre de los intereses
+      return $this->belongsTo(Client::class, 'client_id');
+    }
 }

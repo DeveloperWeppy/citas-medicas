@@ -41,9 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(MembersClientController::class)
         ->group(function () {
             Route::get('/miembros-plan', 'index')->name('miembros.index');
-            Route::get('/miembros-plan/obtener', 'getClientes')->name('subscriptores.obtener');
+            Route::get('/miembros-plan/obtener', 'getClientes')->name('miembros.obtener');
+            Route::get('/miembros-plan/destroy/{id}', 'destroy')->name('miembros.destroy');
 
-            Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
+            //Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
         });
 
     //ROUTES FOR MANAGEMENT PLANS

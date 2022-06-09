@@ -125,3 +125,7 @@
 .divimg{ 
     border:1px solid #ccd2db;
 }
+
+#listarmiembros tbody td {
+    text-align: center;
+}

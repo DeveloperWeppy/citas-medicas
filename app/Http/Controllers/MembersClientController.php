@@ -9,6 +9,7 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NumbersMembersAvailable;
+use App\Models\User;
 
 class MembersClientController extends Controller
 {
@@ -41,7 +42,7 @@ class MembersClientController extends Controller
         }
     }
 
-    public function getUsuarios()
+    public function getClientes()
     {
         $data = array();
         $user_login = Auth::user()->id;
@@ -57,9 +58,12 @@ class MembersClientController extends Controller
                     $item->name,
                     $item->last_name,
                     $item->number_identication,
+                    $item->email,
                     date("Y-m-d H:m", strtotime($value->created_at)),
                     '
-                    <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i></button>
+                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">
+                    <button type="button" class="btn btn-xs btn-danger" onclick="eliminarMiembro(' . $value->id . ');"><i class="fas fa-trash"></i></button>
+                    </span>
                     '
                 ];
     
@@ -71,5 +75,55 @@ class MembersClientController extends Controller
         echo json_encode([
             'data' => $data
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $error = false;
+        $mensaje = '';
+        
+        $user_login = Auth::user()->id;
+        $cliente_logueado = Client::where('user_id', $user_login)->first();
+        $id_cliente_owner = $cliente_logueado->id;
+
+         $member = MembersClient::find($id);
+        $id_client = $member->client_id;
+
+        $cliente = Client::find($id_client);
+        $user_id = $cliente->user_id;
+
+        $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $id_cliente_owner)->first();
+        $total_miembros_registrado = $consultar_numero_client_for_owner->registered_members;
+        $id_number_member_available = $consultar_numero_client_for_owner->id; 
+
+        $update_status = array(
+            'status' => 0
+        );
+
+      if (User::findOrFail($user_id)->update($update_status)) {
+            $new_member_number = $total_miembros_registrado + 1;
+                               
+                $update_member_number = array(
+                    'registered_members' => $new_member_number,
+                );
+
+                if (NumbersMembersAvailable::findOrFail($id_number_member_available)->update($update_member_number)) {
+                    if (MembersClient::findOrFail($id)->delete()) {
+                        $error = false;
+                    }else {
+                        $error = true;
+                        $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+                    }
+                }else{
+                    $error = true;
+                $mensaje = 'Error! Se presento un problema al actualizar el nuevo número de miembros disponibles a registrar.';
+                }
+             
+        }else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al eliminar el usuario, intenta de nuevo.';
+            }        
+
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 }
