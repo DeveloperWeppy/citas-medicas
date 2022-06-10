@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('number_identication');
+            $table->string('type_identication');
             $table->string('photo');
             $table->string('age');
             $table->date('date_of_birth');
@@ -28,7 +29,7 @@ class CreateClientsTable extends Migration
             $table->string('num_phone');
             $table->string('city')->nullable();
             $table->string('department')->nullable();
-            $table->integer('is_owner')->default(1);
+            $table->integer('is_owner');
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();

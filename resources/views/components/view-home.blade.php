@@ -49,7 +49,7 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">Ver Detalles  <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('subscriptores.index') }}" class="small-box-footer">Ver Detalles  <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     @endcan

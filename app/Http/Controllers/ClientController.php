@@ -25,15 +25,22 @@ class ClientController extends Controller
     public function getClientes()
     {
         $data = array();
-        $usuarios = User::with('roles')->whereDoesntHave('roles', function ($query) {
-            $query->whereIn('name', ['Admin', 'Gestor', 'Prestador']);
-        })->get();
-        foreach ($usuarios as $key => $value) {
+        $subscriptores = Client::where('is_owner', 1)->get();
 
-            $class_status = ($value->status == 1) ? "success" : "danger";
-            $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
+        foreach ($subscriptores as $key => $value) {
 
-            $ruta_editar = route('usuarios.edit', $value->id);
+            $id_user = $value->user_id;
+
+            $usuario = User::where('id', $id_user)->get();
+
+            foreach ($usuario as $key => $valueuser) {
+                $estado = $valueuser->status;
+            }
+
+            $class_status = ($estado == 1) ? "success" : "danger";
+            $text_status = ($estado == 1) ? "Activo" : "Inactivo";
+
+            $ruta_ver_detalle = route('subscriptores.detallecliente', $value->id);
 
             $info = [
                 $value->id,
@@ -42,7 +49,7 @@ class ClientController extends Controller
                 '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
                 date("Y-m-d H:m", strtotime($value->created_at)),
                 '
-                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-info-circle"></i> Ver Más</button>
+                <a href="' . $ruta_ver_detalle . '" class="btn btn-xs btn-dark"><i class="fas fa-eye"></i>  Ver Más</a>
                 '
             ];
 
@@ -171,10 +178,12 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function detallecliente($id)
     {
-        //
+        $cliente = Client::findOrFail($id);
+        return view('admin.subscriptores.detallesubscriptor')->with('cliente', $cliente);
     }
+
 
     /**
      * Show the form for editing the specified resource.

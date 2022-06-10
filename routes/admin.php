@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->group(function () {
             Route::get('/admin/subscriptores', 'index')->name('subscriptores.index');
             Route::get('/admin/subscriptores/obtener', 'getClientes')->name('subscriptores.obtener');
+            Route::get('/admin/subscriptores/detalle-cliente/{id}', 'detallecliente')->name('subscriptores.detallecliente');
 
             Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
         });

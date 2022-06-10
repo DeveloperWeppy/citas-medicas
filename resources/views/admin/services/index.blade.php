@@ -41,41 +41,43 @@
     <div class="row">
         <div class="col-12">
 
-            <!------CONTENEDOR DE TABLA------->
             <div class="card card-primary card-outline">
-                
-                <!--cabecera del contenedor--->
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-eye"></i> Servicios Registrados</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link active" href="#services" data-toggle="tab">Servicios de Planes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Servicio Gratuito del Plan</a></li>
+                    </ul>
                 </div>
-
-                <!--cuerpo del contenedor--->
                 <div class="card-body">
-                   
-                    <!--tabla de datos--->
-                    <table id="listarservicios" class="display table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre del Servicio</th>
-                                <th>Precio Normal</th>
-                                <th>Precio o porcentaje con descuento</th>
-                                <th>Estado</th>
-                                <th>Inicio del Servicio</th>
-                                <th>Fin del Servicio</th>
-                                @can('servicios.acciones')
-                                    <th>Acciones</th>
-                                @endcan
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="services">
+
+                            <!--tabla de datos--->
+                            <table id="listarservicios" class="display table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre del Servicio</th>
+                                        <th>Precio Normal</th>
+                                        <th>Precio o porcentaje con descuento</th>
+                                        <th>Estado</th>
+                                        <th>Inicio del Servicio</th>
+                                        <th>Fin del Servicio</th>
+                                        @can('servicios.acciones')
+                                            <th>Acciones</th>
+                                        @endcan
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                                        
+                        <div class="tab-pane" id="timeline">
+                        <div>
+                                  
+                    </div>
+                
                 </div>
             </div>
         </div>

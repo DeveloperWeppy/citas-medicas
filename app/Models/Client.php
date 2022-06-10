@@ -14,6 +14,7 @@ class Client extends Model
         'name',
         'last_name',
         'number_identication',
+        'type_identication',
         'photo',
         'age',
         'date_of_birth',
