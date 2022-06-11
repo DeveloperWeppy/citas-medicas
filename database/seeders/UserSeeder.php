@@ -39,6 +39,7 @@ class UserSeeder extends Seeder
             'name' => 'manuel',
             'last_name' => 'silva',
             'number_identication' => '1095214365',
+            'type_identication' => 'C.C',
             'photo' => '/storage/clients/user.png',
             'age' => '22',
             'date_of_birth' => '1999-09-25',
@@ -46,6 +47,7 @@ class UserSeeder extends Seeder
             'neighborhood' => 'cuberos niño',
             'email' => 'client@mail.com',
             'num_phone' => '3219089590',
+            'is_owner' => 1,
         ]);
     }
 }

@@ -3,7 +3,21 @@
         <div class="col-12">
            <div class="card card-default">
                <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-plus"></i> Registrar un Nuevo Servicio</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="card-title"><i class="fas fa-plus"></i><strong>Registrar un Nuevo Servicio</strong> </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" name="is_free" class="custom-control-input" id="customSwitch">
+                                <label class="custom-control-label" for="customSwitch">¿Es un servicio gratuito?
+                                    <span id="valor" class="badge bg-info text-white font-italic" style="font-size: 16px;">No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
                </div>
   
                <form action="" method="post" id="quickForm">

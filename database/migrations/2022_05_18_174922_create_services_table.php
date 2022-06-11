@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration
             $table->dateTime('end_date');
             $table->string('observation', 500)->nullable();
             $table->integer('status')->default(1);
+            $table->integer('is_free');
             $table->foreignId('category_id')->references('id')->on('category_services');
             $table->foreignId('specialty_id')->nullable()->references('id')->on('specialties');
             $table->timestamps();

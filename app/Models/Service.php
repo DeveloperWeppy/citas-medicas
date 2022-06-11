@@ -19,6 +19,7 @@ class Service extends Model
         'end_date',
         'observation',
         'status',
+        'is_free',
         'category_id',
         'specialty_id',
     ];

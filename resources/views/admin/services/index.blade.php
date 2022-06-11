@@ -45,7 +45,7 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#services" data-toggle="tab">Servicios de Planes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Servicio Gratuito del Plan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#servicesfree" data-toggle="tab">Servicios Gratuitos de Planes</a></li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -73,7 +73,27 @@
                             </table>
                         </div>
                                         
-                        <div class="tab-pane" id="timeline">
+                        <div class="tab-pane" id="servicesfree">
+                             <!--tabla de datos--->
+                             <table id="listarserviciosfree" class="display table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre del Servicio</th>
+                                        <th>Precio Normal</th>
+                                        <th>Precio o porcentaje con descuento</th>
+                                        <th>Estado</th>
+                                        <th>Inicio del Servicio</th>
+                                        <th>Fin del Servicio</th>
+                                        @can('servicios.acciones')
+                                            <th>Acciones</th>
+                                        @endcan
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                         <div>
                                   
                     </div>
@@ -106,100 +126,15 @@
                 "ajax": "{{route('servicios.obtener')}}",
             });
 
-            function eliminarEspecialidad(id){
-            //console.log("soy id"+id);
-                Swal.fire({
-                    title: 'Eliminar Especialidad',
-                    text: "¿Estas seguro de eliminar la especialidad?",
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    confirmButtonText: 'Si, eliminar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var url = "especialidades/destroy/"+id;
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            type: "GET",
-                            encoding:"UTF-8",
-                            url: url,
-                            dataType:'json',
-                            beforeSend:function(){
-                                Swal.fire({
-                                    text: 'Eliminando especialidad, espere...',
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: () => {
-                                        Swal.showLoading()
-                                    },
-                                });
-                            }
-                        }).done(function(respuesta){
-                            //console.log(respuesta);
-                            if (!respuesta.error) {
-                                Swal.fire({
-                                    title: 'Esepecialidad Eliminada!',
-                                    icon: 'success',
-                                    showConfirmButton: true,
-                                    timer: 2000
-                                });
-                                setTimeout(function(){
-                                location.reload();
-                                },2000);
-                            } else {
-                                setTimeout(function(){
-                                    Swal.fire({
-                                        title: espuesta.mensaje,
-                                        icon: 'error',
-                                        showConfirmButton: true,
-                                        timer: 4000
-                                    });
-                                },2000);
-                            }
-                        }).fail(function(resp){
-                            console.log(resp);
-                        });
-                    }
-                })
-        }
-        $(function () {
-         
-        
-
-        });
-
-        
-
-        jQuery(document).on("click", ".change-status", function() {
-                var $element = jQuery(this);
-                var id = $element.attr('id');
-                var url = "{{ route('usuarios.status') }}";
-                var data = {
-                    id: id
-                }
-                jQuery.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    encoding: "UTF-8",
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    beforeSend:function(){
-                        $element.val('Cargando');
-                    },
-                    success: function(response) {
-                        if (response.status == 1) {
-                            $element.find('span').removeAttr('class').attr('class', '');
-                            $element.find('span').addClass('btn');
-                            $element.find('span').addClass(response.class_status);
-                            $element.find('span').text(response.text_status);
-                        }
-                    }
-                });
+            var tabla_services_free = $('#listarserviciosfree').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
+                },
+                "order": [[ 0, "desc" ]],
+                "ajax": "{{route('serviciosfree.obtener')}}",
             });
+
+        $(function () {
+        });
         </script>
 @stop

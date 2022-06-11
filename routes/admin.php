@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/admin/usuarios/edit/{id}', 'edit')->name('usuarios.edit');
             Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
+
+            Route::get('/perfil', 'profile')->name('usuario.perfil');
         });
 
     //ROUTES FOR MANAGEMENT CLIENTS
@@ -69,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->group(function () {
             Route::get('/admin/servicios', 'index')->name('servicios.index');
             Route::get('/servicios/obtener', 'getServicios')->name('servicios.obtener');
+            Route::get('/servicios/obtenerfree', 'getServiciosFree')->name('serviciosfree.obtener');
             Route::post('/admin/servicios/store', 'store')->name('servicios.store');
             Route::get('/admin/servicios/create', 'create')->name('servicios.create');
             Route::get('/admin/servicios/edit/{id}', 'edit')->name('servicios.edit');

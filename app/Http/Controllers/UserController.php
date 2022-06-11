@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AttentioShedule;
-use App\Models\Convenio;
 use App\Models\User;
+use App\Models\Convenio;
 use Illuminate\Http\Request;
+use App\Models\AttentioShedule;
+use App\Models\Client;
 use App\Models\UserInformation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -148,5 +150,26 @@ class UserController extends Controller
             }
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function profile()
+    {
+        $user_login = Auth::user()->id;
+        $user = User::find($user_login);
+        
+        if ($user->hasRole('Prestador')) {
+            $info_prestador = UserInformation::where('user_id', $user_login)->first();
+
+            return view('profile')->with('info_prestador', $info_prestador);
+
+        }else if ($user->hasRole('Cliente')) {
+            $info_cliente = Client::where('user_id', $user_login)->first();
+            
+            return view('profile')->with('info_cliente', $info_cliente);
+
+        }else if ($user->hasRole('Gestor') || $user->hasRole('Admin')) {
+
+            return view('profile')->with('user', $user);
+        }
     }
 }

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Registro de Servicio')
+@section('title', 'Administrar Miembros del Plan')
 
 <!--integrar plugins necesarios-->
 @section('plugins.Datatables', true)
@@ -10,12 +10,12 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-       <h3>Administrar Servicio</h3>
+        <button class="btn btn-outline-info" onClick="history.go(-1);"><i class="fas fa-long-arrow-alt-left"></i> Volver</button>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('servicios.index')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Actualizar Servicio de <span>{{$service->name}}</span></li>
+            <li class="breadcrumb-item"><a href="{{ route('inicio.index') }}">Inicio</a></li>
+            <li class="breadcrumb-item active">Mi Perfil- <span class="font-weight-bolder"></span></li>
             </ol>
       </div>
     </div>
@@ -25,7 +25,21 @@
 @section('content')
 
 <div class="container-fluid">
-  <x-form-edit-service idService="{{$service->id}}"></x-form-edit-service>
+    <div class="row">
+        @role('Prestador')
+            <x-form-profile idPrestador="{{$info_prestador->id}}"></x-form-profile>
+        @endrole
+        
+        @role('Cliente')
+            <x-form-profile-client idClient="{{$info_cliente->id}}"></x-form-profile-client>
+        @endrole
+
+        @role('Gestor')
+            <x-form-profile-client></x-form-profile-client>
+        @endrole
+    </div>
+    
+
 </div>
 @stop
 
@@ -38,82 +52,50 @@
 
 <script src="/js/datatable.js"></script>
     <script>
+      $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('#element').tooltip('show')
 
-          $(function () {
-            var texto2 = $('#valor_status').text();
-            console.log(texto2);
-
-            if (texto2 == 'Activo') {
-                $('#status').prop("checked", true);
-            } else {
-                $('#status').prop("checked", false);
-            } 
-          });
-
-           //event for switch of status of plan
-        $('#status').change(function() {
-            if($(this).is(":checked")) {
-                checked = true;
-                $('#valor_status').text('Activo').val();
-            }
-            else {
-                checked = false;
-                $('#valor_status').text('Inactivo').val();
-           }
         });
-        //form of register of user
-       $('#editService').validate({
+       
+        var tabla_miembros = $('#listarmiembros').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
+                },
+                "order": [[ 0, "desc" ]],
+                "ajax": "{{route('miembros.obtener')}}",
+            });
+             //form of register of user
+         $('#quickForm').validate({
             rules: {
-                name: {
+              name: {
                 required: true,
               },
-              description: {
+              lastname: {
                 required: true,
               },
-              price_normal: {
+              number_identication: {
                 required: true,
+                minlength:7
               },
-              price_discount: {
+              email: {
                 required: true,
-              },
-              percentage_discount: {
-                required: true,
-              },
-              category_id: {
-                required: true,
-              },
-              start_date: {
-                required: true,
-              },
-              end_date: {
-                required: true,
+                email: true,
               },
             },
             messages: {
                 name: {
-                    required: "Por favor ingrese el nombre del Servicio",
+                required: "Por favor ingrese el nombre del miembro",
               },
-              description: {
-                required: "Por favor ingrese una descripción",
+              lastname: {
+                required: "Por favor ingrese el apellido del miembro",
               },
-              price_normal: {
-                required: "Por favor ingrese el precio normal",
+              number_identication: {
+                required: "Por favor ingrese un número de identificación",
+                minlength: "Ingrese un número de identificación válido",
               },
-              price_discount: {
-                required: "Por favor ingrese el precio con descuento",
-              },
-              percentage_discount: {
-                required: "Por favor ingrese el porcentaje de descuento",
-              },
-              category_id: {
-                required: "Por favor seleccione la categoría",
-              },
-              start_date: {
-                required: "Seleccione la fecha de inicio del Servicio",
-              },
-              end_date: {
-                required: "Seleccione la fecha de finalización del Servicio",
-              },
+              required: "Por favor ingrese un Correo Electrónico",
+                email: "Ingrese una dirección de correo válida",
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -128,13 +110,13 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#editService').on('submit', function(e) {
+                $('#quickForm').on('submit', function(e) {
                 event.preventDefault();
-                var $thisForm = $('#editService');
+                var $thisForm = $('#quickForm');
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('servicios.update')}}";
+                    var url = "{{route('miplan.store_member')}}";
 
                     $.ajax({
                         headers: {
@@ -151,11 +133,11 @@
                           Swal.fire({
                                 title: 'Validando datos, espere por favor...',
                                 button: false,
-                                timer: 3000,
+                                timer: 2000,
                                 timerProgressBar: true,
-                                    didOpen: () => {
-                                        Swal.showLoading()
-                                    },
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
                             });
                         }
                     }).done(function(respuesta){
@@ -163,14 +145,13 @@
                        if (!respuesta.error) {
 
                           Swal.fire({
-                                title: 'Servicio actualizado exitosamente.',
+                                title: respuesta.mensaje,
                                 icon: 'success',
-                                button: true,
-                                timer: 2000
+                                confirmButtonText: "Ok"
                             });
 
                             setTimeout(function(){
-                                location.href = "{{route('servicios.index')}}";
+                                location.reload();
                             },2000);
 
                         } else {
@@ -178,8 +159,7 @@
                               Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
-                                    button: false,
-                                    timer: 4000
+                                    confirmButtonText: "Ok"
                                 });
                             },2000);
                         } 
@@ -189,10 +169,8 @@
                   });
             }
           });
-       
-        
 
-        
+         
         $(function () {
 
         });

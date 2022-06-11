@@ -32,7 +32,103 @@ class ServiceController extends Controller
         $user = User::find($user_login);
         
         if ($user->hasRole('Admin') || $user->hasRole('Gestor')) {
-            $servicios = Service::get();
+            $servicios = Service::where('is_free', 0)->get();
+            foreach ($servicios as $key => $value) {
+
+                $class_status = ($value->status == 1) ? "success" : "danger";
+                $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
+
+                $ruta_view_service = route('servicios.show', $value->id);
+                $ruta_editar = route('servicios.edit', $value->id);
+
+                $valor = 0;
+
+                if ($value->price_discount != null && $value->percentage_discount == null) {
+                    $valor = self::convertirVa($value->price_discount);
+                } else if ($value->price_discount == null && $value->percentage_discount != null) {
+                    $valor = $value->percentage_discount . '%';
+                }
+
+                $info = [
+                    $value->id,
+                    '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
+                    self::convertirVa($value->price_normal),
+                    $valor,
+                    '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                    $value->start_date,
+                    $value->end_date,
+                    '
+                    <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                    <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                    '
+                ];
+
+                $data[] = $info;
+            }
+        }else{
+
+            $user_information = UserInformation::where('user_id', $user_login)->first();
+            $id_user_information = $user_information->id;
+
+            $convenio = Convenio::where('responsable_id', $id_user_information)->first();
+            $id_convenio = $convenio->id;
+
+            $services = ConvenioServices::where('convenio_id', $id_convenio)->get();
+
+            foreach ($services as $key => $value) {
+                $services_uid = $value->service_id;
+
+                $servicios = Service::where('id', $services_uid)->get();
+                foreach ($servicios as $key => $value) {
+
+                    $class_status = ($value->status == 1) ? "success" : "danger";
+                    $text_status = ($value->status == 1) ? "Activo" : "Inactivo";
+
+                    $ruta_view_service = route('servicios.show', $value->id);
+                    $ruta_editar = route('servicios.edit', $value->id);
+
+                    $valor = 0;
+
+                    if ($value->price_discount != null && $value->percentage_discount == null) {
+                        $valor = self::convertirVa($value->price_discount);
+                    } else if ($value->price_discount == null && $value->percentage_discount != null) {
+                        $valor = $value->percentage_discount . '%';
+                    }
+
+                    $info = [
+                        $value->id,
+                        '<a href="' . $ruta_view_service . '" class="text-info">' .  $value->name . '</a>',
+                        self::convertirVa($value->price_normal),
+                        $valor,
+                        '<span class="badge bg-' . $class_status . '">' . $text_status . '</span>',
+                        $value->start_date,
+                        $value->end_date,
+                        '
+                        <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
+                        <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                        '
+                    ];
+
+                    $data[] = $info;
+                }
+            }
+            
+        }
+
+        echo json_encode([
+            'data' => $data
+        ]);
+    }
+
+    public function getServiciosFree()
+    {
+        $data = array();
+
+        $user_login = Auth::user()->id;
+        $user = User::find($user_login);
+        
+        if ($user->hasRole('Admin') || $user->hasRole('Gestor')) {
+            $servicios = Service::where('is_free', 1)->get();
             foreach ($servicios as $key => $value) {
 
                 $class_status = ($value->status == 1) ? "success" : "danger";
@@ -146,6 +242,14 @@ class ServiceController extends Controller
         //consulta para validar si ya existe un usuario registrado o no
         $validar_name = Service::where('name', $name_service)->count();
 
+        $service_free_or_not = 0;
+        $is_free = $request->is_free;
+
+        if ($is_free == "on") {
+            $service_free_or_not = 1;
+        }else{
+            $service_free_or_not = 0;
+        }
         if ($validar_name > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado el servicio "' . $name_service . '". Intente con otro.';
@@ -163,6 +267,7 @@ class ServiceController extends Controller
                 'percentage_discount' => $request->percentage_discount,
                 'observation' => $request->observation,
                 'status' => 1,
+                'is_free' => $service_free_or_not,
                 'category_id' => $category_id,
                 'specialty_id' => $request->specialty_id,
             );

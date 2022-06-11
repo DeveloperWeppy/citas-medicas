@@ -86,9 +86,16 @@
                                                 <b class="d-block">No tiene especialidad este servicio</b>
                                             @else
                                                 <b class="d-block">{{$service->find($service->id)->nombre_especialidad->name}}</b>
-                                            
                                             @endif
                                             
+                                        </p>
+
+                                        <p class="text-sm">¿Es un servicio gratuito?
+                                            @if ($service->specialty_id == 0)
+                                                <b class="d-block">No</b>
+                                            @else
+                                                <b class="d-block">Sí</b>
+                                            @endif
                                         </p>
                                        
                                     </div>

@@ -51,6 +51,18 @@
                 $('#div-porcentaje-descuento').hide();
            }
         });
+
+        $('#customSwitch').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#valor').text('Sí').val();
+            }
+            else {
+                checked = false;
+                $('#valor').text('No').val();
+           }
+        });
+
         //form of register of user
        $('#quickForm').validate({
             rules: {
