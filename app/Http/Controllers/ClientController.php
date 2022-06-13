@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Client;
-use App\Models\MembersClient;
-use App\Models\NumbersMembersAvailable;
 use Illuminate\Http\Request;
+use App\Models\MembersClient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\NumbersMembersAvailable;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -203,9 +204,91 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function updatedphoto(Request $request, Client $client)
     {
-        //
+        $error = false;
+        $mensaje = '';
+
+        $id_cliente = $request->id_cliente;
+
+         # validamos si existe la imagen en el request
+         $image = $request->file('imgLogo')->store('public/clients');
+         $url = Storage::url($image);
+
+         $photoarray = array(
+            'photo' => $url,
+         );
+
+         if ($updatephoto = Client::findOrFail($id_cliente)->update($photoarray)) {
+            $error = false;
+                   $mensaje = 'Actualización de Foto Exitosa!';
+         } else {
+            $error = true;
+                $mensaje = 'Error! Se presentó un problema al actualizar la foto, intenta de nuevo.';
+         }
+         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function updatedclient(Request $request, Client $client)
+    {
+        $error = false;
+        $mensaje = '';
+
+        $id_cliente = $request->id_cliente;
+
+        $name = $request->name;
+        $last_name = $request->last_name;
+        $number_identication = $request->number_identication;
+        $age = $request->age;
+        $date_of_birth = $request->date_of_birth;
+        $address = $request->address;
+        $neighborhood = $request->neighborhood;
+        $department = $request->department;
+        $city = $request->city;
+        $num_phone = $request->num_phone;
+        $email = $request->email;
+        $facebook = $request->facebook;
+        $instagram = $request->instagram;
+        $whatsapp = $request->whatsapp;
+
+
+         $updateclient = array(
+            'name' => $name,
+            'last_name' => $last_name,
+            'number_identication' => $number_identication,
+            'age' => $age,
+            'address' => $address,
+            'neighborhood' => $neighborhood,
+            'email' => $email,
+            'city' => $city,
+            'department' => $department,
+            'date_of_birth' => $date_of_birth,
+            'num_phone' => $num_phone,
+            'whatsapp' => $whatsapp,
+            'instagram' => $instagram,
+            'facebook' => $facebook,
+         );
+
+         if ($update = Client::findOrFail($id_cliente)->update($updateclient)) {
+
+            $user_id = $request->user_id;
+
+            $updateuser = array(
+                'name' => $name,
+            );
+
+            if ($update = User::findOrFail($user_id)->update($updateuser)) {
+                $error = false;
+                   $mensaje = 'Actualización de datos correctamente!';
+            }else {
+                $error = true;
+                    $mensaje = 'Error! Se presentó un problema al actualizar los datos, intenta de nuevo.';
+             }
+         } else {
+            $error = true;
+                $mensaje = 'Error! Se presentó un problema al actualizar los datos, intenta de nuevo.';
+         }
+         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     /**

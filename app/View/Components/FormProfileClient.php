@@ -26,6 +26,6 @@ class FormProfileClient extends Component
     public function render()
     {
         $cliente = Client::find($this->idClient);
-        return view('components.form-profile-client')->with('cliente', $cliente);
+        return view('components.client.perfil.form-profile-client')->with('cliente', $cliente);
     }
 }

@@ -172,4 +172,79 @@ class UserController extends Controller
             return view('profile')->with('user', $user);
         }
     }
+
+    public function updatedphoto(Request $request, Client $client)
+    {
+        $error = false;
+        $mensaje = '';
+
+        $id_userprestador = $request->id_userprestador;
+
+         # validamos si existe la imagen en el request
+         $image = $request->file('imgLogo')->store('public/logosPrestadores');
+         $url = Storage::url($image);
+
+         $logoarray = array(
+            'logo' => $url,
+         );
+
+         if ($updatephoto = User::findOrFail($id_userprestador)->update($logoarray)) {
+            $error = false;
+                   $mensaje = 'Actualización de Logo Exitosa!';
+         } else {
+            $error = true;
+                $mensaje = 'Error! Se presentó un problema al actualizar el logo, intenta de nuevo.';
+         }
+         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function updatedprestador(Request $request, Client $client)
+    {
+        $error = false;
+        $mensaje = '';
+
+        $id_userprestador = $request->id_userprestador;
+
+        $name = $request->name;
+        $nit = $request->nit;
+        $num_phone = $request->num_phone;
+        $name_contact = $request->name_contact;
+        $num_phone_contact = $request->num_phone_contact;
+        $address = $request->address;
+        $email_contact = $request->email_contact;
+        $city = $request->city;
+
+
+         $updateprestador = array(
+            'name' => $name,
+            'nit' => $nit,
+            'num_phone' => $num_phone,
+            'name_contact' => $name_contact,
+            'address' => $address,
+            'num_phone_contact' => $num_phone_contact,
+            'email_contact' => $email_contact,
+            'city' => $city,
+         );
+
+         if ($update = UserInformation::findOrFail($id_userprestador)->update($updateprestador)) {
+
+            $user_id = $request->user_id;
+
+            $updateuser = array(
+                'name' => $name,
+            );
+
+            if ($update = User::findOrFail($user_id)->update($updateuser)) {
+                $error = false;
+                   $mensaje = 'Actualización de datos correctamente!';
+            }else {
+                $error = true;
+                    $mensaje = 'Error! Se presentó un problema al actualizar los datos, intenta de nuevo.';
+             }
+         } else {
+            $error = true;
+                $mensaje = 'Error! Se presentó un problema al actualizar los datos, intenta de nuevo.';
+         }
+         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
 }

@@ -27,7 +27,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
 
+            //GET PROFILE OF LOGIN USER
             Route::get('/perfil', 'profile')->name('usuario.perfil');
+
+            //UPDATED OF USER PRESTADOR OF SERVICES
+            Route::post('/perfil/actualizar-logo', 'updatedphoto')->name('prestador.updatedphoto');
+            Route::post('/perfil/actualizar-informacion', 'updatedprestador')->name('prestador.updatedprestador');
         });
 
     //ROUTES FOR MANAGEMENT CLIENTS
@@ -38,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/admin/subscriptores/detalle-cliente/{id}', 'detallecliente')->name('subscriptores.detallecliente');
 
             Route::post('/mi-plan/registrar-miembro', 'store_member')->name('miplan.store_member');
+
+            //UPDATED OF CLIENT
+            Route::post('/perfil/actualizar-foto', 'updatedphoto')->name('cliente.updatedphoto');
+            Route::post('/perfil/actualizar-datos', 'updatedclient')->name('cliente.updatedclient');
         });
 
     //ROUTES FOR MANAGEMENT MEMBERS CLIENT
