@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -36,5 +37,12 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    //función que permite validar si el usuario está activo o inactivo
+    protected function credentials(Request $request)
+    {
+        $request['status'] = 1;
+        return $request->only($this->username(), 'password', 'status');
     }
 }

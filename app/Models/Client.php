@@ -24,6 +24,7 @@ class Client extends Model
         'num_phone',
         'city',
         'department',
+        'is_owner',
         'whatsapp',
         'instagram',
         'facebook',

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MembersClient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use App\Models\NumbersMembersAvailable;
 use Illuminate\Support\Facades\Storage;
 
@@ -121,6 +122,7 @@ class ClientController extends Controller
                             'name' => $request->name,
                             'last_name' => $request->lastname,
                             'number_identication' => $request->number_identication,
+                            'type_identication' => 'T.I',
                             'photo' => 'completar',
                             'age' => '0',
                             'date_of_birth' => '1999-09-25',
@@ -147,8 +149,11 @@ class ClientController extends Controller
                                 );
 
                                 if ($plan = NumbersMembersAvailable::findOrFail($id_number_member_available)->update($update_member_number)) {
+                                    $user_add->sendEmailVerificationNotification();
                                     $error = false;
                                     $mensaje = 'Se ha registrado el nuevo miembro a tu plan exitosamente!';
+                                    
+                                    
                                 }else{
                                     $error = true;
                                 $mensaje = 'Error! Se presento un problema al actualizar el nuevo número de miembros disponibles a registrar.';

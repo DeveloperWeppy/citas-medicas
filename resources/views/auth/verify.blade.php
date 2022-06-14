@@ -4,10 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+            <div class="card card-primary">
+                <div class="card-header text-center" style="background-color: #34c2b5">
+                    <h3 class="text-white">¡Bienvenido a Citas Médicas!</h3>
+                </div>
 
-                <div class="card-body">
+                <div class="card-body ">
+                    <div class="text-center">
+                        <img src="/images/email_send.png" class="img-fluid" alt="send email">
+                    </div>
+                    
+                    <hr>
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
