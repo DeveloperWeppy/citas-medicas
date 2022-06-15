@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('inicio');
+})->name('front.inicio');
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::controller(FrontendController::class)
+->group(function () {
+    Route::get('/nosotros', 'nosotros')->name('front.nosotros');
+    Route::get('/servicios', 'servicios')->name('front.servicios');
+    Route::get('/afiliate-ahora', 'afiliate')->name('front.afiliate');
+    Route::get('/contactanos', 'contacto')->name('front.contacto');
+});
