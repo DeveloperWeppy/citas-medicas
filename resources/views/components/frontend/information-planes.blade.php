@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row no-gutters pricing1__row">
-               
+               @foreach ($planes as $item)
                 <div class=" color_white">
                     <div class="pricing1__item">
                         <div class="pricing1__wrapper text-center">
@@ -20,28 +20,30 @@
                                 </div>
                             </div>
                             <div class="pricing1__content mt-85">
-                                <h4>Basic</h4>
-                                <p class="m-0">For a month</p>
-                                <h3>$39</h3>
+                                <h4>{{$item->name}}</h4>
+                                <p class="m-0">{{$item->type_plan}}</p>
+                                <h3>${{convertirVa($item->price)}}</h3>
                                 <ul>
-                                    <li>
-                                        <span class="m-0">Weekly health check-ups</span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">Lab test system an hour</span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">Free diet consultation</span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">Custom exercise plans</span>
-                                    </li>
+                                    
+                                    @foreach ($datas as $index => $itemm)
+                                        @foreach ($itemm['servicios'] as $services)
+                                            @if ($services->plan_id == $item->id)
+                                                <li>
+                                                    {{$services->find($services->id)->servicioss->name}}
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                    
                                 </ul>
-                                <a href="#" class="btn8">Get Started</a>
+                                <a href="about-us.html" class="btn5 mb-2 d-none d-sm-inline-block">Ver Todos los Servicios</a>
+                                <a href="{{ route('front.subscribirme') }}" class="btn8">Subscribirme</a>
                             </div>
                         </div>
                     </div>
                 </div>
+               @endforeach
+              
             </div>
         </div>
     </div>

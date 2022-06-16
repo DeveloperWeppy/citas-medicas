@@ -21,4 +21,9 @@ class PlanServices extends Model
     public function servicios(){
         return $this->hasMany(Service::class);
     }
+
+    public function servicioss()
+    {
+      return $this->belongsTo(Service::class, 'service_id');
+    }
 }

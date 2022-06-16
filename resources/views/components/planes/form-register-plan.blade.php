@@ -20,6 +20,15 @@
                                         <input type="number" name="duration_in_days" id="" class="form-control " placeholder="Duración en Días" autocomplete="off">
                                     </div>
                                 </div>
+                                <div class="col-sm-6 mt-2">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-switch custom-switch-off-primary custom-switch-on-success">
+                                            <input type="checkbox" name="type_plan" class="custom-control-input" id="customSwitch4">
+                                            <label class="custom-control-label" for="customSwitch4" id="tipo_plan">Mensual
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-6">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -31,9 +40,7 @@
                                             </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    
-                                </div>
+                                
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">

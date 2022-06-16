@@ -29,4 +29,10 @@ class FrontendController extends Controller
        
         return view('contacto');
     }
+
+    public function subscribirme()
+    {
+       
+        return view('subscribirme');
+    }
 }

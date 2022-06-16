@@ -118,9 +118,11 @@ class PlanController extends Controller
         $cantidad_personas = 0;
         $error = false;
         $mensaje = '';
+        $plantipo = '';
 
         $name_plan = $request->name;
         $group_or_no = $request->is_group;
+        $tipo_plan = $request->type_plan;
         //consulta para validar si ya existe un plan registrado o no
         $validar_name= Plan::where('name', $name_plan)->count();
         $servicios = $request->servicios;
@@ -131,6 +133,12 @@ class PlanController extends Controller
         } else {
             $type_plan = 0;
             $cantidad_personas = 1;
+        }
+
+        if ($tipo_plan == "on") {
+            $plantipo = 'Anual';
+        } else {
+            $plantipo = 'Mensual';
         }
         
 
@@ -143,6 +151,7 @@ class PlanController extends Controller
         }else {
             $register_plan = array(
                 'name' => $request->name,
+                'type_plan' => $plantipo,
                 'slug' => $request->name,
                 'price' => $request->price,
                 'duration_in_days' => $request->duration_in_days,

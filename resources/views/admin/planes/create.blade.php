@@ -50,6 +50,17 @@
            }
         });
 
+        $('#customSwitch4').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#tipo_plan').text('Anual').val();
+            }
+            else {
+                checked = false;
+                $('#tipo_plan').text('Mensual').val();
+           }
+        });
+
         //form of register of user
        $('#quickForm').validate({
             rules: {
