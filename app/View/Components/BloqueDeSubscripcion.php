@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Plan;
 use Illuminate\View\Component;
 
 class BloqueDeSubscripcion extends Component
@@ -23,6 +24,7 @@ class BloqueDeSubscripcion extends Component
      */
     public function render()
     {
-        return view('components.frontend.bloque-de-subscripcion');
+        $planes = Plan::where('status', 1)->get();
+        return view('components.frontend.bloque-de-subscripcion')->with('planes', $planes);
     }
 }

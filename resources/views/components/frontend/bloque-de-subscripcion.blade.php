@@ -1,165 +1,141 @@
-<form action="#" class="form">
-    <h1 class="text-center">Datos de registro</h1>
-    <!-- Progress bar -->
-    <div class="progressbar">
-        <div class="progress" id="progress"></div>
-
-        <div class="progress-step progress-step-active" data-title="Intro"></div>
-        <div class="progress-step" data-title="Contact"></div>
-    </div>
-
-    <!-- Steps -->
-    <div class="form-step form-step-active">
-        <div class="input-group col-6">
-            <label for="username">Nombre</label>
-            <input type="text" name="username" id="username" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Apellidos</label>
-            <input type="text" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Numero de identifiación</label>
-            <input type="number" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Fecha de nacimiento</label>
-            <input type="date" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Correo</label>
-            <input type="mail" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Celulat / Teléfono</label>
-            <input type="number" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Departamento</label>
-            <input type="text" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Ciudad de recidencia</label>
-            <input type="text" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Dirección</label>
-            <input type="text" name="position" id="position" />
-        </div>
-        <div class="input-group col-6">
-            <label for="position">Barrio</label>
-            <input type="text" name="position" id="position" />
-        </div>
-        <div class=" col-12">
-                            <!-- Upload image input-->
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                        <input id="upload" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onchange="readURL(this);" name="imgLogo" class="form-control dnone border-0">
-                                        <label id="upload-label" for="upload" class="pd2 font-weight-light w50 text-muted">Foto frontal del documento</label>
-                                        <div class="input-group-append w50">
-                                            <label for="upload" class="btn w100 btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2  white"></i><small class="text-uppercase font-weight-bold white">Subir Logo</small></label>
+<form action="" method="post" id="quickForm" enctype="multipart/form-data">
+    <div class="row">
+        <!-------------------------------------------- FORM OF REGISTER USER ------------------------------------------------->
+        <div class="col-8">
+            <div class="title2 mb-60">
+                <h4>Datos de Facturación</h4>
+            </div>
+            
+            <div class="row">
+                
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="username">Nombre</label>
+                        <input type="text" name="name" id="username" class="form-control" autocomplete="off"/>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Apellidos</label>
+                        <input type="text" name="last_name" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Numero de identifiación</label>
+                        <input type="number" name="number_identication" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Fecha de nacimiento</label>
+                        <input type="date" name="date_of_birth" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Correo</label>
+                        <input type="text" name="email" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Celular / Teléfono</label>
+                        <input type="number" name="num_phone" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Departamento</label>
+                        <input type="text" name="department" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Ciudad de residencia</label>
+                        <input type="text" name="city" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Dirección</label>
+                        <input type="text" name="address" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="position">Barrio</label>
+                        <input type="text" name="neighborhood" class="form-control" id="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                                    <!-- Upload image input-->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                                <input id="upload" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onchange="readURL(this);" name="imgLogo" class="form-control dnone border-0">
+                                                <label id="upload-label" for="upload" class="pd2 font-weight-light w50 text-muted">Foto frontal del documento</label>
+                                                <div class="input-group-append w50">
+                                                    <label for="upload" class="btn w100 btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2  white"></i><small class="text-uppercase font-weight-bold white">Subir Foto</small></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                        <div class="image-area mt-4"><img id="imageResult" src="{{ asset('asset/img/background/preview.png') }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                <div class="image-area mt-4"><img id="imageResult" src="assets/img/background/preview.png" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                                </div>
-                            </div>
-
-                           <!-- <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                <input id="upload" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onchange="readURL(this);" name="imgLogo" class="form-control border-0">
-                                <label id="upload-label" for="upload" class="font-weight-light text-muted">Imágen</label>
-                                <div class="input-group-append">
-                                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Logo</small></label>
-                                </div>
-                            </div> -->
-
-                            <!-- Uploaded image area-->
-            <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-        </div>
-        <div class="boton">
-            <label for="position"></label>
-            <a href="#" class="btn btn-next width-50 ml-auto">Siguiente</a>
-        </div>
-    </div>
-    <div class="form-step">
-        <!-- |==========================================| -->
-    <!-- |=====|| Service Start ||===============| -->
-    <section class="pricing1">
-        <div class="content_box_100">
-            <div class="container">
-                <div class="row no-gutters pricing1__row">
-                    <div class=" color_white">
-                        <div class="pricing1__item">
-                            <div class="pricing1__wrapper text-center">
-                                <div class="pricing1__thumb--style">
-                                    <div class="pricing1__thumb">
-                                        <img src="assets/img/png-icon/png-icon-19.png" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="pricing1__content mt-85">
-                                    <h4>Basic</h4>
-                                    <p class="m-0">For a month</p>
-                                    <h3>$39</h3>
-                                    <ul>
-                                        <li>
-                                            <span class="m-0">Weekly health check-ups</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Lab test system an hour</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Free diet consultation</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Custom exercise plans</span>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="btn8">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" color_white">
-                        <div class="pricing1__item">
-                            <div class="pricing1__wrapper text-center">
-                                <div class="pricing1__thumb--style">
-                                    <div class="pricing1__thumb">
-                                        <img src="assets/img/png-icon/png-icon-19.png" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="pricing1__content mt-85">
-                                    <h4>Professional</h4>
-                                    <p class="m-0">For a month</p>
-                                    <h3>$59</h3>
-                                    <ul>
-                                        <li>
-                                            <span class="m-0">Weekly health check-ups</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Lab test system an hour</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Free diet consultation</span>
-                                        </li>
-                                        <li>
-                                            <span class="m-0">Custom exercise plans</span>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="btn8">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        
+                                    <!-- Uploaded image area-->
+                    <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                </div>
+                <div class="boton">
+                    <label for="position"></label>
+                    <button type="submit" class="btn btn-next width-50 ml-auto">Siguiente</button>
+                    
                 </div>
             </div>
         </div>
-    </section>
-    <!-- |==========================================| -->
-        <div class="btns-group">
-            <a href="#" class="btn btn-prev">Siguiente</a>
-            <a href="#" class="btn btn-next">Atras</a>
+
+         <!-------------------------------------------- FORM OF SELECT PLAN AND PAYMENT PLATFORM------------------------------------------------->
+        <div class="col-4">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="title2 mb-60">
+                        <h4>Seleccionar Plan</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                    @foreach ($planes as $item)
+                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-body text-primary">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" name="payment_platform" id="{{$item->id}}" value="" required>
+                                            <label for="{{$item->id}}">{{$item->name}}</label>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-4">
+                                    <h6>{{$item->price}} / {{$item->type_plan}}</h6>
+                                </div>
+                                <div class="col-sm-auto">
+                                    
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                   
+                </div>
+            </div>
         </div>
+        
     </div>
 </form>

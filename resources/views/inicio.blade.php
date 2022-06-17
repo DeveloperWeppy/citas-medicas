@@ -8,6 +8,11 @@
     <!-- title -->
     @section('title')Inicio @endsection
 
+    <!---- CSS ----->
+    <x-slot name="css">
+    </x-slot>
+
+
     <!-- Extra Info Start -->
     <div class="extra_info d-none d-lg-block">
         <div class="extra_info--icon">
@@ -644,6 +649,7 @@
         </section>
         <!-- |=====|| Contact End ||=================| -->
         <!-- |==========================================| -->
+    </main>
     <x-slot name="js">
     </x-slot>
 

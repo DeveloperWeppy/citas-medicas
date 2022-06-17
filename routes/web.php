@@ -29,4 +29,7 @@ Route::controller(FrontendController::class)
     Route::get('/afiliate-ahora', 'afiliate')->name('front.afiliate');
     Route::get('/contactanos', 'contacto')->name('front.contacto');
     Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
+
+    /**********  ROUTE OF REGISTER OF CLIENT IN THE FRONTEND  **************************** */
+    Route::post('/subscribirme/store-cliente', 'store_client')->name('front.store_client');
 });

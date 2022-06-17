@@ -13,7 +13,9 @@
 
     <title>@yield('title') | Citas Médicas</title>
 
-    <x-css></x-css>
+    <x-css>
+        {{$css}}
+    </x-css>
 
 </head>
 <body>

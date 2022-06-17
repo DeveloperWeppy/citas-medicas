@@ -19,10 +19,6 @@
     width: 100%;
   }
 
-.row{
-  align-items: center !important;
-}
-
 .dnone{
   display: none !important;
 }
@@ -151,7 +147,7 @@
   /* Form */
   .form {
 
-      width: 60%;
+      width: 80%;
       margin: 50px auto;
       background: #fbfbfb;
       border: 1px solid #0cb8b6;
@@ -173,7 +169,7 @@
   
   .input-group {
     margin: 10px 0;
-    float:left;
+    /*float:left;*/
   }
   
   @keyframes animate {
@@ -197,7 +193,7 @@
     text-align: center;
   }
   .btn {
-    width: 47%;
+    width: 100%;
     margin-top: 40px;
     font-size: 20px !important;
     min-height: 50px;

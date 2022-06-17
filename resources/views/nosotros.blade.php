@@ -1,6 +1,11 @@
 <x-main-layout>
     <!-- title -->
     @section('title')Nosotros @endsection
+
+     <!---- CSS ----->
+     <x-slot name="css">
+    </x-slot>
+
 <div class="container">
     <div class="row justify-content-center">
     </div>
