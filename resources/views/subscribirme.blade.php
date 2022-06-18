@@ -1,3 +1,9 @@
+@php
+    function convertirVa($monto){
+        $valor = number_format($monto, 2, ',', '.');
+        return $valor;
+    }
+@endphp
 <x-main-layout>
     <!-- title -->
     @section('title')Subscribirme @endsection
