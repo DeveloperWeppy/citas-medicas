@@ -56,46 +56,36 @@
 
 
     <main>
-        <!-- |==========================================| -->
+         <!-- |==========================================| -->
         <!-- |=====|| Slider Start ||===============| -->
         <section class="slider1">
             <div class="slider1__wrapper">
                 <div class="slider1__active owl-carousel owl-theme slider-section-dots">
-                    <div
-                        class="slider1__item slider1__height slider1__img-01 d-flex align-items-center justify-content-center">
+                    <div class="slider1__item slider1__height slider1__img-01 d-flex align-items-center justify-content-center">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-7">
                                     <div class="slider1__content">
                                         <div class="mb-20 fix">
-                                            <h5 data-animation="fadeInUp" data-delay=".2s" data-duration=".4s"
-                                                class="animated fadeInUp">Medical Center.</h5>
+                                            <h5 data-animation="fadeInUp" data-delay=".2s" data-duration=".4s" class="animated fadeInUp">Citasmedicas.es</h5>
                                         </div>
                                         <div class="mb-20 fix">
-                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s"
-                                                class="animated fadeInUp">
-                                                Best <span>Medical &</span> <br class="d-none d-md-inline-block"> Health
-                                                Care Center.
+                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s" class="animated fadeInUp">
+                                                Un <span>Médico</span> <br class="d-none d-md-inline-block"> Listo Para Atenderte
                                             </h2>
                                         </div>
                                         <div class="fix mb-20">
-                                            <p data-animation="fadeInUp" data-delay=".7s" data-duration=".4s"
-                                                class="animated fadeInUp">
-                                                Pleasure, but because those who do not know how to pursue
+                                            <p data-animation="fadeInUp" data-delay=".7s" data-duration=".4s" class="animated fadeInUp">
+                                                Tenemos a tu dispocición todo un personal calificado que te
                                                 <br class="d-none d-md-inline-block">
-                                                pleasure rationally extremely painful.
+                                                ayudara a mejorar tu bienestar y salud.
                                             </p>
                                         </div>
                                         <div class="fix pb-35">
-                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s"
-                                                href="services.html"
-                                                class="btn3 d-inline-block animated fadeInUp mr-10">
+                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="services.html" class="btn3 d-inline-block animated fadeInUp mr-10">
                                                 <span>Learn More</span> <i class="icofont-rounded-double-right"></i>
                                             </a>
-                                            <a data-fancybox="gallery_1" data-caption="My caption"
-                                                href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp"
-                                                data-delay=".5s" data-duration=".8s"
-                                                class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
+                                            <a data-fancybox="gallery_1" data-caption="My caption" href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp" data-delay=".5s" data-duration=".8s" class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
                                                 <span>Watch
                                                     Video</span> <i class="far fa-play-circle"></i></a>
                                         </div>
@@ -104,41 +94,31 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="slider1__item slider1__height slider1__img-02 d-flex align-items-center justify-content-center">
+                    <div class="slider1__item slider1__height slider1__img-02 d-flex align-items-center justify-content-center">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-7">
                                     <div class="slider1__content">
                                         <div class="mb-20 fix">
-                                            <h5 data-animation="fadeInUp" data-delay=".2s" data-duration=".4s"
-                                                class="animated fadeInUp">Medical Center.</h5>
+                                            <h5 data-animation="fadeInUp" data-delay=".2s" data-duration=".4s" class="animated fadeInUp">Citasmedicas.es</h5>
                                         </div>
                                         <div class="mb-20 fix">
-                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s"
-                                                class="animated fadeInUp">
-                                                Best <span>Medical &</span> <br class="d-none d-md-inline-block"> Health
-                                                Care Center.
+                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s" class="animated fadeInUp">
+                                                Consulta <span>Médica</span> <br class="d-none d-md-inline-block"> En Casa
                                             </h2>
                                         </div>
                                         <div class="fix mb-20">
-                                            <p data-animation="fadeInUp" data-delay=".7s" data-duration=".4s"
-                                                class="animated fadeInUp">
-                                                Pleasure, but because those who do not know how to pursue
+                                            <p data-animation="fadeInUp" data-delay=".7s" data-duration=".4s" class="animated fadeInUp">
+                                                Proteger tu salud desde casa es lo mejor
                                                 <br class="d-none d-md-inline-block">
-                                                pleasure rationally extremely painful.
+                                                ¡Servicio médico a domicilio!
                                             </p>
                                         </div>
                                         <div class="fix pb-35">
-                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s"
-                                                href="services.html"
-                                                class="btn3 d-inline-block animated fadeInUp mr-10">
+                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="services.html" class="btn3 d-inline-block animated fadeInUp mr-10">
                                                 <span>Learn More</span> <i class="icofont-rounded-double-right"></i>
                                             </a>
-                                            <a data-fancybox="gallery_1" data-caption="My caption"
-                                                href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp"
-                                                data-delay=".5s" data-duration=".8s"
-                                                class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
+                                            <a data-fancybox="gallery_1" data-caption="My caption" href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp" data-delay=".5s" data-duration=".8s" class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
                                                 <span>Watch
                                                     Video</span> <i class="far fa-play-circle"></i></a>
                                         </div>
