@@ -1,4 +1,5 @@
-<form action="" method="post" id="quickForm" enctype="multipart/form-data">
+<form action="{{ route('front.finis_subscribe') }}" method="post" id="quickForm" enctype="multipart/form-data">
+    @csrf
     <div class="row">
         <!-------------------------------------------- FORM OF REGISTER USER ------------------------------------------------->
         <div class="col-md-8">
@@ -69,7 +70,7 @@
                         <input type="text" name="neighborhood" class="form-control" id="" autocomplete="off"/>
                     </div>
                 </div>
-                <div class="col-sm-12">
+               {{--  <div class="col-sm-12">
                                     <!-- Upload image input-->
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -88,7 +89,7 @@
         
                                     <!-- Uploaded image area-->
                     <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                </div>
+                </div> --}}
                 
             </div>
         </div>
@@ -112,7 +113,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group clearfix">
                                         <div class="icheck-info d-inline">
-                                            <input type="radio" name="plane" id="{{$item->id}}" value="" required>
+                                            <input type="radio" name="plane" id="{{$item->id}}" value="{{$item->id}}" required>
                                             <label for="{{$item->id}}">{{$item->name}}</label>
                                         </div>
                                     </div>
@@ -129,15 +130,15 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 mb-2">
-                {{-- <button type="submit" class="btn2 float-right">REALIZAR LA SUBSCRIPCIÓN</button> --}}
-                <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a>
+    </div>
+    <div class="row">
+        <div class="col clearfix mt-2 mb-2">
+            <button onClick="history.go(-1);" class="btn3 float-left">REGRESAR</button>
+            <button type="submit" class="btn2 float-right">CONTINUAR<i class="icofont-rounded-double-right"></i></button>
+            {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
 
-            </div>
-            
-            
         </div>
+        
         
     </div>
 </form>

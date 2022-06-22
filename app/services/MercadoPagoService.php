@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use App\Traits\ConsumesExternalServices;
 
@@ -45,8 +46,10 @@ class MercadoPagoService
     }
     public function handleSubscription(Request $request)
     {
+        $search_slug_plan = Plan::find($request->plan);
+        $slug = $search_slug_plan->slug;
         $subscription = $this->createSubscription(
-            $request->plan,
+            $slug,
             $request->user()->name,
             $request->user()->email
         );
@@ -65,10 +68,10 @@ class MercadoPagoService
     {
         return $this->makeRequest(
             'POST',
-            '/v1/billing/subscriptions',
+            '/preapproval',
             [],
             [
-                'plan_id' => $this->plans[$planSlug],
+                'preapproval_plan_id' => $this->plans[$planSlug],
                 'subscriber' => [
                     'name' => [
                         'given_name' => $name,

@@ -31,5 +31,6 @@ Route::controller(FrontendController::class)
     Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
 
     /**********  ROUTE OF REGISTER OF CLIENT IN THE FRONTEND  **************************** */
+    Route::post('/subscribirme/finalizar-suscripcion', 'finis_subscribe')->name('front.finis_subscribe');
     Route::post('/subscribirme/store-cliente', 'store_client')->name('front.store_client');
 });

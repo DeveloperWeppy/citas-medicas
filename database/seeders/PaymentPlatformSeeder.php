@@ -15,8 +15,8 @@ class PaymentPlatformSeeder extends Seeder
     public function run()
     {
         PaymentPlatform::create([
-            'name' => 'PayPal',
-            'image' => 'img/payment-platforms/paypal.jpg',
+            'name' => 'MercadoPago',
+            'image' => 'images/mercadopago.jpg',
         ]);
     }
 }

@@ -20,7 +20,7 @@
         </div>
         <div class="extra_info--content text-center">
             <div class="extra_info--title">
-                <h3>Let's be Together</h3>
+                <h3>Let's be Together</h3> 
             </div>
             <div class="extra_info--thumb">
                 <img class="img_100" src="assets/img/about/about-01.jpg" alt="Extra info thumb">

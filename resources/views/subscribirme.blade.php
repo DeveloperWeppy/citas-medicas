@@ -19,7 +19,6 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="title2 mb-60 text-center">
-                            
                             <h2>Subscripción</h2>
                         </div>
                     </div>
@@ -32,23 +31,6 @@
      
      <x-slot name="js">
         <script src="{{ asset('js/scriptfront.js') }}"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="text/javascript">
-          (function() {
-             function $MPC_load() {
-                window.$MPC_loaded !== true && (function() {
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
-                var x = document.getElementsByTagName('script')[0];
-                x.parentNode.insertBefore(s, x);
-                window.$MPC_loaded = true;
-             })();
-          }
-          window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
-          })();
-       </script>
         <script>
            
                //form of register of user
@@ -87,7 +69,7 @@
               neighborhood: {
                 required: true,
               },
-              imgLogo: {
+              plane: {
                 required: true,
               },
               
@@ -127,8 +109,8 @@
               neighborhood: {
                 required: "Por favor ingrese el barrio",
               },
-              imgLogo: {
-                required: "Por favor cargue la foto del documento",
+              plane: {
+                required: "Por favor seleccione un plan",
               },
               
             },
@@ -143,64 +125,6 @@
             unhighlight: function (element, errorClass, validClass) {
               $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form){
-                // agregar data
-                $('#quickForm').on('submit', function(e) {
-                event.preventDefault();
-                var $thisForm = $('#quickForm');
-                    var formData = new FormData(this);
-
-                    //ruta
-                    var url = "{{route('front.store_client')}}";
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        type: "post",
-                        encoding:"UTF-8",
-                        url: url,
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        dataType:'json',
-                        beforeSend:function(){
-                          Swal.fire({
-                                title: 'Validando datos, espere por favor...',
-                                button: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                    didOpen: () => {
-                                        Swal.showLoading()
-                                    },
-                            });
-                        }
-                    }).done(function(respuesta){
-                        //console.log(respuesta);
-                       if (!respuesta.error) {
-
-                          Swal.fire({
-                                title: respuesta.mensaje,
-                                icon: 'success',
-                                button: true,
-                                timer: 2000
-                            });
-
-                        } else {
-                            setTimeout(function(){
-                              Swal.fire({
-                                    title: respuesta.mensaje,
-                                    icon: "error",
-                                    button: false,
-                                    timer: 4000
-                                });
-                            },2000);
-                        } 
-                    }).fail(function(resp){
-                        console.log(resp);
-                    });
-                  });
-            }
           });
         </script>
     </x-slot>

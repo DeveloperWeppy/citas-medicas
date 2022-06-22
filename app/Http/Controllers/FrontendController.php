@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Client;
+use App\Models\PaymentPlatform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +39,17 @@ class FrontendController extends Controller
     {
        
         return view('subscribirme');
+    }
+
+    public function finis_subscribe(Request $request)
+    {
+        $nombre_client = $request->name;
+
+        session()->flash('name', $nombre_client);
+
+        $paymenplatfor = PaymentPlatform::where('subscriptions_enabled', 1)->get();
+
+        return view('confirmsubscribe')->with('paymenplatfor', $paymenplatfor);
     }
 
     public function store_client(Request $request)
