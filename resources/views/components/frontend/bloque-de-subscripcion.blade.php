@@ -131,7 +131,9 @@
         </div>
         <div class="row">
             <div class="col-sm-12 mb-2">
-                <button type="submit" class="btn2 float-right">REALIZAR LA SUBSCRIPCIÓN</button>
+                {{-- <button type="submit" class="btn2 float-right">REALIZAR LA SUBSCRIPCIÓN</button> --}}
+                <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818b662601818bb723550026" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a>
+
             </div>
             
             
