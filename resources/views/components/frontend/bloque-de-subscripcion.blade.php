@@ -132,7 +132,7 @@
         <div class="row">
             <div class="col-sm-12 mb-2">
                 {{-- <button type="submit" class="btn2 float-right">REALIZAR LA SUBSCRIPCIÓN</button> --}}
-                <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818b662601818bb723550026" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a>
+                <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a>
 
             </div>
             
