@@ -48,7 +48,7 @@ class MercadoPagoService
         $search_slug_plan = Plan::find($request->plan);
         $slug = $search_slug_plan->slug;
 
-        dd($slug);
+        dd($request);
         /*  $subscription = $this->createSubscription(
             $slug,
             $request->cardToken,

@@ -10,6 +10,8 @@
  $address = Session::get('address');
  $neighborhood = Session::get('neighborhood');
  $plane = Session::get('plane');
+ $slug = Session::get('slug');
+
 
  @endphp
 <x-main-layout>
@@ -34,6 +36,7 @@
             </div>
             <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
             <form action="{{ route('front.store') }}" method="post" id="paymentForm">
+              @csrf
                 @foreach ($paymenplatfor as $item)
                     <input type="hidden" name="payment_platform" value="{{$item->id}}">
                 @endforeach
@@ -92,6 +95,7 @@
                       {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
           
                   </div>
+                 
                   
                   
               </div>
@@ -100,6 +104,9 @@
                 <input type="hidden" id="cardToken" name="card_token">
 
             </form>
+            {{-- <div class="cho-container">
+
+            </div> --}}
             {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
         </div>
     </div>
@@ -107,8 +114,28 @@
  
  <x-slot name="js">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    {{-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> --}}
+  
+{{-- <script src="https://sdk.mercadopago.com/js/v2"></script>
 
+<script>
+  // Agrega credenciales de SDK
+  const mp = new MercadoPago("{{config('services.mercadopago.secret')}}", {
+    locale: "es-CO",
+    advancedFraudPrevention: true,
+  });
+
+  // Inicializa el checkout
+  mp.checkout({
+    preference: {
+      id: "{{ $preference->id}}",
+    },
+    render: {
+      container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
+      label: "Pagar", // Cambia el texto del botón de pago (opcional)
+    },
+  });
+</script> --}}
 <script>
     const mercadoPago = window.Mercadopago;
     mercadoPago.setPublishableKey('{{ config('services.mercadopago.key') }}');
@@ -116,14 +143,14 @@
 </script>
 
 <script>
-    function setCardNetwork(cb)
+    function setCardNetwork()
     {
         const cardNumber = document.getElementById("cardNumber");
         mercadoPago.getPaymentMethod(
             { "bin": cardNumber.value.substring(0,6) },
             function(status, response) {
                 const cardNetwork = document.getElementById("cardNetwork");
-                console.log(response.id);
+                //console.log(response.id);
                 cardNetwork.value = response.id;
             }
         );
@@ -141,17 +168,15 @@
                     errors.textContent = response.cause[0].description;
                 } else {
                     const cardToken = document.getElementById("cardToken");
-                    //setCardNetwork();
+                    setCardNetwork();
                     cardToken.value = response.id;
-                    setCardNetwork(function(){
                         mercadoPagoForm.submit();
-                    });
                 }
             });
         }
     });
 </script>
-    <script type="text/javascript">
+{{--     <script type="text/javascript">
       (function() {
          function $MPC_load() {
             window.$MPC_loaded !== true && (function() {
@@ -166,7 +191,7 @@
       }
       window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
       })();
-   </script>
+   </script> --}}
     <script>
        
            //form of register of user

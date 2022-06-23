@@ -45,6 +45,7 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $rules = [
             'plan' => ['required', 'exists:plans,slug'],
             'payment_platform' => ['required', 'exists:payment_platforms,id'],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\PaymentPlatform;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -61,6 +62,9 @@ class FrontendController extends Controller
         $neighborhood = $request->neighborhood;
         $plane = $request->plane;
 
+        $plan = Plan::find($plane);
+        $slug = $plan->slug;
+
         session()->flash('name', $nombre_client);
         session()->flash('last_name', $last_name);
         session()->flash('number_identication', $number_identication);
@@ -72,6 +76,7 @@ class FrontendController extends Controller
         session()->flash('address', $address);
         session()->flash('neighborhood', $neighborhood);
         session()->flash('plane', $plane);
+        session()->flash('slug', $slug);
 
         $paymenplatfor = PaymentPlatform::where('subscriptions_enabled', 1)->get();
 
