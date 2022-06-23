@@ -16,6 +16,7 @@ class PlanSeeder extends Seeder
     {
         Plan::create([
             'name' => 'Plan Individual',
+            'type_plan' => 'Mensual',
             'slug' => 'mensual',
             'price' => 5000000,
             'duration_in_days' => 30,
@@ -23,6 +24,7 @@ class PlanSeeder extends Seeder
 
         Plan::create([
             'name' => 'Plan Grupal',
+            'type_plan' => 'Mensual',
             'slug' => 'anual',
             'price' => 120000000,
             'duration_in_days' => 365,

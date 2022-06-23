@@ -1,5 +1,15 @@
 @php
  $nombre_client = Session::get('name');
+ $last_name = Session::get('last_name');
+ $number_identication = Session::get('number_identication');
+ $date_of_birth = Session::get('date_of_birth');
+ $email = Session::get('email');
+ $num_phone = Session::get('num_phone');
+ $department = Session::get('department');
+ $city = Session::get('city');
+ $address = Session::get('address');
+ $neighborhood = Session::get('neighborhood');
+ $plane = Session::get('plane');
 
  @endphp
 <x-main-layout>
@@ -9,9 +19,9 @@
 <x-slot name="css">
     <link href="{{ asset('css/stylesfront.css') }}" rel="stylesheet">
 </x-slot>
-<div class="alert alert-danger" id="paymentErrors" role="alert">
+{{-- <div class="alert alert-danger" id="paymentErrors" role="alert">
     A simple danger alert—check it out!
-  </div>
+  </div> --}}
 <section class="pricing1 counter1__bg-01">
     <div class="content_box_100">
         <div class="container">
@@ -23,7 +33,7 @@
                 </div>
             </div>
             <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
-            <form action="" method="post" id="paymentForm">
+            <form action="{{ route('front.store') }}" method="post" id="paymentForm">
                 @foreach ($paymenplatfor as $item)
                     <input type="hidden" name="payment_platform" value="{{$item->id}}">
                 @endforeach
@@ -56,7 +66,7 @@
                         <input class="form-control" type="text" data-checkout="cardholderName" placeholder="Tu nombre" value="{{ $nombre_client }}">
                     </div>
                     <div class="col-sm-6">
-                        <input class="form-control" type="email" data-checkout="cardholderEmail" placeholder="email@example.com" name="email">
+                        <input class="form-control" type="email" data-checkout="cardholderEmail" placeholder="email@example.com" name="email" value="{{ $email }}">
                     </div>
                 </div>
 
@@ -75,12 +85,22 @@
                         <small class="form-text text-danger" id="paymentErrors" role="alert"></small>
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col clearfix mt-2 mb-2">
+                      <button onClick="history.go(-1);" class="btn3 float-left">REGRESAR</button>
+                      <button type="submit" class="btn2 float-right">SUSCRIBIRME<i class="icofont-rounded-double-right"></i></button>
+                      {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
+          
+                  </div>
+                  
+                  
+              </div>
 
                 <input type="hidden" id="cardNetwork" name="card_network">
                 <input type="hidden" id="cardToken" name="card_token">
 
             </form>
-            <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a>
+            {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
         </div>
     </div>
 </section>

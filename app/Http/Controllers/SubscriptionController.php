@@ -17,11 +17,11 @@ class SubscriptionController extends Controller
 
     public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
     {
-        $this->middleware(['auth', 'unsubscribed']);
+        // $this->middleware(['auth', 'unsubscribed']);
 
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
-    
+
     public function index()
     {
         //
@@ -45,7 +45,21 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'plan' => ['required', 'exists:plans,slug'],
+            'payment_platform' => ['required', 'exists:payment_platforms,id'],
+            'cardToken' => ['required'],
+            'email' => ['required'],
+        ];
+
+        $request->validate($rules);
+
+        $paymentPlatform = $this->paymentPlatformResolver
+            ->resolveService($request->payment_platform);
+
+        session()->put('subscriptionPlatformId', $request->payment_platform);
+
+        return $paymentPlatform->handleSubscription($request);
     }
 
     /**

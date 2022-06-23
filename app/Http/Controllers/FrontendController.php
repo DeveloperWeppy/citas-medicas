@@ -13,39 +13,65 @@ class FrontendController extends Controller
 {
     public function nosotros()
     {
-       
+
         return view('nosotros');
     }
 
     public function servicios()
     {
-       
+
         return view('servicios');
     }
 
     public function afiliate()
     {
-       
+
         return view('afiliate');
     }
 
     public function contacto()
     {
-       
+
         return view('contacto');
     }
 
     public function subscribirme()
     {
-       
+
         return view('subscribirme');
+    }
+
+    public function afilisuscripcion_exitosaate()
+    {
+
+        return view('suscripcion-exitosa');
     }
 
     public function finis_subscribe(Request $request)
     {
         $nombre_client = $request->name;
+        $last_name = $request->last_name;
+        $number_identication = $request->number_identication;
+        $date_of_birth = $request->date_of_birth;
+        $email = $request->email;
+        $num_phone = $request->num_phone;
+        $department = $request->department;
+        $city = $request->city;
+        $address = $request->address;
+        $neighborhood = $request->neighborhood;
+        $plane = $request->plane;
 
         session()->flash('name', $nombre_client);
+        session()->flash('last_name', $last_name);
+        session()->flash('number_identication', $number_identication);
+        session()->flash('date_of_birth', $date_of_birth);
+        session()->flash('email', $email);
+        session()->flash('num_phone', $num_phone);
+        session()->flash('department', $department);
+        session()->flash('city', $city);
+        session()->flash('address', $address);
+        session()->flash('neighborhood', $neighborhood);
+        session()->flash('plane', $plane);
 
         $paymenplatfor = PaymentPlatform::where('subscriptions_enabled', 1)->get();
 
@@ -80,7 +106,7 @@ class FrontendController extends Controller
                 'email' => $correo,
                 'password' => Hash::make($num_cedula),
                 'pw_decrypte' => $num_cedula,
-                'status' => 1, 
+                'status' => 1,
                 'is_prestador' => 0,
             );
 
@@ -109,7 +135,7 @@ class FrontendController extends Controller
                 if ($responsable = Client::create($register_client_info)) {
                     $id_user_responsable = $responsable->id;
                     $user_add->sendEmailVerificationNotification();
-                    
+
                     $error = false;
                     $mensaje = 'Registro Exitoso!';
                 } else {
@@ -122,7 +148,5 @@ class FrontendController extends Controller
             }
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
-       
     }
-    
 }

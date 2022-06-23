@@ -27,7 +27,6 @@ class MercadoPagoService
         $this->key = config('services.mercadopago.key');
         $this->secret = config('services.mercadopago.secret');
         $this->baseCurrency  = config('services.mercadopago.base_currency');
-        
     }
 
     public function resolveAuthorization(&$queryParams, &$formParams, &$headers)
@@ -48,23 +47,25 @@ class MercadoPagoService
     {
         $search_slug_plan = Plan::find($request->plan);
         $slug = $search_slug_plan->slug;
-        $subscription = $this->createSubscription(
+
+        dd($slug);
+        /*  $subscription = $this->createSubscription(
             $slug,
-            $request->user()->name,
-            $request->user()->email
-        );
+            $request->cardToken,
+            $request->email
+        ); */
 
         //se genera una colección, es decir un array.
-        $subscriptionLinks = collect($subscription->links);
+        /*  $subscriptionLinks = collect($subscription->links);
 
         $approve = $subscriptionLinks->where('rel', 'approve')->first();
 
         session()->put('subscriptionId', $subscription->id);
 
-        return redirect($approve->href); 
+        return redirect($approve->href);  */
     }
 
-    public function createSubscription($planSlug, $name, $email)
+    public function createSubscription($planSlug, $cardToken, $email)
     {
         return $this->makeRequest(
             'POST',
@@ -72,19 +73,8 @@ class MercadoPagoService
             [],
             [
                 'preapproval_plan_id' => $this->plans[$planSlug],
-                'subscriber' => [
-                    'name' => [
-                        'given_name' => $name,
-                    ],
-                    'email_address' => $email,
-                ],
-                'application_context' => [
-                    'brand_name' => config('app.name'),
-                    'shipping_preference' => 'NO_SHIPPING',
-                    'user_action' => 'SUBSCRIBE_NOW',
-                    'return_url' => route('subscribe.approval', ['plan' => $planSlug]),
-                    'cancel_url' => route('subscribe.cancelled'),
-                ]
+                'payer_email' =>  $email,
+                'card_token_id' => $cardToken,
             ],
             [],
             $isJsonRequest = true,
