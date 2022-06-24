@@ -45,4 +45,4 @@ Route::controller(SubscriptionController::class)
 //simbolico para generar storage en hosting
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
-});*/
+});
