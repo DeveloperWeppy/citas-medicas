@@ -41,3 +41,7 @@ Route::controller(SubscriptionController::class)
         Route::post('/subscribirme/store', 'store')->name('front.store');
         Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
     });
+/*simbolico para generar storage en hosting
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+});*/
