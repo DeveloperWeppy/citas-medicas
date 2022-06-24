@@ -392,97 +392,8 @@
         <!-- |==========================================| -->
         <section class="blog1 overflow-hidden">
             <div class="blog1__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="title2 text-center">
-                                <h4>Blog</h4>
-                                <h2>Noticias & Blog</h2>
-                                <p>We are the best medical services provider in the Worldipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiudolore magnaveniam</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="blog1__bottom">
-                <div class="blog1__wrapper">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="blog1__item mb-30">
-                                    <div class="blog1__thumb">
-                                        <img class="img_100" src="assets/img/blog/blog-01.jpg" alt="Blog">
-                                    </div>
-                                    <div class="blog1__content">
-                                        <div class="blog1__data">
-                                            <span>
-                                                <i class="far fa-user"></i>
-                                                <a href="#">Post By: Rt Shuvro</a>
-                                            </span>
-                                            <span>
-                                                <i class="far fa-clone"></i>
-                                                <a href="#">Hospital</a>
-                                            </span>
-                                        </div>
-                                        <h3><a href="#">Why we are the best in the world most popular hospital ever?</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="blog1__item mb-30">
-                                    <div class="blog1__thumb">
-                                        <img class="img_100" src="assets/img/blog/blog-02.jpg" alt="Blog">
-                                    </div>
-                                    <div class="blog1__content">
-                                        <div class="blog1__data">
-                                            <span>
-                                                <i class="far fa-user"></i>
-                                                <a href="#">Post By: Rt Shuvro</a>
-                                            </span>
-                                            <span>
-                                                <i class="far fa-clone"></i>
-                                                <a href="#">Medical</a>
-                                            </span>
-                                        </div>
-                                        <h3><a href="#">10 best medical consulting events
-                                                you can join and learn much.</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="blog1__item mb-30">
-                                    <div class="blog1__thumb">
-                                        <img class="img_100" src="assets/img/blog/blog-03.jpg" alt="Blog">
-                                    </div>
-                                    <div class="blog1__content">
-                                        <div class="blog1__data">
-                                            <span>
-                                                <i class="far fa-user"></i>
-                                                <a href="#">Post By: Rt Shuvro</a>
-                                            </span>
-                                            <span>
-                                                <i class="far fa-clone"></i>
-                                                <a href="#">Sexual</a>
-                                            </span>
-                                        </div>
-                                        <h3><a href="#">Why we are the best in the world
-                                                most popular hospital ever?</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="blog1__btn text-center">
-                                    <a href="blog-2.html" class="btn8">See All Post</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container text-center align-middle">
+                    <a href="https://blog.citasmedicas.es/" class="btn3"> <span>NUESTRO BLOG</span> <i class="icofont-rounded-double-right"></i> </a>
                 </div>
             </div>
         </section>
@@ -570,7 +481,7 @@
                             <div class="contact1__info text-center">
                                 <div class="contact1__thumb-wrapper">
                                     <div class="contact1__thumb">
-                                        <img src="assets/img/png-icon/png-icon-20.png" alt="Image">
+                                        <img src="{{ asset('asset/img/png-icon/png-icon-20.png') }}" alt="Image">
                                     </div>
                                 </div>
                                 <h3>Llamanos</h3>

@@ -15,26 +15,6 @@
 
  @endphp
 <x-main-layout>
-  @php
-  MercadoPago\SDK::setAccessToken(config('services.mercadopago.secret'));
-
-       $preapproval_data = new MercadoPago\Preapproval();
-
-      $preapproval_data->payer_email = "your.payer@email.com";
-      $preapproval_data->back_url = "http://www.my-site.com";
-      $preapproval_data->reason = "Monthly subscription to premium package";
-      $preapproval_data->external_reference = "OP-1234";
-      $preapproval_data->auto_recurring = array( 
-          "frequency" => 1,
-          "frequency_type" => "months",
-          "transaction_amount" => 10,
-          "currency_id" => "XXX", // your currency
-          "start_date" => date(DATE_ISO8601),
-          "end_date" => date(DATE_ISO8601, strtotime('+5 years'))
-      );
-
-      $preapproval_data->save();
-  @endphp
 <!-- title -->
 @section('title')Subscribirme @endsection
 
@@ -50,153 +30,45 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="title2 mb-60 text-center">
-                        <h2>Subscripción</h2>
+                        <h2>SUSCRIBIRME</h2>
                     </div>
                 </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">
+                  <img src="{{ asset('asset/img/LOGOFLECHA.png')}}" alt="logo banca" class="img-fluid">
+              </div>
+            </div>
+            <div class="row">
+              <input type="hidden" name="" id="plan_recibed" value="{{$plane}}">
+              <label for="" id="">Para finalizar tu proceso, da clic en el botón de suscribirme y continúa el proceso.</label>
+            </div>
             <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
-            <form action="{{ route('front.store') }}" method="post" id="paymentForm">
-              @csrf
-                @foreach ($paymenplatfor as $item)
-                    <input type="hidden" name="payment_platform" value="{{$item->id}}">
-                @endforeach
-                <label class="mt-3">Detalles de la Tarjeta:</label>
-
-                <div class="form-group form-row">
-                    <div class="col-sm-5">
-                        <input class="form-control" type="text" id="cardNumber" data-checkout="cardNumber" placeholder="Card Number">
-                    </div>
-
-                    <div class="col-sm-2">
-                        <input class="form-control" type="text" data-checkout="securityCode" placeholder="CVC">
-                    </div>
-
-                    <div class="col-1"></div>
-
-                    <div class="col-sm-2">
-                        <input class="form-control" type="text" data-checkout="cardExpirationMonth" placeholder="MM">
-                    </div>
-
-                    <div class="col-sm-2">
-                        <input class="form-control" type="text" data-checkout="cardExpirationYear" placeholder="YY">
-                    </div>
-                </div>
-
-
-
-                <div class="form-group form-row">
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" data-checkout="cardholderName" placeholder="Tu nombre" value="{{ $nombre_client }}">
-                    </div>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="email" data-checkout="cardholderEmail" placeholder="email@example.com" name="email" value="{{ $email }}">
-                    </div>
-                </div>
-
-
-                <div class="form-group form-row">
-                    <div class="col-2">
-                        <select class="custom-select" data-checkout="docType"></select>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control" type="text" data-checkout="docNumber" placeholder="Document">
-                    </div>
-                </div>
-
-                <div class="form-group form-row">
-                    <div class="col">
-                        <small class="form-text text-danger" id="paymentErrors" role="alert"></small>
-                    </div>
-                </div>
+            
                 <div class="row">
                   <div class="col clearfix mt-2 mb-2">
-                      <button onClick="history.go(-1);" class="btn3 float-left">REGRESAR</button>
-                      <button type="submit" class="btn2 float-right">SUSCRIBIRME<i class="icofont-rounded-double-right"></i></button>
-                      {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
-          
+                    <button onClick="history.go(-1);" class="btn8 float-left"><i class="fas fa-angle-double-left"></i> REGRESAR</button>
+
+                      <a mp-mode="dftl" id="plane_ind_month" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" 
+                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> 
+                      <a mp-mode="dftl" id="plane_fami_month" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c9380848191d682018196139fcc0160" 
+                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a>
                   </div>
-                 
-                  
-                  
               </div>
-
-                <input type="hidden" id="cardNetwork" name="card_network">
-                <input type="hidden" id="cardToken" name="card_token">
-
-            </form>
-            {{-- <div class="cho-container">
-
-            </div> --}}
-            {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
+            
         </div>
     </div>
 </section>
  
  <x-slot name="js">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> --}}
-  
-{{-- <script src="https://sdk.mercadopago.com/js/v2"></script>
-
-<script>
-  // Agrega credenciales de SDK
-  const mp = new MercadoPago("{{config('services.mercadopago.secret')}}", {
-    locale: "es-CO",
-    advancedFraudPrevention: true,
-  });
-
-  // Inicializa el checkout
-  mp.checkout({
-    preference: {
-      id: "{{ $preference->id}}",
-    },
-    render: {
-      container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
-      label: "Pagar", // Cambia el texto del botón de pago (opcional)
-    },
-  });
-</script> --}}
-<script>
+{{-- <script>
     const mercadoPago = window.Mercadopago;
     mercadoPago.setPublishableKey('{{ config('services.mercadopago.key') }}');
     mercadoPago.getIdentificationTypes();
-</script>
+</script> --}}
 
-<script>
-    function setCardNetwork()
-    {
-        const cardNumber = document.getElementById("cardNumber");
-        mercadoPago.getPaymentMethod(
-            { "bin": cardNumber.value.substring(0,6) },
-            function(status, response) {
-                const cardNetwork = document.getElementById("cardNetwork");
-                //console.log(response.id);
-                cardNetwork.value = response[0].id;
-            }
-        );
-    }
-</script>
-
-<script>
-    const mercadoPagoForm = document.getElementById("paymentForm");
-    mercadoPagoForm.addEventListener('submit', function(e) {
-        if (mercadoPagoForm.elements.payment_platform.value === "{{ $item->id }}") {
-            e.preventDefault();
-            mercadoPago.createToken(mercadoPagoForm, function(status, response) {
-                if (status != 200 && status != 201) {
-                    const errors = document.getElementById("paymentErrors");
-                    errors.textContent = response.cause[0].description;
-                } else {
-                    const cardToken = document.getElementById("cardToken");
-                    setCardNetwork();
-                    cardToken.value = response.id;
-                        mercadoPagoForm.submit();
-                }
-            });
-        }
-    });
-</script>
-{{--     <script type="text/javascript">
+  <script type="text/javascript">
       (function() {
          function $MPC_load() {
             window.$MPC_loaded !== true && (function() {
@@ -211,9 +83,25 @@
       }
       window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
       })();
-   </script> --}}
+   </script> 
+   
     <script>
        
+
+      $(function () {
+        $("#plane_ind_month").hide();
+        $("#plane_fami_month").hide();
+
+            var texto2 = $("#plan_recibed").text();
+
+            if (texto2 == 4) {
+                 $("#plane_ind_month").show();
+                 $("#plane_fami_month").hide();
+            } else {
+              $("#plane_fami_month").show();
+              $("#plane_ind_month").hide();
+            } 
+      });
            //form of register of user
    $('#quickForm').validate({
         rules: {

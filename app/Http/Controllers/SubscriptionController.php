@@ -32,9 +32,9 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function suscripcion_exitosa()
     {
-        //
+        return view('suscripcion-exitosa');
     }
 
     /**

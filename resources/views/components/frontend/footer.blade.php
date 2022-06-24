@@ -19,11 +19,11 @@
                                 <div class="footer1__item footer1__item--03 mb-50">
                                     <h3>Conócenos</h3>
                                     <ul>
-                                        <li><a href="#">Inicio</a></li>
-                                        <li><a href="#">Nosotros</a></li>
-                                        <li><a href="#">Servicios</a></li>
-                                        <li><a href="#">Afíliate ahora</a></li>
-                                        <li><a href="#">Contáctanos</a></li>
+                                        <li><a href="{{ route('front.inicio')}}">Inicio</a></li>
+                                        <li><a href="{{ route('front.nosotros')}}">Nosotros</a></li>
+                                        <li><a href="{{ route('front.servicios')}}">Servicios</a></li>
+                                        <li><a href="{{ route('front.afiliate')}}">Afíliate ahora</a></li>
+                                        <li><a href="{{ route('front.contacto')}}">Contáctanos</a></li>
                                     </ul>
                                 </div>
                             </nav>

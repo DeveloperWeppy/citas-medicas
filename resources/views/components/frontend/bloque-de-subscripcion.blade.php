@@ -133,7 +133,7 @@
     </div>
     <div class="row">
         <div class="col clearfix mt-2 mb-2">
-            <button onClick="history.go(-1);" class="btn3 float-left">REGRESAR</button>
+            <button onClick="history.go(-1);" class="btn8 float-left"><i class="fas fa-angle-double-left"></i> REGRESAR</button>
             <button type="submit" class="btn2 float-right">CONTINUAR<i class="icofont-rounded-double-right"></i></button>
             {{-- <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a> --}}
 
