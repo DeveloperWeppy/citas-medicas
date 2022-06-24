@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubscriptionController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::controller(SubscriptionController::class)
         Route::post('/subscribirme/store', 'store')->name('front.store');
         Route::post('/suscripcion-exitosa');
     });
-/*simbolico para generar storage en hosting
+//simbolico para generar storage en hosting
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
 });*/
