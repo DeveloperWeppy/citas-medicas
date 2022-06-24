@@ -22,6 +22,10 @@ class SubscriptionController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
+    public function __invoke(Request $request)
+    {
+        
+    }
     public function index()
     {
         //
@@ -32,9 +36,9 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function suscripcion_exitosa()
+    public function suscripcion_exitosa(Request $request)
     {
-        return view('suscripcion-exitosa');
+        return $request;
     }
 
     /**
