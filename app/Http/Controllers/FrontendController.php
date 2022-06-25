@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use App\Models\User;
 use App\Models\Client;
-use App\Models\PaymentPlatform;
-use App\Models\Plan;
 use Illuminate\Http\Request;
+use App\Models\PaymentPlatform;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,6 +48,21 @@ class FrontendController extends Controller
 
         return view('suscripcion-exitosa');
     }
+
+    public function getCiudades(Request $request)
+    {
+        try {
+            $departmen_id = $request->input('departmen_id');
+            $departamentos = DB::select(
+                'select * from municipios where departamento_id =' . $departmen_id . ''
+            );
+            $response = ['data' => $departamentos];
+        } catch (\Exception $exception) {
+            return response()->json(['message' => 'There was an error retrieving the records'], 500);
+        }
+        return response()->json($response);
+    }
+
 
     public function finis_subscribe(Request $request)
     {

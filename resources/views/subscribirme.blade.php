@@ -31,7 +31,56 @@
      
      <x-slot name="js">
         <script src="{{ asset('js/scriptfront.js') }}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+
+            var departamentoselected = $('#departments');
+            var ciudades = $('#ciudadess');
+
+             //function to get banks in agreement to the selected currency
+             departamentoselected.change(function(){
+
+              var departmentId = $(this).val();
+              ciudades.empty();
+
+                if (departmentId) {
+                    $.ajax({
+                    url: "{{ route('front.getCiudades') }}",
+                    type: 'GET',
+                    data: { departmen_id: departmentId },
+                    dataType: 'json',
+                    beforeSend:function(){
+                      Swal.fire({
+                            title: 'Cargando..',
+                            button: false,
+                            timer: 1000,
+                            timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                        });
+                    },
+                    success: function (response) {
+                      //console.log(response);
+                        $.each(response.data, function (key, value) {
+                          //console.log(value.municipio);
+                          ciudades.append("<option value='" + value.id_municipio + "'>" + value.municipio + "</option>");
+                        });
+                    },
+                    error : function(){
+                      Swal.fire({
+                                title: "Ha ocurrido un error",
+                                icon: "error",
+                                button: false,
+                                timer: 2000
+                            });
+                    }
+                  });
+                }
+              });
+           $(document).ready(function() {
+           
+           });
            
                //form of register of user
        $('#quickForm').validate({

@@ -32,6 +32,8 @@ Route::controller(FrontendController::class)
         Route::get('/contactanos', 'contacto')->name('front.contacto');
         Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
 
+        Route::get('/ciudades', 'getCiudades')->name('front.getCiudades');
+
         /**********  ROUTE OF REGISTER OF CLIENT IN THE FRONTEND  **************************** */
         Route::post('/subscribirme/finalizar-suscripcion', 'finis_subscribe')->name('front.finis_subscribe');
         Route::post('/subscribirme/store-cliente', 'store_client')->name('front.store_client');
@@ -40,7 +42,7 @@ Route::controller(FrontendController::class)
 Route::controller(SubscriptionController::class)
     ->group(function () {
         Route::post('/subscribirme/store', 'store')->name('front.store');
-        Route::post('/suscripcion-exitosa');
+        Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
     });
 //simbolico para generar storage en hosting
 Route::get('/storage-link', function () {

@@ -48,14 +48,20 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="position">Departamento</label>
-                        <input type="text" name="department" class="form-control" id="" autocomplete="off"/>
+                        <label for="departments">Departamento</label>
+                        <select name="department" class="form-control" size="5" id="departments">
+                            @foreach ($departments as $item)
+                                <option value="{{$item->id_departamento }}">{{$item->departamento}}</option>
+                                
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="position">Ciudad de residencia</label>
-                        <input type="text" name="city" class="form-control" id="" autocomplete="off"/>
+                        <label for="ciudades">Ciudad de residencia</label>
+                        <select name="city" class="form-control" id="ciudadess">
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-6">
