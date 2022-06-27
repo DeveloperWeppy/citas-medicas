@@ -35,7 +35,8 @@
         <script>
 
             var departamentoselected = $('#departments');
-            var ciudades = $('#ciudadess');
+            var ciudades = $('.ciudadess');
+            var span = $('#texto');
 
              //function to get banks in agreement to the selected currency
              departamentoselected.change(function(){
@@ -50,7 +51,7 @@
                     data: { departmen_id: departmentId },
                     dataType: 'json',
                     beforeSend:function(){
-                      Swal.fire({
+                     Swal.fire({
                             title: 'Cargando..',
                             button: false,
                             timer: 1000,
@@ -64,7 +65,9 @@
                       //console.log(response);
                         $.each(response.data, function (key, value) {
                           //console.log(value.municipio);
-                          ciudades.append("<option value='" + value.id_municipio + "'>" + value.municipio + "</option>");
+                          span.text(value.municipio).val();
+                          //ciudades.append("<option value='" + value.id_municipio + "'>" + value.municipio + "</option>");
+                          ciudades.append("<li data-value='" + value.id_municipio + "' class='option'>" + value.municipio + "</li>");
                         });
                     },
                     error : function(){

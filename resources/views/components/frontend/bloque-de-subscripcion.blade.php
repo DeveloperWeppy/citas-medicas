@@ -60,8 +60,13 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="ciudades">Ciudad de residencia</label>
-                        <select name="city" class="form-control" id="ciudadess">
+                        <select name="city" class="ciudadess" >
                         </select>
+                        <div class="nice-select form-control" >
+                            <span class="current" id="texto"></span>
+                            <ul class="list ciudadess" id="">
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
