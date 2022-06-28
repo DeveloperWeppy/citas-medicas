@@ -72,6 +72,56 @@
         </div>
     </div>
 </div>
+  <!-- |==========================================| -->
+        <!-- |=====|| Contact Start ||===============| -->
+        <section class="contact1">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5">
+                            <div class="contact1__info text-center">
+                                <div class="contact1__thumb-wrapper">
+                                    <div class="contact1__thumb">
+                                        <img src="{{ asset('asset/img/png-icon/png-icon-20.png') }}" alt="Image">
+                                    </div>
+                                </div>
+                                <h3>Llamanos</h3>
+                                <h4>+273-649300</h4>
+                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. cumsan lacus vel facilisis. </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="contact_page2__form">
+                                <h3>Contáctanos</h3>
+                                <form id="contact-form" action="assets/php/mail.php" method="POST">
+                                    <div class="row mb-20">
+                                        <div class="col-xl-6">
+                                            <input class="form-control" type="text" name="name" placeholder="Full name *" required>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <input class="form-control" type="text" name="phone-number" placeholder="Your phone *">
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <input class="form-control" type="text" name="subject" placeholder="I’m interested in *">
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <input class="form-control" type="email" name="email" placeholder="Your email *" required>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <button type="submit" class="btn8">Send Us</button>
+                                        </div>
+                                    </div>
+                                    <p class="form-message"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- |=====|| Contact End ||=================| -->
+        <!-- |==========================================| -->
      <!-- |==========================================| -->
      <x-slot name="js">
     </x-slot>
