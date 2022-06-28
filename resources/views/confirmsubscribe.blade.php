@@ -53,8 +53,11 @@
                     {{$plane}}
                     <button onClick="history.go(-1);" class="btn8 float-left"><i class="fas fa-angle-double-left"></i> REGRESAR</button>
 
+                   {{--  BOTON PARA PLAN DE 1.600
                  <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818c5ade01818d9fe7420052" 
-                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> 
+                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> --}} 
+                      <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481aa17bd0181aaa254490087" 
+                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a>
 
 
                        {{--<a mp-mode="dftl" id="plane_ind_month" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" 
