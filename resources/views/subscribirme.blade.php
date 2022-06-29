@@ -72,11 +72,11 @@
                     },
                     error : function(){
                       Swal.fire({
-                                title: "Ha ocurrido un error",
-                                icon: "error",
-                                button: false,
-                                timer: 2000
-                            });
+                        title: "Ha ocurrido un error",
+                        icon: "error",
+                        button: false,
+                        timer: 2000
+                      });
                     }
                   });
                 }
@@ -177,6 +177,68 @@
             unhighlight: function (element, errorClass, validClass) {
               $(element).removeClass('is-invalid');
             },
+            submitHandler: function(form){
+                // agregar data
+                $('#quickForm').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#quickForm');
+                    var formData = new FormData(this);
+
+                    //ruta
+                    var url = "{{route('front.store_client')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                      if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                button: true,
+                                timer: 2000
+                            });
+
+                            setTimeout(function(){
+                                location.href = "{{route('front.finis_subscribe')}}";
+                            },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    button: false,
+                                    timer: 4000
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        console.log(resp);
+                    });
+                  });
+            }
           });
         </script>
     </x-slot>

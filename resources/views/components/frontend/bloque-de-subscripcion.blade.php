@@ -1,5 +1,4 @@
-<form action="{{ route('front.finis_subscribe') }}" method="post" id="quickForm" enctype="multipart/form-data">
-    @csrf
+<form  id="quickForm" enctype="multipart/form-data">
     <div class="row">
         <!-------------------------------------------- FORM OF REGISTER USER ------------------------------------------------->
         <div class="col-md-8">

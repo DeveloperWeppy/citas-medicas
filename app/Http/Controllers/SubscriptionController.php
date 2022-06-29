@@ -38,7 +38,9 @@ class SubscriptionController extends Controller
      */
     public function suscripcion_exitosa(Request $request)
     {
-        return $request;
+        $nombre_client = $request->session()->get('name');
+        
+        return view('suscripcion-exitosa')->with('nombre_client', $nombre_client);
     }
 
     /**

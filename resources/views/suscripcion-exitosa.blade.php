@@ -1,4 +1,5 @@
 @php
+
     function convertirVa($monto){
         $valor = number_format($monto, 2, ',', '.');
         return $valor;
@@ -24,7 +25,7 @@
                     </div>
                 </div>
                 <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
-                <h3>LA SUSCRIPCIÓN HA SIDO EXITOSA</h3>
+                <h3>LA SUSCRIPCIÓN HA SIDO EXITOSA {{$nombre_client}}</h3>
             </div>
         </div>
     </section>
