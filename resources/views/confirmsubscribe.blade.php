@@ -58,9 +58,12 @@
                       name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> --}} 
                      {{--  BOTON DE PLAN DE 1.650
                       <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481aa17bd0181aaa254490087" 
-                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> --}}
+                      name="MP-payButton" class='btn2 float-right'>SUSCRIBIRME <i class="fas fa-handshake"></i></a> 
 
-                      <a mp-mode="dftl" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481ad6df90181afe4f5fb00a2" 
+                      <a mp-mode="dftl" target="_blank" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481ad6df90181afe4f5fb00a2" 
+                      name="MP-payButton" class='btn2 float-right'>Suscribirme</a>--}}
+
+                      <a target="_blank" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481ad6df90181afe4f5fb00a2" 
                       name="MP-payButton" class='btn2 float-right'>Suscribirme</a>
 
                        {{--<a mp-mode="dftl" id="plane_ind_month" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" 
@@ -82,7 +85,7 @@
     mercadoPago.getIdentificationTypes();
 </script> --}}
 
-  <script type="text/javascript">
+{{--   <script type="text/javascript">
       (function() {
          function $MPC_load() {
             window.$MPC_loaded !== true && (function() {
@@ -97,7 +100,7 @@
       }
       window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
       })();
-   </script> 
+   </script>  --}}
 
     <script>
        
