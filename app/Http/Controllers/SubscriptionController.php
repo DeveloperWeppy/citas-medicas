@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
      */
     public function suscripcion_exitosa(Request $request)
     {
-        return view('suscripcion-exitosa');
+        return $request;
     }
 
     /**

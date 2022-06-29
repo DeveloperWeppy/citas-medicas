@@ -43,13 +43,6 @@ class FrontendController extends Controller
         return view('subscribirme');
     }
 
-    public function suscripcion_exitosa(Request $request)
-    {
-
-        //return view('suscripcion-exitosa');
-        return $request;
-    }
-
     public function getCiudades(Request $request)
     {
         try {
