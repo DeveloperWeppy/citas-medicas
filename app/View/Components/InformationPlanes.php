@@ -5,6 +5,7 @@ namespace App\View\Components;
 use App\Models\Plan;
 use App\Models\PlanServices;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Http;
 
 class InformationPlanes extends Component
 {
@@ -43,6 +44,17 @@ class InformationPlanes extends Component
             $datas[] = $data;
         } 
         
+        /*$response = Http::withToken('TEST-6103495603469852-121310-6609569fb82b18d89299263dc86ca350-153926661')->get('https://api.mercadopago.com/preapproval/search', [
+            'id' => '2c93808481ae6fd20181b013427600a3',
+        ])->json();
+
+         foreach ($response['results'] as $key => $value) {
+            
+            foreach ($value['results'] as $key => $value) {
+                # code...
+            }
+        }
+        dd($value['status']); */
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
         
        

@@ -61,46 +61,6 @@ class FrontendController extends Controller
 
     public function finis_subscribe(Request $request)
     {
-      /*   $nombre_client = $request->name;
-        $last_name = $request->last_name;
-        $number_identication = $request->number_identication;
-        $date_of_birth = $request->date_of_birth;
-        $email = $request->email;
-        $num_phone = $request->num_phone;
-        $department = $request->department;
-        $city = $request->city;
-        $address = $request->address;
-        $neighborhood = $request->neighborhood;
-        $plane = $request->plane;
-
-        $plan = Plan::find($plane);
-        $slug = $plan->slug;
-
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-        session(['name'=> $nombre_client]);
-
-        session()->flash('name', $nombre_client);
-        session()->flash('last_name', $last_name);
-        session()->flash('number_identication', $number_identication);
-        session()->flash('date_of_birth', $date_of_birth);
-        session()->flash('email', $email);
-        session()->flash('num_phone', $num_phone);
-        session()->flash('department', $department);
-        session()->flash('city', $city);
-        session()->flash('address', $address);
-        session()->flash('neighborhood', $neighborhood);
-        session()->flash('plane', $plane);
-        session()->flash('slug', $slug); */
-
         return view('confirmsubscribe');
     }
 
@@ -110,19 +70,18 @@ class FrontendController extends Controller
         $mensaje = '';
 
         $nombre_client = $request->name;
+        $email = $request->email;
+        $plane = $request->plane;
+        $number_identication = $request->number_identication;
+        $last_name = $request->last_name;
+        $num_phone = $request->num_phone;
+
         session(['name'=> $nombre_client]);
-  /*    session('name', $nombre_client);
-        session()->flash('last_name', $last_name);
-        session()->flash('number_identication', $number_identication);
-        session()->flash('date_of_birth', $date_of_birth);
-        session()->flash('email', $email);
-        session()->flash('num_phone', $num_phone);
-        session()->flash('department', $department);
-        session()->flash('city', $city);
-        session()->flash('address', $address);
-        session()->flash('neighborhood', $neighborhood);
-        session()->flash('plane', $plane);
-        session()->flash('slug', $slug); */ 
+        session(['last_name'=> $last_name]);
+        session(['email'=> $email]);
+        session(['plane'=> $plane]);
+        session(['number_identication'=> $number_identication]);
+        session(['num_phone'=> $num_phone]);
 
         $correo = $request->email;
         $num_cedula = $request->number_identication;
@@ -143,11 +102,11 @@ class FrontendController extends Controller
             // $url = Storage::url($image);
 
             $register_user = array(
-                'name' => $request->name,
+                'name' => $nombre_client,
                 'email' => $correo,
                 'password' => Hash::make($num_cedula),
                 'pw_decrypte' => $num_cedula,
-                'status' => 1,
+                'status' => 0,
                 'is_prestador' => 0,
             );
 
@@ -156,9 +115,9 @@ class FrontendController extends Controller
 
                 $register_client_info = array(
                     'user_id' => $id_user,
-                    'name' => $request->name,
+                    'name' => $nombre_client,
                     'last_name' => $request->last_name,
-                    'number_identication' => $request->number_identication,
+                    'number_identication' => $number_identication,
                     'type_identication' => 'C.C',
                     'photo' => 'null',
                     'age' => '0',
@@ -168,13 +127,12 @@ class FrontendController extends Controller
                     'email' => $correo,
                     'department' =>  $request->department,
                     'city' =>  $request->city,
-                    'num_phone' => $request->num_phone,
+                    'num_phone' => $num_phone,
                     'is_owner' => 0,
                 );
 
                 if ($responsable = Client::create($register_client_info)) {
                     $id_user_responsable = $responsable->id;
-                    //$user_add->sendEmailVerificationNotification();
 
                     $error = false;
                     $mensaje = 'Registro Exitoso!';

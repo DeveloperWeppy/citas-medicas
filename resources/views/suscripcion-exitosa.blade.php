@@ -20,12 +20,20 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="title2 mb-60 text-center">
-                            <h2>Subscripción</h2>
+                            <img src="{{ asset('asset/img/succes-subscribe.png')}}" class="img-fluid" alt="succes subscription">
                         </div>
                     </div>
                 </div>
                 <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
-                <h3>LA SUSCRIPCIÓN HA SIDO EXITOSA {{$nombre_client}}</h3>
+                <h3>LA SUSCRIPCIÓN HA SIDO EXITOSA </h3>
+
+                <div class="text-center">
+                    <h5>Estimado <span>{{$nombre_client}} {{$last_name}}</span>, nos complace que te hayas suscrito a CitasMedicas.es <br>
+                        Te hemos enviado un correo electrónico a <strong>{{$email}}</strong>, ve y verifica tu correo para que puedas acceder a tu panel de 
+                        <span>CitasMedicas.es</span>. De igual manera podrás encontrar otro Correo con el resumen de tu suscripción.
+                    </h5>
+                </div>
+                
             </div>
         </div>
     </section>

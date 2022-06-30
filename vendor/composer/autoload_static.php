@@ -111,6 +111,7 @@ class ComposerStaticInit93782853b56d463ffb9f8cb6aa1ec10d
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
         array (
@@ -384,6 +385,10 @@ class ComposerStaticInit93782853b56d463ffb9f8cb6aa1ec10d
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Opis\\Closure\\' => 
         array (
             0 => __DIR__ . '/..' . '/opis/closure/src',
@@ -615,7 +620,6 @@ class ComposerStaticInit93782853b56d463ffb9f8cb6aa1ec10d
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Resolvers\\PaymentPlatformResolver' => __DIR__ . '/../..' . '/app/Resolvers/PaymentPlatformResolver.php',
-        'App\\Traits\\ConsumesExternalServices' => __DIR__ . '/../..' . '/app/Traits/ConsumesExternalServices.php',
         'App\\View\\Components\\BloqueDeSubscripcion' => __DIR__ . '/../..' . '/app/View/Components/BloqueDeSubscripcion.php',
         'App\\View\\Components\\CheckRedension' => __DIR__ . '/../..' . '/app/View/Components/CheckRedension.php',
         'App\\View\\Components\\ClientDetail' => __DIR__ . '/../..' . '/app/View/Components/ClientDetail.php',
@@ -3501,6 +3505,12 @@ class ComposerStaticInit93782853b56d463ffb9f8cb6aa1ec10d
         'Opis\\Closure\\SecurityProvider' => __DIR__ . '/..' . '/opis/closure/src/SecurityProvider.php',
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
