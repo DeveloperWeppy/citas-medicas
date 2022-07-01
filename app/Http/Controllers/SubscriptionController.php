@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
                 $preapproval_plan_id = $value['preapproval_plan_id'];
             }
             $fecha = date("Y-m-d", strtotime($next_payment_date));
-            dump($fecha);
+            //dump($fecha);
             if ($status == "authorized") {
 
                 $register_suscribe = array(
