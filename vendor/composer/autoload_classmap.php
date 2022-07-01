@@ -45,6 +45,7 @@ return array(
     'App\\Models\\Client' => $baseDir . '/app/Models/Client.php',
     'App\\Models\\Convenio' => $baseDir . '/app/Models/Convenio.php',
     'App\\Models\\ConvenioServices' => $baseDir . '/app/Models/ConvenioServices.php',
+    'App\\Models\\DetailSubscription' => $baseDir . '/app/Models/DetailSubscription.php',
     'App\\Models\\DiagnosticRedeemedService' => $baseDir . '/app/Models/DiagnosticRedeemedService.php',
     'App\\Models\\Interests' => $baseDir . '/app/Models/Interests.php',
     'App\\Models\\InterestsClient' => $baseDir . '/app/Models/InterestsClient.php',

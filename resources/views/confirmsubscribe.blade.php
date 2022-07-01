@@ -46,7 +46,7 @@
                       <a mp-mode="dftl" target="_blank" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481ad6df90181afe4f5fb00a2" 
                       name="MP-payButton" class='btn2 float-right'>Suscribirme</a>--}}
 
-                      <a target="_blank" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481ad6df90181afe4f5fb00a2" 
+                      <a target="_blank" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c93808481b537980181b9f2461301db" 
                       name="MP-payButton" class='btn2 float-right'>Suscribirme</a>
 
                        {{--<a mp-mode="dftl" id="plane_ind_month" href="https://www.mercadopago.com.co/subscriptions/checkout?preapproval_plan_id=2c938084818a646a01818c274ed50099" 

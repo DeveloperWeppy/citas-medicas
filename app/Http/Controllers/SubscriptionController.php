@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\DetailSubscription;
+use App\Models\NumbersMembersAvailable;
 use App\Models\Plan;
 use App\Models\User;
 use App\Models\Subscription;
@@ -51,6 +54,7 @@ class SubscriptionController extends Controller
         $plane = $request->session()->get('plane');
         $num_phone = $request->session()->get('num_phone');
         $number_identication = $request->session()->get('number_identication');
+        $group_or_not = $request->session()->get('group_or_not');
 
         $user_client = User::where('email', $email)->first();
         $id_user_client = $user_client->id;
@@ -75,6 +79,7 @@ class SubscriptionController extends Controller
                 $payment_method_id = $value['payment_method_id'];
                 $payer_first_name = $value['payer_first_name'];
                 $payer_last_name = $value['payer_last_name'];
+                $preapproval_plan_id = $value['preapproval_plan_id'];
             }
             
             if ($status == "authorized") {
@@ -85,26 +90,59 @@ class SubscriptionController extends Controller
                     'plan_id' => $plane,
                 );
 
-                if ($user_add = Subscription::create($register_suscribe)) {
+                if ($suscription_add = Subscription::create($register_suscribe)) {
+                    $id_subscription = $suscription_add->id;
 
+                    $register_details_subscription = array(
+                        'user_id' => $id_user_client,
+                        'suscription_id' => $id_subscription,
+                        'payer_id' => $payer_id,
+                        'status_operation' => $status,
+                        'next_payment_date' => date($next_payment_date),
+                        'payment_method_id' => $payment_method_id,
+                        'payer_first_name' => $payer_first_name,
+                        'payer_last_name' => $payer_last_name,
+                        'preapproval_plan_id' => $preapproval_plan_id,
+                    );
+
+                    if ($user_add = DetailSubscription::create($register_details_subscription)) {
+
+                        if ($group_or_not == 1) {
+                            # consultar id del cliente...
+                            $client = Client::where('user_id', $id_user_client)->first();
+                            $id_client = $client->id;
+                            $cant_people = $request->session()->get('cant_people');
+
+                            $register_number_members = array(
+                                'client_id' => $id_client,
+                                'registered_members' => $cant_people,
+                            );
+
+                            if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
+                                 //send email of accountverification 
+                                $user_client->sendEmailVerificationNotification();
+
+                                //send email of subscription success
+                                self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+                            }
+
+                        } else {
+                             //send email of accountverification 
+                            $user_client->sendEmailVerificationNotification();
+
+                            //send email of subscription success
+                            self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+                        }
+                    }
                 }
-
-
-                 //send email of accountverification 
-                $user_client->sendEmailVerificationNotification();
-
-                //send email of subscription success
-                self::enviarCorreo($email, $nombre_client, $number_identication, $plane);
             }
-
-           
         }
         
         return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                 ->with('last_name', $last_name)->with('email', $email); 
     }
 
-    public function enviarCorreo($email, $nombre_client, $number_identication, $plane)
+    public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
     {
         $mail = new PHPMailer(true);
         try {
@@ -117,10 +155,10 @@ class SubscriptionController extends Controller
             $mail->IsHTML(true);
             $mail->Username = env('MAIL_USERNAME');
             $mail->Password = env('MAIL_PASSWORD');
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'MaxPharma', false);
-            $mail->Subject = "Registro";
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
+            $mail->Subject = "Suscripción";
 
-            $mail->AddEmbeddedImage("images/Logo-citas-medicas.png", "img_header");
+            $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header");
             $mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
             $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram");
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
@@ -132,7 +170,8 @@ class SubscriptionController extends Controller
                 'plan',
                 'email',
                 'nombre_client',
-                'number_identication'
+                'number_identication',
+                'next_payment_date'
             ))->render();
             $mail->addAddress($email, $nombre_client);
             if ($mail->Send()) {

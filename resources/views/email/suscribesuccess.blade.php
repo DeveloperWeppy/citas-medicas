@@ -147,7 +147,11 @@
                         <hr class="css_hr">
                     </td>
                 </tr>
-
+                <tr><!-- CONTENIDO TITULAR -->
+                    <td style="display: block; padding: 5px 15px;">
+                       <p style="font-size:12px;">Detalles del Plan que adquiriste: </p>
+                    </td>
+                 </tr>
                 <tr><!-- CONTENIDO DEL PLAN -->
                     <td style="display: block; padding: 5px 15px;">
                        <table width="100%" border="0" class="css_table_secondary">
@@ -155,6 +159,14 @@
                              <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
                                 <th width="30%" class="css_table_secondary_body_th">Plan Adquirido:</th>
                                 <td width="70%" class="css_table_secondary_body_td">{{ $plan->name }}</td>
+                             </tr>
+                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
+                                <th width="30%" class="css_table_secondary_body_th">Tipo de Plan:</th>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $plan->type_plan }}</td>
+                             </tr>
+                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
+                                <th width="30%" class="css_table_secondary_body_th">Próxima fecha de cobro automático:</th>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $next_payment_date }}</td>
                              </tr>
                           </tbody>
                        </table>

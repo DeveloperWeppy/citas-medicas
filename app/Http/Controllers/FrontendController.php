@@ -76,12 +76,21 @@ class FrontendController extends Controller
         $last_name = $request->last_name;
         $num_phone = $request->num_phone;
 
+        $plan = Plan::find($plane);
+        $group_or_not = $plan->is_group;
+
         session(['name'=> $nombre_client]);
         session(['last_name'=> $last_name]);
         session(['email'=> $email]);
         session(['plane'=> $plane]);
         session(['number_identication'=> $number_identication]);
         session(['num_phone'=> $num_phone]);
+        session(['group_or_not'=> $group_or_not]);
+
+        if ($group_or_not == 1) {
+            $cant_people = $plan->cant_people;
+            session(['cant_people'=> $cant_people]);
+        }
 
         $correo = $request->email;
         $num_cedula = $request->number_identication;

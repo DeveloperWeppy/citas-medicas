@@ -598,6 +598,7 @@ class ComposerStaticInit93782853b56d463ffb9f8cb6aa1ec10d
         'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
         'App\\Models\\Convenio' => __DIR__ . '/../..' . '/app/Models/Convenio.php',
         'App\\Models\\ConvenioServices' => __DIR__ . '/../..' . '/app/Models/ConvenioServices.php',
+        'App\\Models\\DetailSubscription' => __DIR__ . '/../..' . '/app/Models/DetailSubscription.php',
         'App\\Models\\DiagnosticRedeemedService' => __DIR__ . '/../..' . '/app/Models/DiagnosticRedeemedService.php',
         'App\\Models\\Interests' => __DIR__ . '/../..' . '/app/Models/Interests.php',
         'App\\Models\\InterestsClient' => __DIR__ . '/../..' . '/app/Models/InterestsClient.php',
