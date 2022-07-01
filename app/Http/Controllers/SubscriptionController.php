@@ -89,7 +89,8 @@ class SubscriptionController extends Controller
                 $payer_last_name = $value['payer_last_name'];
                 $preapproval_plan_id = $value['preapproval_plan_id'];
             }
-            dump($id_operation);
+            $fecha = date("Y-m-d", strtotime($next_payment_date));
+            dump($fecha);
             if ($status == "authorized") {
 
                 $register_suscribe = array(
@@ -106,7 +107,7 @@ class SubscriptionController extends Controller
                         'suscription_id' => $id_subscription,
                         'payer_id' => $payer_id,
                         'status_operation' => $status,
-                        'next_payment_date' => date($next_payment_date),
+                        'next_payment_date' => $fecha,
                         'payment_method_id' => $payment_method_id,
                         'payer_first_name' => $payer_first_name,
                         'payer_last_name' => $payer_last_name,
