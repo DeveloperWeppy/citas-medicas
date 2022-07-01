@@ -93,7 +93,7 @@ class SubscriptionController extends Controller
             if ($status == "authorized") {
 
                 $register_suscribe = array(
-                    'next_payment' => date($next_payment_date),
+                    'next_payment' => $next_payment_date,
                     'user_id' => $id_user_client,
                     'plan_id' => $plane,
                 );
