@@ -46,7 +46,7 @@ class SubscriptionController extends Controller
      */
     public function suscripcion_exitosa(Request $request)
     {
-        $id_operation = $request->preapproval_id;
+        $id_operation = $request['preapproval_id'];
 
         $status  = '';
         $payer_id = '';
@@ -89,7 +89,7 @@ class SubscriptionController extends Controller
                 $payer_last_name = $value['payer_last_name'];
                 $preapproval_plan_id = $value['preapproval_plan_id'];
             }
-            
+            dump($id_operation);
             if ($status == "authorized") {
 
                 $register_suscribe = array(
