@@ -48,6 +48,14 @@ class SubscriptionController extends Controller
     {
         $id_operation = $request->preapproval_id;
 
+        $status  = '';
+        $payer_id = '';
+        $next_payment_date = '';
+        $payment_method_id = '';
+        $payer_first_name = '';
+        $payer_last_name = '';
+        $preapproval_plan_id = '';
+
         $nombre_client = $request->session()->get('name');
         $last_name = $request->session()->get('last_name');
         $email = $request->session()->get('email');
