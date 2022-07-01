@@ -132,6 +132,9 @@ class SubscriptionController extends Controller
 
                                 //send email of subscription success
                                 self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+
+                                return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
+                                    ->with('last_name', $last_name)->with('email', $email);
                             }
 
                         } else {
@@ -140,14 +143,17 @@ class SubscriptionController extends Controller
 
                             //send email of subscription success
                             self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+
+                            dump($status);
+                            return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
+                                ->with('last_name', $last_name)->with('email', $email);
                         }
                     }
                 }
             }
         }
         
-        return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
-                ->with('last_name', $last_name)->with('email', $email); 
+         
     }
 
     public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
