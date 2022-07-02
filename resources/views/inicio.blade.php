@@ -20,7 +20,7 @@
         </div>
         <div class="extra_info--content text-center">
             <div class="extra_info--title">
-                <h3>Let's be Together</h3> 
+                <h3>Let's be Together</h3>
             </div>
             <div class="extra_info--thumb">
                 <img class="img_100" src="assets/img/about/about-01.jpg" alt="Extra info thumb">
@@ -269,7 +269,7 @@
         <!-- |==========================================| -->
         <!-- |=====|| Sección de planes||===============| -->
         <x-information-planes></x-information-planes>
-     
+
          <!-- |=====|| Counter Start ||===============| -->
          <section class="counter1 counter1__bg-01">
             <div class="content_box_100_50">
@@ -523,6 +523,22 @@
         <!-- |==========================================| -->
     </main>
     <x-slot name="js">
+      <script>
+      $( "#customSwitches1" ).change(function() {
+         if($("#customSwitches1").is(':checked')){
+           $(".planMensual").css("display","block");
+           $(".planAnual").css("display","none"); 
+           $(".swith-off").css("color","#768495");
+           $(".swith-on").css("color","#007bff");
+         }else{
+           $(".swith-off").css("color","#007bff");
+           $(".swith-on").css("color","#768495");
+           $(".planAnual").css("display","block");
+           $(".planMensual").css("display","none");
+         }
+
+      });
+      </script>
     </x-slot>
 
 </x-main-layout>

@@ -31,7 +31,8 @@ Route::controller(FrontendController::class)
         Route::get('/afiliate-ahora', 'afiliate')->name('front.afiliate');
         Route::get('/contactanos', 'contacto')->name('front.contacto');
         Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
-
+        Route::get('/detalles-plan/{id}', 'detallesplan')->name('front.detallesplan');
+        Route::get('/envio', 'envio')->name('front.envio');
         Route::get('/ciudades', 'getCiudades')->name('front.getCiudades');
 
         /**********  ROUTE OF REGISTER OF CLIENT IN THE FRONTEND  **************************** */
