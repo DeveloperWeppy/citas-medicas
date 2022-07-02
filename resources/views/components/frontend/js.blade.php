@@ -5,7 +5,7 @@
 <script src="{{ asset('asset/js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('asset/js/vendor/jquery.waypoints.min.js') }}"></script>
 <script src="{{ asset('asset/js/vendor/jquery.easing.1.3.js') }}"></script>
-
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
 <!-- Template Main JS File -->
 
@@ -20,7 +20,6 @@
 <script src="{{ asset('asset/js/jquery.meanmenu.min.js') }}"></script>
 <script src="{{ asset('asset/js/one-page-nav-min.js') }}"></script>
 <script src="{{ asset('asset/js/ajax-contact.js') }}"></script>
-
 <script src="{{ asset('asset/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 

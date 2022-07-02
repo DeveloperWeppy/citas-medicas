@@ -158,17 +158,17 @@
                                     timer: 4000
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         console.log(resp);
                     });
                   });
             }
           });
-       
-        
 
-        
+
+
+
         $(function () {
 
         });
