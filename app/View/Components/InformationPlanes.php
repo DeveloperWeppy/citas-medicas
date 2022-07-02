@@ -27,21 +27,28 @@ class InformationPlanes extends Component
     public function render()
     {
         $datas = array();
+<<<<<<< HEAD
        
         $planes = Plan::where('status', 1)->where('type_plan', 'Mensual')->get();
         
+=======
+
+        $planes = Plan::where('status', 1)->where('status', '1')->get();
+
+>>>>>>> bugfix
         foreach ($planes as $key => $value) {
             $id_plan = $value->id;
             $name_plan = $value->name;
 
             $servicesplan = PlanServices::where('plan_id', $id_plan)->limit(3)->get();
-            
-            
+
+
             $data = [
                 'servicios' =>  $servicesplan,
             ];
 
             $datas[] = $data;
+<<<<<<< HEAD
         } 
      /*    $next_payment_date = '';
         $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
@@ -55,9 +62,13 @@ class InformationPlanes extends Component
         $fecha = date("Y-m-d", strtotime($next_payment_date));
         dump($fecha);  */
         
+=======
+        }
+
+>>>>>>> bugfix
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
-        
-       
-        
+
+
+
     }
 }
