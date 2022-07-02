@@ -524,10 +524,11 @@
     </main>
     <x-slot name="js">
       <script>
+
       $( "#customSwitches1" ).change(function() {
          if($("#customSwitches1").is(':checked')){
            $(".planMensual").css("display","block");
-           $(".planAnual").css("display","none"); 
+           $(".planAnual").css("display","none");
            $(".swith-off").css("color","#768495");
            $(".swith-on").css("color","#007bff");
          }else{
@@ -539,6 +540,7 @@
 
       });
       </script>
+
     </x-slot>
 
 </x-main-layout>

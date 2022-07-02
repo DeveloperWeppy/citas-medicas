@@ -43,20 +43,24 @@ class FrontendController extends Controller
 
         return view('subscribirme');
     }
-      public function detallesplan($id)
+
+    public function detallesplan($id)
     {
        $datos=array();
-       $datos['plan']= DB::select('select * from plans where id='.$id);
-       $datos['plan']=$datos['plan'][0];
+       $datos['plans']= DB::select('select * from plans WHERE id='.$id);
+       $datos['plans']=$datos['plans'][0];
        $datos['category']= DB::select('select * from category_services');
        $datos['services']= DB::select('select * from services where status=1');
         return view('detallesplan')->with('datos', $datos);
     }
+
     public function envio()
     {
       $response=$this->envioSms('573132055688','hola');
        return json_encode($response);
     }
+
+
 
     public function getCiudades(Request $request)
     {
@@ -94,7 +98,6 @@ class FrontendController extends Controller
         $group_or_not = $plan->is_group;
 
         session(['name'=> $nombre_client]);
-<<<<<<< HEAD
         session(['last_name'=> $last_name]);
         session(['email'=> $email]);
         session(['plane'=> $plane]);
@@ -106,7 +109,6 @@ class FrontendController extends Controller
             $cant_people = $plan->cant_people;
             session(['cant_people'=> $cant_people]);
         }
-=======
   /*    session('name', $nombre_client);
         session()->flash('last_name', $last_name);
         session()->flash('number_identication', $number_identication);
@@ -119,7 +121,6 @@ class FrontendController extends Controller
         session()->flash('neighborhood', $neighborhood);
         session()->flash('plane', $plane);
         session()->flash('slug', $slug); */
->>>>>>> bugfix
 
         $correo = $request->email;
         $num_cedula = $request->number_identication;

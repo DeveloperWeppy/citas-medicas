@@ -9,15 +9,19 @@
                     </div>
                 </div>
             </div>
-            <div class="custom-control custom-switch" style="width:fit-content;margin: 0 auto;">
-               <span class="swith-off" style="position: relative;margin-right: 40px;font-weight: bold;">Anual</span>
-                <input type="checkbox" class="custom-control-input" id="customSwitches1" checked="">
-                <label class="custom-control-label" for="customSwitches1"></label>
-                <span class="swith-on"  style="position: relative;margin-left: -5px;color:#007bff;font-weight: bold;">Mensual</span>
-            </div>
+
+            <!-- Default checked -->
+
+              <div class="custom-control custom-switch" style="margin: 0 auto;width: fit-content;">
+                <label  class="option-off" style="position: relative;margin-bottom: 0;right:40px;font-weight: bold;">Anual</label>
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                <label class="custom-control-label" for="customSwitch1"></label>
+                <label class="option-on " style="position: relative;margin-bottom: 0;right:5px;color:#007bff;font-weight: bold;"> Mensual</label>
+             </div>
             <div class="row no-gutters pricing1__row">
                @foreach ($planes as $item)
-                <div class=" color_white plan{{$item->type_plan}}"  {{$item->type_plan=='Anual' ? 'style=display:none':''}}>
+                <div class=" color_white plan{{$item->type_plan}}" {{$item->type_plan=="Anual"? 'style=display:none':''}}>
+
                     <div class="pricing1__item">
                         <div class="pricing1__wrapper text-center">
                             <div class="pricing1__thumb--style">
@@ -43,6 +47,7 @@
 
                                 </ul>
                                 <a  href="{{ route('front.detallesplan',['id'=>$item->id]) }}" class="btn5 mb-2 d-none d-sm-inline-block">Ver Todos los Servicios</a>
+
                                 <a href="{{ route('front.subscribirme') }}" class="btn8">Subscribirme</a>
                             </div>
                         </div>
