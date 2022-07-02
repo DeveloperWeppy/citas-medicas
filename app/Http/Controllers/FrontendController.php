@@ -43,6 +43,20 @@ class FrontendController extends Controller
 
         return view('subscribirme');
     }
+      public function detallesplan($id)
+    {
+       $datos=array();
+       $datos['plan']= DB::select('select * from plans where id='.$id);
+       $datos['plan']=$datos['plan'][0];
+       $datos['category']= DB::select('select * from category_services');
+       $datos['services']= DB::select('select * from services where status=1');
+        return view('detallesplan')->with('datos', $datos);
+    }
+    public function envio()
+    {
+      $response=$this->envioSms('573132055688','hola');
+       return json_encode($response);
+    }
 
     public function getCiudades(Request $request)
     {
@@ -122,7 +136,7 @@ class FrontendController extends Controller
         session()->flash('address', $address);
         session()->flash('neighborhood', $neighborhood);
         session()->flash('plane', $plane);
-        session()->flash('slug', $slug); */ 
+        session()->flash('slug', $slug); */
 
         $correo = $request->email;
         $num_cedula = $request->number_identication;

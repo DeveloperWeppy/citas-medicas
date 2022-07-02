@@ -26,26 +26,26 @@ class InformationPlanes extends Component
     public function render()
     {
         $datas = array();
-        
-        $planes = Plan::where('status', 1)->where('type_plan', 'Mensual')->get();
-        
+
+        $planes = Plan::where('status', 1)->where('status', '1')->get();
+
         foreach ($planes as $key => $value) {
             $id_plan = $value->id;
             $name_plan = $value->name;
 
             $servicesplan = PlanServices::where('plan_id', $id_plan)->limit(3)->get();
-            
-            
+
+
             $data = [
                 'servicios' =>  $servicesplan,
             ];
 
             $datas[] = $data;
-        } 
-        
+        }
+
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
-        
-       
-        
+
+
+
     }
 }
