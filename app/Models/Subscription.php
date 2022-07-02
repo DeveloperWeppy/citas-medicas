@@ -15,10 +15,6 @@ class Subscription extends Model
         'plan_id'
     ];
 
-    protected $dates = [
-        'active_until',
-    ];
-
     public function user(){
         return $this->belongsTo(User::class);
     }
