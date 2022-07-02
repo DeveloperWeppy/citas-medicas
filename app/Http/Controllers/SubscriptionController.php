@@ -156,6 +156,17 @@ class SubscriptionController extends Controller
         
          
     }
+    public function pruebamail ()
+    {
+        // El mensaje
+$mensaje = "Línea 1\r\nLínea 2\r\nLínea 3";
+
+// Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
+$mensaje = wordwrap($mensaje, 70, "\r\n");
+
+// Enviarlo
+mail('info@citasmedicas.es', 'Mi título', $mensaje);
+    }
 
     public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
     {

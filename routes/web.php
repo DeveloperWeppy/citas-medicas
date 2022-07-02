@@ -43,6 +43,7 @@ Route::controller(SubscriptionController::class)
     ->group(function () {
         Route::post('/subscribirme/store', 'store')->name('front.store');
         Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
+        Route::get('/pruebamail', 'pruebamail')->name('front.pruebamail');
     });
 //simbolico para generar storage en hosting
 Route::get('/storage-link', function () {
