@@ -43,7 +43,7 @@ class InformationPlanes extends Component
 
             $datas[] = $data;
         } 
-        $next_payment_date = '';
+     /*    $next_payment_date = '';
         $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
             'id' => '2c93808481b490c20181bb507b1d04c9',
         ])->json();
@@ -53,7 +53,7 @@ class InformationPlanes extends Component
             $next_payment_date = $value['next_payment_date'];
         }
         $fecha = date("Y-m-d", strtotime($next_payment_date));
-        dump($fecha); 
+        dump($fecha);  */
         
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
         
