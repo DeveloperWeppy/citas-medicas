@@ -68,7 +68,7 @@ class SubscriptionController extends Controller
         $id_user_client = $user_client->id;
 
         //get id operation between API
-        $response = Http::withToken('TEST-3372762080079061-062916-f3ee0273a07bfe57eec1acfaf08d3f20-148994351')->get('https://api.mercadopago.com/preapproval/search', [
+        $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
             'id' => $id_operation,
         ])->json();
 
