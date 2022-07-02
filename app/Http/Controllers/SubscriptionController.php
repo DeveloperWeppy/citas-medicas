@@ -67,6 +67,8 @@ class SubscriptionController extends Controller
         $user_client = User::where('email', $email)->first();
         $id_user_client = $user_client->id;
 
+        $email2 = 'manuelsilva9908@gmail.com';
+
         //get id operation between API
         $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
             'id' => $id_operation,
@@ -132,7 +134,7 @@ class SubscriptionController extends Controller
                                 $user_client->sendEmailVerificationNotification();
 
                                 //send email of subscription success
-                                self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+                                self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
 
                                 return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                     ->with('last_name', $last_name)->with('email', $email);
@@ -143,9 +145,9 @@ class SubscriptionController extends Controller
                             $user_client->sendEmailVerificationNotification();
 
                             //send email of subscription success
-                            self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+                            self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
 
-                            dump($status);
+                            //dump($status);
                             return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                 ->with('last_name', $last_name)->with('email', $email);
                         }
@@ -155,17 +157,6 @@ class SubscriptionController extends Controller
         }
         
          
-    }
-    public function pruebamail ()
-    {
-        // El mensaje
-$mensaje = "Línea 1\r\nLínea 2\r\nLínea 3";
-
-// Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
-$mensaje = wordwrap($mensaje, 70, "\r\n");
-
-// Enviarlo
-mail('info@citasmedicas.es', 'Mi título', $mensaje);
     }
 
     public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
@@ -184,8 +175,8 @@ mail('info@citasmedicas.es', 'Mi título', $mensaje);
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
             $mail->Subject = "Suscripción";
 
-           /*  $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header");
-            $mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
+             $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
+            /*$mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
             $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram"); */
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
