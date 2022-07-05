@@ -22,29 +22,29 @@
                 <h3>Administrador Citas Médicas</h3>
               @endcan
             @else
-              <h3>¡Bienvenido, <span class="text-uppercase font-weight-bold text-deal">{{ $name_client }}!</span></h3> 
+              <h3>¡Bienvenido, <span class="text-uppercase font-weight-bold text-deal">{{ $name_client }}!</span></h3>
             @endrole
-            
-            
+
+
           </div>
           <div class="col-12 col-sm-6">
 
             @role('Cliente')
-            @if (!optional(auth()->user())->hasActiveSubscription())
+            @if (!Session::get('ifActiveSubs'))
                 <a class="btn btn-outline-citasmedicas" href="#"> Subscribirse <i class="fas fa-hand-point-up"></i></a>
             @endif
             @endrole
           </div>
         </div>
       </div>
-      
+
       <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-        
+
           <div id="relojnumerico" class="reloj float-sm-right" onload="cargarReloj();">
-              <!-- Acá mostraremos el reloj desde JavaScript --> 
+              <!-- Acá mostraremos el reloj desde JavaScript -->
           </div>
       </div>
-     
+
     </div>
 @stop
 
@@ -58,7 +58,7 @@
 @section('css')
     <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
     <link rel="stylesheet" href="/css/styles.css">
-    
+
 @stop
 
 @section('js')
@@ -68,51 +68,51 @@
         });
         function cargarReloj(){
 
-        // Haciendo uso del objeto Date() obtenemos la hora, minuto y segundo 
+        // Haciendo uso del objeto Date() obtenemos la hora, minuto y segundo
         var fechahora = new Date();
-        var hora = fechahora.getHours(); 
-        var minuto = fechahora.getMinutes(); 
-        var segundo = fechahora.getSeconds(); 
+        var hora = fechahora.getHours();
+        var minuto = fechahora.getMinutes();
+        var segundo = fechahora.getSeconds();
 
-        // Variable meridiano con el valor 'AM' 
+        // Variable meridiano con el valor 'AM'
         var meridiano = "AM";
 
 
-        // Si la hora es igual a 0, declaramos la hora con el valor 12 
+        // Si la hora es igual a 0, declaramos la hora con el valor 12
         if(hora == 0){
 
             hora = 12;
-            
+
         }
 
-        // Si la hora es mayor a 12, restamos la hora - 12 y mostramos la variable meridiano con el valor 'PM' 
+        // Si la hora es mayor a 12, restamos la hora - 12 y mostramos la variable meridiano con el valor 'PM'
         if(hora > 12) {
 
             hora = hora - 12;
 
-            // Variable meridiano con el valor 'PM' 
+            // Variable meridiano con el valor 'PM'
             meridiano = "PM";
 
         }
 
-        // Formateamos los ceros '0' del reloj 
+        // Formateamos los ceros '0' del reloj
         hora = (hora < 10) ? "0" + hora : hora;
         minuto = (minuto < 10) ? "0" + minuto : minuto;
         segundo = (segundo < 10) ? "0" + segundo : segundo;
 
-        // Enviamos la hora a la vista HTML 
-        var tiempo = hora + ":" + minuto + ":" + segundo + " " + meridiano;    
+        // Enviamos la hora a la vista HTML
+        var tiempo = hora + ":" + minuto + ":" + segundo + " " + meridiano;
         document.getElementById("relojnumerico").innerText = tiempo;
         document.getElementById("relojnumerico").textContent = tiempo;
 
-        // Cargamos el reloj a los 500 milisegundos 
+        // Cargamos el reloj a los 500 milisegundos
         setTimeout(cargarReloj, 500);
 
         }
 
-        // Ejecutamos la función 'CargarReloj' 
+        // Ejecutamos la función 'CargarReloj'
         cargarReloj();
-       
-        
+
+
     </script>
 @stop

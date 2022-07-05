@@ -25,13 +25,13 @@ class Subscription extends Model
 
     public function nombre_plan()
     {
-  
+
       //relación para poder mostrar el nombre de la categoria
       return $this->belongsTo(Plan::class, 'plan_id');
     }
 
     public function isActive(){
         //greater than = gt() mayor que
-        return $this->active_until->gt(now());
+        return $this->active_until>=now();
     }
 }

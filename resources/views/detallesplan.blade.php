@@ -7,7 +7,7 @@
     </x-slot>
 
 <div class=" service1">
-<<<<<<< Updated upstream
+
     <img   src="{{ asset('asset/img/bannerfamilia.jpg')}}" class="img_100" src="assets/img/bannerfamilia.jpg" alt="banner plan">
     <div class="row justify-content-center ">
          <div class="col-xl-6 service1" >

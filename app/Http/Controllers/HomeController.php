@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
+
         return view('home');
     }
 
@@ -44,8 +44,8 @@ class HomeController extends Controller
         }else if ($user->hasRole('Cliente')) {
             $name_client = $client->name;
         }
-        
-        
+
+
         return view('admin.home')->with('name_client', $name_client);
     }
 }
