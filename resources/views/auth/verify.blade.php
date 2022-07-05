@@ -2,6 +2,8 @@
     <!-- title -->
     @section('title')Afíliate Ahora @endsection
 <section class="pricing1 counter1__bg-01">
+  <x-slot name="css">
+  </x-slot>
     <div class="content_box_100">
         <div class="container">
             <div class="row justify-content-center">
@@ -15,7 +17,7 @@
                             <div class="text-center">
                                 <img src="/images/email_send.png" class="img-fluid" alt="send email">
                             </div>
-                            
+
                             <hr>
                             @if (session('resent'))
                                 <div class="alert alert-success" role="alert">
