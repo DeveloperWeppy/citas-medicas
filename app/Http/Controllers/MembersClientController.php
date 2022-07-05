@@ -38,7 +38,7 @@ class MembersClientController extends Controller
             ->with('total_miembros_por_registrar', $total_miembros_por_registrar)->with('is_owner', $is_owner)->with('user_name', $user_name);
         }else{
             $dato = 'invalido';
-            return view('cliente.miembros.index')->with('dato', $dato)->with('user_name', $user_name);
+            return view('cliente.miembros.index')->with('dato', $dato)->with('is_owner', $is_owner)->with('user_name', $user_name);
         }
     }
 
@@ -66,11 +66,11 @@ class MembersClientController extends Controller
                     </span>
                     '
                 ];
-    
+
                 $data[] = $info;
             }
-            
-        } 
+
+        }
 
         echo json_encode([
             'data' => $data
@@ -81,7 +81,7 @@ class MembersClientController extends Controller
     {
         $error = false;
         $mensaje = '';
-        
+
         $user_login = Auth::user()->id;
         $cliente_logueado = Client::where('user_id', $user_login)->first();
         $id_cliente_owner = $cliente_logueado->id;
@@ -94,7 +94,7 @@ class MembersClientController extends Controller
 
         $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $id_cliente_owner)->first();
         $total_miembros_registrado = $consultar_numero_client_for_owner->registered_members;
-        $id_number_member_available = $consultar_numero_client_for_owner->id; 
+        $id_number_member_available = $consultar_numero_client_for_owner->id;
 
         $update_status = array(
             'status' => 0
@@ -102,7 +102,7 @@ class MembersClientController extends Controller
 
       if (User::findOrFail($user_id)->update($update_status)) {
             $new_member_number = $total_miembros_registrado + 1;
-                               
+
                 $update_member_number = array(
                     'registered_members' => $new_member_number,
                 );
@@ -118,11 +118,11 @@ class MembersClientController extends Controller
                     $error = true;
                 $mensaje = 'Error! Se presento un problema al actualizar el nuevo número de miembros disponibles a registrar.';
                 }
-             
+
         }else {
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al eliminar el usuario, intenta de nuevo.';
-            }        
+            }
 
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }

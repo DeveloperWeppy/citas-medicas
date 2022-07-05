@@ -32,7 +32,7 @@ class SubscriptionController extends Controller
 
     public function __invoke(Request $request)
     {
-        
+
     }
     public function index()
     {
@@ -74,7 +74,7 @@ class SubscriptionController extends Controller
             'id' => $id_operation,
         ])->json();
 
-        
+
         $update_user = array(
             'status' => 1
         );
@@ -130,7 +130,7 @@ class SubscriptionController extends Controller
                             );
 
                             if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                 //send email of accountverification 
+                                 //send email of accountverification
                                 $user_client->sendEmailVerificationNotification();
 
                                 //send email of subscription success
@@ -141,12 +141,12 @@ class SubscriptionController extends Controller
                             }
 
                         } else {
-                             //send email of accountverification 
+                             //send email of accountverification
                             $user_client->sendEmailVerificationNotification();
 
                             //send email of subscription success
                             self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
-
+                            $this->envioSms("+57".$num_phone,"suscripción exito, disfruta de nuestros beneficios");
                             //dump($status);
                             return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                 ->with('last_name', $last_name)->with('email', $email);
@@ -155,8 +155,8 @@ class SubscriptionController extends Controller
                 }
             }
         }
-        
-         
+
+
     }
 
     public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
