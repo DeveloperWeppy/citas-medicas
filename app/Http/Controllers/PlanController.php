@@ -31,7 +31,7 @@ class PlanController extends Controller
         $is_owner = $info_client->is_owner;
 
         $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $is_owner)->first();
-        $total_miembros_por_registrar= $consultar_numero_client_for_owner->registered_members;
+        $total_miembros_por_registrar= isset($consultar_numero_client_for_owner->registered_members) ?$consultar_numero_client_for_owner->registered_members:0 ;
 
         $verificar_subs = Subscription::where('user_id', $user_login)->count();
         $dato = '';
@@ -49,7 +49,7 @@ class PlanController extends Controller
             $dato = 'invalido';
             return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name);
         }
-        
+
     }
 
     public function getPlanes()
@@ -140,7 +140,7 @@ class PlanController extends Controller
         } else {
             $plantipo = 'Mensual';
         }
-        
+
 
         if ($validar_name > 0) {
             $error = true;
@@ -249,7 +249,7 @@ class PlanController extends Controller
         } else {
             $estado = 0;
         }
-        
+
 
         if ($validar_name > 0) {
             $error = true;

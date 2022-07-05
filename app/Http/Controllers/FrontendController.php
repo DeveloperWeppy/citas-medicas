@@ -47,8 +47,8 @@ class FrontendController extends Controller
     public function detallesplan($id)
     {
        $datos=array();
-       $datos['plans']= DB::select('select * from plans WHERE id='.$id);
-       $datos['plans']=$datos['plans'][0];
+       $datos['plan']= DB::select('select * from plans WHERE id='.$id);
+       $datos['plan']=$datos['plan'][0];
        $datos['category']= DB::select('select * from category_services');
        $datos['services']= DB::select('select * from services where status=1');
         return view('detallesplan')->with('datos', $datos);

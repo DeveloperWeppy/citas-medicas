@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Subscription;
 class LoginController extends Controller
 {
     /*
@@ -43,6 +44,21 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         $request['status'] = 1;
-        return $request->only($this->username(), 'password', 'status');
+        $ifSubs=false;
+        $ifIncompleSubs=true;
+        $data=$request->only($this->username(), 'password', 'status');
+        if (Auth::attempt($data)) {
+             $id = Auth::id();
+             $verificar_subs = Subscription::where('user_id',  $id)->get();
+             if(count($verificar_subs)>0){
+                 $ifExisteSubs=false;
+                 if ($verificar_subs[0]->active_until >=now()->toDateString()) {
+                   $ifSubs=true;
+                 }
+             }
+        }
+        session(['ifIncompleSubs' =>$ifIncompleSubs ]);
+        session(['ifActiveSubs' =>$ifSubs ]);
+        return $data;
     }
 }
