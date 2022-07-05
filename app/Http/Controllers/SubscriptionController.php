@@ -146,7 +146,9 @@ class SubscriptionController extends Controller
 
                             //send email of subscription success
                             self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
+
                             $this->envioSms("+57".$num_phone,"suscripción exito, disfruta de nuestros beneficios");
+
                             //dump($status);
                             return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                 ->with('last_name', $last_name)->with('email', $email);

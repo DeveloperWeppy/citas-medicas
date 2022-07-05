@@ -19,7 +19,6 @@ class CreateSubscriptionsTable extends Migration
             $table->foreignId('user_id')->unique()->references('id')->on('users');
             $table->foreignId('plan_id')->unique()->references('id')->on('plans');
             $table->timestamps();
-
             //$table->foreignId('user_id')->references('id')->on('users');
             //$table->foreignId('plan_id')->references('id')->on('plans');
         });
