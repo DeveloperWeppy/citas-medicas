@@ -39,7 +39,7 @@ class PlanSeeder extends Seeder
             'type_plan' => 'Anual',
             'slug' => 'anual individual',
             'price' => 140000,
-            'duration_in_days' => 365,
+            'duration_in_days' => 30,
             'is_group' => 0,
             'cant_people' => 1,
         ]);

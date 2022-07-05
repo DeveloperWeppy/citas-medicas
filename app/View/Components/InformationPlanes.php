@@ -58,8 +58,6 @@ class InformationPlanes extends Component
         $fecha = date("Y-m-d", strtotime($next_payment_date));
         dump($fecha);  */
 
-
-
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
 
 

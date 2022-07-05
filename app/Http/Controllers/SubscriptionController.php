@@ -21,19 +21,13 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $paymentPlatformResolver;
 
-    public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
+    public function __construct()
     {
         // $this->middleware(['auth', 'unsubscribed']);
-
-        $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
-    public function __invoke(Request $request)
-    {
-
-    }
+    
     public function index()
     {
         //
@@ -63,11 +57,13 @@ class SubscriptionController extends Controller
         $num_phone = $request->session()->get('num_phone');
         $number_identication = $request->session()->get('number_identication');
         $group_or_not = $request->session()->get('group_or_not');
+        $cant_people = $request->session()->get('cant_people');
 
         $user_client = User::where('email', $email)->first();
         $id_user_client = $user_client->id;
 
-        $email2 = 'manuelsilva9908@gmail.com';
+        $cliente = Client::where('user_id', $id_user_client)->first();
+        $id_client = $cliente->id;
 
         //get id operation between API
         $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
@@ -79,83 +75,76 @@ class SubscriptionController extends Controller
             'status' => 1
         );
 
+        $update_data_client = array(
+            'is_owner' => 1
+        );
+
         if (User::findOrFail($id_user_client)->update($update_user)) {
 
-            foreach ($response['results'] as $key => $value) {
+            if (Client::findOrFail($id_client)->update($update_data_client)) {
 
-                $status = $value['status'];
-                $payer_id = $value['payer_id'];
-                $next_payment_date = $value['next_payment_date'];
-                $payment_method_id = $value['payment_method_id'];
-                $payer_first_name = $value['payer_first_name'];
-                $payer_last_name = $value['payer_last_name'];
-                $preapproval_plan_id = $value['preapproval_plan_id'];
-            }
-            $fecha = date("Y-m-d", strtotime($next_payment_date));
-            //dump($fecha);
-            if ($status == "authorized") {
+                foreach ($response['results'] as $key => $value) {
 
-                $register_suscribe = array(
-                    'next_payment' => $next_payment_date,
-                    'user_id' => $id_user_client,
-                    'plan_id' => $plane,
-                );
-
-                if ($suscription_add = Subscription::create($register_suscribe)) {
-                    $id_subscription = $suscription_add->id;
-
-                    $register_details_subscription = array(
+                    $status = $value['status'];
+                    $payer_id = $value['payer_id'];
+                    $next_payment_date = $value['next_payment_date'];
+                    $payment_method_id = $value['payment_method_id'];
+                    $payer_first_name = $value['payer_first_name'];
+                    $payer_last_name = $value['payer_last_name'];
+                    $preapproval_plan_id = $value['preapproval_plan_id'];
+                }
+                $fecha = date("Y-m-d", strtotime($next_payment_date));
+                //dump($fecha);
+                if ($status == "authorized") {
+    
+                    $register_suscribe = array(
+                        'next_payment' => $next_payment_date,
                         'user_id' => $id_user_client,
-                        'suscription_id' => $id_subscription,
-                        'payer_id' => $payer_id,
-                        'status_operation' => $status,
-                        'next_payment_date' => $fecha,
-                        'payment_method_id' => $payment_method_id,
-                        'payer_first_name' => $payer_first_name,
-                        'payer_last_name' => $payer_last_name,
-                        'preapproval_plan_id' => $preapproval_plan_id,
+                        'plan_id' => $plane,
                     );
+    
+                    if ($suscription_add = Subscription::create($register_suscribe)) {
+                        $id_subscription = $suscription_add->id;
+    
+                        $register_details_subscription = array(
+                            'user_id' => $id_user_client,
+                            'suscription_id' => $id_subscription,
+                            'operation_id' => $id_operation, 
+                            'payer_id' => $payer_id,
+                            'status_operation' => $status,
+                            'next_payment_date' => $fecha,
+                            'payment_method_id' => $payment_method_id,
+                            'payer_first_name' => $payer_first_name,
+                            'payer_last_name' => $payer_last_name,
+                            'preapproval_plan_id' => $preapproval_plan_id,
+                        );
+    
+                        if ($user_add = DetailSubscription::create($register_details_subscription)) {
 
-                    if ($user_add = DetailSubscription::create($register_details_subscription)) {
+                                $register_number_members = array(
+                                    'client_id' => $id_client,
+                                    'registered_members' => $cant_people,
+                                );
+    
+                                if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
+                                     //send email of accountverification 
+                                    $user_client->sendEmailVerificationNotification();
+    
+                                    //send email of subscription success
+                                    self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
+    
+                                    $this->envioSms("+57".$num_phone,"Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
+                                    
+                                    return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
+                                        ->with('last_name', $last_name)->with('email', $email);
+                                }
 
-                        if ($group_or_not == 1) {
-                            # consultar id del cliente...
-                            $client = Client::where('user_id', $id_user_client)->first();
-                            $id_client = $client->id;
-                            $cant_people = $request->session()->get('cant_people');
-
-                            $register_number_members = array(
-                                'client_id' => $id_client,
-                                'registered_members' => $cant_people,
-                            );
-
-                            if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                 //send email of accountverification
-                                $user_client->sendEmailVerificationNotification();
-
-                                //send email of subscription success
-                                self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
-
-                                return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
-                                    ->with('last_name', $last_name)->with('email', $email);
-                            }
-
-                        } else {
-                             //send email of accountverification
-                            $user_client->sendEmailVerificationNotification();
-
-                            //send email of subscription success
-                            self::enviarCorreo($email2, $nombre_client, $number_identication, $plane, $next_payment_date);
-
-                            $this->envioSms("+57".$num_phone,"suscripción exito, disfruta de nuestros beneficios");
-
-                            //dump($status);
-                            return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
-                                ->with('last_name', $last_name)->with('email', $email);
                         }
                     }
                 }
             }
+
+            
         }
 
 

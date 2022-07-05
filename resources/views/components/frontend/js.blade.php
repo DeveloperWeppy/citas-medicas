@@ -5,7 +5,6 @@
 <script src="{{ asset('asset/js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('asset/js/vendor/jquery.waypoints.min.js') }}"></script>
 <script src="{{ asset('asset/js/vendor/jquery.easing.1.3.js') }}"></script>
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
 <!-- Template Main JS File -->
 

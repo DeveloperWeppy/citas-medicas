@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="mb-20 fix">
                                             <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s" class="animated fadeInUp">
-                                                Un <span>Médico</span> <br class="d-none d-md-inline-block"> Listo Para Atenderte
+                                                CONSULTA MÉDICA DESDE <span>$39.900?</span>
                                             </h2>
                                         </div>
                                         <div class="fix mb-20">
@@ -82,12 +82,9 @@
                                             </p>
                                         </div>
                                         <div class="fix pb-35">
-                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="services.html" class="btn3 d-inline-block animated fadeInUp mr-10">
-                                                <span>Learn More</span> <i class="icofont-rounded-double-right"></i>
+                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="#planess" class="btn3 d-inline-block animated fadeInUp mr-10">
+                                                <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
                                             </a>
-                                            <a data-fancybox="gallery_1" data-caption="My caption" href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp" data-delay=".5s" data-duration=".8s" class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
-                                                <span>Watch
-                                                    Video</span> <i class="far fa-play-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,30 +94,20 @@
                     <div class="slider1__item slider1__height slider1__img-02 d-flex align-items-center justify-content-center">
                         <div class="container">
                             <div class="row">
-                                <div class="col-xl-7">
+                                <div class="col-xl-8">
                                     <div class="slider1__content">
                                         <div class="mb-20 fix">
                                             <h5 data-animation="fadeInUp" data-delay=".2s" data-duration=".4s" class="animated fadeInUp">Citasmedicas.es</h5>
                                         </div>
                                         <div class="mb-20 fix">
-                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".4s" class="animated fadeInUp">
-                                                Consulta <span>Médica</span> <br class="d-none d-md-inline-block"> En Casa
+                                            <h2 data-animation="fadeInUp" data-delay=".5s" data-duration=".s" class="animated fadeInUp">
+                                                Agendar con especialistas en 1 día?
                                             </h2>
                                         </div>
-                                        <div class="fix mb-20">
-                                            <p data-animation="fadeInUp" data-delay=".7s" data-duration=".4s" class="animated fadeInUp">
-                                                Proteger tu salud desde casa es lo mejor
-                                                <br class="d-none d-md-inline-block">
-                                                ¡Servicio médico a domicilio!
-                                            </p>
-                                        </div>
                                         <div class="fix pb-35">
-                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="services.html" class="btn3 d-inline-block animated fadeInUp mr-10">
-                                                <span>Learn More</span> <i class="icofont-rounded-double-right"></i>
+                                            <a data-animation="fadeInUp" data-delay=".4s" data-duration=".8s" href="#planess" class="btn3 d-inline-block animated fadeInUp mr-10">
+                                                <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
                                             </a>
-                                            <a data-fancybox="gallery_1" data-caption="My caption" href="https://youtu.be/8rPB4A3zDnQ" data-animation="fadeInUp" data-delay=".5s" data-duration=".8s" class="btn4 ml-25 animated fadeInUp d-none d-sm-inline-block">
-                                                <span>Watch
-                                                    Video</span> <i class="far fa-play-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +194,7 @@
                         <div class="col-lg-5">
                             <div class="about1__left">
                                 <div class="about1__left--thumb1">
-                                    <img src="assets/img/about/about-02.jpg" alt="About">
+                                    <img src="{{ asset('asset/img/about/about-02.jpg') }}" alt="About">
                                 </div>
                                 <div class="about1__left--thumb2">
                                     <a data-fancybox="gallery_1" data-caption="Your caption will be here." href="https://youtu.be/8rPB4A3zDnQ">
@@ -222,37 +209,96 @@
                         <div class="col-lg-7">
                             <div class="about1__wrapper">
                                 <div class="title1 mb-30">
-                                    <h3>Podras tener acceso a diferentes y mejores servicios;  <span>Al mejor precio siempre.</span></h3>
+                                    <h3>¿Qué es citasmedicas.es?</h3>
                                 </div>
                                 <div class="about1__content row">
-                                    <p>Y ademas tendrás descuentos y precios especiales en diferentes categorías como: </p>
-                                    <div class="about1__item mb-65 col-md-6">
-                                        <div class="about1__item--thumb about1__item--bg1">
-                                            <img src="{{ asset('asset/img/png-icon/png-icon-11.png') }}" alt="About">
+                                    <p>Es una plataforma web de pago mensual que conecta suscriptores con los mejores médicos y especialistas de manera inmediata y siempre al mejor precio.
+                                        Además de darte acceso a numerosos convenios, ofertas y precios especiales en otras categorías como: (Ponerlas en 2 columnas acompañadas de iconos)
+                                    </p>
+                                    <div class="w100 text-center">
+                                        <div class="about1__item2  mt-25">
+                                            <h4><img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About" class=" mr-10">Salud</h4>
                                         </div>
-                                        <p>Salud</p>
                                     </div>
                                     <div class="about1__item mb-65 col-md-6">
-                                        <div class="about1__item--thumb about1__item--bg2">
-                                            <img src="{{ asset('asset/img/png-icon/png-icon-11.png') }}" alt="About">
-                                        </div>
-                                        <p>Cuidado personal</p>
+                                        <ul class="list-group">
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Bienestar y Belleza
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Entretenimiento
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Gastronomía
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Hogar y servicios
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="about1__item mb-65 col-md-6">
-                                        <div class="about1__item--thumb about1__item--bg2">
-                                            <img src="{{ asset('asset/img/png-icon/png-icon-11.png') }}" alt="About">
-                                        </div>
-                                        <p>Belleza</p>
-                                    </div>
-                                    <div class="about1__item mb-65 col-md-6">
-                                        <div class="about1__item--thumb about1__item--bg2">
-                                            <img src="{{ asset('asset/img/png-icon/png-icon-11.png') }}" alt="About">
-                                        </div>
-                                        <p>Restaurantes</p>
-                                    </div>
-                                    <div class="about1__btn">
-                                        <a href="contact.html" class="btn3"> <span>SUSCRIBETE YA</span> <i class="icofont-rounded-double-right"></i> </a>
-                                        <a href="about-us.html" class="btn5 ml-35 d-none d-sm-inline-block">Ver más</a>
+                                        <ul class="list-group">
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Servicios
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Ropa y accesorios
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Salud Animal
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="about1__item2  mt-25">
+                                                    <div class="about1__item--thumb2 about1__item--bg1">
+                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                    </div>
+                                                    <p>Turismo
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -264,131 +310,78 @@
         <!-- |=====|| About End ||=================| -->
         <!-- |==========================================| -->
 
+        <section class="about5 other_page top-100">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="about5__wrapper">
+                                <div class="title2 text-center">
+                                    <h2>¿Por qué citas médicas?</h2>
+                                    <p>Sabemos que acceder a servicios de salud suele ser una pesadilla, el sistema de salud público es un caos y las pólizas de medicina prepagada están por las nubes, a demás del calvario para conseguir una cita médica o con especialista puede tardar más de 15 días o incluso meses.
+                                        Por eso…
+                                        En Citas Médicas hemos diseñado una serie de convenios para que tengas acceso a los mejores médicos y especialistas con el mejor precio siempre a través de una membresía para ti y los tuyos.
+                                        Llegamos para transformar la manera en que accedes a servicios de salud
+                                    </p>
+                                    <a href="planes.php" class="btn8">Suscribete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="about3">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="about3__left-area">
+                                <div class="about3__thumb">
+                                    <img src="{{ ('asset/img/about/about-11.jpg') }}" alt="About">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="about3__right-area">
+                                <div class="title1 mb-30">
+                                    <h4><span>¿Cómo</span> funciona?</h4>
+                                    <h3>Acceder a los beneficios que tiene Citas Médicas para ti es muy fácil.</h3>
+                                </div>
+                                <div class="about3__content">
+                                    <ul class="list-group">
+                                        <li>
+                                            <div class="about1__item3">
+                                                <p>1. Selecciona la suscripción de tu preferencia</p>
+                                                <p>2. Accedes a tu directorio de beneficios en salud y otras categorías</p>
+                                                <p>3. Seleccionas el prestador y el servicio o producto de tu interés</p>
+                                                <p>4. Te acercas con tu código de suscripción para redimir tus beneficios</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="about3__content">
+                                        <h4 class="listo">¡Y listo! Es así de fácil.</h4>
+                                    </div>
+                                    <div class="fix">
+                                        <a href="planes.php" class="btn3 d-inline-block animated fadeInUp">
+                                            <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- |==========================================| -->
         <!-- |=====|| Sección de planes||===============| -->
         <x-information-planes></x-information-planes>
 
-         <!-- |=====|| Counter Start ||===============| -->
-         <section class="counter1 counter1__bg-01">
-            <div class="content_box_100_50">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="title2 mb-55 text-center">
-                                <h4>Tenemos</h4>
-                                <h2>Muchos beneficios para tí y tu familia</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6">
-                            <div class="counter1__item text-center mb-50">
-                                <div class="counter1__thumb">
-                                    <i class="flaticon-doctor"></i>
-                                </div>
-                                <div class="counter1__content">
-                                    <h4 class="m-0">Atención priorizada</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6">
-                            <div class="counter1__item text-center mb-50">
-                                <div class="counter1__thumb">
-                                    <i class="flaticon-ambulance"></i>
-                                </div>
-                                <div class="counter1__content">
-                                    <h4 class="m-0">Especialistas calificados</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6">
-                            <div class="counter1__item text-center mb-50">
-                                <div class="counter1__thumb">
-                                    <i class="flaticon-patient"></i>
-                                </div>
-                                <div class="counter1__content">
-                                    <h4 class="m-0">Sin trámites</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6">
-                            <div class="counter1__item text-center mb-50">
-                                <div class="counter1__thumb">
-                                    <i class="flaticon-medical-report"></i>
-                                </div>
-                                <div class="counter1__content">
-                                    <h4 class="m-0">Atención en Línea</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- |=====|| Counter End ||=================| -->
-        <!-- |==========================================| -->
-        <section class="service1">
-            <div class="content_box_100">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="title2 mb-45 text-center">
-                                <h4>Los mejores</h4>
-                                <h2>Servicios estan aquí</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="service1__carousel owl-carousel">
-                                <div class="service1__item mb-30 text-center">
-                                    <div class="service1__star">
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <div class="service1__thumb">
-                                        <img src="{{ asset('asset/img/png-icon/png-icon-12.png') }}" alt="Image">
-                                    </div>
-                                    <div class="service1__content mb-40">
-                                        <h3>MÉDICOS ESPECIALISTAS</h3>
-                                        <p>Aquí encuentras el servicio que necesitas</p>
-                                    </div>
-                                    <a href="service-details.html" class="btn6"> <span>Ver más</span> <i class="icofont-rounded-double-right"></i> </a>
-                                </div>
-                                <div class="service1__item mb-30 text-center">
-                                    <div class="service1__star">
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <div class="service1__thumb">
-                                        <img src="{{ asset('asset/img/png-icon/png-icon-13.png') }}" alt="Image">
-                                    </div>
-                                    <div class="service1__content mb-40">
-                                        <h3>EXÁMENES DIAGNÓSTICOS</h3>
-                                        <p>Toma preferencial de muestras y radiografías</p>
-                                    </div>
-                                    <a href="service-details.html" class="btn6"> <span>Ver más</span> <i class="icofont-rounded-double-right"></i> </a>
-                                </div>
-                                <div class="service1__item mb-30 text-center">
-                                    <div class="service1__star">
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <div class="service1__thumb">
-                                        <img src="{{ asset('asset/img/png-icon/png-icon-14.png') }}" alt="Image">
-                                    </div>
-                                    <div class="service1__content mb-40">
-                                        <h3>ATENCIÓN MÉDICA INMEDIATA</h3>
-                                        <p>Cobertura en toda la ciudad de Cúcuta</p>
-                                    </div>
-                                    <a href="service-details.html" class="btn6"> <span>Ver más</span> <i class="icofont-rounded-double-right"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- |=====|| Service End ||=================| -->
+        
         <!-- |==========================================| -->
         <section class="blog1 overflow-hidden">
             <div class="blog1__top">
@@ -485,9 +478,8 @@
                                     </div>
                                 </div>
                                 <h3>Llamanos</h3>
-                                <h4>+273-649300</h4>
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. cumsan lacus vel facilisis. </p>
+                                <h4>+57 318 372 27 11 </h4>
+                                <p class="m-0">Los mejores especialistas, exámenes diagnósticos, equipos médicos y medicamentos con tarifas y descuentos preferenciales, para ti, tu familia y tu grupo de trabajo </p>
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -496,19 +488,19 @@
                                 <form id="contact-form" action="assets/php/mail.php" method="POST">
                                     <div class="row mb-20">
                                         <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="name" placeholder="Full name *" required>
+                                            <input class="form-control" type="text" name="name" placeholder="Nombre *" required>
                                         </div>
                                         <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="phone-number" placeholder="Your phone *">
+                                            <input class="form-control" type="text" name="phone-number" placeholder="Teléfono *">
                                         </div>
                                         <div class="col-xl-12">
-                                            <input class="form-control" type="text" name="subject" placeholder="I’m interested in *">
+                                            <input class="form-control" type="text" name="subject" placeholder="Interesado en *">
                                         </div>
                                         <div class="col-xl-12">
-                                            <input class="form-control" type="email" name="email" placeholder="Your email *" required>
+                                            <input class="form-control" type="email" name="email" placeholder="Correo *" required>
                                         </div>
                                         <div class="col-xl-12">
-                                            <button type="submit" class="btn8">Send Us</button>
+                                            <button type="submit" class="btn8">Enviar</button>
                                         </div>
                                     </div>
                                     <p class="form-message"></p>

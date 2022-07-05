@@ -12,6 +12,7 @@ class DetailSubscription extends Model
     protected $fillable = [
         'user_id',
         'suscription_id',
+        'operation_id',
         'payer_id',
         'status_operation',
         'next_payment_date',

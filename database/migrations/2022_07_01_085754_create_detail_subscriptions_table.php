@@ -17,6 +17,7 @@ class CreateDetailSubscriptionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->unique()->references('id')->on('users');
             $table->foreignId('suscription_id')->unique()->references('id')->on('subscriptions');
+            $table->string('operation_id');
             $table->string('payer_id');
             $table->string('status_operation');
             $table->dateTime('next_payment_date');

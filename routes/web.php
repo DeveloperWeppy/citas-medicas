@@ -26,9 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::controller(FrontendController::class)
     ->group(function () {
-        Route::get('/nosotros', 'nosotros')->name('front.nosotros');
-        Route::get('/servicios', 'servicios')->name('front.servicios');
-        Route::get('/afiliate-ahora', 'afiliate')->name('front.afiliate');
+        Route::get('/como-funciona', 'nosotros')->name('front.nosotros');
+        Route::get('/beneficios', 'beneficios')->name('front.servicios');
+        Route::get('/planes', 'planes')->name('front.afiliate');
         Route::get('/contactanos', 'contacto')->name('front.contacto');
         Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
         Route::get('/detalles-plan/{id}', 'detallesplan')->name('front.detallesplan');

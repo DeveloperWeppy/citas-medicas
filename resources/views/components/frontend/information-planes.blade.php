@@ -1,11 +1,11 @@
-<section class="pricing1 counter1__bg-01">
+<section class="pricing1 counter1__bg-01" id="planess">
     <div class="content_box_100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="title2 mb-60 text-center">
                         <h4>Planes</h4>
-                        <h2>Make life easier with comfortable pricing</h2>
+                        <h2>Empieza a vivir una mejor experiencia de salud</h2>
                     </div>
                 </div>
             </div>

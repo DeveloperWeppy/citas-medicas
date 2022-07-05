@@ -4124,14 +4124,14 @@ i[class*=" flaticon-"]:before {
 }
 
 .slider1__img-01 {
-  background: url(../img/hero/doc-1.webp);
+  background: url(../img/hero/consulta-medica.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .slider1__img-02 {
-  background: url(../img/hero/doc-3.webp);
+  background: url(../img/hero/agendar-con-especialistas.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7080,7 +7080,7 @@ i[class*=" flaticon-"]:before {
 ===| 18. Sidebar and Page title
 ===================================================*/
 .page_title__img-01 {
-  background: url(../img/background/bg-17.jpg);
+  background: url(../img/background/bg-05.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7108,7 +7108,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .page_title__img-05 {
-  background: url(../img/background/bg-21.jpg);
+  background: url(../img/background/banner.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -9109,7 +9109,10 @@ i[class*=" flaticon-"]:before {
 .pricing1 {
   background: #eff6f6;
 }
-
+.blog1__top {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
 .pricing1__row {
   -webkit-box-shadow: 0px 12px 24.3px 2.7px rgba(238, 238, 238, 0.78);
   box-shadow: 0px 12px 24.3px 2.7px rgba(238, 238, 238, 0.78);
@@ -10682,6 +10685,59 @@ https://www.phpied.com/delay-loading-your-print-css/
   h3 {
     page-break-after: avoid;
   }
+}
+.listo {
+  font-size: 24px;
+  line-height: 30px;
+  color: #7a8a9e;
+  letter-spacing: 0.25px;
+  margin-top: 10px !important;
+  margin-bottom: 15px !important;
+}
+.w100{
+  width: 100%;
+}
+.w50{
+  width: 50%;
+}
+.profile1__item2 {
+  background: white;
+  position: relative;
+}
+.profile1__item--thumb2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background: #fff;
+  text-align: center;
+  line-height: 76px;
+  position: absolute;
+  left: 30px;
+  top: 10px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.about1__item2 p {
+  padding-left: 70px;
+  font-size: 14px;
+  line-height: 24px;
+  padding-top: 13px;
+}
+.about1__item--thumb2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 50px;
+}
+
+.top-50{
+  margin-top: 50px;
+}
+.top-100{
+  margin-top: 100px;
 }
 
 .color_white{

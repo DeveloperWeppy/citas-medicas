@@ -20,13 +20,13 @@ class FrontendController extends Controller
         return view('nosotros');
     }
 
-    public function servicios()
+    public function beneficios()
     {
 
         return view('servicios');
     }
 
-    public function afiliate()
+    public function planes()
     {
 
         return view('afiliate');
@@ -96,6 +96,7 @@ class FrontendController extends Controller
 
         $plan = Plan::find($plane);
         $group_or_not = $plan->is_group;
+        $cant_people = $plan->cant_people;
 
         session(['name'=> $nombre_client]);
         session(['last_name'=> $last_name]);
@@ -104,23 +105,7 @@ class FrontendController extends Controller
         session(['number_identication'=> $number_identication]);
         session(['num_phone'=> $num_phone]);
         session(['group_or_not'=> $group_or_not]);
-
-        if ($group_or_not == 1) {
-            $cant_people = $plan->cant_people;
-            session(['cant_people'=> $cant_people]);
-        }
-  /*    session('name', $nombre_client);
-        session()->flash('last_name', $last_name);
-        session()->flash('number_identication', $number_identication);
-        session()->flash('date_of_birth', $date_of_birth);
-        session()->flash('email', $email);
-        session()->flash('num_phone', $num_phone);
-        session()->flash('department', $department);
-        session()->flash('city', $city);
-        session()->flash('address', $address);
-        session()->flash('neighborhood', $neighborhood);
-        session()->flash('plane', $plane);
-        session()->flash('slug', $slug); */
+        session(['cant_people'=> $cant_people]);
 
         $correo = $request->email;
         $num_cedula = $request->number_identication;

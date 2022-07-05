@@ -1,6 +1,10 @@
 <x-main-layout>
     <!-- title -->
     @section('title')Afíliate Ahora @endsection
+
+    <x-slot name="css">
+        
+    </x-slot>
 <section class="pricing1 counter1__bg-01">
     <div class="content_box_100">
         <div class="container">

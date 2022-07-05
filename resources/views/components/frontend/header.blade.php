@@ -39,7 +39,7 @@
                     <div class="header__middle1--right text-right">
 
                         <div class="header__middle1--btn">
-                            <a href="contact.html" class="btn2">SUSCRIBIRSE</a>
+                            <a href="{{ route('login') }}" class="btn2">INICIAR SESIÓN</a>
                         </div>
                     </div>
                 </div>
@@ -76,9 +76,10 @@
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li><a href="{{ route('front.inicio') }}">INICIO</a></li>
-                                        <li><a href="{{ route('front.nosotros') }}">NOSOTROS</a></li>
-                                        <li><a href="{{ route('front.servicios') }}">SERVICIOS</a></li>
-                                        <li><a href="{{ route('front.afiliate') }}">AFÍLIATE AHORA</a></li>
+                                        <li><a href="{{ route('front.nosotros') }}">¿CÓMO FUNCIONA?</a></li>
+                                        <li><a href="{{ route('front.servicios') }}">BENEFICIOS</a></li>
+                                        <li><a href="{{ route('front.afiliate') }}">PLANES</a></li>
+                                        <li><a href="#">BLOG</a></li>
                                         <li><a href="{{ route('front.contacto') }}">CONTACTANOS</a></li>
                                     </ul>
                                 </nav>
