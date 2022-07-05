@@ -102,7 +102,7 @@
 
 @section('js')
 
-<script src="/js/datatable.js"></script>
+<script src="../js/datatable.js"></script>
     <script>
       
       

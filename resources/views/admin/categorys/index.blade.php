@@ -101,12 +101,12 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
+    <link rel="stylesheet" href="../vendor/adminlte/dist/css/adminlte.css">
 @stop
 
 @section('js')
 
-<script src="/js/datatable.js"></script>
+<script src="../js/datatable.js"></script>
     <script>
       
       

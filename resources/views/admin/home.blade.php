@@ -56,8 +56,8 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../vendor/adminlte/dist/css/adminlte.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
 @stop
 
