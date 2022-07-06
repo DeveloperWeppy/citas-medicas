@@ -16,8 +16,17 @@
                                 <h1>{{$datos['plan']->name}}</h1>
                                 <div class="page_title__bread-crumb">
                                     <ul>
-                                        <li><a href="index.php">Tipo de Plan</a></li>
-                                        <li><a href="nosotros.php">{{$datos['plan']->type_plan}}</a></li>
+                                        <li><a href="">Tipo de Plan</a></li>
+                                        <li><a href="">{{$datos['plan']->type_plan}}</a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="">Beneficiarios del Plan</a></li>
+                                        @if ($datos['plan']->is_group == 1)
+                                            <li><a href="">Podrás tener acceso tú y {{$datos['plan']->cant_people}} miembros más a este Plan Familiar</a></li>
+                                        @else
+                                            <li><a href="">Suscribete y disfuta de los beneficios que tenemos para tí con este Plan Individual</a></li>
+                                        @endif
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -29,14 +38,12 @@
     </main>
 <div class=" service1">
 
-    <img   src="{{ asset('asset/img/bannerfamilia.jpg')}}" class="img_100" src="assets/img/bannerfamilia.jpg" alt="banner plan">
+    {{-- <img   src="{{ asset('asset/img/bannerfamilia.jpg')}}" class="img_100" src="assets/img/bannerfamilia.jpg" alt="banner plan"> --}}
     <div class="row justify-content-center ">
-         <div class="col-xl-6 service1" >
+        <div class="col-xl-6 service1" >
                             <div class="faq1__wrapper ">
-                                <h2 style="font-weight: bold;margin-top:50px"> {{$datos['plan']->name}}</h2>
+                                <h2 style="font-weight: bold;margin-top:50px"> Descripción del Plan</h2>
                                 <p>{{$datos['plan']->description}}</p>
-                                <p><span style="font-weight: bold;">Tipo de Plan</span>: {{$datos['plan']->type_plan}}</p>
-                                <p><span style="font-weight: bold;">Usuarios</span>: {{$datos['plan']->cant_people}}</p>
                                 <h3 style="margin-top:50px">Nuestros Beneficios </h3>
 
                                 <!-- accordion -->
