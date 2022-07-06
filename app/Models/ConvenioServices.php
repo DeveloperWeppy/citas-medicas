@@ -12,6 +12,8 @@ class ConvenioServices extends Model
     protected $fillable = [
         'convenio_id',
         'service_id',
+        'price_normal',
+        'price_discount',
     ];
 
     public function convenio(){

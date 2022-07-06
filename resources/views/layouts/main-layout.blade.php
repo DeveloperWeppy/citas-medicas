@@ -11,7 +11,7 @@
     <meta name="msapplication-config" content="{{ asset('assets/favicons/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">
 
-    <title>@yield('title') | Citas Médicas</title>
+    <title>@yield('title') | Citas Médicas </title>
 
     <x-css>
         {{$css}}
@@ -29,7 +29,7 @@
     <a href="#" class="scrollToTop">
         <i class="fas fa-level-up-alt"></i>
     </a>
-   
+
     <!----- Footer ------>
     <x-footer></x-footer>
     <x-js>
