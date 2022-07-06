@@ -20,11 +20,10 @@
                                         <li><a href="">{{$datos['plan']->type_plan}}</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="">Beneficiarios del Plan</a></li>
                                         @if ($datos['plan']->is_group == 1)
                                             <li><a href="">Podrás tener acceso tú y {{$datos['plan']->cant_people}} miembros más a este Plan Familiar</a></li>
                                         @else
-                                            <li><a href="">Suscribete y disfuta de los beneficios que tenemos para tí con este Plan Individual</a></li>
+                                            <li><a href="">Suscribete y disfruta de los beneficios que tenemos para tí con este Plan Individual</a></li>
                                         @endif
                                         
                                     </ul>
