@@ -1,3 +1,9 @@
+@php
+    function convertirVa($monto){
+        $valor = number_format($monto, 2, ',', '.');
+        return $valor;
+    }
+@endphp
 <x-main-layout>
     <!-- title -->
     @section('title')Afíliate Ahora @endsection
@@ -6,10 +12,12 @@
      <x-slot name="css">
     </x-slot>
 
-<div class="container">
-    <div class="row justify-content-center">
-    </div>
-</div>
+    <main>
+        <!-- |==========================================| -->
+        <!-- |=====|| Sección de planes||===============| -->
+        <x-information-planes></x-information-planes>
+
+    </main>
      <!-- |==========================================| -->
      <x-slot name="js">
     </x-slot>

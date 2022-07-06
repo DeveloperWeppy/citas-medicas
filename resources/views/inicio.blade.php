@@ -319,7 +319,7 @@
                                         En Citas Médicas hemos diseñado una serie de convenios para que tengas acceso a los mejores médicos y especialistas con el mejor precio siempre a través de una membresía para ti y los tuyos.
                                         Llegamos para transformar la manera en que accedes a servicios de salud
                                     </p>
-                                    <a href="#" class="btn6 mt-30">Suscribirme</a>
+                                    <a href="{{ route('front.afiliate') }}" class="btn6 mt-30">Suscribirme</a>
                                 </div>
                             </div>
                         </div>
@@ -335,7 +335,7 @@
                         <div class="col-xl-6">
                             <div class="about3__left-area">
                                 <div class="about3__thumb">
-                                    <img src="{{ ('asset/img/about/about-11.jpg') }}" alt="About">
+                                    <img src="{{ ('asset/img/about/beneficios-citas-medicas.webp') }}" alt="About">
                                 </div>
                             </div>
                         </div>
@@ -360,7 +360,7 @@
                                         <h4 class="listo">¡Y listo! Es así de fácil.</h4>
                                     </div>
                                     <div class="fix">
-                                        <a href="planes.php" class="btn3 d-inline-block animated fadeInUp">
+                                        <a href="{{ route('front.afiliate') }}" class="btn3 d-inline-block animated fadeInUp">
                                             <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
                                         </a>
                                     </div>

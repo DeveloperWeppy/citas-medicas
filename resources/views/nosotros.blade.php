@@ -49,9 +49,6 @@
         <!-- |=====|| Counter End ||=================| -->
         <!-- |==========================================| -->
         <section class="working_process1">
-            <div class="working_process1__thumb1">
-                <img class="img_100" src="{{ asset('asset/img/png-img/png-img-04.png') }}" alt="Image">
-            </div>
             <div class="working_process1__thumb2">
                 <img class="img_100" src="{{ asset('asset/img/png-img/png-img-05.png') }}" alt="Image">
             </div>
@@ -201,6 +198,99 @@
         </section>
         <!-- |=====|| Contact End ||=================| -->
         <!-- |==========================================| -->
+
+         <!-- |==========================================| -->
+        <!-- |=====|| FAQ Start ||===============| -->
+        <section class="faq1">
+            <div class="faq1__thumb1"></div>
+            <div class="faq1__thumb2"></div>
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 offset-xl-6">
+                            <div class="faq1__wrapper">
+                                <h3>Preguntas frecuentes</h3>
+                                <!-- accordion -->
+                                <div class="accordion_style_01 mb-40">
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="card">
+                                            <div class="card-header" id="heading_01">
+                                                <h5>
+                                                    <a href="#" data-toggle="collapse" data-target="#collapse_01" aria-expanded="true" aria-controls="collapse_01">
+                                                        <span>01.</span> How long dose take my check-up test? I’m 56
+                                                        years.
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse_01" class="collapse show" aria-labelledby="heading_01" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <p>Usually we try to do as much as posible so that our patients does
+                                                        not have any difficults and provides prompt treatment.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="heading_02">
+                                                <h5>
+                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_02" aria-expanded="false" aria-controls="collapse_02">
+                                                        <span>02.</span> How many people will be in the calbin workshop?
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse_02" class="collapse" aria-labelledby="heading_02" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <p>Usually we try to do as much as posible so that our patients does
+                                                        not have any difficults and provides prompt treatment.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="heading_03">
+                                                <h5>
+                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_03" aria-expanded="false" aria-controls="collapse_03">
+                                                        <span>03.</span> What other workshop on the dates are available?
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse_03" class="collapse" aria-labelledby="heading_03" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <p>Usually we try to do as much as posible so that our patients does
+                                                        not have any difficults and provides prompt treatment.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="heading_04">
+                                                <h5>
+                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_04" aria-expanded="false" aria-controls="collapse_04">
+                                                        <span>04.</span> Who do I contact for press related inquiries?
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse_04" class="collapse" aria-labelledby="heading_04" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <p>Usually we try to do as much as posible so that our patients does
+                                                        not have any difficults and provides prompt treatment.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- accordion -->
+                                <a href="about-us.html" class="btn3"> <span>Miralas todas <span>aquí</span></span> <i class="icofont-rounded-double-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- |=====|| FAQ End ||=================| -->
+        <!-- |==========================================| -->
+        
     </main>
      <!-- |==========================================| -->
      <x-slot name="js">
