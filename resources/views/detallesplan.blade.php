@@ -1,11 +1,32 @@
 <x-main-layout>
     <!-- title -->
-  @section('title')Conoce mas sobre nuestros planes y servicio @endsection
+  @section('title')Detalles del Plan @endsection
 
      <!---- CSS ----->
      <x-slot name="css">
     </x-slot>
 
+    <main>
+        <section class="page_title page_title__img-01">
+            <div class="page_title__padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="page_title__content">
+                                <h1>{{$datos['plan']->name}}</h1>
+                                <div class="page_title__bread-crumb">
+                                    <ul>
+                                        <li><a href="index.php">Tipo de Plan</a></li>
+                                        <li><a href="nosotros.php">{{$datos['plan']->type_plan}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 <div class=" service1">
 
     <img   src="{{ asset('asset/img/bannerfamilia.jpg')}}" class="img_100" src="assets/img/bannerfamilia.jpg" alt="banner plan">
@@ -16,7 +37,7 @@
                                 <p>{{$datos['plan']->description}}</p>
                                 <p><span style="font-weight: bold;">Tipo de Plan</span>: {{$datos['plan']->type_plan}}</p>
                                 <p><span style="font-weight: bold;">Usuarios</span>: {{$datos['plan']->cant_people}}</p>
-                                <h3 style="margin-top:50px">Nuestros servicios </h3>
+                                <h3 style="margin-top:50px">Nuestros Beneficios </h3>
 
                                 <!-- accordion -->
                                 <div class="accordion_style_01 mb-40">
