@@ -13,8 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Models\CategoryService;
 use Illuminate\Support\Facades\Route;
 
-//Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    //Route::group(['middleware' => ['auth']], function () {
     Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio'])->name('inicio.index');
 
 
