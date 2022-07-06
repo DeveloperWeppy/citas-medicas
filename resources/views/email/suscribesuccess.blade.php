@@ -95,7 +95,7 @@
             <tbody>
                 <tr>
                     <td style="padding: 0; margin: 0; border: 0; width: 635px;">
-                        {{-- <img src="cid:img_header" style="border-radius: 6px 6px 0 0; border-bottom:1px solid #f2f2f2"> --}}
+                        <img src="cid:img_header" style="border-radius: 6px 6px 0 0; border-bottom:1px solid #f2f2f2"> 
                     </td>
                 </tr>
                 <tr>

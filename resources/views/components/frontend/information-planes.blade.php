@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="title2 mb-60 text-center">
-                        <h4>Planes</h4>
-                        <h2>Empieza a vivir una mejor experiencia de salud</h2>
+                        <h4></h4>
+                        <h2>Nuestros Planes</h2>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,12 @@
                         <div class="pricing1__wrapper text-center">
                             <div class="pricing1__thumb--style">
                                 <div class="pricing1__thumb">
-                                    <img src="{{ asset('asset/img/png-icon/png-icon-19.png')}}" alt="Image">
+                                    @if ($item->is_group == 0)
+                                        <img src="{{ asset('asset/img/png-icon/personal.png')}}" alt="Image">
+                                    @else
+                                        <img src="{{ asset('asset/img/png-icon/familiar.png')}}" alt="Image">
+                                    @endif
+                                    
                                 </div>
                             </div>
                             <div class="pricing1__content mt-85">

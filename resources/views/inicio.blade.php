@@ -132,10 +132,10 @@
                                 <div class="col-md-4">
                                     <div class="appointment1__item item-01">
                                         <div class="appointment1__item--thumb">
-                                            <img src="assets/img/png-icon/png-icon-06.png" alt="PNG Image">
+                                            <img src="{{ asset('asset/img/png-icon/png-icon-06.png') }}" alt="PNG Image">
                                         </div>
                                         <div class="appointment1__item--content">
-                                            <h4>Your Location</h4>
+                                            <h4>Ubicación</h4>
                                             <select>
                                                 <option data-display="Select Your Location">Select Your Location
                                                 </option>
@@ -151,10 +151,10 @@
                                 <div class="col-md-4">
                                     <div class="appointment1__item">
                                         <div class="appointment1__item--thumb">
-                                            <img src="assets/img/png-icon/png-icon-07.png" alt="PNG Image">
+                                            <img src="{{ asset('asset/img/png-icon/png-icon-07.png') }}" alt="PNG Image">
                                         </div>
                                         <div class="appointment1__item--content">
-                                            <h4>Select a Services</h4>
+                                            <h4>Servicio</h4>
                                             <select>
                                                 <option data-display="Choose a Services">Choose a Services</option>
                                                 <option value="1">Old Advance Care</option>
@@ -168,7 +168,7 @@
                                 <div class="col-md-4">
                                     <div class="appointment1__btn">
                                         <div class="appointment1__item--thumb">
-                                            <img src="assets/img/png-icon/png-icon-08.png" alt="PNG Image">
+                                            <img src="{{ asset('asset/img/png-icon/png-icon-08.png') }}" alt="PNG Image">
                                         </div>
                                         <a href="services.html" class="btn3 d-inline-block"> <span>Send Us</span> <i
                                                 class="icofont-rounded-double-right"></i>
@@ -194,15 +194,11 @@
                         <div class="col-lg-5">
                             <div class="about1__left">
                                 <div class="about1__left--thumb1">
-                                    <img src="{{ asset('asset/img/about/about-02.jpg') }}" alt="About">
+                                    <img src="{{ asset('asset/img/png-icon/que-es-citas-medicas.png') }}" alt="About">
                                 </div>
-                                <div class="about1__left--thumb2">
-                                    <a data-fancybox="gallery_1" data-caption="Your caption will be here." href="https://youtu.be/8rPB4A3zDnQ">
-                                        <img src="assets/img/png-icon/png-icon-09.png" alt="About">
-                                    </a>
-                                </div>
+                               
                                 <div class="about1__left--thumb3">
-                                    <img src="assets/img/about/about-03.jpg" alt="About">
+                                    <img src="{{ asset('asset/img/about/beneficios.png') }}" alt="About">
                                 </div>
                             </div>
                         </div>
@@ -213,11 +209,11 @@
                                 </div>
                                 <div class="about1__content row">
                                     <p>Es una plataforma web de pago mensual que conecta suscriptores con los mejores médicos y especialistas de manera inmediata y siempre al mejor precio.
-                                        Además de darte acceso a numerosos convenios, ofertas y precios especiales en otras categorías como: (Ponerlas en 2 columnas acompañadas de iconos)
+                                        Además de darte acceso a numerosos convenios, ofertas y precios especiales en otras categorías como:
                                     </p>
                                     <div class="w100 text-center">
                                         <div class="about1__item2  mt-25">
-                                            <h4><img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About" class=" mr-10">Salud</h4>
+                                            <h4><img src="{{ asset('asset/img/png-icon/salud.png') }}" alt="About" class=" mr-10">Salud</h4>
                                         </div>
                                     </div>
                                     <div class="about1__item mb-65 col-md-6">
@@ -225,7 +221,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/bienestar-y-belleza.png') }}" alt="About">
                                                     </div>
                                                     <p>Bienestar y Belleza
                                                     </p>
@@ -234,7 +230,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/entretenimiento.png') }}" alt="About">
                                                     </div>
                                                     <p>Entretenimiento
                                                     </p>
@@ -243,7 +239,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/gastronomía.png') }}" alt="About">
                                                     </div>
                                                     <p>Gastronomía
                                                     </p>
@@ -252,7 +248,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/hogar-y-servicios.png') }}" alt="About">
                                                     </div>
                                                     <p>Hogar y servicios
                                                     </p>
@@ -265,7 +261,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/servicios.png') }}" alt="About">
                                                     </div>
                                                     <p>Servicios
                                                     </p>
@@ -274,7 +270,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/ropa-y-accesorios.png') }}" alt="About">
                                                     </div>
                                                     <p>Ropa y accesorios
                                                     </p>
@@ -283,7 +279,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/salud-animal.png') }}" alt="About">
                                                     </div>
                                                     <p>Salud Animal
                                                     </p>
@@ -292,7 +288,7 @@
                                             <li>
                                                 <div class="about1__item2  mt-25">
                                                     <div class="about1__item--thumb2 about1__item--bg1">
-                                                        <img src="{{ ('asset/img/png-icon/png-icon-10.png') }}" alt="About">
+                                                        <img src="{{ asset('asset/img/png-icon/turismo.png') }}" alt="About">
                                                     </div>
                                                     <p>Turismo
                                                     </p>
@@ -310,20 +306,20 @@
         <!-- |=====|| About End ||=================| -->
         <!-- |==========================================| -->
 
-        <section class="about5 other_page top-100">
+        <section class="bg-1 other_page">
             <div class="content_box_100">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="about5__wrapper">
                                 <div class="title2 text-center">
-                                    <h2>¿Por qué citas médicas?</h2>
-                                    <p>Sabemos que acceder a servicios de salud suele ser una pesadilla, el sistema de salud público es un caos y las pólizas de medicina prepagada están por las nubes, a demás del calvario para conseguir una cita médica o con especialista puede tardar más de 15 días o incluso meses.
+                                    <h2 class="text-white">¿Por qué citas médicas?</h2>
+                                    <p class="text-white">Sabemos que acceder a servicios de salud suele ser una pesadilla, el sistema de salud público es un caos y las pólizas de medicina prepagada están por las nubes, a demás del calvario para conseguir una cita médica o con especialista puede tardar más de 15 días o incluso meses.
                                         Por eso…
                                         En Citas Médicas hemos diseñado una serie de convenios para que tengas acceso a los mejores médicos y especialistas con el mejor precio siempre a través de una membresía para ti y los tuyos.
                                         Llegamos para transformar la manera en que accedes a servicios de salud
                                     </p>
-                                    <a href="planes.php" class="btn8">Suscribete</a>
+                                    <a href="#" class="btn6 mt-30">Suscribirme</a>
                                 </div>
                             </div>
                         </div>
@@ -381,9 +377,27 @@
         <!-- |=====|| Sección de planes||===============| -->
         <x-information-planes></x-information-planes>
 
-        
+<!-- |==========================================| -->
+        <!-- |=====|| Client Start ||===============| -->
+        <section class="client1">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 offset-lg-1">
+                            <div class="title2 mb-45 text-center">
+                                <h2>Nuestros aliados</h2>
+                            </div>
+                        </div>
+                       <x-view-nuestros-aliados></x-view-nuestros-aliados>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- |=====|| Client End ||=================| -->
         <!-- |==========================================| -->
-        <section class="blog1 overflow-hidden">
+
+          <!-- |==========================================| -->
+          <section class="blog1 overflow-hidden">
             <div class="blog1__top">
                 <div class="container text-center align-middle">
                     <a href="https://blog.citasmedicas.es/" class="btn3"> <span>NUESTRO BLOG</span> <i class="icofont-rounded-double-right"></i> </a>
@@ -392,78 +406,7 @@
         </section>
         <!-- |=====|| Blog End ||=================| -->
         <!-- |==========================================| -->
-<!-- |==========================================| -->
-        <!-- |=====|| Client Start ||===============| -->
-        <section class="client1">
-            <h3 class="hidden">Client Section</h3>
-            <div class="content_box_100">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="client1__active owl-carousel">
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c1.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c2.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c3.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c4.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c5.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c6.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c7.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c8.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c9.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c10.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                                <div class="client1__item d-flex justify-content-center align-items-center">
-                                    <div class="client1__thumb">
-                                        <a href="#"><img src="{{ asset('asset/img/client/c11.png') }}" alt="Client"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- |=====|| Client End ||=================| -->
-        <!-- |==========================================| -->
+
        <!-- |==========================================| -->
         <!-- |=====|| Contact Start ||===============| -->
         <section class="contact1">

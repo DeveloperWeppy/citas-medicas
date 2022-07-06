@@ -114,6 +114,31 @@
                             </div>
                         </div>
                     </div>
+                        <div class=" text-center align-items-center mt-50">
+                            <div class="about3__content">
+                                <h3 class="listo">¡Y listo! Es así de fácil.</h3>
+                            </div>
+                            <div class="fix mt-30">
+                                <a href="planes.php" class="btn3 d-inline-block animated fadeInUp">
+                                    <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="client1 bg-2">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 offset-lg-1">
+                            <div class="title2 mb-45 text-center">
+                                <h2>Nuestros aliados</h2>
+                            </div>
+                        </div>
+                        <x-view-nuestros-aliados></x-view-nuestros-aliados>
+                    </div>
                 </div>
             </div>
         </section>

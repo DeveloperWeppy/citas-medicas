@@ -208,6 +208,7 @@ button.button {
   margin: 0px auto;
 }
 
+
 .content_box_pob_120_90 {
   padding-bottom: 90px;
 }
@@ -2031,7 +2032,7 @@ a.meanmenu-reveal {
 .btn6 {
   display: inline-block;
   text-transform: capitalize;
-  padding: 20px 85px 20px 35px;
+  padding: 20px 45px 20px 45px;
   font-size: 16px;
   line-height: 18px;
   border-radius: 100px;
@@ -5247,7 +5248,7 @@ i[class*=" flaticon-"]:before {
 ===| 14. Blog or News
 ===================================================*/
 .blog1__top {
-  background: url(../img/hero/doc-4.webp);
+  background: url(../img/hero/blog.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7080,7 +7081,7 @@ i[class*=" flaticon-"]:before {
 ===| 18. Sidebar and Page title
 ===================================================*/
 .page_title__img-01 {
-  background: url(../img/background/bg-05.jpg);
+  background: url(../img/background/encabezado-citasmedicas.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7176,7 +7177,7 @@ i[class*=" flaticon-"]:before {
   font-size: 36px;
   line-height: 46px;
   font-weight: bold;
-  color: #223645;
+  color: white;
   margin-bottom: 17px;
 }
 
@@ -7212,7 +7213,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .page_title__bread-crumb ul li:last-child a {
-  color: #0cb8b6;
+  color: white;
 }
 
 .sidebar1__info--content {
@@ -10687,7 +10688,7 @@ https://www.phpied.com/delay-loading-your-print-css/
   }
 }
 .listo {
-  font-size: 24px;
+  font-size: 35px;
   line-height: 30px;
   color: #7a8a9e;
   letter-spacing: 0.25px;
@@ -10697,6 +10698,11 @@ https://www.phpied.com/delay-loading-your-print-css/
 .w100{
   width: 100%;
 }
+.w80{
+  width: 80% !important;
+  max-width: none !important;
+}
+
 .w50{
   width: 50%;
 }
@@ -10739,12 +10745,27 @@ https://www.phpied.com/delay-loading-your-print-css/
 .top-100{
   margin-top: 100px;
 }
-
+.text-white {
+  color: white !important;
+}
 .color_white{
     background: white;
     width: 40%;
     margin-left: 5%;
     margin-right: 5%;
+}
+.bg-1{
+  background: url(../img/background/¿Por\ qué\ citas\ médicas.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.bg-2{
+  background: url(../img/png-img/png-img-28.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
 }
 @media only screen and (max-width: 767px) {
   .color_white{

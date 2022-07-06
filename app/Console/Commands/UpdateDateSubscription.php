@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DetailSubscription;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class UpdateDateSubscription extends Command
 {
@@ -37,6 +39,19 @@ class UpdateDateSubscription extends Command
      */
     public function handle()
     {
-        //aquí vaan las instrucciones
+        $suscripciones = DetailSubscription::get();
+
+        foreach ($suscripciones as $key => $value) {
+            # id operation of subscriptions...
+
+            $id_subscription = $value->operation_id;
+
+             //consultar suscripción por id de operación
+            $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
+                'limit' => 100,
+                'q' => $id_subscription,
+            ])->json();
+        }
+       
     }
 }

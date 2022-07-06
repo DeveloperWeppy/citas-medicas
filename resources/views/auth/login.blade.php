@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row no-gutters">
                         <div class="col-lg-5 appointment1__wrapper d-flex align-items-center">
-                            <img src="/asset/img/access.png" alt="" class="img-fluid rounded mx-auto d-block">
+                            <img src="{{ asset('asset/img/access.png') }}" alt="" class="img-fluid rounded mx-auto d-block">
                         </div>
                         <div class="col-lg-7">
                             <div class="contact_page2__form">
