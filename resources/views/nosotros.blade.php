@@ -65,7 +65,7 @@
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <div class="working_process1__item text-center mb-30">
                                 <div class="working_process1__thumb mb-30">
-                                    <img src="{{ asset('asset/img/service/service-01.jpg') }}" alt="Service">
+                                    <img src="{{ asset('asset/img/service/CF-1.webp') }}" alt="Service">
                                 </div>
                                 <div class="working_process1__content">
                                     <h3>Selecciona la suscripción de tu preferencia</h3>
@@ -76,7 +76,7 @@
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <div class="working_process1__item text-center mb-30">
                                 <div class="working_process1__thumb mb-30">
-                                    <img src="{{ asset('asset/img/service/service-02.jpg') }}" alt="Service">
+                                    <img src="{{ asset('asset/img/service/CF-2.webp') }}" alt="Service">
                                 </div>
                                 <div class="working_process1__content">
                                     <h3>Accedes a tu directorio de beneficios en salud y otras categorías</h3>
@@ -88,7 +88,7 @@
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <div class="working_process1__item text-center mb-30">
                                 <div class="working_process1__thumb mb-30">
-                                    <img src="{{ asset('asset/img/service/service-03.jpg') }}" alt="Service">
+                                    <img src="{{ asset('asset/img/service/CF-3.webp') }}" alt="Service">
                                 </div>
                                 <div class="working_process1__content">
                                     <h3>Encuentras el prestador y el servicio o producto de tu interés.
@@ -101,7 +101,7 @@
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <div class="working_process1__item text-center mb-30">
                                 <div class="working_process1__thumb mb-30">
-                                    <img src="{{ asset('asset/img/service/service-01.jpg') }}" alt="Service">
+                                    <img src="{{ asset('asset/img/service/CF-4.webp') }}" alt="Service">
                                 </div>
                                 <div class="working_process1__content">
                                     <h3> Te acercas con tu código de suscripción para redimir tus beneficios.</h3>
