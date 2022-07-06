@@ -16,7 +16,7 @@ class Controller extends BaseController
      ])->throw()->json();
      $token=$response['token'];
      $response = Http::withHeaders([
-          'api-key' => '0e925130f985f8c5880114dd2bbe5d7e560ed916',
+          'api-key' => '2cf3f75a2ad4af861386d82846a120dcc8f0c3cc',
           'Authorization' => 'Bearer '.$token,
         ])->post('https://api.cellvoz.com/v2/sms/single', [
         'number' => $number,
