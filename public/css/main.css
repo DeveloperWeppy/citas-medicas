@@ -9205,9 +9205,6 @@ i[class*=" flaticon-"]:before {
 }
 
 .pricing1__content>h3 {
-  border-top: 2px solid #E0E0E0;
-  border-left: 2px solid #E0E0E0;
-  border-right: 2px solid #E0E0E0;
   margin-top: 20px;
   color: #292929;
   font-size: 30px;
