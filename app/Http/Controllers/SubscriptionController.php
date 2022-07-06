@@ -27,6 +27,10 @@ class SubscriptionController extends Controller
         // $this->middleware(['auth', 'unsubscribed']);
     }
 
+    public function __invoke(Request $request)
+    {
+
+    }
     
     public function index()
     {
