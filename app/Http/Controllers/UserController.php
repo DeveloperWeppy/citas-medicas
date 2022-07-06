@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\Convenio;
 use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
+use App\Models\ConvenioServices;
 use App\Models\Client;
 use App\Models\UserInformation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function index()
@@ -39,7 +40,7 @@ class UserController extends Controller
                 date("Y-m-d H:m", strtotime($value->created_at)),
                 '
                 <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
-                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarUsuario(' . $value->id . ');"><i class="fas fa-trash"></i> Eliminar</button>
+                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarRegistro('."'convenios'".','.$value->id.');"><i class="fas fa-trash"></i> Eliminar</button>
                 '
             ];
 
@@ -54,6 +55,16 @@ class UserController extends Controller
     public function create()
     {
         return view('admin.users.create');
+    }
+    public function edit($id)
+    {
+        $user= User::findOrFail($id);
+        $userInformation= UserInformation::where('user_id', $id)->get();
+        $user_info_id=isset($userInformation[0]->id)? $userInformation[0]->id:0;
+        $convenio= Convenio::where('responsable_id', $user_info_id)->get();
+        $convenioServices= ConvenioServices::where('convenio_id', $convenio[0]->id)->get();
+        $attentioShedule=AttentioShedule::where('responsable_id', $user_info_id)->get();
+        return view('admin.users.edit')->with('user', $user)->with('userInformation', $userInformation[0])->with('convenio', $convenio[0])->with('attentioShedule', $attentioShedule)->with('convenioServices', $convenioServices);
     }
 
     public function store(Request $request)
@@ -93,7 +104,6 @@ class UserController extends Controller
             );
 
             if ($user_add = User::create($register_user)->assignRole('Prestador')) {
-
                 $id_user = $user_add->id;
                 $register_user_info = array(
                     'user_id' => $id_user,
@@ -115,11 +125,19 @@ class UserController extends Controller
                         'responsable_id' => $id_user_responsable,
                     );
 
-                    if (Convenio::create($register_convenio)) {
-
+                    if ($responsable =Convenio::create($register_convenio)) {
+                        $id_convenio = $responsable->id;
+                        foreach ($request->servicio_id as $index => $rowid) {
+                            $register_horario_atencion = ConvenioServices::create([
+                                'convenio_id' => $id_convenio,
+                                'service_id' =>  $request->servicio_id[$index],
+                                'price_normal' =>$request->price_normal[$index],
+                                'price_discount' => $request->price_descuento[$index],
+                            ]);
+                        }
                         for ($i = 0; $i < 7; ++$i) {
                             //dump((float)$montos[$i]);
-    
+
                             $register_horario_atencion = AttentioShedule::create([
                                 'day' => $dia[$i],
                                 'open_morning' => $apertura_morning[$i],
@@ -156,7 +174,7 @@ class UserController extends Controller
     {
         $user_login = Auth::user()->id;
         $user = User::find($user_login);
-        
+
         if ($user->hasRole('Prestador')) {
             $info_prestador = UserInformation::where('user_id', $user_login)->first();
 
@@ -164,7 +182,7 @@ class UserController extends Controller
 
         }else if ($user->hasRole('Cliente')) {
             $info_cliente = Client::where('user_id', $user_login)->first();
-            
+
             return view('profile')->with('info_cliente', $info_cliente);
 
         }else if ($user->hasRole('Gestor') || $user->hasRole('Admin')) {
@@ -197,7 +215,28 @@ class UserController extends Controller
          }
          echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
-
+    public function destroy($id)
+    {
+      $error = true;
+      $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+      $user_info_id = UserInformation::where('user_id', $id)->get();
+      $user_info_id=isset($user_info_id[0]->id)? $user_info_id[0]->id:0;
+      $convenio_id = Convenio::where('responsable_id', $user_info_id)->get();
+      $convenio_id=isset($convenio_id[0]->id) ? $convenio_id[0]->id:0;
+      if(DB::table('convenio_services')->where('convenio_id', $convenio_id)->delete() || $convenio_id==0){
+      if (Convenio::where('responsable_id', $user_info_id)->delete() || $convenio_id==0){
+              if (AttentioShedule::where('responsable_id', $user_info_id)->delete() ||  $user_info_id==0){
+                  if (UserInformation::where('user_id', $id)->delete()) {
+                        if (User::findOrFail($id)->delete()) {
+                           $error = false;
+                           $mensaje = '';
+                        }
+                  }
+              }
+      }
+    }
+      echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
     public function updatedprestador(Request $request, Client $client)
     {
         $error = false;

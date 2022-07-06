@@ -13,6 +13,7 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
+   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <div class="row mb-2">
       <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
         <div class="row">
@@ -27,14 +28,7 @@
 
 
           </div>
-          <div class="col-12 col-sm-6">
 
-            @role('Cliente')
-            @if (!Session::get('ifActiveSubs'))
-                <a class="btn btn-outline-citasmedicas" href="#"> Subscribirse <i class="fas fa-hand-point-up"></i></a>
-            @endif
-            @endrole
-          </div>
         </div>
       </div>
 
@@ -45,6 +39,22 @@
           </div>
       </div>
 
+    </div>
+    <div   class="row" style="display:flex;justify-content: center;align-items: center;">
+       <div class="col-8">
+            @role('Cliente')
+            @if (Session::get('ifIncompleSubs'))
+                <lottie-player src="{{ asset('lottie/pay.json') }}"  background="transparent"  speed="1"  style="width: 50%; height:auto;margin:0 auto"  loop  autoplay></lottie-player>
+                <h3 style="text-align:center;font-weight: bold;">Continua con tu proceso de suscripción para disfrutar de nuestros beneficios <h3>
+                <div style="display:flex;justify-content: center;margin-top:30px"><a href="" class="btn8">Subscribirme</a></div>
+            @endif
+            @if (!Session::get('ifActiveSubs') && !Session::get('ifIncompleSubs') )
+                <lottie-player src="{{ asset('lottie/alertpay.json') }}"  background="transparent"  speed="1"  style="width: 50%; height:auto;margin:0 auto"  loop  autoplay></lottie-player>
+                <h3 style="text-align:center;font-weight: bold;">Realiza el pago de tu suscripcion para seguir usando nuestros servicios<h3>
+                <div style="display:flex;justify-content: center;margin-top:30px"><a href="" class="btn8">Pagar</a></div>
+            @endif
+            @endrole
+      </div>
     </div>
 @stop
 
@@ -62,6 +72,7 @@
 @stop
 
 @section('js')
+
     <script>
 
         $(function () {

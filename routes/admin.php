@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'verified']], function () {
     //Route::group(['middleware' => ['auth']], function () {
     Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio'])->name('inicio.index');
-
-
     //ROUTES FOR MANAGEMENT USERS
     Route::controller(UserController::class)
         ->group(function () {
@@ -25,6 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/admin/usuarios/obtener', 'getUsuarios')->name('usuarios.obtener');
             Route::get('/admin/convenios/create', 'create')->name('usuarios.create');
             Route::get('/admin/usuarios/edit/{id}', 'edit')->name('usuarios.edit');
+            Route::get('/admin/usuarios/destroy/{id}', 'destroy')->name('usuarios.destroy');
             Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
 
@@ -131,7 +130,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
             Route::get('/redimimir-servicio/{id}', 'redimir')->name('redimidos.redimir');
             Route::get('/redimimir-diagnostico/{id}', 'index_diagnostico')->name('redimidos.index_diagnostico');
-            
+
             //diagnostics
             Route::post('/redimimir-diagnostico/store', 'store_diagnostico')->name('redimidos.store_diagnostico');
             Route::get('/loaddiagnostics', 'getDiagnostics')->name('redimidos.get_diagnostics');

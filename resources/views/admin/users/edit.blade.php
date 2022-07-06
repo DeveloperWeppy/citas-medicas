@@ -25,7 +25,7 @@
 @section('content')
 
 <div class="container-fluid">
-  <x-form-rgister-user></x-form-rgister-user>
+  <x-form-rgister-user :user=$user :userInformation=$userInformation :convenio=$convenio :attentioShedule=$attentioShedule :convenioServices=$convenioServices></x-form-rgister-user>
 </div>
 @stop
 
