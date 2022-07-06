@@ -30,8 +30,8 @@ class Subscription extends Model
       return $this->belongsTo(Plan::class, 'plan_id');
     }
 
-    public function isActive(){
+   /*  public function isActive(){
         //greater than = gt() mayor que
         return $this->active_until>=now();
-    }
+    } */
 }
