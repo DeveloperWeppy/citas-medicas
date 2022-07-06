@@ -2047,6 +2047,9 @@ a.meanmenu-reveal {
   letter-spacing: 0.25px;
   position: relative;
 }
+.btn6-2 {
+  padding: 20px 75px 20px 45px !important;
+}
 
 @media only screen and (max-width: 400px) {
   .btn6 {
@@ -3985,7 +3988,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .footer1__item--logo {
-  margin-bottom: 45px;
+  margin-bottom: 25px;
 }
 
 .footer1__item ul li:not(:last-child) {
@@ -4486,7 +4489,7 @@ i[class*=" flaticon-"]:before {
 ===| 12. Service and Feature
 ===================================================*/
 .service1 {
-  background: url(../img/png-img/png-img-01.png);
+  background: url(../img/png-img/png-img-33.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -5399,7 +5402,14 @@ i[class*=" flaticon-"]:before {
   background-size: cover;
   background-position: center;
 }
-
+.suscribeteya {
+  background: url(../img/png-img/png-img-15.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
 .blog2.other_page {
   background: #F9F8FF;
 }
@@ -6390,7 +6400,7 @@ i[class*=" flaticon-"]:before {
 ===| 17. About
 ===================================================*/
 .about1 {
-  padding-bottom: 130px;
+  padding-bottom: 60px;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -9209,6 +9219,9 @@ i[class*=" flaticon-"]:before {
 }
 
 .pricing1__content>h3 {
+  border-top: 2px solid #E0E0E0;
+  border-left: 2px solid #E0E0E0;
+  border-right: 2px solid #E0E0E0;
   margin-top: 20px;
   color: #292929;
   font-size: 30px;
@@ -10110,7 +10123,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .faq1__thumb1 {
-  background: url(../img/background/bg-13.jpg);
+  background: url(../img/background/preguntas-frecuentes.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -10762,7 +10775,23 @@ https://www.phpied.com/delay-loading-your-print-css/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+.box{
+  width: 100%;
+}
 
+.left{
+  text-align: left;
+}
+
+.right{
+  text-align: left;
+}
+.pl-30p{
+  padding-left: 30%;
+}
+.pr-30p{
+  padding-right: 30%;
 }
 @media only screen and (max-width: 767px) {
   .color_white{
@@ -10773,7 +10802,6 @@ https://www.phpied.com/delay-loading-your-print-css/
     margin-bottom: 100px;
 }
 }
-
 /*==================================================
 ===| Style CSS End
 ===================================================*/

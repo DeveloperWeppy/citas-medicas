@@ -141,65 +141,78 @@
         </section>
         <!-- |=====|| Working Process End ||=================| -->
         <!-- |==========================================| -->
-        <!-- |==========================================| -->
-        <!-- |=====|| About Start ||===============| -->
-       
-        <!-- |=====|| Appointment End ||=================| -->
-        <!-- |==========================================| -->
-
-
-        <!-- |==========================================| -->
-        <!-- |=====|| Contact Start ||===============| -->
-        <section class="contact1">
+     <!-- |==========================================| -->
+        <!-- |=====|| Testimonial Start ||===============| -->
+        <section class="testimonial3">
             <div class="content_box_100">
                 <div class="container">
-                    <div class="row no-gutters">
-                        <div class="col-lg-5">
-                            <div class="contact1__info text-center">
-                                <div class="contact1__thumb-wrapper">
-                                    <div class="contact1__thumb">
-                                        <img src="assets/img/png-icon/png-icon-20.png" alt="Image">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="testimonial3__carousel owl-carousel owl-theme">
+                                <div class="testimonial3__wrapper">
+                                    <div class="testimonial3__item">
+                                        <div class="testimonial3__thumb">
+                                            <img src="assets/img/testimonial/testimonial-06.jpg" alt="Testimonial">
+                                        </div>
+                                        <div class="testimonial3__content">
+                                            <h6>World wide Client</h6>
+                                            <h3>Why they are best medical and home <br class="d-none d-lg-inline-block">
+                                                care services provider.</h3>
+                                            <h4>Julie F Arellano <span>CEO of K.S.M</span></h4>
+                                            <p>Pleasure, but because those who do not know how to pursue pleasure
+                                                rationally
+                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <h3>Emergency call</h3>
-                                <h4>+273-649300</h4>
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. cumsan lacus vel facilisis. </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="contact_page2__form">
-                                <h3>Get appointment</h3>
-                                <form id="contact-form" action="assets/php/mail.php" method="POST">
-                                    <div class="row mb-20">
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="name" placeholder="Full name *" required>
+                                <div class="testimonial3__wrapper">
+                                    <div class="testimonial3__item">
+                                        <div class="testimonial3__thumb">
+                                            <img src="assets/img/testimonial/testimonial-07.jpg" alt="Testimonial">
                                         </div>
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="phone-number" placeholder="Your phone *">
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <input class="form-control" type="text" name="subject" placeholder="I’m interested in *">
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <input class="form-control" type="email" name="email" placeholder="Your email *" required>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <button type="submit" class="btn8">Send Us</button>
+                                        <div class="testimonial3__content">
+                                            <h6>World wide Client</h6>
+                                            <h3>Best medical & health <br class="d-none d-lg-inline-block"> service
+                                                provider.</h3>
+                                            <h4>Andrew J Prout <span>CEO of K.S.M</span></h4>
+                                            <p>Pleasure, but because those who do not know how to pursue pleasure
+                                                rationally
+                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
                                         </div>
                                     </div>
-                                    <p class="form-message"></p>
-                                </form>
+                                </div>
+                                <div class="testimonial3__wrapper">
+                                    <div class="testimonial3__item">
+                                        <div class="testimonial3__thumb">
+                                            <img src="assets/img/testimonial/testimonial-08.jpg" alt="Testimonial">
+                                        </div>
+                                        <div class="testimonial3__content">
+                                            <h6>World wide Client</h6>
+                                            <h3>Best Dental & Eye <br class="d-none d-lg-inline-block"> service
+                                                provider.</h3>
+                                            <h4>Laverne C Avila <span>CEO of K.S.M</span></h4>
+                                            <p>Pleasure, but because those who do not know how to pursue pleasure
+                                                rationally
+                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- |=====|| Contact End ||=================| -->
+        <!-- |=====|| Testimonial End ||=================| -->
         <!-- |==========================================| -->
-
-         <!-- |==========================================| -->
+        <section class="suscribeteya overflow-hidden">
+            <div>
+                <div class="container text-center align-middle">
+                    <a href="{{ route('front.afiliate') }}" class="btn6 btn6-2"> <span>SUSCRIBETE YA!</span> <i class="icofont-rounded-double-right"></i> </a>
+                </div>
+            </div>
+        </section>
+        <!-- |==========================================| -->
         <!-- |=====|| FAQ Start ||===============| -->
         <section class="faq1">
             <div class="faq1__thumb1"></div>
@@ -290,7 +303,9 @@
         </section>
         <!-- |=====|| FAQ End ||=================| -->
         <!-- |==========================================| -->
-        
+
+
+
     </main>
      <!-- |==========================================| -->
      <x-slot name="js">
