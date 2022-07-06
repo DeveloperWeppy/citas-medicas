@@ -170,8 +170,8 @@ class SubscriptionController extends Controller
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
             $mail->Subject = "Suscripción";
 
-             $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
-            /*$mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
+            /*$mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
+            $mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
             $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram"); */
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
