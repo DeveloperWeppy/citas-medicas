@@ -137,7 +137,7 @@ class SubscriptionController extends Controller
                                     //send email of subscription success
                                     self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
     
-                                    //$this->envioSms("+57".$num_phone,"Citas Médicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
+                                    $this->envioSms("57".$num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                     
                                     return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                         ->with('last_name', $last_name)->with('email', $email);
@@ -170,8 +170,8 @@ class SubscriptionController extends Controller
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
             $mail->Subject = "Suscripción";
 
-            /*$mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
-            $mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
+            $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
+            /*$mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
             $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram"); */
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
