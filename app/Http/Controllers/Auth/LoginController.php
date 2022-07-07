@@ -52,7 +52,7 @@ class LoginController extends Controller
              $verificar_subs = Subscription::where('user_id',  $id)->get();
              if(count($verificar_subs)>0){
                  $ifExisteSubs=false;
-                 if ($verificar_subs[0]->active_until >=now()->toDateString()) {
+                 if ($verificar_subs[0]->next_payment >=now()->toDateString()) {
                    $ifSubs=true;
                  }
              }

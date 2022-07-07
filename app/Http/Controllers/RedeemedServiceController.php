@@ -10,8 +10,11 @@ use Illuminate\Http\Request;
 use App\Models\CategoryService;
 use App\Models\RedeemedService;
 use Illuminate\Support\Facades\DB;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DiagnosticRedeemedService;
+use App\Models\UserInformation;
 
 class RedeemedServiceController extends Controller
 {
@@ -150,13 +153,18 @@ class RedeemedServiceController extends Controller
     public function redimir($id)
     {
         $consultar_user = Client::find($id);
+        
         $user_id = $consultar_user->user_id;
         $name_client = $consultar_user->name;
 
         $subscrito = '';
         $client_id = $id;
+        $dato = array($this->validarSuscripcionClienteUsuario($user_id));
 
-        if (!optional($user_id)->hasActiveSubscription()) {
+        foreach ($dato as $key => $value) {
+            $estado = $value['status_subscription'];
+        }
+        if ($estado) {
             $subscrito = 'si';
         } else {
             $subscrito = 'no';
@@ -174,16 +182,46 @@ class RedeemedServiceController extends Controller
      */
     public function store(Request $request)
     {
+
         $error = false;
         $mensaje = '';
 
+        $id_cliente = $request->id_client;
+        $id_prestador = $request->prestador_id;
+        $id_service = $request->id_service;
+
         $register_redeem_service = array(
-            'prestador_id' => $request->prestador_id,
-            'client_id' => $request->id_client,
-            'service_id' => $request->id_service,
+            'prestador_id' => $id_prestador,
+            'client_id' => $id_cliente,
+            'service_id' => $id_service,
         );
 
-        if (RedeemedService::create($register_redeem_service)) {
+        //get data client
+        /** ============================================ */
+        $cliente = Client::find($id_cliente);
+        $nombre_client = $cliente->name;
+
+        $user_client_id = $cliente->user_id;
+
+        //get data account user
+        $user_client = User::find($user_client_id);
+        $email = $user_client->email;
+        /** ============================================ */
+
+        //get service redeemed
+        $service = Service::find($id_service);
+        $name_service = $service->name;
+
+        //get data service provider
+        $prestador = UserInformation::find($id_prestador);
+        $name_prestador = $prestador->name;
+
+        if ($service_redemed = RedeemedService::create($register_redeem_service)) {
+            $fecha_redimido = $service_redemed->created_at;
+
+            //send email of subscription success
+            self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
+
             $error = false;
             $mensaje = 'Se ha redimido correctamente el servicio!';
         } else {
@@ -243,6 +281,47 @@ class RedeemedServiceController extends Controller
         return $valor;
     }
 
+    public function enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
+            $mail->Host = env('MAIL_HOST');
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
+            $mail->CharSet = "UTF8";
+            $mail->Subject = "Beneficio Redimido";
+
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/BannerMailing.jpg', 'img_header', '/images/BannerMailing.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
+
+            $title = '';
+            $mail->Body = view('email.serviceredeemed', compact(
+                'title',
+                'nombre_client',
+                'name_service',
+                'name_prestador',
+                'fecha_redimido'
+            ))->render();
+            $mail->addAddress($email, $nombre_client);
+            if ($mail->Send()) {
+                return 200;
+            } else {
+                dd('error');
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
+    }
+    
     /**
      * Display the specified resource.
      *

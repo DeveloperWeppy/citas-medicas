@@ -12,7 +12,7 @@
                     <b>Edad</b> <a class="float-right">{{$client->age}}</a>
                 </li>
                 </ul>
-            <a href="#" class="btn btn-primary btn-block"><b>VER</b></a>
+            {{-- <a href="#" class="btn btn-primary btn-block"><b>VER</b></a> --}}
         </div>
     </div>
     
@@ -76,7 +76,7 @@
         </div>
 
         <!--cuerpo del contenedor--->
-        <form action="" method="post" id="register_redeemed">
+        <form action="" id="register_redeemed">
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">

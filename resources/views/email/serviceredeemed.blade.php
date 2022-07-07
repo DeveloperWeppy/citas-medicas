@@ -114,13 +114,8 @@
 
                 <tr><!-- CONTENIDO TITULAR -->
                     <td style="display: block; padding: 5px 15px;">
-                       <p style="font-size:12px;">Estimado Sr(a) <strong style="text-transform: uppercase">{{ $nombre_client }}</strong>,  Esto es una copia de su suscripción a través de nuestro sitio web.</p>
-                       <p style="font-size:12px;">Desde ahora podrás acceder a:</p>
-                       <ul style="font-size:12px;">
-                          <li>Beneficios con diferentes convenios</li>
-                          <li>Ofertas </li>
-                       </ul>
-                       <p style="font-size:12px;">Para iniciar sesión en nuestro panel, haz click en el botón "Iniciar Sesión", ubicado en la parte superior derecha de la página e introduce tu usuario y contraseña o <a href="{{ route('login') }}">dando click aqui</a></p>
+                       <p style="font-size:12px;">Estimado Sr(a) <strong style="text-transform: uppercase">{{ $nombre_client }}</strong>,  se ha redimido tu beneficio correctamente.</p>
+                       <p style="font-size:12px;">Detalles:</p>
                     </td>
                  </tr>
 
@@ -129,12 +124,16 @@
                        <table width="100%" border="0" class="css_table_secondary">
                          <tbody>
                              <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Usuario:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $email }}</td>
+                                <th width="30%" class="css_table_secondary_body_th">Entidad:</th>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $name_prestador }}</td>
                              </tr>
                              <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Contraseña:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $number_identication }}</td>
+                                <th width="30%" class="css_table_secondary_body_th">Beneficio Redimido:</th>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $name_service }}</td>
+                             </tr>
+                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
+                                <th width="30%" class="css_table_secondary_body_th">Fecha y Hora:</th>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $fecha_redimido }}</td>
                              </tr>
                           </tbody>
                        </table>
@@ -142,38 +141,6 @@
                  </tr>
 
                 <tr>
-                    <!-- SEPARADOR -->
-                    <td style="display: block; padding: 15px;">
-                        <hr class="css_hr">
-                    </td>
-                </tr>
-                <tr><!-- CONTENIDO TITULAR -->
-                    <td style="display: block; padding: 5px 15px;">
-                       <p style="font-size:12px;">Detalles del Plan que adquiriste: </p>
-                    </td>
-                 </tr>
-            {{--     <tr><!-- CONTENIDO DEL PLAN -->
-                    <td style="display: block; padding: 5px 15px;">
-                       <table width="100%" border="0" class="css_table_secondary">
-                         <tbody>
-                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Plan Adquirido:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $plan->name }}</td>
-                             </tr>
-                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Tipo de Plan:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $plan->type_plan }}</td>
-                             </tr>
-                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Próxima fecha de cobro automático:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $next_payment_date }}</td>
-                             </tr>
-                          </tbody>
-                       </table>
-                    </td>
-                 </tr> --}}
-
-                 <tr>
                     <!-- SEPARADOR -->
                     <td style="display: block; padding: 15px;">
                         <hr class="css_hr">
@@ -200,7 +167,7 @@
                     <!-- AVISO RESPUESTA AUTOMATICA -->
                     <td
                         style="display: block; padding: 10px; background: #f6f6f6; color:#999; margin-top: 10px; text-align: center;">
-                        Este correo se ha generado de forma automatica, favor no responder.
+                        Este correo se ha generado de forma automatica, favor no responder. Sigue disfrutando de tus beneficios.
                     </td>
                 </tr>
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Carbon\Carbon;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class Controller extends BaseController
 {
   public function envioSms($number,$message){
@@ -25,6 +28,24 @@ class Controller extends BaseController
         'success' => true,
       ])->throw()->json();
       return $token=$response;
+    }
+
+    public function validarSuscripcionClienteUsuario($id){
+      $ifSubs=false;
+      $ifExisteSubs=false;
+
+      $verificar_subs = Subscription::where('user_id',  $id)->get();
+             if(count($verificar_subs)>0){
+                 $ifExisteSubs=true;
+                 if ($verificar_subs[0]->next_payment >= Carbon::now('America/Bogota')->format('Y-m-d')) {
+                   $ifSubs=true;
+                 }
+             }
+
+             return array(
+              'status_subscription' => $ifSubs,
+              'is_subscribe' => $ifExisteSubs,
+             ); 
     }
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

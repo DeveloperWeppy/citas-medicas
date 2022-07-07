@@ -12,7 +12,7 @@
     <div class="row mb-2">
       <div class="col-sm-6">
           @if ($subscrito == 'si')
-            <h3><i class="fas fa-check-double text-info"></i> Redimir Servicio al cliente <strong class="text-uppercase text-info">{{$name_client}}</strong></h3>
+            <h3><i class="fas fa-check-double text-info"></i> Redimir Beneficio al cliente <strong class="text-uppercase text-info">{{$name_client}}</strong></h3>
           @endif
        
       </div>
