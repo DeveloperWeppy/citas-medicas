@@ -80,16 +80,14 @@ class InformationPlanes extends Component
             $mail->CharSet = "UTF8";
             $mail->Subject = "Suscripción";
 
-            $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/BannerMailing.jpg', 'img_header', '/images/BannerMailing.jpg', 'base64', 'image/jpg');
             /*$mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
             $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram"); */
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = 'Suscripción Exitosa';
-            $plan = Plan::find(1);
             $mail->Body = view('email.suscribesuccess', compact(
                 'title',
-                'plan',
                 'email',
                 'nombre_client',
                 'number_identication',

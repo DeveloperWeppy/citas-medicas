@@ -152,7 +152,7 @@
                        <p style="font-size:12px;">Detalles del Plan que adquiriste: </p>
                     </td>
                  </tr>
-                <tr><!-- CONTENIDO DEL PLAN -->
+            {{--     <tr><!-- CONTENIDO DEL PLAN -->
                     <td style="display: block; padding: 5px 15px;">
                        <table width="100%" border="0" class="css_table_secondary">
                          <tbody>
@@ -171,7 +171,7 @@
                           </tbody>
                        </table>
                     </td>
-                 </tr>
+                 </tr> --}}
 
                  <tr>
                     <!-- SEPARADOR -->
