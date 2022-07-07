@@ -59,49 +59,6 @@ class InformationPlanes extends Component
         }
         $fecha = date("Y-m-d", strtotime($next_payment_date));
         dump($fecha);  */
-        $email = 'desarrolloweppy@gmail.com';
-        $nombre_client = 'manuel';
-        $number_identication = '1091811138';
-        $next_payment_date = '2023-07-06';
-
-
-        $mail = new PHPMailer(true);
-        try {
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
-            $mail->Host = env('MAIL_HOST');
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = env('MAIL_USERNAME');
-            $mail->Password = env('MAIL_PASSWORD');
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
-            $mail->CharSet = "UTF8";
-            $mail->Subject = "Suscripción";
-
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/BannerMailing.jpg', 'img_header', '/images/BannerMailing.jpg', 'base64', 'image/jpg');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
-            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
-
-            $title = 'Suscripción Exitosa';
-            $mail->Body = view('email.suscribesuccess', compact(
-                'title',
-                'email',
-                'nombre_client',
-                'number_identication',
-                'next_payment_date'
-            ))->render();
-            $mail->addAddress($email, $nombre_client);
-            if ($mail->Send()) {
-                return 200;
-            } else {
-                dd('error');
-            }
-        } catch (Exception $e) {
-            dd($e);
-        }
 
         return view('components.frontend.information-planes')->with('datas', $datas)->with('planes', $planes)->with('servicesplan', $servicesplan);
 

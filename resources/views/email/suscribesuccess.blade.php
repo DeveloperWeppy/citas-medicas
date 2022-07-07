@@ -184,7 +184,7 @@
                     <!-- REDES SOCIALES -->
                     <td class="css_footer_redes">
                         <p>Siguenos en nuestras Redes Sociales!</p>
-                        <a href="https://www.facebook.com/Citasmedicas.es/" target="_blank">
+                        <a href="https://www.facebook.com/Citasmedicases-103022412424200" target="_blank">
                             <img src="cid:correo_facebook" style="padding: 0px 10px;">
                         </a>
                         <a href="https://www.instagram.com/citasmedicas.es" target="_blank">

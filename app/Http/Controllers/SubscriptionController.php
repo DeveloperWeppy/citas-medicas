@@ -168,14 +168,15 @@ class SubscriptionController extends Controller
             $mail->Username = env('MAIL_USERNAME');
             $mail->Password = env('MAIL_PASSWORD');
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
-            $mail->Subject = "Suscripción";
+            $mail->CharSet = "UTF8";
+            $mail->Subject = "Suscripción CitasMedicas";
 
-            $mail->AddEmbeddedImage("images/BannerMailing.jpg", "img_header", "img_header");
-            /*$mail->AddEmbeddedImage("images/icons/facebook.png", "correo_facebook");
-            $mail->AddEmbeddedImage("images/icons/instagram.png", "correo_instagram"); */
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/BannerMailing.jpg', 'img_header', '/images/BannerMailing.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
-            $title = 'Suscripción Exitosa';
+            $title = '';
             $plan = Plan::find($plane);
             $mail->Body = view('email.suscribesuccess', compact(
                 'title',
