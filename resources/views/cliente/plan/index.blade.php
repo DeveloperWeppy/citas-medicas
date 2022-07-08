@@ -42,19 +42,19 @@
 
         <x-register-member></x-register-member>
       @endif
-   
+
   @endif
 
     <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
   @else
       <!------CONTENEDOR DE NO SUBSCRITO------->
       <div class="card card-primary card-outline">
-                    
+
         <!--cuerpo del contenedor--->
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                
+
                         <div class="text-center">
                             <img src="/images/Xpayment.png" class="full" alt="x-imagen-user">
                             <h2 class="text-info">¡Ops!</h2>
@@ -63,8 +63,8 @@
                                   citasmedicas.es</strong> para tí. <i class="fas fa-laugh-wink text-info"></i>
                             </h4>
                         </div>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
   <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
 @endif
 
-  
+
 @stop
 
 @section('css')
@@ -181,7 +181,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -190,7 +190,7 @@
           });
         $(function () {
         });
-       
-        
+
+
         </script>
 @stop

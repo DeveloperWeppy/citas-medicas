@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <title>@yield('title') | Citas Médicas </title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css">
     <x-css>
         {{$css}}
     </x-css>

@@ -53049,4 +53049,20 @@ a.text-muted:hover {
 .dark-mode .border-dark {
   border-color: #4b545c !important;
 }
+.btn2 {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 15px 35px;
+    font-size: 16px;
+    border-radius: 100px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    color: #fff;
+    background: #0cb8b6;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+}
 /*# sourceMappingURL=adminlte.css.map */

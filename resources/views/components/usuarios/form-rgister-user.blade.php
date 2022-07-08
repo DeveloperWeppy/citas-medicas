@@ -9,6 +9,7 @@
                <form action="" method="post" id="quickForm" enctype="multipart/form-data">
                    <div class="card-body">
                       <h4>DATOS DE USUARIO</h4>
+                      <input type="number" name="id_userprestador" value="{{$user->id}}" style="display:none">
                       <div class="row py-4">
                             <div class="col-md-4 text-center">
                             </div>
@@ -23,7 +24,7 @@
                                 </div>
 
                                 <!-- Uploaded image area-->
-                                <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                                <div class="image-area mt-4"><img id="imageResult" src="{{ asset($user->logo) }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                             </div>
                             <div class="col-md-4 text-center">
                             </div>
@@ -106,11 +107,8 @@
                               <div class="row despusPrin">
                                     <div class="col-sm-5">
                                         <div class="form-group">
-                                          <select class='mi-selector form-control' id="formNombreServicio" name='marcas'>
+                                          <select class='mi-selector-edit form-control' id="formNombreServicio" name='marcas'>
                                               <option value=''>Seleccionar un Servicio</option>
-                                          @foreach($servicios as $key => $value)
-                                              <option value='{{$value->id}}'>{{$value->name}}</option>
-                                          @endforeach
                                           </select>
                                         </div>
                                     </div>
@@ -143,8 +141,8 @@
                               @foreach($convenioServices as $key => $value)
                               <div class="row ItemServ">
                                     <div class="col-sm-5 ed">
-                                          <div class="form-control ">
-                                             {{$value->find($value->id)->nombre_servicios->name}}<input class="formNombreServicio" style="display:none" type="text" name="servicio_id[]" value="{{$value->service_id}}" placeholder="Nombre del Servicio" autocomplete="off">
+                                          <div class="form-group">
+                                            <select class='form-control mi-selector-edit formNombreServicio'   name="servicio_id[]" value="{{$value->service_id}}" placeholder="Nombre del Servicio" autocomplete="off" required>  </select>
                                           </div>
                                      </div>
                                     <div class="col-sm-3">
@@ -163,7 +161,7 @@
                                              <div class="input-group-prepend">
                                                   <span class="input-group-text">$</span>
                                              </div>
-                                             <input type="number" name="price_descuento[]" value="{{$value->price_discount}}"" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
+                                             <input type="number" name="price_descuento[]" value="{{$value->price_discount}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
                                              <div class="input-group-append">
                                                   <span class="input-group-text">.00</span>
                                              </div>

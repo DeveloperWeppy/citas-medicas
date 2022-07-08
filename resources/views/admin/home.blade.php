@@ -46,12 +46,12 @@
             @if (Session::get('ifIncompleSubs'))
                 <lottie-player src="{{ asset('lottie/pay.json') }}"  background="transparent"  speed="1"  style="width: 50%; height:auto;margin:0 auto"  loop  autoplay></lottie-player>
                 <h3 style="text-align:center;font-weight: bold;">Continua con tu proceso de suscripción para disfrutar de nuestros beneficios <h3>
-                <div style="display:flex;justify-content: center;margin-top:30px"><a href="" class="btn8">Subscribirme</a></div>
+                <div style="display:flex;justify-content: center;margin-top:30px"><a href="{{route('subscription.index')}}" class="btn8">Subscribirme</a></div>
             @endif
             @if (!Session::get('ifActiveSubs') && !Session::get('ifIncompleSubs') )
                 <lottie-player src="{{ asset('lottie/alertpay.json') }}"  background="transparent"  speed="1"  style="width: 50%; height:auto;margin:0 auto"  loop  autoplay></lottie-player>
                 <h3 style="text-align:center;font-weight: bold;">Realiza el pago de tu suscripcion para seguir usando nuestros servicios<h3>
-                <div style="display:flex;justify-content: center;margin-top:30px"><a href="" class="btn8">Pagar</a></div>
+                <div style="display:flex;justify-content: center;margin-top:30px"><a href="{{route('subscription.index')}}" class="btn8">Pagar</a></div>
             @endif
             @endrole
       </div>

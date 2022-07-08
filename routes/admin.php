@@ -10,6 +10,7 @@ use App\Http\Controllers\RedeemedServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubscriptionController;
 use App\Models\CategoryService;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/admin/usuarios/edit/{id}', 'edit')->name('usuarios.edit');
             Route::get('/admin/usuarios/destroy/{id}', 'destroy')->name('usuarios.destroy');
             Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
+            Route::post('/admin/convenios/update', 'update')->name('usuarios.update');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
 
             //GET PROFILE OF LOGIN USER
@@ -138,5 +140,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
             Route::get('/mis-redimidos/obtener', 'getMisRedimidos')->name('misredimidosclient.obtener');
+        });
+        Route::controller(SubscriptionController::class)
+            ->group(function () {
+                Route::get('/suscripcion', 'index')->name('subscription.index');
+                Route::post('/subscribirme/store', 'store')->name('subscription.store');
+                Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
         });
 });
