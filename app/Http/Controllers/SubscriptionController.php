@@ -31,10 +31,10 @@ class SubscriptionController extends Controller
     {
 
     }
-    
+
     public function index()
     {
-        //
+          return view('cliente.subscripcion.index');
     }
 
     /**
@@ -100,20 +100,20 @@ class SubscriptionController extends Controller
                 $fecha = date("Y-m-d", strtotime($next_payment_date));
                 //dump($fecha);
                 if ($status == "authorized") {
-    
+
                     $register_suscribe = array(
                         'next_payment' => $fecha,
                         'user_id' => $id_user_client,
                         'plan_id' => $plane,
                     );
-    
+
                     if ($suscription_add = Subscription::create($register_suscribe)) {
                         $id_subscription = $suscription_add->id;
-    
+
                         $register_details_subscription = array(
                             'user_id' => $id_user_client,
                             'suscription_id' => $id_subscription,
-                            'operation_id' => $id_operation, 
+                            'operation_id' => $id_operation,
                             'payer_id' => $payer_id,
                             'status_operation' => $status,
                             'next_payment_date' => $fecha,
@@ -122,23 +122,23 @@ class SubscriptionController extends Controller
                             'payer_last_name' => $payer_last_name,
                             'preapproval_plan_id' => $preapproval_plan_id,
                         );
-    
+
                         if ($user_add = DetailSubscription::create($register_details_subscription)) {
 
                                 $register_number_members = array(
                                     'client_id' => $id_client,
                                     'registered_members' => $cant_people,
                                 );
-    
+
                                 if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                     //send email of accountverification 
+                                     //send email of accountverification
                                     $user_client->sendEmailVerificationNotification();
-    
+
                                     //send email of subscription success
                                     self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
-    
+
                                     $this->envioSms("57".$num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
-                                    
+
                                     return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
                                         ->with('last_name', $last_name)->with('email', $email);
                                 }
@@ -148,7 +148,7 @@ class SubscriptionController extends Controller
                 }
             }
 
-            
+
         }
 
 
