@@ -9,7 +9,7 @@
 @section('content_header')
 <div class="container-fluid">
     @if ($is_owner == 1)
-        @if (optional(auth()->user())->hasActiveSubscription())
+          @if (Session::get('ifActiveSubs'))
             @if ($plan->is_group > 0)
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -36,9 +36,9 @@
     <div class="row">
       <div class="mb-3">
          <!-- Button trigger modal -->
-        
+
       </div>
-     
+
     </div>
     <div class="row">
         <div class="col-12">
@@ -46,7 +46,7 @@
             <!------CONTENEDOR DE TABLA------->
             <div class="card card-primary card-outline">
                 @if ($is_owner == 1)
-                    @if (optional(auth()->user())->hasActiveSubscription())
+                    @if (Session::get('ifActiveSubs'))
                         @if ($plan->is_group > 0)
                             <!--cabecera del contenedor--->
                             <div class="card-header">
@@ -117,7 +117,7 @@
         $('#element').tooltip('show')
 
         });
-       
+
         var tabla_miembros = $('#listarmiembros').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
@@ -279,7 +279,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -287,7 +287,7 @@
             }
           });
 
-         
+
         $(function () {
 
         });
