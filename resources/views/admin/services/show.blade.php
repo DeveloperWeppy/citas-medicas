@@ -42,24 +42,23 @@
 
 @section('js')
     <script>
-
         $(function () {
             var texto = $('#valor').text();
             var texto2 = $('#valor_status').text();
-            
+
             if (texto == "Sí") {
                 $('#customSwitch3').prop("checked", true);
             } else {
                 $('#customSwitch3').prop("checked", false);
-            } 
+            }
 
             if (texto2 == "Activo") {
                 $('#status').prop("checked", true);
             } else {
                 $('#status').prop("checked", false);
-            } 
+            }
         });
-       
-        
+
+
         </script>
 @stop

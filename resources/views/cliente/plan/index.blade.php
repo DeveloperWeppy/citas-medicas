@@ -15,7 +15,7 @@
 @section('content_header')
 <div class="container-fluid">
     <div class="row mb-2">
-      @if (optional(auth()->user())->hasActiveSubscription())
+      @if (!Session::get('ifActiveSubs'))
         <div class="col-sm-6">
           <button class="btn btn-outline-info" onClick="history.go(-1);"><i class="fas fa-long-arrow-alt-left"></i> Volver</button>
         </div>
@@ -33,7 +33,7 @@
 @section('content')
 
 @if ($is_owner == 1)
-  @if (optional(auth()->user())->hasActiveSubscription())
+  @if (!Session::get('ifActiveSubs'))
 
   @if ($plan->is_group > 0)
 
@@ -42,19 +42,19 @@
 
         <x-register-member></x-register-member>
       @endif
-   
+
   @endif
 
     <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
   @else
       <!------CONTENEDOR DE NO SUBSCRITO------->
       <div class="card card-primary card-outline">
-                    
+
         <!--cuerpo del contenedor--->
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                
+
                         <div class="text-center">
                             <img src="/images/Xpayment.png" class="full" alt="x-imagen-user">
                             <h2 class="text-info">¡Ops!</h2>
@@ -63,8 +63,8 @@
                                   citasmedicas.es</strong> para tí. <i class="fas fa-laugh-wink text-info"></i>
                             </h4>
                         </div>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
   <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
 @endif
 
-  
+
 @stop
 
 @section('css')
@@ -181,7 +181,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -190,7 +190,7 @@
           });
         $(function () {
         });
-       
-        
+
+
         </script>
 @stop

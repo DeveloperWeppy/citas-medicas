@@ -11,6 +11,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\UserController;
 use App\Models\CategoryService;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 //Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -138,5 +139,11 @@ use Illuminate\Support\Facades\Route;
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
             Route::get('/mis-redimidos/obtener', 'getMisRedimidos')->name('misredimidosclient.obtener');
+        });
+        Route::controller(SubscriptionController::class)
+            ->group(function () {
+                Route::get('/suscripcion', 'index')->name('subscription.index');
+                Route::post('/subscribirme/store', 'store')->name('subscription.store');
+                Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
         });
 });
