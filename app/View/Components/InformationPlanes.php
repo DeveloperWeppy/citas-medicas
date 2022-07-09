@@ -50,9 +50,9 @@ class InformationPlanes extends Component
 
             
         }
-        $user_client = User::where('email', 'admin@citasmedicas.com')->first();
+        /*$user_client = User::where('email', 'admin@citasmedicas.com')->first();
         $user_client->sendEmailVerificationNotification();
-     /*    $next_payment_date = '';
+         $next_payment_date = '';
         $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
             'id' => '2c93808481b490c20181bb507b1d04c9',
         ])->json();
