@@ -286,4 +286,101 @@ class UserController extends Controller
          }
          echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
+
+    public function update(Request $request, Client $client)
+    {
+         $error = false;
+         $mensaje = '';
+         $id_userprestador = $request->id_userprestador;
+
+         $contraseña = $request->password;
+         $dia = $request->day == null ? 'sin dia' : $request->day;
+         $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
+         $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
+         $apertura_afternoon = $request->open_afternoon == null ? 'sin horario' : $request->open_afternoon;
+         $cierre_afternoon = $request->close_afternoon == null ? 'sin horario' : $request->close_afternoon;
+         if($request->has('imgLogo')) {
+           $image = $request->file('imgLogo')->store('public/logosPrestadores');
+           $url = Storage::url($image);
+           $register_user = array(
+               'name' => $request->name,
+               'logo' => $url,
+               'email' => $request->email,
+               'status' => 1
+           );
+         }else{
+           $register_user = array(
+             'name' => $request->name,
+             'email' => $request->email,
+             'status' => 1
+           );
+         }
+
+         if ($user_add = User::findOrFail($id_userprestador)->update($register_user)) {
+             $register_user_info = array(
+                   'nit' => $request->nit,
+                   'name' => $request->name,
+                   'address' => $request->address,
+                   'num_phone' => $request->num_phone,
+                   'name_contact' => $request->name_contact,
+                   'num_phone_contact' => $request->num_phone_contact,
+                   'email_contact' => $request->email_contact,
+                   'city' => $request->city,
+             );
+             if ($responsable = UserInformation::where('user_id', $id_userprestador)->update($register_user_info)) {
+                   $userInformation =UserInformation::where('user_id', $id_userprestador)->get();
+                   $register_convenio = array(
+                       'start_date' => $request->start_date,
+                       'end_date' => $request->end_date,
+                       'responsable_id' => $userInformation[0]->id,
+                   );
+                   if ($responsable =Convenio::where('responsable_id', $userInformation[0]->id)->update($register_convenio)) {
+                         $convenio =Convenio::where('responsable_id',$userInformation[0]->id)->get();
+                         $convenioServices= ConvenioServices::where('convenio_id', $convenio[0]->id)->get();
+                         $convenioServices=json_decode(json_encode($convenioServices),true);
+                         if(isset($request->servicio_id )){
+                           foreach ($request->servicio_id as $index => $rowid) {
+                               $ifExist=array_search($request->servicio_id[$index], array_column($convenioServices, 'service_id'));
+                                if ($ifExist === false && $request->servicio_id[$index]!="" ) {
+                                    $register_convenio_servicio = ConvenioServices::create([
+                                        'convenio_id' => $convenio[0]->id,
+                                        'service_id' =>  $request->servicio_id[$index],
+                                        'price_normal' =>$request->price_normal[$index],
+                                        'price_discount' => $request->price_descuento[$index],
+                                    ]);
+                                }
+                           }
+                           foreach ($convenioServices as $index => $rowid) {
+                                 $ifEliminar=array_search($convenioServices[$index]['service_id'],$request->servicio_id);
+                                 if ($ifEliminar === false) {
+                                     if (ConvenioServices::findOrFail($convenioServices[$index]['id'])->delete()){}
+                                 }
+                           }
+
+                         }
+                         for ($i = 0; $i < 7; ++$i) {
+                             //dump((float)$montos[$i]);
+
+                             $register_horario_atencion = AttentioShedule::where('responsable_id',$userInformation[0]->id)->where('day',$dia[$i])->update([
+                                 'open_morning' => $apertura_morning[$i],
+                                 'close_morning' => $cierre_morning[$i],
+                                 'open_afternoon' => $apertura_afternoon[$i],
+                                 'close_afternoon' => $cierre_afternoon[$i],
+                             ]);
+                         }
+                   }else{
+                     $error = true;
+                     $mensaje = 'Error! Se presento un problema al registrar la Información de convenio, intenta de nuevo.';
+                   }
+             }else{
+                 $error = true;
+                 $mensaje = 'Error! Se presento un problema al registrar la Información de contácto, intenta de nuevo.';
+             }
+         }else{
+             $error = true;
+             $mensaje = 'Error! Se presento un problema al registras datos de usuario, intenta de nuevo.';
+         }
+
+         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
 }

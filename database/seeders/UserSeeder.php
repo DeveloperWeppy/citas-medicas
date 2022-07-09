@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'logo' => '',
-            'email' => 'admin@citasmedicas.com',
+            'email' => 'admin@citasmedicas.es',
             'password' => bcrypt('12345678'),
             'pw_decrypte' => '12345678',
         ])->assignRole('Admin');

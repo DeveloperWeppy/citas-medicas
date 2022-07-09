@@ -17,6 +17,8 @@ class CreateConvenioServicesTable extends Migration
             $table->id();
             $table->foreignId('convenio_id')->references('id')->on('convenios');
             $table->foreignId('service_id')->references('id')->on('services');
+            $table->integer('price_normal')->unsigned();
+            $table->integer('price_discount')->unsigned()->nullable();
             $table->timestamps();
         });
     }

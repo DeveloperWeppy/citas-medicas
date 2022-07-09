@@ -22,11 +22,12 @@ use Illuminate\Support\Facades\Route;
         ->group(function () {
             Route::get('/admin/convenios', 'index')->name('usuarios.index');
             Route::get('/admin/usuarios/obtener', 'getUsuarios')->name('usuarios.obtener');
-            Route::get('/admin/convenios/create', 'create')->name('usuarios.create');
-            Route::get('/admin/usuarios/edit/{id}', 'edit')->name('usuarios.edit');
+            Route::get('/admin/convenio/create', 'create')->name('usuarios.create');
+            Route::get('/admin/convenio/edit/{id}', 'edit')->name('usuarios.edit');
             Route::get('/admin/usuarios/destroy/{id}', 'destroy')->name('usuarios.destroy');
-            Route::post('/admin/convenios/store', 'store')->name('usuarios.store');
+            Route::post('/admin/convenio/store', 'store')->name('usuarios.store');
             Route::post('/admin/usuarios/status', 'status')->name('usuarios.status');
+            Route::post('/admin/convenios/update', 'update')->name('usuarios.update');
 
             //GET PROFILE OF LOGIN USER
             Route::get('/perfil', 'profile')->name('usuario.perfil');

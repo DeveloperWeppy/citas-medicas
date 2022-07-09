@@ -19,7 +19,7 @@
 
                         <div class="card-body ">
                             <div class="text-center">
-                                <img src="/images/email_send.png" class="img-fluid" alt="send email">
+                                <img src="{{ asset('images/email_send.png') }}" class="img-fluid" alt="send email">
                             </div>
 
                             <hr>

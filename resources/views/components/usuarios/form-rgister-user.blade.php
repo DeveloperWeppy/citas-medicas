@@ -1,4 +1,3 @@
-
     <div class="row">
         <div class="col-12">
            <div class="card card-default">
@@ -44,6 +43,22 @@
                               <h4 class="mt-2">INFORMACIÓN DE CONTÁCTO</h4>
 
                               <div class="row">
+                                <div class="col-md-6 offset-md-3 align-self-center">
+                                    <!-- Upload image banner input-->
+                                   <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                        <input id="uploadBanner" type="file" onchange="readURLBanner(this);" name="imgBanner" class="form-control border-0">
+                                        <label id="upload-label-banner" for="uploadBanner" class="font-weight-light text-muted">Imágen de Portada</label>
+                                        <div class="input-group-append">
+                                            <label for="uploadBanner" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Imágen de Portada</small></label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Uploaded image banner area-->
+                                    <div class="image-area mt-4"><img id="imageResultBanner" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                                </div>
+                              </div>
+
+                              <div class="row">
                                   <div class="col-sm-6">
                                       <div class="form-group">
                                           <input type="text" name="nit" id="txnit" class="form-control " value="{{$userInformation->nit}}" placeholder="NIT" autocomplete="off">
@@ -84,7 +99,31 @@
                                           <input type="text" name="city" id="txcity" class="form-control " value="{{$userInformation->city}}"  placeholder="Ciudad" autocomplete="off">
                                       </div>
                                   </div>
+                                 
                               </div>
+                              <!----------------------------------   REDES SOCIALES START     ---------------------->
+                              <h4 class="mt-2">REDES SOCIALES</h4>
+                              <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="facebook" name="city" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Facebook" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="instagram" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Instagram" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="whatsapp" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="WhatsApp" autocomplete="off">
+                                    </div>
+                                </div>
+                              </div>
+
+                              <!----------------------------------   REDES SOCIALES END     ---------------------->
+
+
                               <p>Dado el contrato, determine las fechas de inicio y finalización del convenio</p>
                               <div class="row">
                                   <div class="col-sm-6">

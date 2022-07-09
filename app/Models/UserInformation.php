@@ -11,6 +11,7 @@ class UserInformation extends Model
 
     protected $fillable =[
         'user_id',
+        'image_banner',
         'nit',
         'name',
         'address',
@@ -19,6 +20,10 @@ class UserInformation extends Model
         'num_phone_contact',
         'email_contact',
         'city',
+        'frame_ubication',
+        'whatsapp',
+        'instagram',
+        'facebook',
     ];
 
     public function usuario()

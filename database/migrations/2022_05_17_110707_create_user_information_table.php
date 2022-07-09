@@ -16,6 +16,7 @@ class CreateUserInformationTable extends Migration
         Schema::create('user_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->references('id')->on('users');
+            $table->string('image_banner');
             $table->string('nit')->nullable();
             $table->string('name');
             $table->string('address');
@@ -24,6 +25,10 @@ class CreateUserInformationTable extends Migration
             $table->string('num_phone_contact')->nullable();
             $table->string('email_contact')->nullable();
             $table->string('city');
+            $table->string('frame_ubication');
+            $table->string('whatsapp')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
             $table->timestamps();
         });
     }

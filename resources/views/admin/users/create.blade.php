@@ -105,6 +105,45 @@ function agregarServicio(){
         var fileName = input.files[0].name;
         infoArea.textContent = 'File name: ' + fileName;
       }
+
+
+      /*********************** EVENTS JS FOR IMAGE BANNER START  **************************/ 
+
+       /*  ==========================================
+          SHOW UPLOADED IMAGE
+      * ========================================== */
+      function readURLBanner(inputt) {
+          if (inputt.files && inputt.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $('#imageResultBanner')
+                      .attr('src', e.target.result);
+              };
+              reader.readAsDataURL(inputt.files[0]);
+          }
+      }
+
+      $(function () {
+          $('#uploadBanner').on('change', function () {
+              readURLBanner(input);
+          });
+      });
+
+      /*  ==========================================
+          SHOW UPLOADED IMAGE NAME
+      * ========================================== */
+      var input = document.getElementById( 'uploadBanner' );
+      var infoArea = document.getElementById( 'upload-label-banner' );
+
+      input.addEventListener( 'change', showFileName );
+      function showFileName( event ) {
+        var input = event.srcElement;
+        var fileName = input.files[0].name;
+        infoArea.textContent = 'File name: ' + fileName;
+      }
+
+      /*********************** EVENTS JS FOR IMAGE BANNER END  **************************/ 
         //form of register of user
        $('#quickForm').validate({
             rules: {

@@ -216,7 +216,7 @@ function agregarServicio(){
                     var formData = new FormData(this);
 
                     //ruta
-                    var url = "{{route('usuarios.store')}}";
+                    var url = "{{route('usuarios.edit')}}";
 
                     $.ajax({
                         headers: {

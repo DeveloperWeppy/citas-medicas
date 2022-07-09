@@ -361,7 +361,7 @@
                             },2000);
                         } 
                     }).fail(function(resp){
-                        console.log(resp);
+                        //console.log(resp);
                        /*  Swal.fire({
                                     title: resp.mensaje,
                                     icon: "error",
