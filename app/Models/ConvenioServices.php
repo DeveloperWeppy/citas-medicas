@@ -14,6 +14,7 @@ class ConvenioServices extends Model
         'service_id',
         'price_normal',
         'price_discount',
+        'percentage_discount',
     ];
 
     public function convenio(){
@@ -28,5 +29,11 @@ class ConvenioServices extends Model
     {
       //relación para poder mostrar el nombre de la categoria
       return $this->belongsTo(Service::class, 'service_id');
+    }
+
+    public function nombre_convenios()
+    {
+      //relación para poder mostrar el nombre de la categoria
+      return $this->belongsTo(Convenio::class, 'convenio_id');
     }
 }

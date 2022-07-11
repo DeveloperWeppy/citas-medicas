@@ -5,13 +5,26 @@
                   <h3 class="card-title"><i class="fas fa-plus"></i> Registrar un Nuevo Convenio</h3>
                </div>
 
-               <form action="" method="post" id="quickForm" enctype="multipart/form-data">
+               <form action="" method="" id="quickForm" enctype="multipart/form-data">
                    <div class="card-body">
                       <h4>DATOS DE USUARIO</h4>
                       <div class="row py-4">
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-6 text-center">
+                                 <!-- Upload image input-->
+                                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                    <input id="uploadBanner" type="file" onchange="readURLBanner(this);" name="imgBanner" class="form-control border-0">
+                                    <label id="upload-label-banner" for="uploadBanner" class="font-weight-light text-muted">Imágen</label>
+                                    <div class="input-group-append">
+                                        <label for="uploadBanner" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Imágen de Portada</small></label>
+                                    </div>
+                                </div>
+                                <small>Dimensiones recomendadas Ancho(920) x Alto(220)</small>
+
+                                <!-- Uploaded image area-->
+                                <div class="image-area mt-4"><img id="imageResultBanner" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                             </div>
-                            <div class="col-md-4 text-center">
+
+                            <div class="col-md-6 text-center">
                                 <!-- Upload image input-->
                                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
                                     <input id="upload" type="file" onchange="readURL(this);" name="imgLogo" class="form-control border-0">
@@ -20,11 +33,10 @@
                                         <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Logo</small></label>
                                     </div>
                                 </div>
+                                <small>Dimensiones recomendadas Ancho(220) x Alto(220)</small>
 
                                 <!-- Uploaded image area-->
                                 <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                            </div>
-                            <div class="col-md-4 text-center">
                             </div>
                       </div>
                       <div class="row">
@@ -40,23 +52,8 @@
                                       </div>
                                   </div>
                       </div>
+                      <!----------------------------------   CONTACT INFORMATION START     ---------------------->
                               <h4 class="mt-2">INFORMACIÓN DE CONTÁCTO</h4>
-
-                              <div class="row">
-                                <div class="col-md-6 offset-md-3 align-self-center">
-                                    <!-- Upload image banner input-->
-                                   <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                        <input id="uploadBanner" type="file" onchange="readURLBanner(this);" name="imgBanner" class="form-control border-0">
-                                        <label id="upload-label-banner" for="uploadBanner" class="font-weight-light text-muted">Imágen de Portada</label>
-                                        <div class="input-group-append">
-                                            <label for="uploadBanner" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Imágen de Portada</small></label>
-                                        </div>
-                                    </div>
-
-                                    <!-- Uploaded image banner area-->
-                                    <div class="image-area mt-4"><img id="imageResultBanner" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                                </div>
-                              </div>
 
                               <div class="row">
                                   <div class="col-sm-6">
@@ -99,14 +96,21 @@
                                           <input type="text" name="city" id="txcity" class="form-control " value="{{$userInformation->city}}"  placeholder="Ciudad" autocomplete="off">
                                       </div>
                                   </div>
+                                  <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <textarea name="frame_ubication" class="form-control" id="" cols="30" rows="4" placeholder="Ingrese el iframe de la ubicación de Google Maps"></textarea>
+                                    </div>
+                                </div>
                                  
                               </div>
+                              <!----------------------------------   CONTACT INFORMATION END     ---------------------->
+
                               <!----------------------------------   REDES SOCIALES START     ---------------------->
                               <h4 class="mt-2">REDES SOCIALES</h4>
                               <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="facebook" name="city" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Facebook" autocomplete="off">
+                                        <input type="text" name="facebook" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Facebook" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -139,9 +143,32 @@
                                       </div>
                                   </div>
                               </div>
+                              <!----------------------------------   HORARIOS DE ATENCIÓN START     ---------------------->
                               <h4 class="mt-2">HORARIOS DE ATENCIÓN</h4>
                               <x-horarios-atencion  :attentioShedule=$attentioShedule></x-horarios-atencion>
-                              <h4 class="mt-2">SERVICOS QUE PRESTA </h4>
+
+                              <!----------------------------------   CONTACT INFORMATION END     ---------------------->
+
+                              <!----------------------------------   SERVICES START     ---------------------->
+                              <div class="row">
+                                <div class="col-sm-12 ">
+                                    <h4 class="mt-2">SERVICOS QUE PRESTA </h4>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="callout callout-info">
+                                        <h5><i class="fas fa-info"></i> Nota:</h5>
+                                        Por favor indique si la tarifa del convenio será en porcentaje o precio de descuento. 
+                                        <div class="form-group mt-2">
+                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                <input type="checkbox" name="discount_or_no" class="custom-control-input" id="customSwitch3">
+                                                <label class="custom-control-label" for="customSwitch3" id="label_texto_descuento">Precio con Descuento
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                              </div>
+                              
                               <div class="row despusPrin">
                                     <div class="col-sm-5">
                                         <div class="form-group">
@@ -167,11 +194,11 @@
                                     <div class="col-sm-3">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
+                                                <span class="input-group-text text-tarifa" >$</span>
                                             </div>
-                                            <input type="number" name="price_d" id="formPrecioDescuento" class="form-control " placeholder="Precio con Descuento" autocomplete="off">
+                                            <input type="number" name="price_d" id="formPrecioDescuento" class="form-control " placeholder="Precio o Porcentaje" autocomplete="off">
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
+                                                    <span class="input-group-text ceros">.00</span>
                                                 </div>
                                         </div>
                                     </div>
@@ -202,7 +229,7 @@
                                              <div class="input-group-prepend">
                                                   <span class="input-group-text">$</span>
                                              </div>
-                                             <input type="number" name="price_descuento[]" value="{{$value->price_discount}}"" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
+                                             <input type="number" name="price_descuento[]" value="{{$value->price_discount}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
                                              <div class="input-group-append">
                                                   <span class="input-group-text">.00</span>
                                              </div>
@@ -212,6 +239,7 @@
                                       </div>
                               </div>
                               @endforeach
+                              <!----------------------------------   SERVICES END     ---------------------->
                    </div>
                    <div class="card-footer">
                     <a href="{{ route('usuarios.index') }}" class="btn btn-default">Cancelar</a>

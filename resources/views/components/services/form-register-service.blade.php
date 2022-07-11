@@ -30,11 +30,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    
-                                </div>
-
-                                <div class="col-sm-6">
+                               {{--  <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
@@ -70,7 +66,7 @@
                                         </div>
                                         <input type="number" name="percentage_discount" id="precio_decuento" class="form-control " placeholder="Porcentaje de descuento de 0 a 100" autocomplete="off">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Desde</label>
@@ -121,7 +117,7 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="row">
+                             {{--    <div class="row">
                                     <p class="ml-3">A continuación selecciona a cuál(es) prestadores ofertan este servicio.</p>
                                 </div>
                             <div class="row">
@@ -146,7 +142,7 @@
                                         @endif
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div> --}}
                             
                    </div>
   

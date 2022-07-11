@@ -17,9 +17,6 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description', 500);
-            $table->integer('price_normal')->unsigned();
-            $table->integer('price_discount')->unsigned()->nullable();
-            $table->integer('percentage_discount')->unsigned()->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('observation', 500)->nullable();

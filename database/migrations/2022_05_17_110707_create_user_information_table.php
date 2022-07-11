@@ -25,7 +25,7 @@ class CreateUserInformationTable extends Migration
             $table->string('num_phone_contact')->nullable();
             $table->string('email_contact')->nullable();
             $table->string('city');
-            $table->string('frame_ubication');
+            $table->text('frame_ubication');
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();

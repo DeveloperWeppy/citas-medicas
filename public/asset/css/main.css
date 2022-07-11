@@ -10805,3 +10805,10 @@ https://www.phpied.com/delay-loading-your-print-css/
 /*==================================================
 ===| Style CSS End
 ===================================================*/
+table, th, td {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+}

@@ -65,7 +65,30 @@
                                                         <h6 style="padding-left:18px"><i class="fas fa-check fa-fw"></i> {{$value2->name}}</h6>
 
                                                         <p style="padding-left:38px;padding-bottom:15px">{{$value2->description}}</p>
+                                                        <div class="text-center">
+                                                            <table>
+                                                                <tr>
+                                                                  <th>Entidad</th>
+                                                                  <th>Precio Normal</th>
+                                                                  <th>Precio con Descuento</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    @foreach ($datos['convenios'] as $item)
 
+                                                                        @foreach ($datos['convenio_services'] as $item2)
+                                                                            @if ($item->id == $item2->convenio_id && $value2->id == $item2->service_id  )
+                                                                                <td>{{$item2->id}}</td>
+                                                                                <td>{{$item2->price_normal}}</td>
+                                                                                <td>{{$item2->price_discount}}</td>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        
+                                                                    @endforeach
+                                                                  
+                                                                </tr>
+                                                              </table>
+                                                        </div>
+                                                       
                                                         @endif
                                                       @endforeach
                                                     </div>

@@ -12,9 +12,6 @@ class Service extends Model
     protected $fillable = [
         'name',
         'description',
-        'price_normal',
-        'price_discount',
-        'percentage_discount',
         'start_date',
         'end_date',
         'observation',

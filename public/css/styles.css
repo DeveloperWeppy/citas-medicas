@@ -9,6 +9,17 @@
     opacity: 0;
 }
 
+#upload-label-banner {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+}
+
+#uploadBanner {
+    opacity: 0;
+}
+
 #upload-label {
     position: absolute;
     top: 50%;

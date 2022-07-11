@@ -41,6 +41,20 @@
 jQuery(document).ready(function($){
     $(document).ready(function() {
         $('.mi-selector').select2();
+        $('#customSwitch3').change(function() {
+            if($(this).is(":checked")) {
+                checked = true;
+                $('#label_texto_descuento').text('Porcentaje de Descuento').val();
+                $('.text-tarifa').text('%').val();
+                $('.ceros').hide();
+            }
+            else {
+                checked = false;
+                $('#label_texto_descuento').text('Precio con Descuento').val();
+                $('.ceros').show();
+                $('.text-tarifa').text('$').val();
+           }
+        });
     });
 });
 
@@ -126,21 +140,21 @@ function agregarServicio(){
 
       $(function () {
           $('#uploadBanner').on('change', function () {
-              readURLBanner(input);
+              readURLBanner(inputt);
           });
       });
 
       /*  ==========================================
           SHOW UPLOADED IMAGE NAME
       * ========================================== */
-      var input = document.getElementById( 'uploadBanner' );
-      var infoArea = document.getElementById( 'upload-label-banner' );
+      var inputBA = document.getElementById( 'uploadBanner' );
+      var infoAreaBanner = document.getElementById( 'upload-label-banner' );
 
-      input.addEventListener( 'change', showFileName );
+      inputBA.addEventListener( 'change', showFileName );
       function showFileName( event ) {
         var input = event.srcElement;
         var fileName = input.files[0].name;
-        infoArea.textContent = 'File name: ' + fileName;
+        infoAreaBanner.textContent = 'File name: ' + fileName;
       }
 
       /*********************** EVENTS JS FOR IMAGE BANNER END  **************************/ 
@@ -180,6 +194,11 @@ function agregarServicio(){
               },
               imgLogo: {
                 required: true,
+              },
+              imgBanner: {
+                required: true,
+                extension: "png|jpeg|jpg",
+                filesize: 1048576, 
               },
               start_date: {
                 required: true,
@@ -225,6 +244,9 @@ function agregarServicio(){
               },
               imgLogo: {
                 required: "Por favor cargue el logo de la empresa",
+              },
+              imgBanner: {
+                required: "Por favor cargue imágen del banner con tamaño menor a 1MB",
               },
               start_date: {
                 required: "Seleccione la fecha de inicio del convenio",
@@ -280,7 +302,7 @@ function agregarServicio(){
                             });
                         }
                     }).done(function(respuesta){
-                        //console.log(respuesta);
+                        console.log(respuesta);
                        if (!respuesta.error) {
 
                           Swal.fire({
@@ -290,9 +312,9 @@ function agregarServicio(){
                                 timer: 2000
                             });
 
-                            setTimeout(function(){
+                           /*  setTimeout(function(){
                                 location.href = "{{route('usuarios.index')}}";
-                            },2000);
+                            },2000); */
 
                         } else {
                             setTimeout(function(){

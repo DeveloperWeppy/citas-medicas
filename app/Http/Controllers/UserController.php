@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Convenio;
 use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
-use App\Models\ConvenioServices;
-use App\Models\Client;
 use App\Models\UserInformation;
+use App\Models\ConvenioServices;
+use Illuminate\Support\Facades\DB;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
     public function index()
@@ -72,12 +75,18 @@ class UserController extends Controller
         $error = false;
         $mensaje = '';
 
-        $contraseña = $request->password;
+        $password = $request->password;
         $dia = $request->day == null ? 'sin dia' : $request->day;
         $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
         $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
         $apertura_afternoon = $request->open_afternoon == null ? 'sin horario' : $request->open_afternoon;
         $cierre_afternoon = $request->close_afternoon == null ? 'sin horario' : $request->close_afternoon;
+
+        $discount_or_no = $request->discount_or_no;
+        $email= $request->email;
+        $name_contact = $request->name_contact;
+        $num_phone_contact = $request->num_phone_contact;
+        $name = $request->name;
 
         //consulta para validar si ya existe un usuario registrado o no
         $validar_email = User::where('email', $request->email)->count();
@@ -85,7 +94,7 @@ class UserController extends Controller
 
         if ($validar_email > 0) {
             $error = true;
-            $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $request->email . '". Intente con otro.';
+            $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $email . '". Intente con otro.';
         } else if ($validar_nit > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado un usuario con este nit "' . $request->nit . '".';
@@ -94,12 +103,23 @@ class UserController extends Controller
             $image = $request->file('imgLogo')->store('public/logosPrestadores');
             $url = Storage::url($image);
 
+            # validamos si existe la imagen del banner en el request
+            $imageBanner = $request->file('imgBanner')->store('public/bannerPrestadores');
+            $urlBanner = Storage::url($imageBanner);
+
+            /* $validator = $request->validate([
+                'imgLogo' => 'dimensions:min_width=220,min_height=220',
+                'imgBanner' => 'dimensions:min_width=920,min_height=220',
+            ]);
+
+            $mensaje = $validator; */
+
             $register_user = array(
-                'name' => $request->name,
+                'name' => $name,
                 'logo' => $url,
-                'email' => $request->email,
-                'password' => Hash::make($contraseña),
-                'pw_decrypte' => $contraseña,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'pw_decrypte' => $password,
                 'status' => 1
             );
 
@@ -107,18 +127,23 @@ class UserController extends Controller
                 $id_user = $user_add->id;
                 $register_user_info = array(
                     'user_id' => $id_user,
+                    'image_banner' => $urlBanner,
                     'nit' => $request->nit,
-                    'name' => $request->name,
+                    'name' => $name,
                     'address' => $request->address,
                     'num_phone' => $request->num_phone,
-                    'name_contact' => $request->name_contact,
-                    'num_phone_contact' => $request->num_phone_contact,
+                    'name_contact' => $name_contact,
+                    'num_phone_contact' => $num_phone_contact,
                     'email_contact' => $request->email_contact,
-                    'city' => $request->city,
+                    'frame_ubication' => $request->frame_ubication,
+                    'whatsapp' => $request->whatsapp,
+                    'instagram' => $request->instagram,
+                    'facebook' => $request->facebook,
                 );
 
                 if ($responsable = UserInformation::create($register_user_info)) {
                     $id_user_responsable = $responsable->id;
+                    $fechaconvenio = $responsable->created_at;
                     $register_convenio = array(
                         'start_date' => $request->start_date,
                         'end_date' => $request->end_date,
@@ -128,12 +153,21 @@ class UserController extends Controller
                     if ($responsable =Convenio::create($register_convenio)) {
                         $id_convenio = $responsable->id;
                         foreach ($request->servicio_id as $index => $rowid) {
-                            $register_horario_atencion = ConvenioServices::create([
+                            //falta probar esta línea de código en su defecto estaba  $register_horario_atencion = ConvenioServices::create([
+                            $register_conveni_services = array(
                                 'convenio_id' => $id_convenio,
                                 'service_id' =>  $request->servicio_id[$index],
                                 'price_normal' =>$request->price_normal[$index],
                                 'price_discount' => $request->price_descuento[$index],
-                            ]);
+                                'percentage_discount' => $request->percentage_discount[$index],
+                            );
+                            if($discount_or_no == 1){
+                                $register_conveni_services['percentage_discount'] = $request->percentage_discount[$index];
+                            }else{
+                                $register_conveni_services['price_discount'] = $request->price_discount[$index];
+                            }
+
+                            ConvenioServices::create($register_conveni_services);
                         }
                         for ($i = 0; $i < 7; ++$i) {
                             //dump((float)$montos[$i]);
@@ -148,11 +182,14 @@ class UserController extends Controller
                             ]);
                         }
                         if ($register_horario_atencion->save()) {
+                            //send email of subscription success
+                            self::enviarCorreo($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact);
+
                             $error = false;
-                        $mensaje = 'Registro Exitoso!';
+                            $mensaje = 'Registro Exitoso!';
                         } else {
                             $error = true;
-                        $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
+                            $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
                         }
                     } else {
                         $error = true;
@@ -168,6 +205,49 @@ class UserController extends Controller
             }
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+
+    public function enviarCorreo($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
+            $mail->Host = env('MAIL_HOST');
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
+            $mail->CharSet = "UTF8";
+            $mail->Subject = "Registro de Convenio CitasMedicas";
+
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/conveiocreado.jpg', 'img_header', '/images/emails/conveiocreado.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
+
+            $title = '';
+            $mail->Body = view('email.conveniocreated', compact(
+                'title',
+                'email',
+                'password',
+                'name',
+                'name_contact',
+                'fechaconvenio',
+                'num_phone_contact'
+            ))->render();
+            $mail->addAddress($email, $name_contact);
+            if ($mail->Send()) {
+                return 200;
+            } else {
+                dd('error');
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 
     public function profile()
