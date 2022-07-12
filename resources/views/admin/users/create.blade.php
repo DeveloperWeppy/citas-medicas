@@ -38,52 +38,83 @@
 
 <script src="/js/datatable.js"></script>
 <script>
-jQuery(document).ready(function($){
-    $(document).ready(function() {
-        $('.mi-selector').select2();
-        $('#customSwitch3').change(function() {
-            if($(this).is(":checked")) {
-                checked = true;
-                $('#label_texto_descuento').text('Porcentaje de Descuento').val();
-                $('.text-tarifa').text('%').val();
-                $('.ceros').hide();
-            }
-            else {
-                checked = false;
-                $('#label_texto_descuento').text('Precio con Descuento').val();
-                $('.ceros').show();
-                $('.text-tarifa').text('$').val();
-           }
-        });
+var datalistServ={!!$serviciosSelect!!};
+var refressVal=0;
+function refreshSelect2Value(tipo){
+  if(tipo==1){$("#dropdown").select2("destroy");}
+  $('.mi-selector-edit').select2({
+      width: '100%',
+      allowClear: true,
+      multiple: false,
+      placeholder: "Nombre de servicio",
+      data: datalistServ
+  });
+  refressVal=1;
+  $(".mi-selector-edit").each(function(){
+      $(this).val($(this).attr('value')).trigger("change");
+  });
+  refressVal=0;
+}
+$(document).ready(function() {
+    refreshSelect2Value(0);
+    $('#customSwitch3').change(function() {
+        if($(this).is(":checked")) {
+            checked = true;
+            $('#label_texto_descuento').text('Porcentaje de Descuento').val();
+            $('.text-tarifa').text('%').val();
+            $('.ceros').hide();
+        }
+        else {
+            checked = false;
+            $('#label_texto_descuento').text('Precio con Descuento').val();
+            $('.ceros').show();
+            $('.text-tarifa').text('$').val();
+       }
     });
 });
-
+$(document).on('change', '.formNombreServicio', function() {
+  var ifexiste=0;
+  if($(this).val()!="" && $(this).val()!=null && refressVal==0){
+      var indexIn=$('.formNombreServicio').index(this);
+      var valori= $(this).val();
+      var varReferencia=this;
+      $(".formNombreServicio").each(function(index){
+         if($(this).val()==valori && index!=indexIn){
+              ifexiste=1;
+         }
+      });
+      if(ifexiste){
+        alert("servicio ya se encuentra agregado ");
+        $(varReferencia).val("").trigger("change");
+        $(varReferencia).attr("value","");
+      }
+  }
+});
 function agregarServicio(){
-         var ifExist=true;
-         $(".formNombreServicio").each(function(){
-              if($(this).val()== $("#formNombreServicio").val()){
-                ifExist=false;
+          var ifExist=true;
+          $(".formNombreServicio").each(function(){
+               if($(this).val()== $("#formNombreServicio").val()){
+                 ifExist=false;
+               }
+          });
+           if($("#formNombreServicio" ).val()!="" && $("#formPrecioNormal" ).val()!="" && $("#formPrecioDescuento" ).val()!="" && ifExist){
+                var divNom='<div class="col-sm-5 ed"><div class="form-group"><select class="form-control mi-selector-edit formNombreServicio"  name="servicio_id[]" value="'+$("#formNombreServicio" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required>  </select></div> </div>';
+                var divPre='<div class="col-sm-3"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">$</span> </div><input type="number" name="%name%" value="%value%"  class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off"> \n'+
+                   '<div class="input-group-append"><span class="input-group-text">.00</span></div>  </div></div>';
+                var divPreNom=divPre.replace('%value%',$("#formPrecioNormal" ).val()).replace('%name%', 'price_normal[]');
+                var divPreDes=divPre.replace('%value%',$("#formPrecioDescuento" ).val()).replace('%name%', 'price_descuento[]');
+                $(".despusPrin").after('<div class="row ItemServ">'+divNom+divPreNom+divPreDes+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div>');
+                $("#formPrecioDescuento" ).val("");
+                $("#formPrecioNormal" ).val("");
+                $("#formNombreServicio").val("").trigger("change");
+                refreshSelect2Value(1);
+           }else{
+              if(ifExist){
+                 alert("Completar campos");
+              }else{
+                  alert("Servicio ya se encuentra agregado");
               }
-         });
-          if($("#formNombreServicio" ).val()!="" && $("#formPrecioNormal" ).val()!="" && $("#formPrecioDescuento" ).val()!="" && ifExist){
-               var divNom='<div class="col-sm-5 ed"><div class="form-control ">'+$("#formNombreServicio" ).select2('data')[0].text+'<input class="formNombreServicio" style="display:none" type="text" name="servicio_id[]"  value="'+$("#formNombreServicio" ).val()+'"  placeholder="Nombre del Servicio" autocomplete="off"></div> </div>';
-               var divPre='<div class="col-sm-3"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">$</span> </div><input type="number" name="%name%" value="%value%"  class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off"> \n'+
-                  '<div class="input-group-append"><span class="input-group-text">.00</span></div>  </div></div>';
-               var divPreNom=divPre.replace('%value%',$("#formPrecioNormal" ).val()).replace('%name%', 'price_normal[]');
-               var divPreDes=divPre.replace('%value%',$("#formPrecioDescuento" ).val()).replace('%name%', 'price_descuento[]');
-               $(".despusPrin").after('<div class="row ItemServ">'+divNom+divPreNom+divPreDes+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div>');
-               $("#formPrecioDescuento" ).val("");
-               $("#formPrecioNormal" ).val("");
-               $("#formNombreServicio").val("").trigger("change");
-          }else{
-             if(ifExist){
-                alert("Completar campos");
-             }else{
-                 alert("Servicio ya se encuentra agregado");
-             }
-
-          }
-
+           }
        }
 
       /*  ==========================================
@@ -106,26 +137,6 @@ function agregarServicio(){
               readURL(input);
           });
       });
-
-      /*  ==========================================
-          SHOW UPLOADED IMAGE NAME
-      * ========================================== */
-      var input = document.getElementById( 'upload' );
-      var infoArea = document.getElementById( 'upload-label' );
-
-      input.addEventListener( 'change', showFileName );
-      function showFileName( event ) {
-        var input = event.srcElement;
-        var fileName = input.files[0].name;
-        infoArea.textContent = 'File name: ' + fileName;
-      }
-
-
-      /*********************** EVENTS JS FOR IMAGE BANNER START  **************************/ 
-
-       /*  ==========================================
-          SHOW UPLOADED IMAGE
-      * ========================================== */
       function readURLBanner(inputt) {
           if (inputt.files && inputt.files[0]) {
               var reader = new FileReader();
@@ -140,24 +151,30 @@ function agregarServicio(){
 
       $(function () {
           $('#uploadBanner').on('change', function () {
-              readURLBanner(inputt);
+              readURLBanner(inputBA);
           });
       });
-
       /*  ==========================================
           SHOW UPLOADED IMAGE NAME
       * ========================================== */
+      var input = document.getElementById( 'upload' );
+      var infoArea = document.getElementById( 'upload-label' );
+
+      input.addEventListener( 'change', showFileName );
+      function showFileName( event ) {
+        var input = event.srcElement;
+        var fileName = input.files[0].name;
+        infoArea.textContent = 'File name: ' + fileName;
+      }
       var inputBA = document.getElementById( 'uploadBanner' );
       var infoAreaBanner = document.getElementById( 'upload-label-banner' );
 
-      inputBA.addEventListener( 'change', showFileName );
-      function showFileName( event ) {
+      inputBA.addEventListener( 'change', showFileName2);
+      function showFileName2( event ) {
         var input = event.srcElement;
         var fileName = input.files[0].name;
         infoAreaBanner.textContent = 'File name: ' + fileName;
       }
-
-      /*********************** EVENTS JS FOR IMAGE BANNER END  **************************/ 
         //form of register of user
        $('#quickForm').validate({
             rules: {
@@ -195,18 +212,19 @@ function agregarServicio(){
               imgLogo: {
                 required: true,
               },
-              imgBanner: {
-                required: true,
-                extension: "png|jpeg|jpg",
-                filesize: 1048576, 
-              },
               start_date: {
                 required: true,
               },
               end_date: {
                 required: true,
               },
-              price_normal: {
+              "price_normal[]": {
+                required: true,
+              },
+              "price_descuento[]": {
+                required: true,
+              },
+              "servicio_id[]": {
                 required: true,
               },
             },
@@ -245,17 +263,20 @@ function agregarServicio(){
               imgLogo: {
                 required: "Por favor cargue el logo de la empresa",
               },
-              imgBanner: {
-                required: "Por favor cargue imágen del banner con tamaño menor a 1MB",
-              },
               start_date: {
                 required: "Seleccione la fecha de inicio del convenio",
               },
               end_date: {
                 required: "Seleccione la fecha de finalización del convenio",
               },
-              price_normal: {
-                required: "Por favor ingresa valor",
+              "price_normal[]": {
+                required: "Por favor ingresa valor normal del servicio",
+              },
+              "price_descuento[]": {
+                required: "Por favor ingresa valor con descuento del servicio",
+              },
+              "servicio_id[]": {
+                required: "Por favor ingresa el nombre del servicio",
               },
             },
             errorElement: 'span',
@@ -302,7 +323,7 @@ function agregarServicio(){
                             });
                         }
                     }).done(function(respuesta){
-                        console.log(respuesta);
+                        //console.log(respuesta);
                        if (!respuesta.error) {
 
                           Swal.fire({
@@ -312,9 +333,9 @@ function agregarServicio(){
                                 timer: 2000
                             });
 
-                           /*  setTimeout(function(){
+                            setTimeout(function(){
                                 location.href = "{{route('usuarios.index')}}";
-                            },2000); */
+                            },2000);
 
                         } else {
                             setTimeout(function(){

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
 use App\Models\UserInformation;
 use App\Models\ConvenioServices;
+use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -57,44 +58,55 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+      $servicios = Service::where('status', 1)->get();
+      $index=0;
+      foreach ($servicios as $value){
+      $serviciosSelect[$index]['id']=$value->id;
+      $serviciosSelect[$index]['text']=$value->name;
+      $index++;
+      }
+      $serviciosSelect=json_encode($serviciosSelect);
+      return view('admin.users.create')->with('serviciosSelect', $serviciosSelect);
     }
     public function edit($id)
     {
         $user= User::findOrFail($id);
+        $serviciosSelect=array();
         $userInformation= UserInformation::where('user_id', $id)->get();
         $user_info_id=isset($userInformation[0]->id)? $userInformation[0]->id:0;
         $convenio= Convenio::where('responsable_id', $user_info_id)->get();
         $convenioServices= ConvenioServices::where('convenio_id', $convenio[0]->id)->get();
         $attentioShedule=AttentioShedule::where('responsable_id', $user_info_id)->get();
-        return view('admin.users.edit')->with('user', $user)->with('userInformation', $userInformation[0])->with('convenio', $convenio[0])->with('attentioShedule', $attentioShedule)->with('convenioServices', $convenioServices);
+        $servicios = Service::where('status', 1)->get();
+        $index=0;
+        foreach ($servicios as $value){
+          $serviciosSelect[$index]['id']=$value->id;
+          $serviciosSelect[$index]['text']=$value->name;
+          $index++;
+        }
+        $serviciosSelect=json_encode($serviciosSelect);
+        return view('admin.users.edit')->with('user', $user)->with('userInformation', $userInformation[0])->with('convenio', $convenio[0])->with('attentioShedule', $attentioShedule)->with('convenioServices',$convenioServices)->with('serviciosSelect',$serviciosSelect);
     }
 
     public function store(Request $request)
     {
         $error = false;
         $mensaje = '';
-
-        $password = $request->password;
+        $discount_or_no = $request->discount_or_no;
+        $contraseña = $request->password;
         $dia = $request->day == null ? 'sin dia' : $request->day;
         $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
         $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
         $apertura_afternoon = $request->open_afternoon == null ? 'sin horario' : $request->open_afternoon;
         $cierre_afternoon = $request->close_afternoon == null ? 'sin horario' : $request->close_afternoon;
-
-        $discount_or_no = $request->discount_or_no;
-        $email= $request->email;
-        $name_contact = $request->name_contact;
-        $num_phone_contact = $request->num_phone_contact;
-        $name = $request->name;
-
+        $frame_ubication=$request->frame_ubication == null ? '':$request->frame_ubication;
         //consulta para validar si ya existe un usuario registrado o no
         $validar_email = User::where('email', $request->email)->count();
         $validar_nit = UserInformation::where('nit', $request->nit)->count();
 
         if ($validar_email > 0) {
             $error = true;
-            $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $email . '". Intente con otro.';
+            $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $request->email . '". Intente con otro.';
         } else if ($validar_nit > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado un usuario con este nit "' . $request->nit . '".';
@@ -102,24 +114,15 @@ class UserController extends Controller
             # validamos si existe la imagen en el request
             $image = $request->file('imgLogo')->store('public/logosPrestadores');
             $url = Storage::url($image);
-
-            # validamos si existe la imagen del banner en el request
             $imageBanner = $request->file('imgBanner')->store('public/bannerPrestadores');
             $urlBanner = Storage::url($imageBanner);
 
-            /* $validator = $request->validate([
-                'imgLogo' => 'dimensions:min_width=220,min_height=220',
-                'imgBanner' => 'dimensions:min_width=920,min_height=220',
-            ]);
-
-            $mensaje = $validator; */
-
             $register_user = array(
-                'name' => $name,
+                'name' => $request->name,
                 'logo' => $url,
-                'email' => $email,
-                'password' => Hash::make($password),
-                'pw_decrypte' => $password,
+                'email' => $request->email,
+                'password' => Hash::make($contraseña),
+                'pw_decrypte' => $contraseña,
                 'status' => 1
             );
 
@@ -127,15 +130,16 @@ class UserController extends Controller
                 $id_user = $user_add->id;
                 $register_user_info = array(
                     'user_id' => $id_user,
-                    'image_banner' => $urlBanner,
                     'nit' => $request->nit,
-                    'name' => $name,
+                    'image_banner' => $urlBanner,
+                    'name' => $request->name,
                     'address' => $request->address,
                     'num_phone' => $request->num_phone,
-                    'name_contact' => $name_contact,
-                    'num_phone_contact' => $num_phone_contact,
+                    'name_contact' => $request->name_contact,
+                    'num_phone_contact' => $request->num_phone_contact,
                     'email_contact' => $request->email_contact,
-                    'frame_ubication' => $request->frame_ubication,
+                    'city' => $request->city,
+                    'frame_ubication' =>$frame_ubication,
                     'whatsapp' => $request->whatsapp,
                     'instagram' => $request->instagram,
                     'facebook' => $request->facebook,
@@ -143,7 +147,6 @@ class UserController extends Controller
 
                 if ($responsable = UserInformation::create($register_user_info)) {
                     $id_user_responsable = $responsable->id;
-                    $fechaconvenio = $responsable->created_at;
                     $register_convenio = array(
                         'start_date' => $request->start_date,
                         'end_date' => $request->end_date,
@@ -152,22 +155,24 @@ class UserController extends Controller
 
                     if ($responsable =Convenio::create($register_convenio)) {
                         $id_convenio = $responsable->id;
-                        foreach ($request->servicio_id as $index => $rowid) {
-                            //falta probar esta línea de código en su defecto estaba  $register_horario_atencion = ConvenioServices::create([
-                            $register_conveni_services = array(
-                                'convenio_id' => $id_convenio,
-                                'service_id' =>  $request->servicio_id[$index],
-                                'price_normal' =>$request->price_normal[$index],
-                                'price_discount' => $request->price_descuento[$index],
-                                'percentage_discount' => $request->percentage_discount[$index],
-                            );
-                            if($discount_or_no == 1){
-                                $register_conveni_services['percentage_discount'] = $request->percentage_discount[$index];
-                            }else{
-                                $register_conveni_services['price_discount'] = $request->price_discount[$index];
-                            }
-
-                            ConvenioServices::create($register_conveni_services);
+                        if(isset($request->servicio_id )){
+                          foreach ($request->servicio_id as $index => $rowid) {
+                              if($request->servicio_id[$index]!=""){
+                                $percentageDiscount=$priceDiscount=0;
+                                if($discount_or_no == 1){
+                                    $percentageDiscount = $request->price_descuento[$index];
+                                }else{
+                                    $priceDiscount= $request->price_descuento[$index];
+                                }
+                                  $register_convenio_servicio = ConvenioServices::create([
+                                      'convenio_id' => $id_convenio,
+                                      'service_id' =>  $request->servicio_id[$index],
+                                      'price_normal' =>$request->price_normal[$index],
+                                      'price_discount' => $priceDiscount,
+                                      'percentage_discount' => $percentageDiscount,
+                                  ]);
+                              }
+                          }
                         }
                         for ($i = 0; $i < 7; ++$i) {
                             //dump((float)$montos[$i]);
@@ -182,14 +187,11 @@ class UserController extends Controller
                             ]);
                         }
                         if ($register_horario_atencion->save()) {
-                            //send email of subscription success
-                            self::enviarCorreo($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact);
-
                             $error = false;
-                            $mensaje = 'Registro Exitoso!';
+                        $mensaje = 'Registro Exitoso!';
                         } else {
                             $error = true;
-                            $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
+                        $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
                         }
                     } else {
                         $error = true;
@@ -206,7 +208,6 @@ class UserController extends Controller
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
-
     public function enviarCorreo($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact)
     {
         $mail = new PHPMailer(true);
@@ -372,13 +373,14 @@ class UserController extends Controller
          $error = false;
          $mensaje = '';
          $id_userprestador = $request->id_userprestador;
-
+         $discount_or_no = $request->discount_or_no;
          $contraseña = $request->password;
          $dia = $request->day == null ? 'sin dia' : $request->day;
          $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
          $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
          $apertura_afternoon = $request->open_afternoon == null ? 'sin horario' : $request->open_afternoon;
          $cierre_afternoon = $request->close_afternoon == null ? 'sin horario' : $request->close_afternoon;
+         $frame_ubication=$request->frame_ubication == null ? '':$request->frame_ubication;
          if($request->has('imgLogo')) {
            $image = $request->file('imgLogo')->store('public/logosPrestadores');
            $url = Storage::url($image);
@@ -398,15 +400,24 @@ class UserController extends Controller
 
          if ($user_add = User::findOrFail($id_userprestador)->update($register_user)) {
              $register_user_info = array(
-                   'nit' => $request->nit,
-                   'name' => $request->name,
-                   'address' => $request->address,
-                   'num_phone' => $request->num_phone,
-                   'name_contact' => $request->name_contact,
-                   'num_phone_contact' => $request->num_phone_contact,
-                   'email_contact' => $request->email_contact,
-                   'city' => $request->city,
+               'nit' => $request->nit,
+               'name' => $request->name,
+               'address' => $request->address,
+               'num_phone' => $request->num_phone,
+               'name_contact' => $request->name_contact,
+               'num_phone_contact' => $request->num_phone_contact,
+               'email_contact' => $request->email_contact,
+               'city' => $request->city,
+               'frame_ubication' =>$frame_ubication,
+               'whatsapp' => $request->whatsapp,
+               'instagram' => $request->instagram,
+               'facebook' => $request->facebook,
              );
+              if($request->has('imgBanner')) {
+                 $imageBanner = $request->file('imgBanner')->store('public/bannerPrestadores');
+                 $urlBanner = Storage::url($imageBanner);
+                 $register_user_info['image_banner']=$urlBanner;
+              }
              if ($responsable = UserInformation::where('user_id', $id_userprestador)->update($register_user_info)) {
                    $userInformation =UserInformation::where('user_id', $id_userprestador)->get();
                    $register_convenio = array(
@@ -420,13 +431,20 @@ class UserController extends Controller
                          $convenioServices=json_decode(json_encode($convenioServices),true);
                          if(isset($request->servicio_id )){
                            foreach ($request->servicio_id as $index => $rowid) {
-                               $ifExist=array_search($request->servicio_id[$index], array_column($convenioServices, 'service_id'));
+                                $ifExist=array_search($request->servicio_id[$index], array_column($convenioServices, 'service_id'));
                                 if ($ifExist === false && $request->servicio_id[$index]!="" ) {
+                                    $percentageDiscount=$priceDiscount=0;
+                                    if($discount_or_no == 1){
+                                        $percentageDiscount = $request->price_descuento[$index];
+                                    }else{
+                                        $priceDiscount= $request->price_descuento[$index];
+                                    }
                                     $register_convenio_servicio = ConvenioServices::create([
-                                        'convenio_id' => $convenio[0]->id,
+                                        'convenio_id' => $id_convenio,
                                         'service_id' =>  $request->servicio_id[$index],
                                         'price_normal' =>$request->price_normal[$index],
-                                        'price_discount' => $request->price_descuento[$index],
+                                        'price_discount' => $priceDiscount,
+                                        'percentage_discount' => $percentageDiscount,
                                     ]);
                                 }
                            }
@@ -434,6 +452,18 @@ class UserController extends Controller
                                  $ifEliminar=array_search($convenioServices[$index]['service_id'],$request->servicio_id);
                                  if ($ifEliminar === false) {
                                      if (ConvenioServices::findOrFail($convenioServices[$index]['id'])->delete()){}
+                                 }else{
+                                     $percentageDiscount=$priceDiscount=0;
+                                     if($discount_or_no == 1){
+                                         $percentageDiscount = $request->price_descuento[$ifEliminar];
+                                     }else{
+                                         $priceDiscount= $request->price_descuento[$ifEliminar];
+                                     }
+                                     $register_convenio_servicio = ConvenioServices::where('id',$convenioServices[$index]['id'])->update([
+                                         'price_normal' =>$request->price_normal[$ifEliminar],
+                                         'price_discount' => $priceDiscount,
+                                         'percentage_discount' => $percentageDiscount,
+                                     ]);
                                  }
                            }
 

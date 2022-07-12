@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\CategoryService;
 use App\Models\UserInformation;
 use App\Models\ConvenioServices;
+use App\Models\AttentioShedule;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
@@ -30,7 +31,7 @@ class ServiceController extends Controller
 
         $user_login = Auth::user()->id;
         $user = User::find($user_login);
-        
+
         if ($user->hasRole('Admin') || $user->hasRole('Gestor')) {
             $servicios = Service::where('is_free', 0)->get();
             foreach ($servicios as $key => $value) {
@@ -112,7 +113,7 @@ class ServiceController extends Controller
                     $data[] = $info;
                 }
             }
-            
+
         }
 
         echo json_encode([
@@ -126,7 +127,7 @@ class ServiceController extends Controller
 
         $user_login = Auth::user()->id;
         $user = User::find($user_login);
-        
+
         if ($user->hasRole('Admin') || $user->hasRole('Gestor')) {
             $servicios = Service::where('is_free', 1)->get();
             foreach ($servicios as $key => $value) {
@@ -208,7 +209,7 @@ class ServiceController extends Controller
                     $data[] = $info;
                 }
             }
-            
+
         }
 
         echo json_encode([
@@ -298,8 +299,9 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        $service = Service::findOrFail($id);
-        return view('admin.services.show')->with('service', $service);
+      $service = Service::findOrFail($id);
+      $attentioShedule = AttentioShedule::all();
+      return view('admin.services.show')->with('service', $service)->with('attentioShedule', $attentioShedule);
     }
 
     /**

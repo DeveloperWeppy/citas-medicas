@@ -34,7 +34,7 @@ class PlanSeeder extends Seeder
             'cant_people' => 4,
         ]);
 
-        Plan::create([
+      /* Plan::create([
             'name' => 'Plan Individual',
             'type_plan' => 'Anual',
             'slug' => 'anual individual',
@@ -42,7 +42,7 @@ class PlanSeeder extends Seeder
             'duration_in_days' => 30,
             'is_group' => 0,
             'cant_people' => 1,
-        ]);
+   ]);
 
         Plan::create([
             'name' => 'Plan Grupal',
@@ -53,5 +53,6 @@ class PlanSeeder extends Seeder
             'is_group' => 1,
             'cant_people' => 4,
         ]);
+            */ 
     }
 }

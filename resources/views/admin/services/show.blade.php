@@ -31,7 +31,7 @@
 @section('content')
 
 <div class="container-fluid">
-  <x-view-service idService="{{$service->id}}"></x-view-service>
+  <x-view-service idService="{{$service->id}}"  :attentioShedule=$attentioShedule></x-view-service>
 </div>
 @stop
 

@@ -13,8 +13,8 @@ class FormRgisterUser extends Component
      */
     public function __construct($user=array(),$userInformation=array(),$convenio=array(),$attentioShedule=array(),$convenioServices=array())
     {
-       $this->user=isset($user->email)? $user:(object) array('name'=>'','email'=>'');
-       $this->userInformation=isset($userInformation->nit)? $user:(object) array('nit'=>'','name'=>'','address'=>'','num_phone'=>'','name_contact'=>'','num_phone_contact'=>'','email_contact'=>'','city'=>'','frame_ubication '=>'');
+       $this->user=isset($user->email)? $user:(object) array('id'=>'','name'=>'','email'=>'','logo'=>'#');
+       $this->userInformation=isset($userInformation->id)? $userInformation:(object) array('nit'=>'','name'=>'','address'=>'','num_phone'=>'','name_contact'=>'','num_phone_contact'=>'','email_contact'=>'','city'=>'','frame_ubication'=>'','image_banner'=>'','facebook'=>'','instagram'=>'','whatsapp'=>'');
        $this->convenio=isset($convenio->start_date)?$convenio:(object) array('start_date'=>'','end_date'=>'');
        $this->attentioShedule=$attentioShedule;
        $this->convenioServices=$convenioServices;

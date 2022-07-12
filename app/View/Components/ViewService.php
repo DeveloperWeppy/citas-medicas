@@ -17,9 +17,11 @@ class ViewService extends Component
      * @return void
      */
     public $idService;
-    public function __construct($idService)
+    public function __construct($idService,$attentioShedule=array())
     {
         $this->idService = $idService;
+        $this->attentioShedule = $attentioShedule;
+
     }
 
     /**
@@ -31,21 +33,21 @@ class ViewService extends Component
     {
         $info_convenio = [];
         $service = Service::findOrFail($this->idService);
-        
         $convenios_services = ConvenioServices::where('service_id', $this->idService)->get();
 
         foreach ($convenios_services as $key => $value) {
             $convenio_user = $value->convenio_id;
-            
+            $price_normal = $value->price_normal;
+            $price_discount = $value->price_discount;
             $convenios = UserInformation::where('id', $convenio_user)->get(['id', 'name']);
-            
             foreach ($convenios as $key => $item) {
                 $id_user_convenio = $item->id;
                 $name_user_convenio = $item->name;
-
                 $datos = array(
                     'id' => $id_user_convenio,
                     'name' => $name_user_convenio,
+                    'price_normal' => $price_normal,
+                    'price_discount' => $price_discount,
                 );
 
                 $info_convenio[] = array(
@@ -56,6 +58,6 @@ class ViewService extends Component
         }
         return view('components.services.view-service')
         ->with('info_convenio', $info_convenio)
-                ->with('service', $service);
+                ->with('service', $service)->with('attentioShedule', $this->attentioShedule);
     }
 }
