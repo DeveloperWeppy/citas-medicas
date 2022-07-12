@@ -75,7 +75,7 @@
                                     @if ($conveniodetaills->whatsapp == null)
                                         <p class="m-0">No Disponible</p>
                                     @else
-                                        <p class="m-0"><a href="{{$conveniodetaills->instagram}}" target="_blank">Visitar Página</a></p>
+                                        <p class="m-0"><a href="{{$conveniodetaills->whatsapp}}" target="_blank">Visitar Página</a></p>
                                     @endif
                                 </div>
                             </div>
