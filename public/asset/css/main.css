@@ -10279,6 +10279,14 @@ i[class*=" flaticon-"]:before {
   margin-bottom: 10px;
 }
 
+.why_choose_us2__content h4 {
+  color: #223645;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 .why_choose_us1__content p {
   font-size: 14px;
   line-height: 24px;

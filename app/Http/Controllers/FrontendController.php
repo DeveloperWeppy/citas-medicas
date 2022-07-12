@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttentioShedule;
 use App\Models\Plan;
 use App\Models\User;
 use App\Models\Client;
@@ -61,8 +62,9 @@ class FrontendController extends Controller
     public function detallesentidad($id)
     {
         $conveniodetaills = UserInformation::find($id);
+        $attention_shedule = AttentioShedule::where('responsable_id', $id)->get();
 
-        return view('detallesentidad')->with('conveniodetaills', $conveniodetaills);
+        return view('detallesentidad', compact('conveniodetaills', 'attention_shedule'));
     }
 
     public function envio()
