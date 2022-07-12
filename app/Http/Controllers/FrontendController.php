@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
 {
-    public function nosotros()
+    public function comofunciona()
     {
 
-        return view('nosotros');
+        return view('comofunciona');
     }
 
     public function beneficios()
@@ -38,6 +38,12 @@ class FrontendController extends Controller
     {
 
         return view('contacto');
+    }
+
+    public function preguntasfrecuentes()
+    {
+
+        return view('preguntasfrecuentes');
     }
 
     public function subscribirme()

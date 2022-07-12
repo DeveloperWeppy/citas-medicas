@@ -76,7 +76,7 @@
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li><a href="{{ route('front.inicio') }}">INICIO</a></li>
-                                        <li><a href="{{ route('front.nosotros') }}">¿CÓMO FUNCIONA?</a></li>
+                                        <li><a href="{{ route('front.comofunciona') }}">¿CÓMO FUNCIONA?</a></li>
                                         <li><a href="{{ route('front.servicios') }}">BENEFICIOS</a></li>
                                         <li><a href="{{ route('front.afiliate') }}">PLANES</a></li>
                                         <li><a href="{{ route('front.preguntas') }}">PREGUNTAS FRECUENTES</a></li>
