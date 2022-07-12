@@ -53,6 +53,13 @@ function refreshSelect2Value(tipo){
   $(".mi-selector-edit").each(function(){
       $(this).val($(this).attr('value')).trigger("change");
   });
+  if($('#customSwitch3').is(":checked")) {
+     $('.text-tarifa').text('%').val();
+     $('.ceros').hide();
+  }else{
+      $('.text-tarifa').text('$').val();
+      $('.ceros').show();
+  }
   refressVal=0;
 }
 $(document).ready(function() {
@@ -97,17 +104,17 @@ function agregarServicio(){
                  ifExist=false;
                }
           });
-           if($("#formNombreServicio" ).val()!="" && $("#formPrecioNormal" ).val()!="" && $("#formPrecioDescuento" ).val()!="" && ifExist){
-                var divNom='<div class="col-sm-5 ed"><div class="form-group"><select class="form-control mi-selector-edit formNombreServicio"  name="servicio_id[]" value="'+$("#formNombreServicio" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required>  </select></div> </div>';
-                var divPre='<div class="col-sm-3"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">$</span> </div><input type="number" name="%name%" value="%value%"  class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off"> \n'+
-                   '<div class="input-group-append"><span class="input-group-text">.00</span></div>  </div></div>';
-                var divPreNom=divPre.replace('%value%',$("#formPrecioNormal" ).val()).replace('%name%', 'price_normal[]');
-                var divPreDes=divPre.replace('%value%',$("#formPrecioDescuento" ).val()).replace('%name%', 'price_descuento[]');
-                $(".despusPrin").after('<div class="row ItemServ">'+divNom+divPreNom+divPreDes+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div>');
-                $("#formPrecioDescuento" ).val("");
-                $("#formPrecioNormal" ).val("");
-                $("#formNombreServicio").val("").trigger("change");
-                refreshSelect2Value(1);
+          if($("#formNombreServicio" ).val()!="" && $("#formPrecioNormal" ).val()!="" && $("#formPrecioDescuento" ).val()!="" && ifExist){
+               var divNom='<div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicio"  name="servicio_id[]" value="'+$("#formNombreServicio" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required>  </select></div> </div>';
+               var divPre='<div class="col-sm-3"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text %class%">$</span> </div><input type="number" name="%name%" value="%value%"  class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off"> \n'+
+                  '<div class="input-group-append cerosD"><span class="input-group-text">.00</span></div>  </div></div>';
+               var divPreNom=divPre.replace('%value%',$("#formPrecioNormal" ).val()).replace('%name%', 'price_normal[]').replace('%class%', '');
+               var divPreDes=divPre.replace('%value%',$("#formPrecioDescuento" ).val()).replace('%name%', 'price_descuento[]').replace('%class%', 'text-tarifa').replace('cerosD', 'ceros');
+               $(".despusPrin").after('<div class="row ItemServ">'+divNom+divPreNom+divPreDes+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div>');
+               $("#formPrecioDescuento" ).val("");
+               $("#formPrecioNormal" ).val("");
+               $("#formNombreServicio").val("").trigger("change");
+               refreshSelect2Value(1);
            }else{
               if(ifExist){
                  alert("Completar campos");

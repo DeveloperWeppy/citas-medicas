@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 use App\Models\CategoryService;
 use App\Models\UserInformation;
 use App\Models\ConvenioServices;
-
+use App\Models\Convenio;
 class ViewService extends Component
 {
     /**
@@ -34,27 +34,27 @@ class ViewService extends Component
         $info_convenio = [];
         $service = Service::findOrFail($this->idService);
         $convenios_services = ConvenioServices::where('service_id', $this->idService)->get();
-
+        $inConvenioId=array();
+        $info_convenio=array();
         foreach ($convenios_services as $key => $value) {
-            $convenio_user = $value->convenio_id;
-            $price_normal = $value->price_normal;
-            $price_discount = $value->price_discount;
-            $convenios = UserInformation::where('id', $convenio_user)->get(['id', 'name']);
-            foreach ($convenios as $key => $item) {
-                $id_user_convenio = $item->id;
-                $name_user_convenio = $item->name;
-                $datos = array(
-                    'id' => $id_user_convenio,
-                    'name' => $name_user_convenio,
-                    'price_normal' => $price_normal,
-                    'price_discount' => $price_discount,
-                );
-
-                $info_convenio[] = array(
-                    'datos' => $datos,
-                );
-            }
-
+            array_push($inConvenioId,$value->convenio_id);
+            array_push($info_convenio,array(
+                'id' => $value->convenio_id,
+                'price_normal' =>  $value->price_normal,
+                'price_discount' =>  $value->price_discount,
+             ));
+        }
+        $convenio = Convenio::whereIn('id',$inConvenioId)->get();
+        $inResponsable_id=array();
+        foreach ($convenio as $key => $value) {
+           array_push($inResponsable_id,$value->responsable_id);
+           $index=array_search($value->id, array_column($info_convenio, 'id'));
+           $info_convenio[$index]['responsable_id']=$value->responsable_id;
+        }
+        $userInformation = UserInformation::whereIn('id', $inResponsable_id)->get(['id', 'name']);
+        foreach ($userInformation as $key => $value) {
+              $index=array_search($value->id, array_column($info_convenio, 'responsable_id'));
+              $info_convenio[$index]['name']=$value->name;
         }
         return view('components.services.view-service')
         ->with('info_convenio', $info_convenio)

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modal_EditarEspecialidad-{{$idcategory}}" tabindex="-1" aria-labelledby="exampleModalLabel" 
+<div class="modal fade" id="modal_EditarEspecialidad-{{$idcategory}}" tabindex="-1" aria-labelledby="exampleModalLabel"
 data-backdrop="static" aria-hidden="true" data-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -15,18 +15,21 @@ data-backdrop="static" aria-hidden="true" data-keyboard="false" aria-hidden="tru
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
+                            <label style="text-align: left;width: 100%;">Nombre</label>
                             <input type="text" name="name" id="" class="form-control " placeholder="Nombre" value="{{ $category->name }}" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3">{{ $category->description }}</textarea>
+                          <label style="text-align: left;width: 100%;">Descripción</label>
+                          <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3">{{ $category->description }}</textarea>
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group">
+                            <label style="text-align: left;width: 100%;">Observación(opcional)</label>
                             <textarea class="form-control" name="observation" placeholder="Observación(opcional)" id="" maxlength="499" rows="3">{{ $category->observation }}</textarea>
                         </div>
                     </div>

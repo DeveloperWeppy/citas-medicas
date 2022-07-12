@@ -43,6 +43,7 @@
                       <div class="row">
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label style="font-weight: normal;">CORREO</label>
                                           <input type="text" name="email" id=""  value="{{$user->email}}" class="form-control " placeholder="Email" autocomplete="off">
                                       </div>
                                   </div>
@@ -59,46 +60,55 @@
                               <div class="row">
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Nit</label>
                                           <input type="text" name="nit" id="txnit" class="form-control " value="{{$userInformation->nit}}" placeholder="NIT" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Nombre de Entidad</label>
                                           <input type="text" name="name" id="txnombres" class="form-control "  value="{{$userInformation->name}}" placeholder="Nombre de Entidad" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Dirección</label>
                                           <input type="text" name="address" id="txaddress" class="form-control " value="{{$userInformation->address}}" placeholder="Dirección" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Teléfono</label>
                                           <input type="number" name="num_phone" id="txphone" class="form-control "  value="{{$userInformation->num_phone}}" placeholder="Teléfono" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Nombre de Contácto</label>
                                           <input type="text" name="name_contact" id="txname_contact" class="form-control "   value="{{$userInformation->name_contact}}" placeholder="Nombre de Contácto" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label style="font-weight: normal;">Teléfono de Contácto</label>
                                           <input type="number" name="num_phone_contact" id="txphone_contact" class="form-control " value="{{$userInformation->num_phone_contact}}"  placeholder="Teléfono de Contácto" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Correo de Contácto</label>
                                           <input type="email" name="email_contact" id="txemail_contact" class="form-control " value="{{$userInformation->email_contact}}"  placeholder="Correo de Contácto" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                          <label >Ciudad</label>
                                           <input type="text" name="city" id="txcity" class="form-control " value="{{$userInformation->city}}"  placeholder="Ciudad" autocomplete="off">
                                       </div>
                                   </div>
                                   <div class="col-sm-12">
                                     <div class="form-group">
+                                        <label >Iframe  oogle Maps</label>
                                         <textarea name="frame_ubication" class="form-control" id="" cols="30" rows="4"  placeholder="Ingrese el iframe de la ubicación de Google Maps">{{$userInformation->frame_ubication}}</textarea>
                                     </div>
                                 </div>
@@ -228,10 +238,10 @@
                                      <div class="col-sm-3">
                                           <div class="input-group mb-3">
                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">$</span>
+                                                    <span class="input-group-text text-tarifa">$</span>
                                                </div>
                                                <input type="number" name="price_descuento[]" value="{{$value->price_discount}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
-                                               <div class="input-group-append">
+                                               <div class="input-group-append ceros">
                                                     <span class="input-group-text">.00</span>
                                                </div>
                                           </div>
