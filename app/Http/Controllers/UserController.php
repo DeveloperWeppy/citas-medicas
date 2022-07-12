@@ -440,7 +440,7 @@ class UserController extends Controller
                                         $priceDiscount= $request->price_descuento[$index];
                                     }
                                     $register_convenio_servicio = ConvenioServices::create([
-                                        'convenio_id' => $id_convenio,
+                                        'convenio_id' => $convenio[0]->id,
                                         'service_id' =>  $request->servicio_id[$index],
                                         'price_normal' =>$request->price_normal[$index],
                                         'price_discount' => $priceDiscount,
