@@ -51,7 +51,7 @@
                                     @endforeach
 
                                 </ul>
-                                <a  href="{{ route('front.detallesplan',['id'=>$item->id]) }}" class="btn5 mb-2 d-none d-sm-inline-block">Ver Todos los Servicios</a>
+                                <a  href="{{ route('front.detallesplan',['id'=>$item->id]) }}" class="btn5 mb-2 d-none d-sm-inline-block">Ver Todos los Beneficios</a>
 
                                 <a href="{{ route('front.subscribirme') }}" class="btn8">Subscribirme</a>
                             </div>

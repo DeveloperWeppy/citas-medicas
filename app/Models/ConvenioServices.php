@@ -36,4 +36,10 @@ class ConvenioServices extends Model
       //relación para poder mostrar el nombre de la categoria
       return $this->belongsTo(Convenio::class, 'convenio_id');
     }
+   
+    public function resposable()
+    {
+      return $this->hasManyThrough('App\Models\UserInformation', 'App\Models\Convenio');
+
+    }
 }

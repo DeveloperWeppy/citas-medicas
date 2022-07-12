@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\PaymentPlatform;
+use App\Models\UserInformation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +54,15 @@ class FrontendController extends Controller
        $datos['services']= DB::select('select * from services where status=1');
        $datos['convenio_services']= DB::select('select * from convenio_services');
        $datos['convenios']= DB::select('select * from convenios');
+       $datos['userInformation']= DB::select('select * from user_information');
         return view('detallesplan')->with('datos', $datos);
+    }
+
+    public function detallesentidad($id)
+    {
+        $conveniodetaills = UserInformation::find($id);
+
+        return view('detallesentidad')->with('conveniodetaills', $conveniodetaills);
     }
 
     public function envio()
