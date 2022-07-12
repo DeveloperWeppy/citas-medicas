@@ -19,7 +19,7 @@
                                         <label for="uploadBanner" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Imágen de Portada</small></label>
                                     </div>
                                 </div>
-                                <small>Dimensiones recomendadas Ancho(920) x Alto(220)</small>
+                                <small>Dimensiones recomendadas Ancho(1920) x Alto(420)</small>
 
                                 <!-- Uploaded image area-->
                                 <div class="image-area mt-4"><img id="imageResultBanner" src="{{$userInformation->image_banner}}"  alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>

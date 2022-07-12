@@ -7907,7 +7907,14 @@ i[class*=" flaticon-"]:before {
 }
 
 .appointment2 {
-  background: url(../img/background/bg-05.jpg);
+  background: url(../img/background/png-img-09.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.appointment3 {
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -10096,7 +10103,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .accordion_style_01 .card-body {
-  padding: 0px 50px 20px 20px;
+  padding: 0px 30px 20px 30px;
   margin-top: 1px;
 }
 
@@ -10266,6 +10273,14 @@ i[class*=" flaticon-"]:before {
 
 .why_choose_us1__content h4 {
   color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.why_choose_us2__content h4 {
+  color: #223645;
   font-size: 20px;
   line-height: 30px;
   font-weight: 600;

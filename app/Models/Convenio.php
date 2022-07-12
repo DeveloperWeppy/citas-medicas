@@ -19,4 +19,7 @@ class Convenio extends Model
     public function responsable(){
         return $this->hasOne(UserInformation::class);
     }
+    public function convenio(){
+        return $this->belongsTo(UserInformation::class, 'responsable_id');
+    }
 }

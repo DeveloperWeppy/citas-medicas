@@ -62,9 +62,9 @@
                                                     <div class="card-body">
                                                       @foreach($datos['services'] as $key2 => $value2)
                                                         @if ($value2->category_id==$value->id)
-                                                        <h6 style="padding-left:18px"><i class="fas fa-check fa-fw"></i> {{$value2->name}}</h6>
+                                                        <h6 class="mt-3 pl-3"><i class="fas fa-check fa-fw"></i> {{$value2->name}}</h6>
 
-                                                        <p style="padding-left:38px;padding-bottom:15px">{{$value2->description}}</p>
+                                                        <p style="padding-left:38px;padding-bottom:15px">Puedes redimir este beneficio con:</p>
                                                         <div class="text-center">
                                                             <table>
                                                                 <tr>
@@ -72,20 +72,23 @@
                                                                   <th>Precio Normal</th>
                                                                   <th>Precio con Descuento</th>
                                                                 </tr>
-                                                                <tr>
+                                                                
                                                                     @foreach ($datos['convenios'] as $item)
+                                                                        @foreach ($datos['userInformation'] as $item3)
+                                                                            @foreach ($datos['convenio_services'] as $item2)
+                                                                                @if ($item->id == $item2->convenio_id && $value2->id == $item2->service_id )
 
-                                                                        @foreach ($datos['convenio_services'] as $item2)
-                                                                            @if ($item->id == $item2->convenio_id && $value2->id == $item2->service_id  )
-                                                                                <td>{{$item2->id}}</td>
-                                                                                <td>{{$item2->price_normal}}</td>
-                                                                                <td>{{$item2->price_discount}}</td>
-                                                                            @endif
+                                                                                    @if ($item->responsable_id == $item3->id)
+                                                                                    <tr>
+                                                                                        <td> <a href="{{ route('front.detallesentidad', $item->responsable_id)}}">{{$item3->name}}</a></td>
+                                                                                        <td>{{number_format($item2->price_normal, 2, ',', '.')}}</td>
+                                                                                        <td>{{number_format($item2->price_discount, 2, ',', '.')}}</td>
+                                                                                    </tr>
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endforeach
                                                                         @endforeach
-                                                                        
                                                                     @endforeach
-                                                                  
-                                                                </tr>
                                                               </table>
                                                         </div>
                                                        
