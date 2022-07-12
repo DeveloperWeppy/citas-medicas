@@ -44,9 +44,9 @@ class UserController extends Controller
                 date("Y-m-d H:m", strtotime($value->created_at)),
                 '
                 <a href="' . $ruta_editar . '" class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Editar</a>
-                <button type="button" class="btn btn-xs btn-danger" onclick="eliminarRegistro('."'convenios'".','.$value->id.');"><i class="fas fa-trash"></i> Eliminar</button>
+
                 '
-            ];
+            ];  /*<button type="button" class="btn btn-xs btn-danger" onclick="eliminarRegistro('."'convenios'".','.$value->id.');"><i class="fas fa-trash"></i> Eliminar</button>*/
 
             $data[] = $info;
         }
