@@ -209,36 +209,36 @@
                               </div>
                               @foreach($convenioServices as $key => $value)
                               <div class="row ItemServ">
-                                    <div class="col-sm-5 ed">
-                                          <div class="form-control ">
-                                             {{$value->find($value->id)->nombre_servicios->name}}<input class="formNombreServicio" style="display:none" type="text" name="servicio_id[]" value="{{$value->service_id}}" placeholder="Nombre del Servicio" autocomplete="off">
-                                          </div>
+                                      <div class="col-sm-5 ed">
+                                            <div class="form-group">
+                                              <select class='form-control mi-selector-edit formNombreServicio'   name="servicio_id[]" value="{{$value->service_id}}" placeholder="Nombre del Servicio" autocomplete="off" required>  </select>
+                                            </div>
+                                       </div>
+                                      <div class="col-sm-3">
+                                           <div class="input-group mb-3">
+                                                 <div class="input-group-prepend">
+                                                      <span class="input-group-text">$</span>
+                                                  </div>
+                                                  <input type="number" name="price_normal[]" value="{{$value->price_normal}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                  </div>
+                                            </div>
                                      </div>
-                                    <div class="col-sm-3">
-                                         <div class="input-group mb-3">
+                                     <div class="col-sm-3">
+                                          <div class="input-group mb-3">
                                                <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
-                                                </div>
-                                                <input type="number" name="price_normal[]" value="{{$value->price_normal}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
-                                                <div class="input-group-append">
-                                                  <span class="input-group-text">.00</span>
-                                                </div>
+                                               </div>
+                                               <input type="number" name="price_descuento[]" value="{{$value->price_discount}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
+                                               <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                               </div>
                                           </div>
-                                   </div>
-                                   <div class="col-sm-3">
-                                        <div class="input-group mb-3">
-                                             <div class="input-group-prepend">
-                                                  <span class="input-group-text">$</span>
-                                             </div>
-                                             <input type="number" name="price_descuento[]" value="{{$value->price_discount}}" class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off">
-                                             <div class="input-group-append">
-                                                  <span class="input-group-text">.00</span>
-                                             </div>
                                         </div>
-                                      </div>
-                                      <div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt" style="font-size:30px;color:red;margin-top:5px"></i>
-                                      </div>
-                              </div>
+                                        <div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt" style="font-size:30px;color:red;margin-top:5px"></i>
+                                        </div>
+                                </div>
                               @endforeach
                               <!----------------------------------   SERVICES END     ---------------------->
                    </div>
