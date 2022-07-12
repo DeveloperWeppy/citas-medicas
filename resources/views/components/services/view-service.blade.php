@@ -35,33 +35,48 @@
                                                 @if ($info_convenio == null)
                                                     <span class="font-weight-bolder font-italic">No hay prestadores de servicio registrados.</span>
                                                 @else
-                                                    <div class="accordion_style_01 mb-40">
-                                                            <div class="accordion row" id="accordionExample ">
-                                                                  @foreach ($info_convenio as $index => $item)
-                                                                <div class="card col-6" style="box-shadow: none;">
-                                                                    <div class="card-header" id="heading_0{{$index+1}}">
-                                                                        <h5>
-                                                                            <a href="#" style="font-size:19px" data-toggle="collapse" data-target="#collapse_0{{$index+1}}" aria-expanded="false" aria-controls="collapse_0{{$index+1}}" class="">
-                                                                                <span> <input class="form-check-input" type="checkbox" checked="" name="servicios[]" value="{{$item['datos']['id']}}" disabled></span>{{$item['datos']['name']}}
-                                                                                <i class="ti-angle-down"></i>
-                                                                            </a>
-                                                                        </h5>
-                                                                    </div>
-                                                                        <div id="collapse_0{{$index+1}}" class="collapse " aria-labelledby="heading_0{{$index+1}}" data-parent="#accordionExample" style="">
-                                                                            <div class="card-body">
 
-                                                                                <h6 style="padding-left:18px"><i class="fas fa-check fa-fw"></i> $value2->name</h6>
-
-                                                                                <p style="padding-left:38px;padding-bottom:15px">$value2->description</p>
-
-
+                                                                <div class="accordion_style_01 mb-40">
+                                                                        <div class="accordion row" id="accordionExample">
+                                                                            @foreach ($info_convenio as $index => $item)
+                                                                            <div class="card col-6" style="box-shadow: none;">
+                                                                                <div class="card-header" id="heading_0{{$index}}" style="border:0px;background-color: #f7feff;padding-left: 30px;">
+                                                                                    <h5>
+                                                                                        <a href="#" style="font-size:19px;color:black" data-toggle="collapse" data-target="#collapse_0{{$index}}" aria-expanded="false" aria-controls="collapse_0{{$index}}" class="collapsed">
+                                                                                            <input class="form-check-input" type="checkbox" checked="" name="servicios[]" value="{{$item['datos']['id']}}" disabled>{{$item['datos']['name']}}
+                                                                                            <i class="fas  fa-angle-down" style="float: right;margin-right: 15px;"></i>
+                                                                                        </a>
+                                                                                    </h5>
+                                                                                </div>
+                                                                                    <div id="collapse_0{{$index}}" class="collapse" aria-labelledby="heading_0{{$index}}" data-parent="#accordionExample" style="">
+                                                                                        <div class="card-body row text-muted">
+                                                                                          <div class="col-5 ">
+                                                                                            Valor Normal: <span style="font-weight: bold;">${{convertirVa($item['datos']['price_normal'])}}</span>
+                                                                                          </div>
+                                                                                          <div class="col-7 text-muted">
+                                                                                            Precio Con Descuento: <span style="font-weight: bold;">${{convertirVa($item['datos']['price_discount'])}}</span>
+                                                                                          </div>
+                                                                                           <div class="col-4" style="font-weight: bold;margin-top:15px;margin-bottom:15px">
+                                                                                               Dia
+                                                                                           </div>
+                                                                                           <div class="col-4" style="font-weight: bold;margin-top:15px;margin-bottom:15px">
+                                                                                              Mañana
+                                                                                           </div>
+                                                                                           <div class="col-4" style="font-weight: bold;margin-top:15px;margin-bottom:15px">
+                                                                                             Tarde
+                                                                                           </div>
+                                                                                          @foreach($attentioShedule as $key2 => $value2)
+                                                                                           @if ($item['datos']['id']==$value2->responsable_id )
+                                                                                                 <div class="col-3" style="font-weight: bold;">{{$value2->day}} </div><div class="col-4">{{date("g:i a",strtotime($value2->open_morning))}}-{{date("g:i a",strtotime($value2->close_morning))}}</div><div class="col-4"> {{date("g:i a",strtotime($value2->open_afternoon))}}-{{date("g:i a",strtotime($value2->close_afternoon))}}</div>
+                                                                                            @endif
+                                                                                          @endforeach
+                                                                                          </div>
+                                                                                    </div>
                                                                             </div>
-                                                                        </div>
+                                                                            @endforeach
+                                                                          </div>
+                                                                    </div>
 
-                                                                </div>
-                                                                @endforeach
-                                                            </div>
-                                                    </div>
                                                 @endif
 
                                             </fieldset>

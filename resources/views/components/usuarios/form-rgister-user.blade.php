@@ -8,6 +8,7 @@
                <form action="" method="" id="quickForm" enctype="multipart/form-data">
                    <div class="card-body">
                       <h4>DATOS DE USUARIO</h4>
+                      <input type="number" name="id_userprestador" value="{{$user->id}}" style="display:none">
                       <div class="row py-4">
                             <div class="col-md-6 text-center">
                                  <!-- Upload image input-->
@@ -21,7 +22,7 @@
                                 <small>Dimensiones recomendadas Ancho(1920) x Alto(420)</small>
 
                                 <!-- Uploaded image area-->
-                                <div class="image-area mt-4"><img id="imageResultBanner" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                                <div class="image-area mt-4"><img id="imageResultBanner" src="{{$userInformation->image_banner}}"  alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                             </div>
 
                             <div class="col-md-6 text-center">
@@ -36,7 +37,7 @@
                                 <small>Dimensiones recomendadas Ancho(220) x Alto(220)</small>
 
                                 <!-- Uploaded image area-->
-                                <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                                <div class="image-area mt-4"><img id="imageResult" src="{{$user->logo }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                             </div>
                       </div>
                       <div class="row">
@@ -98,10 +99,10 @@
                                   </div>
                                   <div class="col-sm-12">
                                     <div class="form-group">
-                                        <textarea name="frame_ubication" class="form-control" id="" cols="30" rows="4" placeholder="Ingrese el iframe de la ubicación de Google Maps"></textarea>
+                                        <textarea name="frame_ubication" class="form-control" id="" cols="30" rows="4"  placeholder="Ingrese el iframe de la ubicación de Google Maps">{{$userInformation->frame_ubication}}</textarea>
                                     </div>
                                 </div>
-                                 
+
                               </div>
                               <!----------------------------------   CONTACT INFORMATION END     ---------------------->
 
@@ -110,17 +111,17 @@
                               <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="facebook" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Facebook" autocomplete="off">
+                                        <input type="text" name="facebook" id="" class="form-control " value="{{$userInformation->facebook}}"  placeholder="Facebook" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="instagram" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="Instagram" autocomplete="off">
+                                        <input type="text" name="instagram" id="" class="form-control " value="{{$userInformation->instagram}}"  placeholder="Instagram" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="whatsapp" id="" class="form-control " value="{{$userInformation->city}}"  placeholder="WhatsApp" autocomplete="off">
+                                        <input type="text" name="whatsapp" id="" class="form-control " value="{{$userInformation->whatsapp}}"  placeholder="WhatsApp" autocomplete="off">
                                     </div>
                                 </div>
                               </div>
@@ -157,7 +158,7 @@
                                 <div class="col-sm-12">
                                     <div class="callout callout-info">
                                         <h5><i class="fas fa-info"></i> Nota:</h5>
-                                        Por favor indique si la tarifa del convenio será en porcentaje o precio de descuento. 
+                                        Por favor indique si la tarifa del convenio será en porcentaje o precio de descuento.
                                         <div class="form-group mt-2">
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                 <input type="checkbox" name="discount_or_no" class="custom-control-input" id="customSwitch3">
@@ -166,9 +167,9 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+
                               </div>
-                              
+
                               <div class="row despusPrin">
                                     <div class="col-sm-5">
                                         <div class="form-group">
