@@ -10,13 +10,9 @@
 
         <!------------------------- SECTION IMAGEN BANNER START -------------------->
         <section class="page_title">
-                <div class="container">
                     <div class="row">
-                        <div class="col-lg-12">
                            <img src="{{$conveniodetaills->image_banner}}" class="img-fluid" alt="">
-                        </div>
                     </div>
-                </div>
         </section>
         <!------------------------- SECTION IMAGEN BANNER END -------------------->
 
@@ -75,7 +71,7 @@
                                     @if ($conveniodetaills->whatsapp == null)
                                         <p class="m-0">No Disponible</p>
                                     @else
-                                        <p class="m-0"><a href="{{$conveniodetaills->whatsapp}}" target="_blank">Visitar Página</a></p>
+                                        <p class="m-0"><a href="https://api.whatsapp.com/send?phone=+57{{$conveniodetaills->whatsapp}}&text=Hola, quisiera saber más del convenio con CitasMedicas&source=&data=&app_absent=" target="_blank">Enviar Mensaje</a></p>
                                     @endif
                                 </div>
                             </div>
