@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Service;
 use App\Models\CategoryService;
 use Illuminate\Http\Request;
 
@@ -113,7 +113,7 @@ class CategoryServiceController extends Controller
                 $error = true;
                 $mensaje = 'Error! Se presento un problema al registrar la categoría, intenta de nuevo.';
             }
-        
+
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
@@ -127,14 +127,18 @@ class CategoryServiceController extends Controller
     {
         $error = false;
         $mensaje = '';
-
-        if (CategoryService::findOrFail($id)->delete()) {
-            $error = false;
-        } else {
-            $error = true;
-            $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+        $Service = Service::where('category_id', $id)->get();
+        if(count($Service)==0){
+            if (CategoryService::findOrFail($id)->delete()) {
+                $error = false;
+            } else {
+                $error = true;
+                $mensaje = 'Error! Se presento un problema al eliminar, intenta de nuevo.';
+            }
+        }else{
+          $error = true;
+          $mensaje = 'Error! La categoria esta asociada con un servicio.';
         }
-
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 }
