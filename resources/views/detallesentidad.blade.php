@@ -100,11 +100,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('asset/img/access.png') }}" class="img-fluid rounded mx-auto d-block" alt="horarios de atención">
+                            <img src="{{ asset('asset/img/hero/horarios.png') }}" class="img-fluid rounded mx-auto d-block" alt="horarios de atención">
                         </div>
                         <div class="col-md-8">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="title2 mb-55 float-right">
                                         <h4>Día</h4>
                                         @foreach ($attention_shedule as $item)
@@ -233,14 +233,6 @@
         </section>
         <!------------------------- SECTION LOCATION MAP END -------------------->
     </main>
-<div class=" service1">
-
-    {{-- <img   src="{{ asset('asset/img/bannerfamilia.jpg')}}" class="img_100" src="assets/img/bannerfamilia.jpg" alt="banner plan"> --}}
-    <div class="row justify-content-center ">
-        <div class="col-xl-6 service1" >
-        </div>
-    </div>
-</div>
      <x-slot name="js">
     </x-slot>
 <script>
