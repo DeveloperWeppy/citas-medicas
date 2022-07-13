@@ -135,7 +135,7 @@
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            //form of register of user
+            //form of form contact
        $('#contact-form').validate({
             rules: {
                 name: {
@@ -224,6 +224,9 @@
                                 button: true,
                                 timer: 2000
                             });
+                            setTimeout(function(){
+                                location.reload();
+                                },2000);
 
                         } else {
                             setTimeout(function(){

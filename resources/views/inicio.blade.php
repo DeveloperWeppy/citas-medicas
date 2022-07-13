@@ -460,6 +460,7 @@
         
     </main>
     <x-slot name="js">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
 
       $( "#customSwitches1" ).change(function() {
@@ -476,6 +477,114 @@
          }
 
       });
+      $('#contact-form').validate({
+            rules: {
+                name: {
+                required: true,
+              },
+              phone: {
+                required: true,
+                minlength:7
+              },
+              email: {
+                required: true,
+                email: true,
+              },
+              message: {
+                required: true,
+              },
+            },
+            messages: {
+                name: {
+                required: "Por favor ingrese el nombre",
+              },
+              num_phone: {
+                required: "Por favor ingrese un Número de Teléfono o Celular",
+                minlength: "Ingrese un número válido",
+              },
+              email: {
+                required: "Por favor ingrese un Correo Electrónico",
+                email: "Ingrese una dirección de correo válida",
+              },
+              message: {
+                required: "Por favor ingrese el mensaje a enviar",
+              },
+              
+              
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form){
+                // agregar data
+                $('#contact-form').on('submit', function(e) {
+                event.preventDefault();
+                var $thisForm = $('#contact-form');
+                    var formData = new FormData(this);
+
+                    //ruta
+                    var url = "{{route('front.enviarCorreoContacto')}}";
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "post",
+                        encoding:"UTF-8",
+                        url: url,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend:function(){
+                          Swal.fire({
+                                title: 'Validando datos, espere por favor...',
+                                button: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                    },
+                            });
+                        }
+                    }).done(function(respuesta){
+                        //console.log(respuesta);
+                      if (!respuesta.error) {
+
+                          Swal.fire({
+                                title: respuesta.mensaje,
+                                icon: 'success',
+                                button: true,
+                                timer: 2000
+                            });
+                            setTimeout(function(){
+                                location.reload();
+                                },2000);
+
+                        } else {
+                            setTimeout(function(){
+                              Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    button: false,
+                                    timer: 4000
+                                });
+                            },2000);
+                        } 
+                    }).fail(function(resp){
+                        console.log(resp);
+                    });
+                  });
+            }
+          });
       </script>
 
     </x-slot>
