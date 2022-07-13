@@ -413,7 +413,7 @@
             <div class="content_box_100">
                 <div class="container">
                     <div class="row no-gutters">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 border-0">
                             <div class="contact1__info text-center">
                                 <div class="contact1__thumb-wrapper">
                                     <div class="contact1__thumb">
@@ -428,26 +428,8 @@
                         <div class="col-lg-7">
                             <div class="contact_page2__form">
                                 <h3>Contáctanos</h3>
-                                <form id="contact-form" >
-                                    <div class="row mb-20">
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="name" placeholder="Nombre *" required>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="phone" placeholder="Teléfono *">
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <input class="form-control" type="email" name="email" placeholder="Correo *" required>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <textarea class="form-control" name="message" placeholder="Mensaje" cols="30" rows="7" required></textarea>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <button type="submit" class="btn8">Enviar</button>
-                                        </div>
-                                    </div>
-                                    <p class="form-message"></p>
-                                </form>
+                                <!------- FORM OF CONTACT ------------>
+                                <x-form-contact-front></x-form-contact-front>
                             </div>
                         </div>
                     </div>

@@ -50,24 +50,8 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="contact_page1__form">
-                                <form id="contact-form" >
-                                    <div class="row mb-20">
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="name" placeholder="Nombres*" required>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="phone" placeholder="Número de Celular o Teléfono*" required>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <input class="form-control" type="email" name="email" placeholder="Correo Electrónico*" required>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <textarea class="form-control" name="message" placeholder="Mensaje" cols="30" rows="7" required></textarea>
-                                            <button type="submit" class="btn9">Enviar Mensaje</button>
-                                        </div>
-                                    </div>
-                                    {{-- <p class="form-message"></p> --}}
-                                </form>
+                                <!------- FORM OF CONTACT ------------>
+                                <x-form-contact-front></x-form-contact-front>
                             </div>
                         </div>
                     </div>
