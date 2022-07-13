@@ -118,16 +118,7 @@
      <!-- JS |==========================================| -->
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
-        </script>>
-        <script type="text/javascript">
-            var onloadCallback = function() {
-                grecaptcha.render('g-recaptcha', {
-                'sitekey' : '6LfiOewgAAAAAHLz6OyWxsh8Cr9ML4jeEP81i9ph'
-        });
-            };
-          </script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             //form of form contact
        $('#contact-form').validate({

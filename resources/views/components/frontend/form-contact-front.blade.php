@@ -12,7 +12,7 @@
         <div class="col-xl-12">
             <textarea class="form-control" name="message" style="resize: none" placeholder="Mensaje" cols="30" rows="3" required></textarea>
             <br>
-            <div class="g-recaptcha"></div>
+            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.key')}}"></div>
             <br/>
             @if (Route::currentRouteName() == 'front.contacto')
                 <button type="submit" class="btn9">Enviar Mensaje</button>
