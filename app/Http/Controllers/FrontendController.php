@@ -86,7 +86,7 @@ class FrontendController extends Controller
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = '';
-            $mail->Body = view('email.suscribesuccess', compact(
+            $mail->Body = view('email.emailcontactsend', compact(
                 'title',
                 'mailcontact',
                 'nombres',
