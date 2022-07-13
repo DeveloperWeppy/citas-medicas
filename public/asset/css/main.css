@@ -7119,7 +7119,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .page_title__img-05 {
-  background: url(../img/background/banner.webp);
+  background: url(../img/background/bannercontacto.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7164,7 +7164,6 @@ i[class*=" flaticon-"]:before {
   background: url(../img/background/banner-preguntas-frecuentes.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: local;
   background-position: center;
 }
 
@@ -10444,11 +10443,16 @@ i[class*=" flaticon-"]:before {
 }
 
 .contact_page1__form .form-control {
-  background: #F1F1F1;
+  /* background: #F1F1F1;
   border: none;
   font-size: 16px;
   line-height: 26px;
-  color: #223645;
+  color: #223645; */
+
+  background: #F1F1F1;
+  border-radius: 2px 20px 20px 20px;
+  line-height: 26px;
+  font-size: 16px;
 }
 
 .contact_page1__form .form-control::-webkit-input-placeholder {

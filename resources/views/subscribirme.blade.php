@@ -107,7 +107,7 @@
               },
               num_phone: {
                 required: true,
-                minlength:7
+                minlength:7,
               },
               department: {
                 required: true,

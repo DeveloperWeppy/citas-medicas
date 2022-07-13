@@ -34,6 +34,7 @@ Route::controller(FrontendController::class)
         Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
         Route::get('/detalles-plan/{id}', 'detallesplan')->name('front.detallesplan');
         Route::get('/entidad/{id}', 'detallesentidad')->name('front.detallesentidad');
+        Route::post('/contacto/envio-email', 'enviarCorreoContacto')->name('front.enviarCorreoContacto');
 
         Route::get('/envio', 'envio')->name('front.envio');
 

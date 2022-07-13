@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AttentioShedule;
 use App\Models\Plan;
 use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Models\AttentioShedule;
 use App\Models\PaymentPlatform;
 use App\Models\UserInformation;
 use Illuminate\Support\Facades\DB;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -50,6 +52,59 @@ class FrontendController extends Controller
     {
 
         return view('subscribirme');
+    }
+
+    public function enviarCorreoContacto(Request $request)
+    {
+        $error = false;
+        $mensaje = '';
+
+        $email = 'contacto@citasmedicas.es';
+        $nombres = $request->name;
+        $mailcontact = $request->email;
+        $phone = $request->phone;
+        $message = $request->message;
+
+        $mail = new PHPMailer(true);
+        try {
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
+            $mail->Host = env('MAIL_HOST');
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
+            $mail->CharSet = "UTF8";
+            $mail->Subject = "Correo de Contácto";
+
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/BannerMailing.jpg', 'img_header', '/images/emails/BannerMailing.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
+
+            $title = '';
+            $mail->Body = view('email.suscribesuccess', compact(
+                'title',
+                'mailcontact',
+                'nombres',
+                'phone',
+                'message'
+            ))->render();
+            $mail->addAddress($email, $nombres);
+            if ($mail->Send()) {
+                $error = false;
+                $mensaje = 'Se ha enviado el mensaje correctamente!';
+            } else {
+                $error = false;
+                $mensaje = 'Ocurrió un error al enviar el mensaje!';
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 
     public function detallesplan($id)

@@ -93,7 +93,7 @@ class UserController extends Controller
         $error = false;
         $mensaje = '';
         $discount_or_no = $request->discount_or_no;
-        $contraseña = $request->password;
+        $password = $request->password;
         $dia = $request->day == null ? 'sin dia' : $request->day;
         $apertura_morning = $request->open_morning == null ? 'sin horario' : $request->open_morning;
         $cierre_morning = $request->close_morning == null ? 'sin horario' : $request->close_morning;
@@ -103,6 +103,11 @@ class UserController extends Controller
         //consulta para validar si ya existe un usuario registrado o no
         $validar_email = User::where('email', $request->email)->count();
         $validar_nit = UserInformation::where('nit', $request->nit)->count();
+
+        $email= $request->email;
+        $name_contact = $request->name_contact;
+        $num_phone_contact = $request->num_phone_contact;
+        $name = $request->name;
 
         if ($validar_email > 0) {
             $error = true;
@@ -120,9 +125,9 @@ class UserController extends Controller
             $register_user = array(
                 'name' => $request->name,
                 'logo' => $url,
-                'email' => $request->email,
-                'password' => Hash::make($contraseña),
-                'pw_decrypte' => $contraseña,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'pw_decrypte' => $password,
                 'status' => 1
             );
 
@@ -132,11 +137,11 @@ class UserController extends Controller
                     'user_id' => $id_user,
                     'nit' => $request->nit,
                     'image_banner' => $urlBanner,
-                    'name' => $request->name,
+                    'name' => $name,
                     'address' => $request->address,
                     'num_phone' => $request->num_phone,
-                    'name_contact' => $request->name_contact,
-                    'num_phone_contact' => $request->num_phone_contact,
+                    'name_contact' => $name_contact,
+                    'num_phone_contact' => $num_phone_contact,
                     'email_contact' => $request->email_contact,
                     'city' => $request->city,
                     'frame_ubication' =>$frame_ubication,
@@ -155,6 +160,7 @@ class UserController extends Controller
 
                     if ($responsable =Convenio::create($register_convenio)) {
                         $id_convenio = $responsable->id;
+                        $fechaconvenio = $responsable->created_at;
                         if(isset($request->servicio_id )){
                           foreach ($request->servicio_id as $index => $rowid) {
                               if($request->servicio_id[$index]!=""){
@@ -187,6 +193,7 @@ class UserController extends Controller
                             ]);
                         }
                         if ($register_horario_atencion->save()) {
+                            self::enviarCorreo($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact);
                             $error = false;
                         $mensaje = 'Registro Exitoso!';
                         } else {
@@ -225,9 +232,9 @@ class UserController extends Controller
             $mail->CharSet = "UTF8";
             $mail->Subject = "Registro de Convenio CitasMedicas";
 
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/conveiocreado.jpg', 'img_header', '/images/emails/conveiocreado.jpg', 'base64', 'image/jpg');
+            /* $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/conveiocreado.jpg', 'img_header', '/images/emails/conveiocreado.jpg', 'base64', 'image/jpg');
             $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png'); */
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = '';
