@@ -133,7 +133,7 @@
                              </tr>
                              <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
                                 <th width="30%" class="css_table_secondary_body_th">Teléfono:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $password }}</td>
+                                <td width="70%" class="css_table_secondary_body_td">{{ $phone }}</td>
                              </tr>
                              <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
                                 <th width="30%" class="css_table_secondary_body_th">Correo de Contácto:</th>
