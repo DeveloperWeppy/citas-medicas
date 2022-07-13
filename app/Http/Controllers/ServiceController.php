@@ -351,10 +351,7 @@ class ServiceController extends Controller
         if ($validar_name > 0) {
             $error = true;
             $mensaje = 'Error! Ya se encuentra registrado el servicio "' . $name_service . '". Intente con otro.';
-        } else if ($responsable_convenio == null) {
-            $error = true;
-            $mensaje = 'Error! No seleccionaste ningún convenio para este servicio';
-        } else {
+        }  else {
             $update_service = array(
                 'name' => $request->name,
                 'description' => $request->description,
@@ -373,6 +370,7 @@ class ServiceController extends Controller
                 //$id_service = $servicio->id;
 
                 $register_services_prestador = array();
+                /*
                 for ($i = 0; $i < sizeof($responsable_convenio); ++$i) {
                     $exists_convenio_service = ConvenioServices::where('service_id', $request->id)->where('convenio_id', $responsable_convenio[$i])->count();
 
@@ -385,8 +383,7 @@ class ServiceController extends Controller
                         $mensaje = 'Actualización de Servicio Exitoso!';
                     }
                 }
-
-                /*  if ($register_services_prestador->save()) {
+                  if ($register_services_prestador->save()) {
                     $error = false;
                     $mensaje = 'Actualización de Servicio Exitoso!';
                 } else {

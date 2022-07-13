@@ -42,16 +42,12 @@ class UpdateDateSubscription extends Command
         $suscripciones = DetailSubscription::get();
 
         foreach ($suscripciones as $key => $value) {
-            # id operation of subscriptions...
-
             $id_subscription = $value->operation_id;
-
-             //consultar suscripción por id de operación
             $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
                 'limit' => 100,
                 'q' => $id_subscription,
             ])->json();
         }
-       
+
     }
 }
