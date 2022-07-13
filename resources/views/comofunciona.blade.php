@@ -229,17 +229,17 @@
                                         <div class="card">
                                             <div class="card-header" id="heading_01">
                                                 <h5>
-                                                    <a href="#" data-toggle="collapse" data-target="#collapse_01" aria-expanded="true" aria-controls="collapse_01">
-                                                        <span>01.</span> How long dose take my check-up test? I’m 56
-                                                        years.
+                                                    <a href="#" data-toggle="collapse" data-target="#collapse_01" aria-expanded="false" aria-controls="collapse_01" class="collapsed">
+                                                        <span>01.</span> ¿Garantizan la privacidad de mis datos personales?
                                                         <i class="ti-angle-down"></i>
                                                     </a>
                                                 </h5>
                                             </div>
-                                            <div id="collapse_01" class="collapse show" aria-labelledby="heading_01" data-parent="#accordionExample">
+                                            <div id="collapse_01" class="collapse" aria-labelledby="heading_01" data-parent="#accordionExample" style="">
                                                 <div class="card-body">
-                                                    <p>Usually we try to do as much as posible so that our patients does
-                                                        not have any difficults and provides prompt treatment.</p>
+                                                    <p class="text-justify">Sí. La información recolectada por El grupo empresarial CITAS MEDICAS.ES WORLD SAS; a través de sus productos y servicios digitales “El portal WEB: 
+                                                        www.citasmedicas.es tiene un tratamiento confidencial y exclusivo, de acuerdo a la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013. Por tal motivo, www.citasmedicas.es  se 
+                                                        hace responsable de los datos personales proporcionados por los diferentes clientes y/o usuarios al momento de hacer uso de la plataforma.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,15 +247,28 @@
                                             <div class="card-header" id="heading_02">
                                                 <h5>
                                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_02" aria-expanded="false" aria-controls="collapse_02">
-                                                        <span>02.</span> How many people will be in the calbin workshop?
+                                                        <span>02.</span> ¿Funcionan 24 horas al día?
                                                         <i class="ti-angle-down"></i>
                                                     </a>
                                                 </h5>
                                             </div>
                                             <div id="collapse_02" class="collapse" aria-labelledby="heading_02" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>Usually we try to do as much as posible so that our patients does
-                                                        not have any difficults and provides prompt treatment.</p>
+                                                    <p class="text-justify">Sí.
+                                                        El portal web www.citasmedicas.es
+                                                        está activo las 24 horas del día, los 7 días de la semana.
+                                                        <br>
+                                                        Citasmedicas.es; permite elegir diferentes productos y servicios,
+                                                        haciendo valer tu código de suscripción,
+                                                        obteniendo el mejor precio siempre.
+                                                        <br><br>
+                                                        <ul>
+                                                            <li>·  Ingresa a nuestro portal web www.citasmedicas.es </li>
+                                                            <li>·  Elige el producto o servicio de tu interés, según su perfil profesional, ciudad, país, horario, disponibilidad o modalidad de atención.</li>
+                                                            <li>·  Conversa directamente con nuestros proveedores de productos o servicios, haciendo valer tu código de suscripción, obteniendo el mejor precio siempre.</li>
+                                                        </ul>
+    
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,15 +276,17 @@
                                             <div class="card-header" id="heading_03">
                                                 <h5>
                                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_03" aria-expanded="false" aria-controls="collapse_03">
-                                                        <span>03.</span> What other workshop on the dates are available?
+                                                        <span>03.</span> ¿Citasmedicas.es oferta sus productos fuera de Colombia?
                                                         <i class="ti-angle-down"></i>
                                                     </a>
                                                 </h5>
                                             </div>
                                             <div id="collapse_03" class="collapse" aria-labelledby="heading_03" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>Usually we try to do as much as posible so that our patients does
-                                                        not have any difficults and provides prompt treatment.</p>
+                                                    <p class="text-justify">No. Actualmente nuestros clientes solo están disponibles dentro del territorio colombiano.
+                                                        Próximamente estaremos ofertando en Estados unidos y Venezuela. <br>
+                                                        Te lo haremos saber ¡
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,22 +294,24 @@
                                             <div class="card-header" id="heading_04">
                                                 <h5>
                                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_04" aria-expanded="false" aria-controls="collapse_04">
-                                                        <span>04.</span> Who do I contact for press related inquiries?
+                                                        <span>04.</span> ¿Puedo vincular menores de edad a Citasmedicas.es?
+                                                        
                                                         <i class="ti-angle-down"></i>
                                                     </a>
                                                 </h5>
                                             </div>
                                             <div id="collapse_04" class="collapse" aria-labelledby="heading_04" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>Usually we try to do as much as posible so that our patients does
-                                                        not have any difficults and provides prompt treatment.</p>
+                                                    <p class="text-justify">Sí. Puedes hacerlo al suscribirte como titular del plan familia. <br><br>
+                                                        Recuerda que los menores de edad sólo pueden ser vinculados por sus padres o representantes legales debidamente certificados.
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- accordion -->
-                                <a href="about-us.html" class="btn3"> <span>Miralas todas <span>aquí</span></span> <i class="icofont-rounded-double-right"></i> </a>
+                                <a href="{{ route('front.preguntas') }}" class="btn3"> <span>Miralas todas <span>aquí</span></span> <i class="icofont-rounded-double-right"></i> </a>
                             </div>
                         </div>
                     </div>
