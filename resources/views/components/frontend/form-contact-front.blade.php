@@ -10,6 +10,10 @@
             <input class="form-control" type="email" name="email" placeholder="Correo Electrónico*" required>
         </div>
         <div class="col-xl-12">
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <br/>
+        </div>
+        <div class="col-xl-12">
             <textarea class="form-control" name="message" style="resize: none" placeholder="Mensaje" cols="30" rows="3" required></textarea>
             @if (Route::currentRouteName() == 'front.contacto')
                 <button type="submit" class="btn9">Enviar Mensaje</button>

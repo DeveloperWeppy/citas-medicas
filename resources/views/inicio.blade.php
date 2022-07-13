@@ -528,9 +528,9 @@
                         dataType:'json',
                         beforeSend:function(){
                           Swal.fire({
-                                title: 'Validando datos, espere por favor...',
+                                title: 'Enviando mensaje...',
                                 button: false,
-                                timer: 3000,
+                                timer: 2000,
                                 timerProgressBar: true,
                                     didOpen: () => {
                                         Swal.showLoading()

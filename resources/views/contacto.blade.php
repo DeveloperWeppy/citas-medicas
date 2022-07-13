@@ -118,6 +118,14 @@
      <!-- JS |==========================================| -->
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script type="text/javascript">
+            var onloadCallback = function() {
+                grecaptcha.render('html_element', {
+                'sitekey' : '6LfiOewgAAAAAHLz6OyWxsh8Cr9ML4jeEP81i9ph'
+        });
+            };
+          </script>
         <script>
             //form of form contact
        $('#contact-form').validate({
@@ -189,9 +197,9 @@
                         dataType:'json',
                         beforeSend:function(){
                           Swal.fire({
-                                title: 'Validando datos, espere por favor...',
+                                title: 'Enviando mensaje...',
                                 button: false,
-                                timer: 3000,
+                                timer: 2000,
                                 timerProgressBar: true,
                                     didOpen: () => {
                                         Swal.showLoading()
