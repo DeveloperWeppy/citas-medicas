@@ -434,7 +434,7 @@
                                             <input class="form-control" type="text" name="name" placeholder="Nombre *" required>
                                         </div>
                                         <div class="col-xl-6">
-                                            <input class="form-control" type="text" name="phone-number" placeholder="Teléfono *">
+                                            <input class="form-control" type="text" name="phone" placeholder="Teléfono *">
                                         </div>
                                         <div class="col-xl-12">
                                             <input class="form-control" type="email" name="email" placeholder="Correo *" required>
