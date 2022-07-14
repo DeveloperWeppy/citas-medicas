@@ -9513,7 +9513,7 @@ i[class*=" flaticon-"]:before {
 }
 
 .contact1__info {
-  border: 1px solid #4a495a;
+  /* border: 1px solid #4a495a; */
   padding: 75px 50px 68px;
 }
 
