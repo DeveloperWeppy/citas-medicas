@@ -69,7 +69,10 @@ class FrontendController extends Controller
         $validate = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
         ]);
-        $mensaje = $validate;
+        foreach ($validate as $key => $value) {
+            $dato = $value->errors;
+        }
+        $mensaje = $dato;
 
        /*  $mail = new PHPMailer(true);
         try {
