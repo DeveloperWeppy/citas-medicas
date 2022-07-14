@@ -66,7 +66,7 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $validate = $request->validate([
+        /*$validate = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
         ]);
         foreach ($validate as $key => $value) {
@@ -74,7 +74,7 @@ class FrontendController extends Controller
         }
         $mensaje = $dato;
 
-       /*  $mail = new PHPMailer(true);
+         $mail = new PHPMailer(true);
         try {
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;

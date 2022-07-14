@@ -120,7 +120,15 @@
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-                        //form of form contact
+            function checkRecaptcha() {
+                res = $('#g-recaptcha-response').val();
+
+                if (res == "" || res == undefined || res.length == 0)
+                    return false;
+                else
+                    return true;
+            }
+        //form of form contact
        $('#contact-form').validate({
             rules: {
                 name: {
@@ -171,6 +179,10 @@
                 // agregar data
                 $('#contact-form').on('submit', function(e) {
                 event.preventDefault();
+                if(!checkRecaptcha()) {
+                    $( "#frm-result" ).text("Please validate your reCAPTCHA.");
+                    return false;
+                }else{
                 var $thisForm = $('#contact-form');
                     var formData = new FormData(this);
 
@@ -224,7 +236,9 @@
                     }).fail(function(resp){
                         console.log(resp);
                     });
+                }
                   });
+                
             }
           });
         </script>
