@@ -201,9 +201,17 @@
                         }
                     }).done(function(respuesta){
                         //console.log(respuesta);
-                      if (!respuesta.error) {
+                        if (respuesta.validacion) {
+                            Swal.fire({
+                                    title: respuesta.mensaje,
+                                    icon: "error",
+                                    button: false,
+                                    timer: 4000
+                                });
+                        } else {
+                            if (!respuesta.error) {
 
-                          Swal.fire({
+                            Swal.fire({
                                 title: respuesta.mensaje,
                                 icon: 'success',
                                 button: true,
@@ -213,14 +221,16 @@
                                 location.reload();
                                 },2000);
 
-                        } else {
-                              Swal.fire({
+                            } else {
+                                Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
                                     button: false,
                                     timer: 4000
                                 });
-                        } 
+                            } 
+                        }
+                      
                     }).fail(function(resp){
                         console.log(resp);
                     });

@@ -59,6 +59,7 @@ class FrontendController extends Controller
     {
         $error = false;
         $mensaje = '';
+        $validacion = false;
 
         $email = 'contacto@citasmedicas.es';
         $nombres = $request->name;
@@ -70,19 +71,7 @@ class FrontendController extends Controller
             'g-recaptcha-response' => 'required|captcha',
         ]);
         if ($validate) {
-            $error = false;
-            $mensaje = 'goood';
-        } else {
-            $error = true;
-            $mensaje = 'malll';
-        }
-        
-        /*foreach ($validate as $key => $value) {
-            $dato = $value->errors;
-        }
-        $mensaje = $dato;
-
-         $mail = new PHPMailer(true);
+            $mail = new PHPMailer(true);
         try {
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -115,15 +104,21 @@ class FrontendController extends Controller
                 $error = false;
                 $mensaje = 'Se ha enviado el mensaje correctamente!';
             } else {
-                $error = false;
+                $error = true;
                 $mensaje = 'Ocurrió un error al enviar el mensaje!';
             }
         } catch (Exception $e) {
             dd($e);
-        } */
+        } 
+        } else {
+            $validacion = false;
+            $mensaje = 'Por favor marca la casilla del captcha';
+        }
+        
+         
 
         
-        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje, 'validacion' => $validacion));
     }
 
     public function detallesplan($id)
