@@ -122,7 +122,17 @@
         <script>
             var isCaptchaValidated = false;
             var response = grecaptcha.getResponse();
-            
+            if(response.length == 0) {
+                isCaptchaValidated = false;
+                alert('Please verify that you are a Human.');
+            } else {
+                isCaptchaValidated = true;
+            }
+
+
+            if (isCaptchaValidated ) {
+                //you can now submit your form
+            }
                         //form of form contact
        $('#contact-form').validate({
             rules: {
@@ -171,17 +181,6 @@
               $(element).removeClass('is-invalid');
             },
             submitHandler: function(form){
-                if(response.length == 0) {
-                isCaptchaValidated = false;
-                alert('Please verify that you are a Human.');
-            } else {
-                isCaptchaValidated = true;
-            }
-
-
-            if (isCaptchaValidated ) {
-                //you can now submit your form
-            }
                 // agregar data
                 $('#contact-form').on('submit', function(e) {
                 event.preventDefault();
