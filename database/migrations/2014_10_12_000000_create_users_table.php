@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('pw_decrypte');
             $table->integer('status')->default(1);
             $table->integer('is_prestador')->default(1);
+            $table->string('payment_signature');
             $table->rememberToken();
             $table->timestamps();
         });
