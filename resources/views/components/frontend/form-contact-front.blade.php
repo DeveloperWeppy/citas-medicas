@@ -14,11 +14,6 @@
             <br>
             {!! NoCaptcha::display() !!}
             <br/>
-            @if ($errors->has('g-recaptcha-response'))
-                <span class="feedbak-error">
-                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                </span>
-            @endif
             @if (Route::currentRouteName() == 'front.contacto')
                 <button type="submit" class="btn9">Enviar Mensaje</button>
             @else

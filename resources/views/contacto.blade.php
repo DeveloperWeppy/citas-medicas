@@ -120,7 +120,10 @@
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            //form of form contact
+            var isCaptchaValidated = false;
+            var response = grecaptcha.getResponse();
+            
+                        //form of form contact
        $('#contact-form').validate({
             rules: {
                 name: {
@@ -168,6 +171,17 @@
               $(element).removeClass('is-invalid');
             },
             submitHandler: function(form){
+                if(response.length == 0) {
+                isCaptchaValidated = false;
+                alert('Please verify that you are a Human.');
+            } else {
+                isCaptchaValidated = true;
+            }
+
+
+            if (isCaptchaValidated ) {
+                //you can now submit your form
+            }
                 // agregar data
                 $('#contact-form').on('submit', function(e) {
                 event.preventDefault();
