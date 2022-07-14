@@ -67,8 +67,8 @@
                             <label>Cuotas</label>
                             <select name="installments" id="form-checkout__installments" class="container3"  class="container3" ></select>
                      </div>
-                     <div class="form-group  col-sm-6" style="display:none">
-                           <label>email</label>
+                     <div class="form-group  col-sm-6">
+                           <label>Email</label>
                            <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"  class="container3"/>
                     </div>
                  </div>

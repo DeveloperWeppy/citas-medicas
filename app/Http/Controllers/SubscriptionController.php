@@ -273,7 +273,7 @@ class SubscriptionController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
           ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
-         "preapproval_plan_id"=>"2c93808481ad6df90181afe4f5fb00a2",
+         "preapproval_plan_id"=> $request->preapproval_plan_id,
                   "payer_email"=> $request->email,
                   "card_token_id"=>$request->card_token_id,
                   "back_url"=> "https://www.citasmedicas.es/",
