@@ -120,19 +120,6 @@
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            var isCaptchaValidated = false;
-            var response = grecaptcha.getResponse();
-            if(response.length == 0) {
-                isCaptchaValidated = false;
-                alert('Please verify that you are a Human.');
-            } else {
-                isCaptchaValidated = true;
-            }
-
-
-            if (isCaptchaValidated ) {
-                //you can now submit your form
-            }
                         //form of form contact
        $('#contact-form').validate({
             rules: {
