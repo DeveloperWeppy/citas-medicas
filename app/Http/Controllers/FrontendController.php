@@ -66,10 +66,18 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        /*$validate = $request->validate([
+        $validate = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
         ]);
-        foreach ($validate as $key => $value) {
+        if ($validate) {
+            $error = false;
+            $mensaje = 'goood';
+        } else {
+            $error = true;
+            $mensaje = 'malll';
+        }
+        
+        /*foreach ($validate as $key => $value) {
             $dato = $value->errors;
         }
         $mensaje = $dato;
