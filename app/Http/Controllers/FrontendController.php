@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
 use App\Models\PaymentPlatform;
 use App\Models\UserInformation;
+use Dotenv\Validator;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class FrontendController extends Controller
 {
@@ -65,7 +67,27 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $mail = new PHPMailer(true);
+        $validate = FacadesValidator::make($request, [
+            'g-recaptcha-response' => function ($attribute, $value, $fail){
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIp = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIp";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+
+                if (!$response->success) {
+                    $error = false;
+                    $mensaje = 'Por favor marca la casilla de reCaptcha';
+                    $fail($attribute.'falló el google reCaptcha');
+                } else {
+                }
+                
+            }
+        ]);
+        $mensaje = $validate;
+
+       /*  $mail = new PHPMailer(true);
         try {
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -103,7 +125,9 @@ class FrontendController extends Controller
             }
         } catch (Exception $e) {
             dd($e);
-        }
+        } */
+
+        
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
 

@@ -214,14 +214,12 @@
                                 },2000);
 
                         } else {
-                            setTimeout(function(){
                               Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
                                     button: false,
                                     timer: 4000
                                 });
-                            },2000);
                         } 
                     }).fail(function(resp){
                         console.log(resp);
