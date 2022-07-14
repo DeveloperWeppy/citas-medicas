@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
 use App\Models\PaymentPlatform;
 use App\Models\UserInformation;
+use Dotenv\Validator;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -58,6 +59,7 @@ class FrontendController extends Controller
     {
         $error = false;
         $mensaje = '';
+        $validacion = false;
 
         $email = 'contacto@citasmedicas.es';
         $nombres = $request->name;
@@ -65,7 +67,11 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $mail = new PHPMailer(true);
+        $validate = $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+        if ($validate) {
+            $mail = new PHPMailer(true);
         try {
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -98,13 +104,21 @@ class FrontendController extends Controller
                 $error = false;
                 $mensaje = 'Se ha enviado el mensaje correctamente!';
             } else {
-                $error = false;
+                $error = true;
                 $mensaje = 'Ocurrió un error al enviar el mensaje!';
             }
         } catch (Exception $e) {
             dd($e);
+        } 
+        } else {
+            $validacion = false;
+            $mensaje = 'Por favor marca la casilla del captcha';
         }
-        echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+        
+         
+
+        
+        echo json_encode(array('error' => $error, 'mensaje' => $mensaje, 'validacion' => $validacion));
     }
 
     public function detallesplan($id)

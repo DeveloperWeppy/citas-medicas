@@ -115,12 +115,12 @@
         <!------------------------- SECTION NETWORK SOCIALS END -------------------->
 
     </main>
+    {!! NoCaptcha::renderJs() !!}
      <!-- JS |==========================================| -->
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
-            //form of form contact
+        //form of form contact
        $('#contact-form').validate({
             rules: {
                 name: {
@@ -201,9 +201,9 @@
                         }
                     }).done(function(respuesta){
                         //console.log(respuesta);
-                      if (!respuesta.error) {
+                            if (!respuesta.error) {
 
-                          Swal.fire({
+                            Swal.fire({
                                 title: respuesta.mensaje,
                                 icon: 'success',
                                 button: true,
@@ -213,20 +213,25 @@
                                 location.reload();
                                 },2000);
 
-                        } else {
-                            setTimeout(function(){
-                              Swal.fire({
+                            } else {
+                                Swal.fire({
                                     title: respuesta.mensaje,
                                     icon: "error",
                                     button: false,
                                     timer: 4000
                                 });
-                            },2000);
-                        } 
+                            } 
+                      
                     }).fail(function(resp){
-                        console.log(resp);
+                        Swal.fire({
+                                    title: 'No has verificado el recaptcha',
+                                    icon: "error",
+                                    button: false,
+                                    timer: 4000
+                                });
                     });
                   });
+                
             }
           });
         </script>

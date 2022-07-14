@@ -441,6 +441,7 @@
 
         
     </main>
+    {!! NoCaptcha::renderJs() !!}
     <x-slot name="js">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
@@ -562,7 +563,12 @@
                             },2000);
                         } 
                     }).fail(function(resp){
-                        console.log(resp);
+                        Swal.fire({
+                                    title: 'No has verificado el recaptcha',
+                                    icon: "error",
+                                    button: false,
+                                    timer: 4000
+                        });
                     });
                   });
             }
