@@ -155,7 +155,10 @@ class FrontendController extends Controller
     {
         return view('confirmsubscribe');
     }
-
+    public function pagar()
+    {
+        return view('pagar');
+    }
     public function store_client(Request $request)
     {
         $error = false;
