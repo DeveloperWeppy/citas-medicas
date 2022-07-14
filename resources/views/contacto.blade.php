@@ -115,10 +115,10 @@
         <!------------------------- SECTION NETWORK SOCIALS END -------------------->
 
     </main>
+    {!! NoCaptcha::renderJs() !!}
      <!-- JS |==========================================| -->
      <x-slot name="js">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             //form of form contact
        $('#contact-form').validate({

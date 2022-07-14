@@ -66,23 +66,8 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $validate = Validator::make($request->all(), [
-            'g-recaptcha-response' => function ($attribute, $value, $fail){
-                $secretKey = config('services.recaptcha.secret');
-                $response = $value;
-                $userIp = $_SERVER['REMOTE_ADDR'];
-                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIp";
-                $response = \file_get_contents($url);
-                $response = json_decode($response);
-
-                if (!$response->success) {
-                    $error = false;
-                    $mensaje = 'Por favor marca la casilla de reCaptcha';
-                    $fail($attribute.'falló el google reCaptcha');
-                } else {
-                }
-                
-            }
+        $validate = $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
         ]);
         $mensaje = $validate;
 
