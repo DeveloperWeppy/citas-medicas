@@ -41,14 +41,21 @@ Route::controller(FrontendController::class)
         /**********  ROUTE OF REGISTER OF CLIENT IN THE FRONTEND  **************************** */
         Route::get('/subscribirme/finalizar-suscripcion', 'finis_subscribe')->name('front.finis_subscribe');
         Route::post('/subscribirme/store-cliente', 'store_client')->name('front.store_client');
+        Route::get('/pagar', 'pagar')->name('front.pagar');
     });
 
 Route::controller(SubscriptionController::class)
     ->group(function () {
         Route::post('/subscribirme/store', 'store')->name('front.store');
         Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
+        Route::get('/suscripcion/validar', 'validar')->name('front.validar');
+
     });
 //simbolico para generar storage en hosting
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
+});
+Route::get('/updatedatesubscription', function () {
+      $exitCode = Artisan::call('suscripcion:consultaryactualizarsuscripcion');
+      print_r($exitCode);
 });
