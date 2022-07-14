@@ -67,11 +67,7 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $validate = $request->validate([
-            'g-recaptcha-response' => 'required|captcha',
-        ]);
-        if ($validate) {
-            $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
         try {
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -110,10 +106,6 @@ class FrontendController extends Controller
         } catch (Exception $e) {
             dd($e);
         } 
-        } else {
-            $validacion = false;
-            $mensaje = 'Por favor marca la casilla del captcha';
-        }
         
          
 
