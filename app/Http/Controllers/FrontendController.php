@@ -16,7 +16,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class FrontendController extends Controller
 {
@@ -67,7 +66,7 @@ class FrontendController extends Controller
         $phone = $request->phone;
         $message = $request->message;
 
-        $validate = FacadesValidator::make($request, [
+        $validate = Validator::make($request->all(), [
             'g-recaptcha-response' => function ($attribute, $value, $fail){
                 $secretKey = config('services.recaptcha.secret');
                 $response = $value;
