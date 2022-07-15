@@ -7,7 +7,7 @@
     </x-slot>
 
     <main>
-        <section class="page_title page_title__img-01">
+        <section class="page_title page_title__img-05">
             <div class="page_title__padding">
                 <div class="container">
                     <div class="row">
@@ -66,11 +66,11 @@
 
                                                         <p style="padding-left:38px;padding-bottom:15px">Puedes redimir este beneficio con:</p>
                                                         <div class="text-center">
-                                                            <table>
+                                                            <table class="table table-striped table-bordered table-hover table-responsive-sm">
                                                                 <tr>
-                                                                  <th>Entidad</th>
-                                                                  <th>Precio Normal</th>
-                                                                  <th>Precio con Descuento</th>
+                                                                  <th>Convenio</th>
+                                                                  <th style="color: brown">Precio Normal</th>
+                                                                  <th style="color: #0cb8b6">Precio con Descuento</th>
                                                                 </tr>
                                                                 
                                                                     @foreach ($datos['convenios'] as $item)

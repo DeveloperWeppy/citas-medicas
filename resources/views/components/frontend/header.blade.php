@@ -39,7 +39,7 @@
                     <div class="header__middle1--right text-right">
 
                         <div class="header__middle1--btn">
-                            <a href="{{ route('login') }}" class="btn2">INICIAR SESIÓN</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -53,38 +53,28 @@
             <div class="container">
                 <div class="header__menu-outer">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="header__side-nav f_right d-none d-lg-block">
-                                <ul>
-                                    <li class="search_box_container">
-                                        <button class="search_btn button"><i class="fas fa-search"></i></button>
-                                        <div class="search_form">
-                                            <form action="#">
-                                                <input type="text" placeholder="Search...">
-                                                <button><i class="fas fa-search"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li class="extra_info_btn">
-                                        <button class="button">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="col-lg-12 d-flex align-items-center">
                             <div class="main-menu">
                                 <nav id="mobile-menu">
                                     <ul>
-                                        <li><a href="{{ route('front.inicio') }}">INICIO</a></li>
-                                        <li><a href="{{ route('front.comofunciona') }}">¿CÓMO FUNCIONA?</a></li>
-                                        <li><a href="{{ route('front.servicios') }}">BENEFICIOS</a></li>
-                                        <li><a href="{{ route('front.afiliate') }}">PLANES</a></li>
-                                        <li><a href="{{ route('front.preguntas') }}">PREGUNTAS FRECUENTES</a></li>
+                                        <li class="logomenu" ><a href="{{ route('front.inicio') }}"><img src="{{ asset('asset/img/logo/logo.png') }}" alt="Logo"></a></li>
+                                        <li><a href="{{ route('front.inicio') }}" class="{{ ! Route::is('front.inicio') ?: 'activeitemmenu' }}">INICIO</a></li>
+                                        <li><a href="{{ route('front.comofunciona') }}" class="{{ ! Route::is('front.comofunciona') ?: 'activeitemmenu' }}">¿CÓMO FUNCIONA?</a></li>
+                                        <li><a href="{{ route('front.servicios') }}" class="{{ ! Route::is('front.servicios') ?: 'activeitemmenu' }}">BENEFICIOS</a></li>
+                                        <li><a href="{{ route('front.afiliate') }}" class="{{ ! Route::is('front.afiliate') ?: 'activeitemmenu' }}">PLANES</a></li>
                                         <li><a href="#">BLOG</a></li>
-                                        <li><a href="{{ route('front.contacto') }}">CONTACTANOS</a></li>
                                     </ul>
                                 </nav>
                             </div>
+                            <div class="header__side-nav f_right d-none d-lg-block">
+                                <ul>
+                                    <li class="search_box_container">
+                                        <a href="{{ route('login') }}" class="btn8">INICIAR SESIÓN</a>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                            
                             <div class="mobile-menu"></div>
                         </div>
                     </div>

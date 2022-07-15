@@ -9,7 +9,7 @@
     <main>
         <!-- |==========================================| -->
         <!-- |=====|| Page Title Start ||===============| -->
-        <section class="page_title page_title__img-01">
+        <section class="page_title page_title__img-05">
             <div class="page_title__padding">
                 <div class="container">
                     <div class="row">

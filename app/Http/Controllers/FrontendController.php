@@ -27,8 +27,14 @@ class FrontendController extends Controller
 
     public function beneficios()
     {
-
-        return view('servicios');
+        $datos=array();
+       $datos['category']= DB::select('select * from category_services');
+       $datos['services']= DB::select('select * from services where status=1');
+       $datos['convenio_services']= DB::select('select * from convenio_services');
+       $datos['convenios']= DB::select('select * from convenios');
+       $datos['userInformation']= DB::select('select * from user_information');
+       
+        return view('servicios')->with('datos', $datos);
     }
 
     public function planes()
