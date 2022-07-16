@@ -6,12 +6,15 @@
 @endphp
 <x-main-layout>
     <!-- title -->
-    @section('title')Subscribirme @endsection
 
+    @section('title')Subscribirme @endsection
     <x-slot name="css">
+
         <link href="{{ asset('css/stylesfront.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
         integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     </x-slot>
     <section class="pricing1 counter1__bg-01">
         <div class="content_box_100">
@@ -28,12 +31,12 @@
             </div>
         </div>
     </section>
-     
+
      <x-slot name="js">
         <script src="{{ asset('js/scriptfront.js') }}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js" ></script>
         <script>
-
             var departamentoselected = $('#departments');
             var ciudades = $('.ciudadess');
             var span = $('#texto');
@@ -67,7 +70,7 @@
                           //console.log(value.municipio);
                           span.text(value.municipio).val();
                           //ciudades.append("<option value='" + value.id_municipio + "'>" + value.municipio + "</option>");
-                          ciudades.append("<li data-value='" + value.id_municipio + "' class='option'>" + value.municipio + "</li>");
+                          ciudades.append("<option value='" + value.id_municipio + "' >" + value.municipio + "</option>");
                         });
                     },
                     error : function(){
@@ -82,9 +85,12 @@
                 }
               });
            $(document).ready(function() {
-           
+             $('.select-department').select2();
+            $('.select-department').removeClass(".select2-hidden-accessible");
+             $('.select-department').removeClass(".select2-container");
+             $('.select-department').removeClass(".select2-selection--single");
            });
-           
+
                //form of register of user
        $('#quickForm').validate({
             rules: {
@@ -124,8 +130,8 @@
               plane: {
                 required: true,
               },
-              
-              
+
+
             },
             messages: {
                 name: {
@@ -164,7 +170,7 @@
               plane: {
                 required: "Por favor seleccione un plan",
               },
-              
+
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -233,7 +239,7 @@
                                     timer: 4000
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         console.log(resp);
                     });
