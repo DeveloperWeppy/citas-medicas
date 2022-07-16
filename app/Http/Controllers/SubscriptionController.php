@@ -44,114 +44,9 @@ class SubscriptionController extends Controller
      */
     public function suscripcion_exitosa(Request $request)
     {
-        $id_operation = $request['preapproval_id'];
 
-        $status  = '';
-        $payer_id = '';
-        $next_payment_date = '';
-        $payment_method_id = '';
-        $payer_first_name = '';
-        $payer_last_name = '';
-        $preapproval_plan_id = '';
-
-        $nombre_client = $request->session()->get('name');
-        $last_name = $request->session()->get('last_name');
-        $email = $request->session()->get('email');
-        $plane = $request->session()->get('plane');
-        $num_phone = $request->session()->get('num_phone');
-        $number_identication = $request->session()->get('number_identication');
-        $group_or_not = $request->session()->get('group_or_not');
-        $cant_people = $request->session()->get('cant_people');
-
-        $user_client = User::where('email', $email)->first();
-        $id_user_client = $user_client->id;
-
-        $cliente = Client::where('user_id', $id_user_client)->first();
-        $id_client = $cliente->id;
-
-        //get id operation between API
-        $response = Http::withToken(config('services.mercadopago.token'))->get('https://api.mercadopago.com/preapproval/search', [
-            'id' => $id_operation,
-        ])->json();
-
-
-        $update_user = array(
-            'status' => 1
-        );
-
-        $update_data_client = array(
-            'is_owner' => 1
-        );
-
-        if (User::findOrFail($id_user_client)->update($update_user)) {
-
-            if (Client::findOrFail($id_client)->update($update_data_client)) {
-
-                foreach ($response['results'] as $key => $value) {
-
-                    $status = $value['status'];
-                    $payer_id = $value['payer_id'];
-                    $next_payment_date = $value['next_payment_date'];
-                    $payment_method_id = $value['payment_method_id'];
-                    $payer_first_name = $value['payer_first_name'];
-                    $payer_last_name = $value['payer_last_name'];
-                    $preapproval_plan_id = $value['preapproval_plan_id'];
-                }
-                $fecha = date("Y-m-d", strtotime($next_payment_date));
-                //dump($fecha);
-                if ($status == "authorized") {
-
-                    $register_suscribe = array(
-                        'next_payment' => $fecha,
-                        'user_id' => $id_user_client,
-                        'plan_id' => $plane,
-                    );
-
-                    if ($suscription_add = Subscription::create($register_suscribe)) {
-                        $id_subscription = $suscription_add->id;
-
-                        $register_details_subscription = array(
-                            'user_id' => $id_user_client,
-                            'suscription_id' => $id_subscription,
-                            'operation_id' => $id_operation,
-                            'payer_id' => $payer_id,
-                            'status_operation' => $status,
-                            'next_payment_date' => $fecha,
-                            'payment_method_id' => $payment_method_id,
-                            'payer_first_name' => $payer_first_name,
-                            'payer_last_name' => $payer_last_name,
-                            'preapproval_plan_id' => $preapproval_plan_id,
-                        );
-
-                        if ($user_add = DetailSubscription::create($register_details_subscription)) {
-
-                                $register_number_members = array(
-                                    'client_id' => $id_client,
-                                    'registered_members' => $cant_people,
-                                );
-
-                                if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                     //send email of accountverification
-                                    $user_client->sendEmailVerificationNotification();
-
-                                    //send email of subscription success
-                                    self::enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date);
-
-                                    $this->envioSms("57".$num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
-
-                                    return view('suscripcion-exitosa')->with('nombre_client', $nombre_client)
-                                        ->with('last_name', $last_name)->with('email', $email);
-                                }
-
-                        }
-                    }
-                }
-            }
-
-
-        }
-
-
+      return view('suscripcion-exitosa')->with('nombre_client', 'edin')
+          ->with('last_name', 'bal')->with('email', "edin");
     }
 
     public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
@@ -272,26 +167,15 @@ class SubscriptionController extends Controller
     {
         $error=false;
         $mensaje="";
-        $arrayError=['cc_rejected_high_risk'=>'La validación de la tarjeta de crédito ha fallado.Elige otro de los medios de pago','cc_rejected_bad_filled_security_code'=>
-        'Revisa el código de seguridad de la tarjeta.','cc_rejected_blacklist'=>'No pudimos procesar tu pago.','cc_rejected_bad_filled_other'=>'Revisa los datos.','cc_rejected_insufficient_amount'=>
-        'Tu payment_method_id no tiene fondos suficientes','cc_rejected_max_attempts'=>'Llegaste al límite de intentos permitidos.Elige otra tarjeta u otro medio de pago.','cc_rejected_other_reason'=>
-        'payment_method_id no procesó el pago.'];
+
         if($request->signature!=null){
             $user = User::where('payment_signature',  $request->signature)->get();
             $plan = Plan::where('slug',  $request->preapproval_plan_id)->get();
             if(count($user)>0  && count($plan)>0 ){
-                  $response = Http::withHeaders([
-                      'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
-                    ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
-                   "preapproval_plan_id"=> $request->preapproval_plan_id,
-                            "payer_email"=> $request->email,
-                            "card_token_id"=>$request->card_token_id,
-                            "back_url"=> "https://www.citasmedicas.es/",
-                            "status"=> "authorized"
-                 ])->json();
+                 $response=$this->validarPago($request->preapproval_plan_id,$request->email,$request->card_token_id);
                  if($response['status']=="authorized"){
                      if (User::findOrFail($user[0]->id)->update(array('status' => 1))){
-                            if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1))) {
+                            if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1,'payment_signature'=>''))) {
                                 $register_suscribe = array(
                                     'next_payment' => $fecha,
                                     'user_id' => $user[0]->id,
@@ -299,6 +183,7 @@ class SubscriptionController extends Controller
                                 );
                                 if ($suscription_add = Subscription::create($register_suscribe)) {
                                    $cliente = Client::where('user_id', $user[0]->id)->first();
+                                    session(['confirmar_pago' =>['name'=>$cliente->name,'email'=>$user->email,'ap'=>$cliente->last_name]]);
                                     $register_details_subscription = array(
                                         'user_id' => $user[0]->id,
                                         'suscription_id' => $suscription_add->id,
@@ -322,21 +207,15 @@ class SubscriptionController extends Controller
                                                 $user[0]->sendEmailVerificationNotification();
                                                 self::enviarCorreo($user[0]->email,$cliente->name,$cliente->number_identication, $plan[0]->id, date("Y-m-d", strtotime($response['next_payment_date'])));
                                                 $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
-                                                return view('suscripcion-exitosa')->with('nombre_client',$cliente->name)
-                                                    ->with('last_name', $cliente->last_name)->with('email', $email);
                                             }
                                     }
                                 }
                             }
                      }
-                    $error=false;
+
                  }else{
-                    $error=true;
-                    if(isset($arrayError[$response['code']])){
-                       $mensaje=$arrayError[$response['code']];
-                    }else{
-                       $mensaje=$response['message'];
-                    }
+                     $error=true;
+                     $mensaje=$response['mensaje'];
                  }
             }else{
               $error=true;

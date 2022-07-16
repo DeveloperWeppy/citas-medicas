@@ -45,7 +45,34 @@ class Controller extends BaseController
              return array(
               'status_subscription' => $ifSubs,
               'is_subscribe' => $ifExisteSubs,
-             ); 
+             );
     }
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+   public function validarPago($preapproval_plan_id,$email,$card_token_id){
+    $arrayError=['cc_rejected_high_risk'=>'La validación de la tarjeta de crédito ha fallado.Elige otro de los medios de pago','cc_rejected_bad_filled_security_code'=>
+    'Revisa el código de seguridad de la tarjeta.','cc_rejected_blacklist'=>'No pudimos procesar tu pago.','cc_rejected_bad_filled_other'=>'Revisa los datos.','cc_rejected_insufficient_amount'=>
+    'Tu payment_method_id no tiene fondos suficientes','cc_rejected_max_attempts'=>'Llegaste al límite de intentos permitidos.Elige otra tarjeta u otro medio de pago.','cc_rejected_other_reason'=>
+    'payment_method_id no procesó el pago.'];
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
+      ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
+     "preapproval_plan_id"=> $preapproval_plan_id,
+              "payer_email"=> $email,
+              "card_token_id"=>$card_token_id,
+              "back_url"=> "https://www.citasmedicas.es/",
+              "status"=> "authorized"
+   ])->json();
+   if($response['status']=="authorized"){
+     $response['error']=false;
+   }else{
+     $response['error']=true;
+     if(isset($arrayError[$response['code']])){
+       $response['mensaje']=$arrayError[$response['code']];
+     }else{
+        $response['mensaje']=$response['message'];
+     }
+   }
+
+   return  $response;
+  }
+  use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
