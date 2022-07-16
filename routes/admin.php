@@ -145,6 +145,5 @@ use Illuminate\Support\Facades\Route;
             ->group(function () {
                 Route::get('/suscripcion', 'index')->name('subscription.index');
                 Route::post('/subscribirme/store', 'store')->name('subscription.store');
-                Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
         });
 });
