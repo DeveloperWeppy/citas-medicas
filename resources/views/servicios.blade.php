@@ -19,7 +19,7 @@
                                 <div class="page_title__bread-crumb">
                                     <ul>
                                         <li><a href="{{ route('front.inicio') }}">Inicio</a></li>
-                                        <li><a href="beneficios.php">Beneficios</a></li>
+                                        <li><a href="#">Beneficios</a></li>
                                     </ul>
                                 </div>
                             </div>
