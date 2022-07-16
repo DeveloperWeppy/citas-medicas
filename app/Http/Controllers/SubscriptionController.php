@@ -97,7 +97,13 @@ class SubscriptionController extends Controller
     {
         //
     }
+    public function crearsuscripcion(Request $request)
+    {
+        $idplan = $request->id;
+        $plan = Plan::find($idplan);
 
+        return view('cliente.subscripcion.generarsuscripcion', compact('plan'));
+    }
  
 
 }
