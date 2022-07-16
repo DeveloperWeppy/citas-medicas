@@ -249,7 +249,7 @@
                           });
 
                           setTimeout(function(){
-                              //location.href = "{{route('usuarios.index')}}";
+                           location.href = "{{route('front.suscripcion_exitosa')}}";
                           },2000);
 
                       } else {
