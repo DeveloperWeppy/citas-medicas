@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
 
     public function __construct()
     {
-        // $this->middleware(['auth', 'unsubscribed']);
+        // $this->middleware(['auth']);
     }
 
     public function __invoke(Request $request)
@@ -34,7 +34,8 @@ class SubscriptionController extends Controller
 
     public function index()
     {
-          return view('cliente.subscripcion.index');
+        $planes = Plan::where('status', 1)->get();
+          return view('cliente.subscripcion.index')->with('planes', $planes);
     }
 
     /**
@@ -96,6 +97,13 @@ class SubscriptionController extends Controller
     {
         //
     }
+    public function crearsuscripcion(Request $request)
+    {
+        $idplan = $request->id;
+        $plan = Plan::find($idplan);
 
+        return view('cliente.subscripcion.generarsuscripcion', compact('plan'));
+    }
+ 
 
 }
