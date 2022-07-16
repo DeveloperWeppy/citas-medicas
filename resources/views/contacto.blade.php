@@ -14,6 +14,17 @@
             <div class="page_title__padding">
                 <div class="container">
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="page_title__content">
+                                <h1>Contácto</h1>
+                                <div class="page_title__bread-crumb">
+                                    <ul>
+                                        <li><a href="{{ route('front.inicio') }}">Inicio</a></li>
+                                        <li><a href="beneficios.php">Completa el formulario y nos pondremos en contácto contigo.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

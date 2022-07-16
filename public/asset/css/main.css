@@ -10801,6 +10801,13 @@ https://www.phpied.com/delay-loading-your-print-css/
   background-size: cover;
   background-position: center;
 }
+.bg-3{
+  background: url(../img/background/ubication.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .box{
   width: 100%;
 }
@@ -10845,4 +10852,10 @@ table, th, td {
 
 table {
   width: 100%;
+}
+
+.imglogo{
+  position: relative; 
+  z-index:500; 
+  margin-top: -100px;
 }

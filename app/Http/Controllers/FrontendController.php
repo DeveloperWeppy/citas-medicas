@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
+use App\Models\Convenio;
 use App\Models\PaymentPlatform;
 use App\Models\UserInformation;
 use Dotenv\Validator;
@@ -144,8 +145,19 @@ class FrontendController extends Controller
     {
         $conveniodetaills = UserInformation::find($id);
         $attention_shedule = AttentioShedule::where('responsable_id', $id)->get();
+        $convenio = Convenio::where('responsable_id', $id)->first();
+        $id_convenio = $convenio->id;
 
-        return view('detallesentidad', compact('conveniodetaills', 'attention_shedule'));
+        $userid = $conveniodetaills->user_id;
+        $user = User::find($userid);
+
+
+        $datos=array();
+       $datos['category']= DB::select('select * from category_services');
+       $datos['services']= DB::select('select * from services where status=1');
+       $datos['convenio_services']= DB::select('select * from convenio_services where convenio_id='.$id_convenio);
+
+        return view('detallesentidad', compact('conveniodetaills', 'attention_shedule', 'datos', 'user'));
     }
 
     public function envio()

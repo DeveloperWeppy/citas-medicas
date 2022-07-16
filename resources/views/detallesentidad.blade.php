@@ -1,6 +1,6 @@
 <x-main-layout>
     <!-- title -->
-  @section('title')Detalles de la Entidad @endsection
+  @section('title')Detalles del Convenio @endsection
 
      <!---- CSS ----->
      <x-slot name="css">
@@ -13,6 +13,12 @@
                     <div class="row">
                            <img src="{{$conveniodetaills->image_banner}}" class="img-fluid" alt="">
                     </div>
+                    <div class="row text-center imglogo" >
+                        <div class="col-sm-12">
+                            <img src="{{$user->logo}}" class="img-thumbnail" style="width: 200px; height: 200px;" alt="">
+                        </div>
+                    </div>
+
         </section>
         <!------------------------- SECTION IMAGEN BANNER END -------------------->
 
@@ -76,8 +82,58 @@
                     </div>
                     <div class="row pt-20">
                         <div class="col-md-12 text-center">
-                            <div class="service3__bottom-text">
-                                <p class="m-0">Para más información de la entidad visita su sitio web <a href="#">Join us here</a>.</p>
+                            <div class="title2 mb-55 text-center">
+                                <h4 class="text-uppercase">Beneficios del Convenio</h4>
+                                <p>Estos son los beneficios que podrás encontrar con este convenio: </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- accordion -->
+                            <div class="accordion_style_01 mb-40">
+                                <div class="accordion" id="accordionExample">
+                                    @foreach($datos['category'] as $key => $value)
+                                    <div class="card" style="border: 1px solid #0cb8b6; border-radius: 10px">
+                                        <div class="card-header" id="heading_0{{$key+1}}">
+                                            <h5>
+                                                <a href="#" style="font-size:19px" data-toggle="collapse" data-target="#collapse_0{{$key+1}}" aria-expanded="false" aria-controls="collapse_0{{$key+1}}" class="">
+                                                    <span>{{$key+1}}.</span>{{$value->name}}
+                                                    <i class="ti-angle-down"></i>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                            <div id="collapse_0{{$key+1}}" class="collapse " aria-labelledby="heading_0{{$key+1}}" data-parent="#accordionExample" style="">
+                                                <div class="card-body">
+                                                    @foreach ($datos['convenio_services'] as $item2)
+                                                        @foreach($datos['services'] as $key2 => $value2)
+                                                            @if ($value2->category_id==$value->id)
+                                                                @if ($item2->service_id == $value2->id)
+                                                                <h6 class="mt-3 pl-3"><i class="fas fa-check fa-fw"></i> {{$value2->name}}</h6>
+
+                                                                <div class="text-center mb-5">
+                                                                    <table class="table table-striped table-bordered table-hover table-responsive-sm">
+                                                                        <tr>
+                                                                        <th style="color: brown">Precio Normal</th>
+                                                                        <th style="color: #0cb8b6">Precio con Descuento</th>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>{{number_format($item2->price_normal, 2, ',', '.')}}</td>
+                                                                            <td>{{number_format($item2->price_discount, 2, ',', '.')}}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                @endif
+                                                        
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +150,7 @@
                         <div class="col-md-12">
                             <div class="title2 mb-55 text-center">
                                 <h2 class="text-uppercase">Horarios de Atención</h2>
-                                <p>Estos son los horarios de atención disponibles de esta entidad </p>
+                                <p>Estos son los horarios de atención disponibles de este convenio </p>
                             </div>
                         </div>
                     </div>
@@ -223,15 +279,24 @@
         <!------------------------- SECTION NETWORK SOCIALS END -------------------->
 
         <!------------------------- SECTION LOCATION MAP START -------------------->
-        <section class="page_title">
-            <div class="row">
-                <div class="col-lg-12">
-                    {!! $conveniodetaills->frame_ubication !!}
+        <section class="bg-3 other_page">
+            <div class="content_box_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="about5__wrapper">
+                                <div class="title2 text-center">
+                                    <h2 class="text-white">¿Quieres saber dónde está ubicada la entidad del Convenio?</h2>
+                                    <a href="{{$conveniodetaills->frame_ubication}}" target="_blank" class="btn6 mt-30 d-inline-block"><span>Ver Ubicación >></span>  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-                
         </section>
         <!------------------------- SECTION LOCATION MAP END -------------------->
+       
     </main>
      <x-slot name="js">
     </x-slot>
