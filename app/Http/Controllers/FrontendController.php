@@ -289,8 +289,13 @@ class FrontendController extends Controller
     }
     public function suscripcion_exitosa(Request $request)
     {
-      return view('suscripcion-exitosa')->with('nombre_client', $request->session()->get('confirmar_pago')['name'])
-          ->with('last_name',$request->session()->get('confirmar_pago')['last_name'])->with('email',$request->session()->get('confirmar_pago')['email']);
+
+      if ($request->session()->has('confirmar_pago')) {
+          return view('suscripcion-exitosa')->with('nombre_client', $request->session()->get('confirmar_pago')['name'])
+            ->with('last_name',$request->session()->get('confirmar_pago')['last_name'])->with('email',$request->session()->get('confirmar_pago')['email']);
+      }else{
+           return redirect('login');
+      }
     }
     public function validar(Request $request)
     {
@@ -344,8 +349,6 @@ class FrontendController extends Controller
                  }else{
                      $error=true;
                      $mensaje=$response['mensaje'];
-                     $cliente = Client::where('user_id', $user[0]->id)->first();
-                     session(['confirmar_pago' =>['name'=>$cliente->name,'last_name'=>$user[0]->email,'ap'=>$cliente->last_name]]);
                  }
             }else{
               $error=true;
