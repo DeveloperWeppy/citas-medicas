@@ -270,18 +270,84 @@ class SubscriptionController extends Controller
     }
     public function validar(Request $request)
     {
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
-          ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
-         "preapproval_plan_id"=> $request->preapproval_plan_id,
-                  "payer_email"=> $request->email,
-                  "card_token_id"=>$request->card_token_id,
-                  "back_url"=> "https://www.citasmedicas.es/",
-                  "status"=> "authorized"
-       ])->throw()->json();
+        $error=false;
+        $mensaje="";
+        $arrayError=['cc_rejected_high_risk'=>'La validación de la tarjeta de crédito ha fallado.Elige otro de los medios de pago','cc_rejected_bad_filled_security_code'=>
+        'Revisa el código de seguridad de la tarjeta.','cc_rejected_blacklist'=>'No pudimos procesar tu pago.','cc_rejected_bad_filled_other'=>'Revisa los datos.','cc_rejected_insufficient_amount'=>
+        'Tu payment_method_id no tiene fondos suficientes','cc_rejected_max_attempts'=>'Llegaste al límite de intentos permitidos.Elige otra tarjeta u otro medio de pago.','cc_rejected_other_reason'=>
+        'payment_method_id no procesó el pago.'];
+        if($request->signature!=null){
+            $user = User::where('payment_signature',  $request->signature)->get();
+            $plan = Plan::where('slug',  $request->preapproval_plan_id)->get();
+            if(count($user)>0  && count($plan)>0 ){
+                  $response = Http::withHeaders([
+                      'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
+                    ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
+                   "preapproval_plan_id"=> $request->preapproval_plan_id,
+                            "payer_email"=> $request->email,
+                            "card_token_id"=>$request->card_token_id,
+                            "back_url"=> "https://www.citasmedicas.es/",
+                            "status"=> "authorized"
+                 ])->json();
+                 if($response['status']=="authorized"){
+                     if (User::findOrFail($user[0]->id)->update(array('status' => 1))){
+                            if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1))) {
+                                $register_suscribe = array(
+                                    'next_payment' => $fecha,
+                                    'user_id' => $user[0]->id,
+                                    'plan_id' =>$plan[0]->id,
+                                );
+                                if ($suscription_add = Subscription::create($register_suscribe)) {
+                                   $cliente = Client::where('user_id', $user[0]->id)->first();
+                                    $register_details_subscription = array(
+                                        'user_id' => $user[0]->id,
+                                        'suscription_id' => $suscription_add->id,
+                                        'operation_id' =>$response['preapproval_id'],
+                                        'payer_id' => $plan[0]->id,
+                                        'status_operation' => $response['status'],
+                                        'next_payment_date' =>date("Y-m-d", strtotime($response['next_payment_date'])),
+                                        'payment_method_id' => $response['payment_method_id'],
+                                        'payer_first_name' =>$request->name,
+                                        'payer_last_name' =>  $cliente->last_name,
+                                        'preapproval_plan_id' => $response['preapproval_plan_id'],
+                                    );
+                                    if ($user_add = DetailSubscription::create($register_details_subscription)) {
 
-        return $response;
+                                            $register_number_members = array(
+                                                'client_id' => $cliente->id,
+                                                'registered_members' => $plan[0]->cant_people,
+                                            );
+                                            if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
+                                                 //send email of accountverification
+                                                $user[0]->sendEmailVerificationNotification();
+                                                self::enviarCorreo($user[0]->email,$cliente->name,$cliente->number_identication, $plan[0]->id, date("Y-m-d", strtotime($response['next_payment_date'])));
+                                                $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
+                                                return view('suscripcion-exitosa')->with('nombre_client',$cliente->name)
+                                                    ->with('last_name', $cliente->last_name)->with('email', $email);
+                                            }
+                                    }
+                                }
+                            }
+                     }
+                    $error=false;
+                 }else{
+                    $error=true;
+                    if(isset($arrayError[$response['code']])){
+                       $mensaje=$arrayError[$response['code']];
+                    }else{
+                       $mensaje=$response['message'];
+                    }
+                 }
+            }else{
+              $error=true;
+              $mensaje="Recibo no encontrado";
+            }
+
+
+        }
+        return json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
+
 
 
 }

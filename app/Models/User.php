@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'logo', 'email', 'pw_decrypte', 'password', 'status', 'is_prestador',
+        'name', 'logo', 'email', 'pw_decrypte', 'password', 'status', 'is_prestador','payment_signature',
     ];
 
     /**
@@ -48,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
      QUÉ INFORMACIÓN SE CONDENSA CON ESTA FUNCIÓN?
      1. Si la relación entre el usuario y la subscripcion no existen, entonces retorna null, es aquí donde entra a operar el helper de optional, que si no devuelve
      un booleano sino null. Pero como se espera un booleano... se condiciona ?? que si lo anterior devuelve null, entonces cambie a falso
-     
+
      2. Si subscription si existe, pero si quizas la subscripcion no esta activa, entonces retorna false
      3. Si si existe una subscripción, es decir que esta activa, se cumple la función por ende devuelve true**/
     public function hasActiveSubscription(){

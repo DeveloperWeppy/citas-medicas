@@ -5,15 +5,15 @@
             <div class="title2 mb-60">
                 <h4>Datos de Facturación</h4>
             </div>
-            
+
             <div class="row">
-                
+
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="username">Nombre</label>
                         <input type="text" name="name" id="username" class="form-control" autocomplete="off"/>
                     </div>
-                    
+
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -45,13 +45,15 @@
                         <input type="number" name="num_phone" class="form-control" id="" autocomplete="off"/>
                     </div>
                 </div>
+
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="departments">Departamento</label>
-                        <select name="department" class="form-control" size="5" id="departments">
+                        <select class="form-control select-department" name="department"   id="departments">
+                             <option value="">Seleciona Departamento</option>
                             @foreach ($departments as $item)
                                 <option value="{{$item->id_departamento }}">{{$item->departamento}}</option>
-                                
+
                             @endforeach
                         </select>
                     </div>
@@ -59,13 +61,9 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="ciudades">Ciudad de residencia</label>
-                        <select name="city" class="ciudadess" >
+                        <select name="city"  class="form-control ciudadess select-department" >
                         </select>
-                        <div class="nice-select form-control" >
-                            <span class="current" id="texto"></span>
-                            <ul class="list ciudadess" id="">
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -96,11 +94,11 @@
                                         <div class="image-area mt-4"><img id="imageResult" src="{{ asset('images/cedula.png') }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                                         </div>
                                     </div>
-        
+
                                     <!-- Uploaded image area-->
                     <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                 </div> --}}
-                
+
             </div>
         </div>
 
@@ -115,7 +113,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    
+
                     @foreach ($planes as $item)
                     <div class="card border-info mb-3" style="max-width: 18rem;">
                         <div class="card-body text-primary">
@@ -127,7 +125,7 @@
                                             <label for="{{$item->id}}">{{$item->name}}</label>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-sm-6">
                                     <h6>${{convertirVa($item->price)}} / {{$item->type_plan}}</h6>
@@ -136,7 +134,7 @@
                           </div>
                     </div>
                     @endforeach
-                   
+
                 </div>
             </div>
         </div>

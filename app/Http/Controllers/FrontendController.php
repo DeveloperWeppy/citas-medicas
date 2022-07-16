@@ -109,15 +109,15 @@ class FrontendController extends Controller
             }
         } catch (Exception $e) {
             dd($e);
-        } 
+        }
         } else {
             $validacion = false;
             $mensaje = 'Por favor marca la casilla del captcha';
         }
-        
-         
 
-        
+
+
+
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje, 'validacion' => $validacion));
     }
 
@@ -169,9 +169,15 @@ class FrontendController extends Controller
     {
         return view('confirmsubscribe');
     }
-    public function pagar()
+    public function pagar($signature="",$plan="")
     {
-        return view('pagar');
+      $user = User::where('payment_signature',  $signature)->get();
+      $plan_data = Plan::where('id',  $plan)->get();
+      if(count($user)>0 && count($plan_data)>0){
+          return view('pagar')->with('signature', $signature)->with('plan', $plan)->with("planData",$plan_data[0])->with("user",$user[0]);
+      }else{
+        return redirect('subscribirme');
+      }
     }
     public function store_client(Request $request)
     {
@@ -215,7 +221,7 @@ class FrontendController extends Controller
             # validamos si existe la imagen en el request
             // $image = $request->file('imgLogo')->store('public/clients');
             // $url = Storage::url($image);
-
+            $payment_signature=base64_encode(Hash::make($num_cedula));
             $register_user = array(
                 'name' => $nombre_client,
                 'email' => $correo,
@@ -223,11 +229,12 @@ class FrontendController extends Controller
                 'pw_decrypte' => $num_cedula,
                 'status' => 0,
                 'is_prestador' => 0,
+                'payment_signature' =>$payment_signature
             );
 
             if ($user_add = User::create($register_user)->assignRole('Cliente')) {
                 $id_user = $user_add->id;
-
+                session(['payment_signature'=>$payment_signature]);
                 $register_client_info = array(
                     'user_id' => $id_user,
                     'name' => $nombre_client,

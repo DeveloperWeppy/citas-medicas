@@ -1,7 +1,6 @@
 <x-main-layout>
     <!-- title -->
   @section('title')Detalles del Plan @endsection
-
      <!---- CSS ----->
      <x-slot name="css">
        <script src="https://sdk.mercadopago.com/js/v2"></script>
@@ -29,7 +28,20 @@
         width:97%;
       }
 </style>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      </x-slot>
+     <div class="container ">
+          <div class="row"  style="padding-top:20px;padding-bottom:20px">
+            <div class=" col-4"  style="display: flex;align-items: center;">
+               <img class="img-fluid" src="{{ asset('images/logo-mercado-pago.webp')}}" alt="logo banca">
+            </div>
+
+              <div class=" col-8" style="display: flex;align-items: center;">
+                 <h4 style="font-weight: normal;">Hola <span style="font-weight: bold;">{{$user->name}}</span> Tu pago sera Procesado Por <span style="font-weight: bold;">Mercado Pago</span> , además la compra estará protegida.</h4>
+              </div>
+          </div>
+
+     </div>
       <div class="content_box_100" style="background:#eeeeee">
            <div class="container">
                <form id="form-checkout" class=" row ">
@@ -37,7 +49,7 @@
                      <h5 class="col-lg-12" style="text-align:center;padding-bottom:20px;">Completa los datos de tu tarjeta</h5>
                       <div class="form-group col-sm-6">
                             <label>Número de tarjeta</label>
-                            <div id="form-checkout__cardNumber-container" class="container2"></div>
+                            <div id="form-checkout__cardNumber-container" name ="cardNumber" class="container2"></div>
                        </div>
                        <div class="form-group col-sm-6">
                              <label>Vencimiento</label>
@@ -63,25 +75,27 @@
                              <label>Numero de Documento</label>
                              <input type="text" name="identificationNumber" id="form-checkout__identificationNumber" class="container3"/>
                       </div>
-                      <div class="form-group  col-sm-6">
+                      <div class="form-group  col-sm-6" style="display:none">
                             <label>Cuotas</label>
                             <select name="installments" id="form-checkout__installments" class="container3"  class="container3" ></select>
                      </div>
-                     <div class="form-group  col-sm-6">
+                     <div class="form-group  col-sm-6" style="display:none">
                            <label>Email</label>
-                           <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"  class="container3"/>
+                           <input type="email" name="cardholderEmail" value="{{$user->email}}" id="form-checkout__cardholderEmail"  class="container3"/>
                     </div>
+                    <div class="form-group  col-sm-12"><label style="display: flex;align-items: baseline;"  ><input type="checkbox" name="terminosMercadoPago" value="1" id="terminosMercadoPago" class="andes-checkbox__input" style="margin-top: 3px;margin-right: 6px;margin-left: 11px;"><span class="andes-checkbox__label andes-checkbox__label-text"><div>Acepto los <a href="https://www.mercadopago.com.co/ayuda/194" target="_blank">Términos y condiciones</a> y autorizo el uso de mis datos de acuerdo a la <a href="https://www.mercadopago.com.co/privacidad" target="_blank">Declaración de Privacidad</a><a>.</a></div></span></label></div>
                  </div>
                  <div class="mb-30 col-lg-6 row " style="justify-content: center;padding: 0;" >
                          <div class="contact_page1__left mb-30 col-lg-8" style="padding-top:30px;height: fit-content;padding-bottom: 40px;">
                             <h5 class="col-lg-12" style="text-align:center;height:50px">Detalle de tu suscripción</h5>
                             <div class="row">
-                                  <span class="col-lg-6">Plan Familiar Mensual</span><span class="col-lg-6" style="text-align: center;"> $ 79.900</span>
+                                  <span class="col-lg-6">{{$planData->name}}</span><span class="col-lg-6" style="text-align: center;"> $ {{number_format($planData->price, 2, ',', '.')}}</span>
                                   <hr class="col-lg-11">
-                                  <span class="col-lg-6">Total por mes</span><span class="col-lg-6" style="text-align: center;"> $ 79.900</span>
+                                  <span class="col-lg-6">Total {{$planData->type_plan}}</span><span class="col-lg-6" style="text-align: center;"> $ {{number_format($planData->price, 2, ',', '.')}}</span>
                             </div>
 
                          </div>
+                         <img class="img-fluid" src="{{ asset('images/visa-mastercard-amex.webp')}}" alt="logo banca">
                  </div>
                  <div class="mb-30 col-lg-6"  style="padding:0px;">
                     <button type="submit" id="form-checkout__submit" class="btn btn-primary" style="float:right;width:100px">Pagar</button>
@@ -92,8 +106,9 @@
            </div>
       </div>
      <x-slot name="js">
-       <script>
-       $("#form-checkout").validate({
+   <script>
+   var validate_form=0;
+   $("#form-checkout").validate({
    rules: {
      cardNumber: {
        required: true,
@@ -110,6 +125,10 @@
      identificationNumber:{
        required: true,
      },
+     terminosMercadoPago:{
+       required: true,
+     },
+
    },
    messages: {
      cardNumber: "Por favor ingrese numero de tarjeta",
@@ -117,8 +136,26 @@
      cardholderName: "Por favor ingrese Titular de la tarjeta",
      securityCode: "Por favor ingrese Código de seguridad",
      identificationNumber: "Por favor ingrese Número de documento",
+     terminosMercadoPago: "Por favor Acepta los terminos del servicio",
    },
+   errorElement: 'span',
+   errorPlacement: function (error, element) {
+     validate_form=0;
+     error.addClass('invalid-feedback');
+     element.closest('.form-group').append(error);
+   },
+   highlight: function (element, errorClass, validClass) {
+     $(element).addClass('is-invalid');
+   },
+   unhighlight: function (element, errorClass, validClass) {
+     $(element).removeClass('is-invalid');
+   },
+   submitHandler: function(form){
+    validate_form=1;
+   }
  });
+
+
  const cardForm = mp.cardForm({
    amount: '100.5',
    iframe: true,
@@ -166,7 +203,7 @@
        if (error) return console.log('Callback para tratar o erro: montando o cardForm ', error)
      },
      onSubmit: function (event) {
-       event.preventDefault();
+        event.preventDefault();
        const {
          paymentMethodId: payment_method_id,
          issuerId: issuer_id,
@@ -177,21 +214,67 @@
          identificationNumber,
          identificationType
        } = cardForm.getCardFormData();
-        $.ajax({
-          method: "POST",
-          dataType: 'json',
-          url:"{{route('front.pagar')}}",
-          data:{
-              "preapproval_plan_id": "2c93808481ad6df90181afe4f5fb00a2",
-              "email":email,
-              "card_token_id": cardForm.getCardFormData().token,
-              "_token": "{{ csrf_token() }}",
-            }
-        }).done(function( msg ) {
-              alert("2="+JSON.stringify(msg));
-        }).fail(function( jqXHR, textStatus ) {
-             alert("3="+JSON.stringify(jqXHR));
-       });
+       if(validate_form==1){
+             cardForm.createCardToken();
+             $.ajax({
+               method: "POST",
+               dataType: 'json',
+               url:"{{route('front.validar')}}",
+               data:{
+                   "preapproval_plan_id": "{{$planData->slug}}",
+                   "signature":"{{$signature}}",
+                   "email":$("#form-checkout__cardholderEmail").val(),
+                   "name":$("#form-checkout__cardholderName").val(),
+                   "card_token_id": cardForm.getCardFormData().token,
+                   "_token": "{{ csrf_token() }}",
+                 },
+                 beforeSend:function(){
+                     Swal.fire({
+                           title: 'Validando datos, espere por favor...',
+                           button: false,
+                           timer: 3000,
+                           timerProgressBar: true,
+                               didOpen: () => {
+                                   Swal.showLoading()
+                               },
+                       });
+                }
+             }).done(function( respuesta ) {
+                     if (!respuesta.error) {
+                        Swal.fire({
+                              title: 'Tu Pago fue procesado exitosamente',
+                              icon: 'success',
+                              button: true,
+                              timer: 2000
+                          });
+
+                          setTimeout(function(){
+                              //location.href = "{{route('usuarios.index')}}";
+                          },2000);
+
+                      } else {
+                          setTimeout(function(){
+                            Swal.fire({
+                                  title: respuesta.mensaje,
+                                  icon: "error",
+                                  button: false,
+                                  timer: 4000
+                              });
+                          },2000);
+                          //location.href = "{{route('usuarios.index')}}";
+                      }
+             }).fail(function( jqXHR ) {
+                  alert(jqXHR.responseText);
+                  setTimeout(function(){
+                     Swal.fire({
+                           title: jqXHR.responseJSON.message,
+                           icon: "error",
+                           button: false,
+                           timer: 4000
+                       });
+                   },2000);
+            });
+       }
      },
      onFetching: function (resource) {
        console.log('fetching... ', resource)
