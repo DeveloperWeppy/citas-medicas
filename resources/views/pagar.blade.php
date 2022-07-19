@@ -5,7 +5,7 @@
      <x-slot name="css">
        <script src="https://sdk.mercadopago.com/js/v2"></script>
        <script>
-           const mp = new MercadoPago('APP_USR-bdeb0f9f-a2bd-4a91-8710-2da582130cea');
+           const mp = new MercadoPago("{{env('API_MECADOPAGO_PUBLIC_KEY')}}");
       </script>
       <style>
       #form-checkout {

@@ -18,7 +18,7 @@
       integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://sdk.mercadopago.com/js/v2"></script>
   <script>
-      const mp = new MercadoPago('APP_USR-bdeb0f9f-a2bd-4a91-8710-2da582130cea');
+      const mp = new MercadoPago("{{env('API_MECADOPAGO_PUBLIC_KEY')}}");
  </script>
 <div id="container-select_plan" style="display:flex;justify-content: center;align-items: center;padding-top:80px">
   <div>
