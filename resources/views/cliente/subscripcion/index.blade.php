@@ -10,7 +10,7 @@
 <!--integrar plugins necesarios-->
 @section('plugins.jqueryValidation', true)
 @section('content_header')
-
+@section('plugins.Sweetalert2', true)
 @stop
 
 @section('content')
@@ -23,20 +23,7 @@
 <div id="container-select_plan" style="display:flex;justify-content: center;align-items: center;padding-top:80px">
   <div>
         <h4 style="text-align:center;font-weight: bold;">Seleccionar Plan</h4>
-<<<<<<< HEAD
-    <form id="hacersuscripcion" >
-        @foreach ($planes as $item)
-        <div class="card border-info mb-3 col-6" style="max-width: 18rem;margin-top:50px">
-            <div class="card-body text-primary">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group clearfix">
-                            <div class="icheck-info d-inline">
-                                <input type="radio" name="plane" id="{{$item->id}}" value="{{$item->id}}" required="">
-                                <label for="{{$item->id}}" style="font-weight: normal;color: #666;font-size: 15px !important;font-family:'Poppins', sans-serif !important;">
-                                    {{ $item->name}}
-                                </label>
-=======
+
          @foreach ($plans as $index => $item)
         <div class="card border-info mb-3 col-7" style="max-width: 18rem;margin-top:50px">
                           <div class="card-body text-primary">
@@ -54,22 +41,11 @@
                                       <h6 style="color: #666;font-weight: 600;">$ {{number_format($item->price, 2, ',', '.')}} / Mensual</h6>
                                   </div>
                               </div>
->>>>>>> developer
                             </div>
                         </div>
 
-                    </div>
-                    <div class="col-sm-6">
-                        <h6 style="color: #666;font-weight: 600;">{{number_format($item->price, 2, ',', '.')}} / {{$item->type_plan}}</h6>
-                    </div>
-                </div>
-              </div>
-        </div>
         @endforeach
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
         <div style="display: flex;justify-content: center;">
           <button type="submit" class="btn2 float-right btnContinuar">CONTINUAR<i class="icofont-rounded-double-right"></i></button>
         </div>
@@ -162,91 +138,7 @@
 
 @section('js')
     <script>
-<<<<<<< HEAD
-         $('#hacersuscripcion').validate({
-            rules: {
-                plane: {
-                required: true,
-              },
-            },
-            messages: {
-                plane: {
-                    required: "Por favor seleccione un Plan",
-              },
-            },
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-              error.addClass('invalid-feedback');
-              element.closest('.form-group').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-              $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-              $(element).removeClass('is-invalid');
-            },
-            submitHandler: function(form){
-                // agregar data
-                $('#hacersuscripcion').on('submit', function(e) {
-                event.preventDefault();
-                var $thisForm = $('#hacersuscripcion');
-                    var formData = new FormData(this);
 
-                    //ruta
-                    var url = "{{route('subscription.crearsuscripcion')}}";
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        type: "post",
-                        encoding:"UTF-8",
-                        url: url,
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        dataType:'json',
-                        beforeSend:function(){
-                          Swal.fire({
-                                title: 'Validando datos, espere por favor...',
-                                button: false,
-                                timer: 2000,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                },
-                            });
-                        }
-                    }).done(function(respuesta){
-                        //console.log(respuesta);
-                       if (!respuesta.error) {
-
-                          Swal.fire({
-                                title: respuesta.mensaje,
-                                icon: 'success',
-                                confirmButtonText: "Ok"
-                            });
-
-                            setTimeout(function(){
-                                location.reload();
-                            },2000);
-
-                        } else {
-                            setTimeout(function(){
-                              Swal.fire({
-                                    title: respuesta.mensaje,
-                                    icon: "error",
-                                    confirmButtonText: "Ok"
-                                });
-                            },2000);
-                        }
-                    }).fail(function(resp){
-                        //console.log(resp);
-                    });
-                  });
-            }
-          });
-=======
     var planslug="";
     $( ".btnContinuar" ).click(function() {
       var urlPago="";
@@ -373,6 +265,7 @@
           identificationType
         } = cardForm.getCardFormData();
         if(validate_form==1){
+              alert(1);
               cardForm.createCardToken();
               $.ajax({
                 method: "POST",
@@ -444,6 +337,5 @@
       }
     }
   });
->>>>>>> developer
   </script>
 @stop
