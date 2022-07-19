@@ -322,7 +322,7 @@ class FrontendController extends Controller
                                     $register_details_subscription = array(
                                         'user_id' => $user[0]->id,
                                         'suscription_id' => $suscription_add->id,
-                                        'operation_id' =>$response['preapproval_id'],
+                                        'operation_id' =>$response['id'],
                                         'payer_id' => $plan[0]->id,
                                         'status_operation' => $response['status'],
                                         'next_payment_date' =>date("Y-m-d H:i:s", strtotime($response['next_payment_date'])),
