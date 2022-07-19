@@ -62,7 +62,7 @@ class ClientController extends Controller
             'data' => $data
         ]);
     }
-    
+
     public function create()
     {
         //
@@ -82,7 +82,7 @@ class ClientController extends Controller
         $user_login = Auth::user()->id;
         $consultar_cliente_propietario = Client::where('user_id', $user_login)->first();
         $id_client_owner = $consultar_cliente_propietario->id;
-        
+
         $validar_email = User::where('email', $request->email)->count();
 
         $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $id_client_owner)->first();
@@ -97,7 +97,7 @@ class ClientController extends Controller
                 $error = true;
                 $mensaje = 'Error! Ya se encuentra registrado un usuario con este correo electronico "' . $request->email . '". Intente con otro.';
             } else {
-    
+
                 $register_user = array(
                     'name' => $request->name,
                     'email' => $request->email,
@@ -106,13 +106,11 @@ class ClientController extends Controller
                     'status' => 1,
                     'is_prestador' => 0
                 );
-    
+
                 if ($user_add = User::create($register_user)->assignRole('Cliente')) {
-    
+
                     $id_user = $user_add->id;
-    
                     $validar_cliente = Client::where('number_identication', $request->number_identication)->count();
-    
                     if ($validar_cliente > 0) {
                         $error = true;
                         $mensaje = 'Error! Ya se encuentra registrado un cliente con el número de identificación "' . $request->number_identication . '". Intente con otro.';
@@ -132,18 +130,18 @@ class ClientController extends Controller
                             'num_phone' => 'completar',
                             'is_owner' => 0,
                         );
-    
+
                         if ($add_client = Client::create($register_client_info)) {
                             $id_client = $add_client->id;
-    
+
                             $register_client_member = array(
                                 'client_id' => $id_client,
                                 'user_owner_id' => $user_login,
                             );
-    
+
                             if (MembersClient::create($register_client_member)) {
                                 $new_member_number = $total_miembros_registrado - 1;
-                               
+
                                 $update_member_number = array(
                                     'registered_members' => $new_member_number,
                                 );
@@ -152,8 +150,8 @@ class ClientController extends Controller
                                     $user_add->sendEmailVerificationNotification();
                                     $error = false;
                                     $mensaje = 'Se ha registrado el nuevo miembro a tu plan exitosamente!';
-                                    
-                                    
+
+
                                 }else{
                                     $error = true;
                                 $mensaje = 'Error! Se presento un problema al actualizar el nuevo número de miembros disponibles a registrar.';
@@ -163,19 +161,19 @@ class ClientController extends Controller
                                 $error = true;
                                 $mensaje = 'Error! Se presento un problema al registrar el nuevo miembro.';
                             }
-                            
+
                         } else {
                             $error = true;
                             $mensaje = 'Error! Se presento un problema al registrar datos de cliente, intenta de nuevo.';
                         }
-                        
+
                     }
                 }
             }
         }
-        
+
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
-        
+
     }
 
     /**

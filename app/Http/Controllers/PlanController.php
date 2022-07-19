@@ -6,6 +6,7 @@ use App\Models\Plan;
 use App\Models\Client;
 use App\Models\PlanServices;
 use App\Models\Subscription;
+use App\Models\DetailSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NumbersMembersAvailable;
@@ -36,8 +37,10 @@ class PlanController extends Controller
         $verificar_subs = Subscription::where('user_id', $user_login)->count();
         $dato = '';
         if ($verificar_subs > 0) {
-            $get_subscription = Subscription::where('user_id', $user_login)->first();
-
+            $detailSubscription = DetailSubscription::where(['user_id'=>$user_login,'status_operation'=>'authorized'])->orderBy('next_payment_date', 'desc')->get();
+            if(count($detailSubscription)>0){
+                 $get_subscription= Subscription::find($detailSubscription[0]->suscription_id);
+            }
             $idplan = $get_subscription->plan_id;
 
             $plan = Plan::find($idplan);
