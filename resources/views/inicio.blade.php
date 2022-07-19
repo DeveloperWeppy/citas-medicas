@@ -23,7 +23,7 @@
                 <h3>Let's be Together</h3>
             </div>
             <div class="extra_info--thumb">
-                <img class="img_100" src="assets/img/about/about-01.jpg" alt="Extra info thumb">
+                <img class="img_100" src="{{ asset('asset/img/about/about-01.jpg')}} " alt="Extra info thumb">
             </div>
             <div class="extra_info--address">
                 <ul>
@@ -196,7 +196,7 @@
                                 <div class="about1__left--thumb1">
                                     <img src="{{ asset('asset/img/png-icon/que-es-citas-medicas.png') }}" alt="About">
                                 </div>
-                               
+
                                 <div class="about1__left--thumb3">
                                     <img src="{{ asset('asset/img/about/beneficios.png') }}" alt="About">
                                 </div>
@@ -439,7 +439,7 @@
         <!-- |=====|| Contact End ||=================| -->
         <!-- |==========================================| -->
 
-        
+
     </main>
     {!! NoCaptcha::renderJs() !!}
     <x-slot name="js">
@@ -492,8 +492,8 @@
               message: {
                 required: "Por favor ingrese el mensaje a enviar",
               },
-              
-              
+
+
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -561,7 +561,7 @@
                                     timer: 4000
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         Swal.fire({
                                     title: 'No has verificado el recaptcha',
