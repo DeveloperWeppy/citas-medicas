@@ -25,7 +25,7 @@ class SubscriptionController extends Controller
 
     public function __construct()
     {
-        // $this->middleware(['auth', 'unsubscribed']);
+        // $this->middleware(['auth']);
     }
 
     public function __invoke(Request $request)
@@ -35,9 +35,11 @@ class SubscriptionController extends Controller
 
     public function index()
     {
-          $user = User::where('id',  Auth::id())->get();
-          $plans = Plan::where('status',  1)->get();
-          return view('cliente.subscripcion.index')->with('plans', $plans)->with('user', $user[0]);
+
+         $user = User::where('id',  Auth::id())->get();
+         $plans = Plan::where('status',  1)->get();
+         return view('cliente.subscripcion.index')->with('plans', $plans)->with('user', $user[0]);
+
     }
 
     /**
@@ -99,6 +101,16 @@ class SubscriptionController extends Controller
     {
         //
     }
+<<<<<<< HEAD
+    public function crearsuscripcion(Request $request)
+    {
+        $idplan = $request->id;
+        $plan = Plan::find($idplan);
+
+        return view('cliente.subscripcion.generarsuscripcion', compact('plan'));
+    }
+
+=======
     public function suscripcion_exitosa(Request $request)
     {
       if ($request->session()->has('confirmar_pago')) {
@@ -160,5 +172,6 @@ class SubscriptionController extends Controller
               }
               return json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
+>>>>>>> developer
 
 }
