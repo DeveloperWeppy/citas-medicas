@@ -35,9 +35,11 @@ class SubscriptionController extends Controller
 
     public function index()
     {
-          $user = User::where('id',  Auth::id())->get();
-          $plans = Plan::where('status',  1)->get();
-          return view('cliente.subscripcion.index')->with('plans', $plans)->with('user', $user[0]);
+
+         $user = User::where('id',  Auth::id())->get();
+         $plans = Plan::where('status',  1)->get();
+         return view('cliente.subscripcion.index')->with('plans', $plans)->with('user', $user[0]);
+
     }
 
     /**
@@ -99,16 +101,7 @@ class SubscriptionController extends Controller
     {
         //
     }
-<<<<<<< HEAD
-    public function crearsuscripcion(Request $request)
-    {
-        $idplan = $request->id;
-        $plan = Plan::find($idplan);
 
-        return view('cliente.subscripcion.generarsuscripcion', compact('plan'));
-    }
-
-=======
     public function suscripcion_exitosa(Request $request)
     {
       if ($request->session()->has('confirmar_pago')) {
@@ -157,7 +150,7 @@ class SubscriptionController extends Controller
                                          );
                                          if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
                                              $user[0]->sendEmailVerificationNotification();
-                                             self::enviarCorreo($user[0]->email,$cliente->name,$cliente->number_identication, $plan[0]->id, date("Y-m-d", strtotime($response['next_payment_date'])));
+                                             $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan, date("Y-m-d", strtotime($response['next_payment_date'])));
                                              $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                          }
                                  }
@@ -170,6 +163,5 @@ class SubscriptionController extends Controller
               }
               return json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
->>>>>>> developer
 
 }

@@ -56,8 +56,8 @@ class Controller extends BaseController
     'Tu payment_method_id no tiene fondos suficientes','cc_rejected_max_attempts'=>'Llegaste al límite de intentos permitidos.Elige otra tarjeta u otro medio de pago.','cc_rejected_other_reason'=>
     'payment_method_id no procesó el pago.','Cannot operate between different countries'=>'No se puede operar entre diferentes países'];
     $response = Http::withHeaders([
-        'Authorization' => 'Bearer  APP_USR-3372762080079061-062916-e0445026221d018aff8322b937c2ce00-148994351',
-      ])->accept('application/json')->post("https://api.mercadopago.com/preapproval", [
+        'Authorization' => 'Bearer  '.env('API_MECADOPAGO_KEY'),
+      ])->accept('application/json')->post(env('API_MECADOPAGO_URL'), [
      "preapproval_plan_id"=> $preapproval_plan_id,
               "payer_email"=> $email,
               "card_token_id"=>$card_token_id,

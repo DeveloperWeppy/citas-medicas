@@ -11,6 +11,7 @@ use App\Models\Convenio;
 use App\Models\UserInformation;
 use App\Models\NumbersMembersAvailable;
 use App\Models\DetailSubscription;
+use App\Models\Subscription;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;

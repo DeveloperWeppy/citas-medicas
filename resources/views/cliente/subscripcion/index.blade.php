@@ -67,7 +67,7 @@
         </div>
         @endforeach
 <<<<<<< HEAD
-       
+
 =======
 >>>>>>> developer
         <div style="display: flex;justify-content: center;">
@@ -239,7 +239,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
