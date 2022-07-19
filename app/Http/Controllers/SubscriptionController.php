@@ -149,7 +149,7 @@ class SubscriptionController extends Controller
                                          );
                                          if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
                                              $user[0]->sendEmailVerificationNotification();
-                                             $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan, date("Y-m-d", strtotime($response['next_payment_date'])));
+                                             $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan[0], date("Y-m-d", strtotime($response['next_payment_date'])));
                                              $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                          }
                                  }
