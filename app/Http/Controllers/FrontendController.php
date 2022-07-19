@@ -277,7 +277,7 @@ class FrontendController extends Controller
                     $id_user_responsable = $responsable->id;
                     $error = false;
                     $mensaje = 'Registro Exitoso!';
-                    $this->enviarCorreo($email,"Registro CitasMedicas","email.clientecreated",$nombre_client,$number_identication,$plan,date("Y-m-d"));
+                    $this->enviarCorreo($email,"Registro CitasMedicas","email.clientecreated","cuentacreadacliente.jpg",$nombre_client,$number_identication,$plan,date("Y-m-d"));
                 } else {
                     $error = true;
                     $mensaje = 'Error! Se presento un problema en el registro.';
@@ -338,7 +338,7 @@ class FrontendController extends Controller
                                                 'registered_members' => $plan[0]->cant_people,
                                             );
                                             if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                                $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan[0], date("Y-m-d", strtotime($response['next_payment_date'])));
+                                                $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess","BannerMailing.jpg", $cliente->name,$cliente->number_identication,$plan[0], date("Y-m-d", strtotime($response['next_payment_date'])));
                                                 $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                             }
                                     }
