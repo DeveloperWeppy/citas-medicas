@@ -66,14 +66,13 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}/vendor/adminlte/dist/css/adminlte.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}/css/styles.css">
 @stop
 
 @section('js')
 
-<script src="/js/datatable.js"></script>
-<script src="/js/search.js" type="module"></script>
+<script src="{{ env('APP_URL') }}/js/datatable.js"></script>
     <script>
          // agregar data
          $('#register_redeemed').on('submit', function(e) {

@@ -11,11 +11,11 @@
         <!------------------------- SECTION IMAGEN BANNER START -------------------->
         <section class="page_title">
                     <div class="row">
-                           <img src="{{$conveniodetaills->image_banner}}" class="img-fluid" alt="">
+                           <img src="{{ env('APP_URL').$conveniodetaills->image_banner}}" class="img-fluid" alt="">
                     </div>
                     <div class="row text-center imglogo" >
                         <div class="col-sm-12">
-                            <img src="{{$user->logo}}" class="img-thumbnail" style="width: 200px; height: 200px;" alt="">
+                            <img src="{{env('APP_URL').$user->logo}}" class="img-thumbnail" style="width: 200px; height: 200px;" alt="">
                         </div>
                     </div>
 
