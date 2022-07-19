@@ -16,8 +16,8 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->date('next_payment');
-            $table->foreignId('user_id')->unique()->references('id')->on('users');
-            $table->foreignId('plan_id')->unique()->references('id')->on('plans');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('plan_id')->references('id')->on('plans');
             $table->timestamps();
             //$table->foreignId('user_id')->references('id')->on('users');
             //$table->foreignId('plan_id')->references('id')->on('plans');

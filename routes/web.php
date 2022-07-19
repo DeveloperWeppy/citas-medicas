@@ -35,8 +35,6 @@ Route::controller(FrontendController::class)
         Route::get('/convenio/{id}', 'detallesentidad')->name('front.detallesentidad');
         Route::post('/contacto/envio-email', 'enviarCorreoContacto')->name('front.enviarCorreoContacto');
 
-        Route::get('/envio', 'envio')->name('front.envio');
-
 
         Route::get('/ciudades', 'getCiudades')->name('front.getCiudades');
 

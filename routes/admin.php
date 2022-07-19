@@ -136,7 +136,6 @@ use Illuminate\Support\Facades\Route;
             //diagnostics
             Route::post('/redimimir-diagnostico/store', 'store_diagnostico')->name('redimidos.store_diagnostico');
             Route::get('/loaddiagnostics', 'getDiagnostics')->name('redimidos.get_diagnostics');
-
             //client
             Route::get('/mis-redimidos', 'index_client')->name('redimidosclient.index');
             Route::get('/mis-redimidos/obtener', 'getMisRedimidos')->name('misredimidosclient.obtener');
@@ -145,5 +144,7 @@ use Illuminate\Support\Facades\Route;
             ->group(function () {
                 Route::get('/suscripcion', 'index')->name('subscription.index');
                 Route::post('/subscribirme/store', 'store')->name('subscription.store');
+                Route::post('/suscripcion/validar', 'validar')->name('subscription.validar');
+                Route::get('/suscripcion/exitosa', 'suscripcion_exitosa')->name('subscription.suscripcion_exitosa');
         });
 });

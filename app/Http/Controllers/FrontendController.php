@@ -8,8 +8,9 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\AttentioShedule;
 use App\Models\Convenio;
-use App\Models\PaymentPlatform;
 use App\Models\UserInformation;
+use App\Models\NumbersMembersAvailable;
+use App\Models\DetailSubscription;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;
@@ -93,9 +94,9 @@ class FrontendController extends Controller
             $mail->CharSet = "UTF8";
             $mail->Subject = "Correo de Contácto";
 
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/nuevomensaje.jpg', 'img_header', '/images/emails/nuevomensaje.jpg', 'base64', 'image/jpg');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            //$mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/nuevomensaje.jpg', 'img_header', '/images/emails/nuevomensaje.jpg', 'base64', 'image/jpg');
+          //  $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            //$mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = '';
@@ -273,9 +274,9 @@ class FrontendController extends Controller
 
                 if ($responsable = Client::create($register_client_info)) {
                     $id_user_responsable = $responsable->id;
-
                     $error = false;
                     $mensaje = 'Registro Exitoso!';
+                    $this->enviarCorreo($correo,"Registro CitasMedicas","email.clientecreated",$nombre_client,$number_identication,$plan,date("Y-m-d"));
                 } else {
                     $error = true;
                     $mensaje = 'Error! Se presento un problema en el registro.';
@@ -310,7 +311,7 @@ class FrontendController extends Controller
                      if (User::findOrFail($user[0]->id)->update(array('status' => 1))){
                             if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1,'payment_signature'=>''))) {
                                 $register_suscribe = array(
-                                    'next_payment' => $fecha,
+                                    'next_payment' =>  date("Y-m-d",strtotime($response['next_payment_date'])),
                                     'user_id' => $user[0]->id,
                                     'plan_id' =>$plan[0]->id,
                                 );
@@ -323,7 +324,7 @@ class FrontendController extends Controller
                                         'operation_id' =>$response['preapproval_id'],
                                         'payer_id' => $plan[0]->id,
                                         'status_operation' => $response['status'],
-                                        'next_payment_date' =>date("Y-m-d", strtotime($response['next_payment_date'])),
+                                        'next_payment_date' =>date("Y-m-d H:i:s", strtotime($response['next_payment_date'])),
                                         'payment_method_id' => $response['payment_method_id'],
                                         'payer_first_name' =>$request->name,
                                         'payer_last_name' =>  $cliente->last_name,
@@ -336,9 +337,7 @@ class FrontendController extends Controller
                                                 'registered_members' => $plan[0]->cant_people,
                                             );
                                             if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
-                                                 //send email of accountverification
-                                                $user[0]->sendEmailVerificationNotification();
-                                                self::enviarCorreo($user[0]->email,$cliente->name,$cliente->number_identication, $plan[0]->id, date("Y-m-d", strtotime($response['next_payment_date'])));
+                                                $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan, date("Y-m-d", strtotime($response['next_payment_date'])));
                                                 $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                             }
                                     }
@@ -359,46 +358,5 @@ class FrontendController extends Controller
         }
         return json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
-    public function enviarCorreo($email, $nombre_client, $number_identication, $plane, $next_payment_date)
-    {
-        $mail = new PHPMailer(true);
-        try {
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
-            $mail->Host = env('MAIL_HOST');
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = env('MAIL_USERNAME');
-            $mail->Password = env('MAIL_PASSWORD');
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'CitasMedicas', false);
-            $mail->CharSet = "UTF8";
-            $mail->Subject = "Suscripción CitasMedicas";
 
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/BannerMailing.jpg', 'img_header', '/images/emails/BannerMailing.jpg', 'base64', 'image/jpg');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
-            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
-
-            $title = '';
-            $plan = Plan::find($plane);
-            $mail->Body = view('email.suscribesuccess', compact(
-                'title',
-                'plan',
-                'email',
-                'nombre_client',
-                'number_identication',
-                'next_payment_date'
-            ))->render();
-            $mail->addAddress($email, $nombre_client);
-            if ($mail->Send()) {
-                return 200;
-            } else {
-                dd('error');
-            }
-        } catch (Exception $e) {
-            dd($e);
-        }
-    }
 }

@@ -15,9 +15,9 @@ class CreateDetailSubscriptionsTable extends Migration
     {
         Schema::create('detail_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('suscription_id')->unique()->references('id')->on('subscriptions');
-            $table->string('operation_id');
+            $table->string('operation_id')->unique();
             $table->string('payer_id');
             $table->string('status_operation');
             $table->dateTime('next_payment_date');

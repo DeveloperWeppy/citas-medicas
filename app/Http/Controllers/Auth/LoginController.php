@@ -51,7 +51,7 @@ class LoginController extends Controller
              $id = Auth::id();
              $verificar_subs = Subscription::where('user_id',  $id)->get();
              if(count($verificar_subs)>0){
-                 $ifExisteSubs=false;
+                 $ifIncompleSubs=false;
                  if ($verificar_subs[0]->next_payment >=now()->toDateString()) {
                    $ifSubs=true;
                  }
