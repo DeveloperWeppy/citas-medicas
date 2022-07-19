@@ -309,8 +309,8 @@ class FrontendController extends Controller
             if(count($user)>0  && count($plan)>0 ){
                  $response=$this->validarPago($request->preapproval_plan_id,$request->email,$request->card_token_id);
                  if($response['status']=="authorized"){
-                     if (User::findOrFail($user[0]->id)->update(array('status' => 1))){
-                            if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1,'payment_signature'=>''))) {
+                     if (User::findOrFail($user[0]->id)->update(array('status' => 1,'payment_signature'=>''))){
+                            if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1))) {
                                 $register_suscribe = array(
                                     'next_payment' =>  date("Y-m-d",strtotime($response['next_payment_date'])),
                                     'user_id' => $user[0]->id,
