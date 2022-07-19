@@ -87,7 +87,7 @@ class Controller extends BaseController
 
    return  $response;
   }
-  public function enviarCorreo($email,$subject,$plantilla,$nombre_client, $number_identication, $plan, $next_payment_date)
+  public function enviarCorreo($email,$subject,$plantilla,$img,$nombre_client, $number_identication, $plan, $next_payment_date)
   {
       $mail = new PHPMailer(true);
       try {
@@ -104,7 +104,7 @@ class Controller extends BaseController
           $mail->CharSet = "UTF8";
           $mail->Subject = $subject;
 
-          $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/BannerMailing.jpg', 'img_header', '/images/emails/BannerMailing.jpg', 'base64', 'image/jpg');
+          $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/'.$img, 'img_header', '/images/emails/'.$img, 'base64', 'image/jpg');
           $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
           $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
           //$mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");

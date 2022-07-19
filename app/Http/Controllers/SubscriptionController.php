@@ -99,7 +99,7 @@ class SubscriptionController extends Controller
      */
     public function destroy(Subscription $subscription)
     {
-        //
+        
     }
     public function suscripcion_exitosa(Request $request)
     {
@@ -119,7 +119,8 @@ class SubscriptionController extends Controller
               $response=$this->validarPago($request->preapproval_plan_id,$request->email,$request->card_token_id);
               if($response['status']=="authorized"){
                   $user = User::where('id',  Auth::id())->get();
-                  if (User::findOrFail($user[0]->id)->update(array('status' => 1,,'payment_signature'=>''))){
+                  $plan = Plan::where('slug',  $request->preapproval_plan_id)->get();
+                  if (User::findOrFail($user[0]->id)->update(array('status' => 1,'payment_signature'=>''))){
                          if (Client::where('user_id', $user[0]->id)->update(array('is_owner' => 1))) {
                              $register_suscribe = array(
                                  'next_payment' =>  date("Y-m-d",strtotime($response['next_payment_date'])),
@@ -149,7 +150,7 @@ class SubscriptionController extends Controller
                                          );
                                          if ($number_members_add = NumbersMembersAvailable::create($register_number_members)) {
                                              $user[0]->sendEmailVerificationNotification();
-                                             $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess",$cliente->name,$cliente->number_identication,$plan[0], date("Y-m-d", strtotime($response['next_payment_date'])));
+                                             $this->enviarCorreo($user[0]->email,"Suscripción CitasMedicas","email.suscribesuccess","BannerMailing.jpg",$cliente->name,$cliente->number_identication,$plan[0], date("Y-m-d", strtotime($response['next_payment_date'])));
                                              $this->envioSms("57".$cliente->num_phone,"Citas Medicas: Te has suscrito a Citasmedicas exitosamente, disfruta de nuestros beneficios");
                                          }
                                  }
