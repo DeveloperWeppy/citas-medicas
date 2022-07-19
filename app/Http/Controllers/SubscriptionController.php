@@ -101,7 +101,6 @@ class SubscriptionController extends Controller
     {
         //
     }
-
     public function suscripcion_exitosa(Request $request)
     {
       if ($request->session()->has('confirmar_pago')) {

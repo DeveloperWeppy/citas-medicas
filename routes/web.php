@@ -42,7 +42,7 @@ Route::controller(FrontendController::class)
         Route::get('/subscribirme/finalizar-suscripcion', 'finis_subscribe')->name('front.finis_subscribe');
         Route::post('/subscribirme/store-cliente', 'store_client')->name('front.store_client');
         Route::get('/pagar/{signature}/{plan}/', 'pagar')->name('front.pagar');
-        Route::post('/suscripcion/validar', 'validar')->name('front.validar');
+        Route::post('/suscripcion-validar', 'validar')->name('front.validar');
         Route::get('/suscripcion-exitosa', 'suscripcion_exitosa')->name('front.suscripcion_exitosa');
     });
 
