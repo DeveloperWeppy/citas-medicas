@@ -95,7 +95,7 @@
             <tbody>
                 <tr>
                     <td style="padding: 0; margin: 0; border: 0; width: 635px;">
-                        <img src="cid:img_header" style="border-radius: 6px 6px 0 0; border-bottom:1px solid #f2f2f2">
+                          <!-- <img src="cid:img_header" style="border-radius: 6px 6px 0 0; border-bottom:1px solid #f2f2f2">-->
 
                     </td>
                 </tr>
@@ -160,13 +160,13 @@
                     <td class="css_footer_redes">
                         <p>Siguenos en nuestras Redes Sociales!</p>
                         <a href="https://www.facebook.com/Citasmedicases-103022412424200" target="_blank">
-                              <img src="cid:correo_facebook" style="padding: 0px 10px;">
+
                         </a>
                         <a href="https://www.instagram.com/citasmedicas.es" target="_blank">
-                               <img src="cid:correo_instagram" style="padding: 0px 10px;">
+
                         </a>
                        {{--  <a href="{{ $configuracion->red_social_whatsapp }}" target="_blank">
-                               <img src="cid:correo_whatsapp" style="padding: 0px 10px;">
+                              
                         </a> --}}
                     </td>
                 </tr>

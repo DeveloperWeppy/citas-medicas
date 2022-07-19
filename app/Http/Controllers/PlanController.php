@@ -50,7 +50,7 @@ class PlanController extends Controller
                         ->with('total_miembros_por_registrar', $total_miembros_por_registrar)->with('is_owner', $is_owner)->with('user_name', $user_name);
         }else{
             $dato = 'invalido';
-            return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name);
+            return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name)->with('plan', array('name'=>''));
         }
 
     }

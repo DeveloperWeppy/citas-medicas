@@ -277,7 +277,7 @@ class FrontendController extends Controller
                     $id_user_responsable = $responsable->id;
                     $error = false;
                     $mensaje = 'Registro Exitoso!';
-                    $this->enviarCorreo($correo,"Registro CitasMedicas","email.clientecreated",$nombre_client,$number_identication,$plan,date("Y-m-d"));
+                    $this->enviarCorreo($email,"Registro CitasMedicas","email.clientecreated",$nombre_client,$number_identication,$plan,date("Y-m-d"));
                 } else {
                     $error = true;
                     $mensaje = 'Error! Se presento un problema en el registro.';
