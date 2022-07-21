@@ -6,6 +6,7 @@ use App\Models\Plan;
 use App\Models\Client;
 use App\Models\PlanServices;
 use App\Models\Subscription;
+use App\Models\ServicesFree;
 use App\Models\DetailSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,15 +35,17 @@ class PlanController extends Controller
         $consultar_numero_client_for_owner =  NumbersMembersAvailable::where('client_id', $is_owner)->first();
         $total_miembros_por_registrar= isset($consultar_numero_client_for_owner->registered_members) ?$consultar_numero_client_for_owner->registered_members:0 ;
 
-        $verificar_subs = Subscription::where('user_id', $user_login)->count();
+        $verificar_subs = Subscription::where('user_id', $user_login)->get();
         $dato = '';
-        if ($verificar_subs > 0) {
+        $plan=(object) array('name'=>'','id'=>'');
+        if (count($verificar_subs) > 0) {
             $detailSubscription = DetailSubscription::where(['user_id'=>$user_login,'status_operation'=>'authorized'])->orderBy('next_payment_date', 'desc')->get();
             if(count($detailSubscription)>0){
                  $get_subscription= Subscription::find($detailSubscription[0]->suscription_id);
+                 $idplan = $get_subscription->plan_id;
+            }else{
+                $idplan = $verificar_subs[0]->id;
             }
-            $idplan = $get_subscription->plan_id;
-
             $plan = Plan::find($idplan);
 
             $dato = 'valido';
@@ -50,7 +53,7 @@ class PlanController extends Controller
                         ->with('total_miembros_por_registrar', $total_miembros_por_registrar)->with('is_owner', $is_owner)->with('user_name', $user_name);
         }else{
             $dato = 'invalido';
-            return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name)->with('plan', array('name'=>''));
+            return view('cliente.plan.index')->with('dato', $dato)->with('user_name', $user_name)->with('is_owner', $is_owner)->with('plan', $plan);
         }
 
     }
@@ -167,7 +170,15 @@ class PlanController extends Controller
             if ($plan = Plan::create($register_plan)) {
                 $id_plan = $plan->id;
                 for ($i = 0; $i < sizeof($servicios); ++$i) {
-
+                    if(isset($request->free_servicio_id)){
+                      foreach ($request->free_servicio_id as $index => $rowid) {
+                            $register_convenio_servicio = ServicesFree::create([
+                                'duration_in_days' =>  $request->duration_day[$index],
+                                'service_id' =>  $request->free_servicio_id[$index],
+                                'plan_id' => $id_plan,
+                            ]);
+                      }
+                    }
                     $register_plans_services = PlanServices::create([
                         'plan_id'  => $id_plan,
                         'service_id'  => $servicios[$i],
@@ -273,8 +284,31 @@ class PlanController extends Controller
             );
 
             if ($plan = Plan::findOrFail($id_plan)->update($update_plan)) {
+                $servicesFree= ServicesFree::where('plan_id', $id_plan)->get();
+                $servicesFree=json_decode(json_encode($servicesFree),true);
+                if(isset($request->free_servicio_id)){
+                       foreach ($request->free_servicio_id as $index => $rowid) {
+                              $ifExist=array_search($request->free_servicio_id[$index], array_column($servicesFree, 'service_id'));
+                              if ($ifExist === false && $request->free_servicio_id[$index]!="" ) {
+                                    $register_services_free = ServicesFree::create([
+                                        'duration_in_days' =>  $request->duration_day[$index],
+                                        'service_id' =>  $request->free_servicio_id[$index],
+                                        'plan_id' => $id_plan,
+                                    ]);
+                              }
+                       }
+                       foreach ($servicesFree as $index => $rowid) {
+                             $ifEliminar=array_search($servicesFree[$index]['service_id'],$request->free_servicio_id);
+                             if ($ifEliminar === false) {
+                                 if (ServicesFree::findOrFail($servicesFree[$index]['id'])->delete()){}
+                             }else{
+                                 $register_services_free = ServicesFree::where('id',$servicesFree[$index]['id'])->update([
+                                     'duration_in_days' => $request->duration_day[$ifEliminar],
+                                 ]);
+                             }
+                       }
+                }
                 for ($i = 0; $i < sizeof($servicios); ++$i) {
-
                     $register_plans_services = PlanServices::updateOrCreate([
                         'plan_id'  => $id_plan,
                         'service_id'  => $servicios[$i],

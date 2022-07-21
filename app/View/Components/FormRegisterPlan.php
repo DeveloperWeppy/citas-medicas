@@ -25,6 +25,12 @@ class FormRegisterPlan extends Component
     public function render()
     {
         $services = Service::where('status', 1)->get(['id', 'name']);
-        return view('components.planes.form-register-plan')->with('services', $services);
+        $index=0;
+        foreach ($services as $value){
+        $serviciosSelect[$index]['id']=$value->id;
+        $serviciosSelect[$index]['text']=$value->name;
+        $index++;
+        }
+        return view('components.planes.form-register-plan')->with('services', $services)->with('serviciosSelect', $serviciosSelect);
     }
 }

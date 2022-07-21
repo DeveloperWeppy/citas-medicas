@@ -50,6 +50,7 @@
 
                                   <div class="col-sm-6">
                                       <div class="form-group">
+                                           <label style="font-weight: normal;{{$user->email!=""? 'display:none':''}}">CONTRASEÑA</label>
                                           <input type="text" name="password" id=""  value="" class="form-control " placeholder="Contraseña" autocomplete="off" {{$user->email!=""? 'style=display:none':''}}>
                                       </div>
                                   </div>

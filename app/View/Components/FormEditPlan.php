@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Plan;
 use App\Models\PlanServices;
+use App\Models\ServicesFree;
 use App\Models\Service;
 use Illuminate\View\Component;
 
@@ -28,15 +29,20 @@ class FormEditPlan extends Component
     public function render()
     {
         $info_services = [];
+        $index=0;
+        $serviciosSelect=array();
         $plan = Plan::findOrFail($this->idPlan);
-
         $planes_services = PlanServices::where('plan_id', $this->idPlan)->get();
-
+        $servicesS= Service::where('status', 1)->get(['id', 'name']);
+        foreach ($servicesS as $value){
+        $serviciosSelect[$index]['id']=$value->id;
+        $serviciosSelect[$index]['text']=$value->name;
+        $index++;
+        }
+        $servicesFree= ServicesFree::where('plan_id', $this->idPlan)->get();
         foreach ($planes_services as $key => $value) {
             $servicios_plan = $value->service_id;
-            
             $servicios = Service::where('id', $servicios_plan)->get(['id', 'name']);
-            
             foreach ($servicios as $key => $item) {
                 $id_service_plan = $item->id;
                 $name_servicie = $item->name;
@@ -54,6 +60,6 @@ class FormEditPlan extends Component
         }
         return view('components.planes.form-edit-plan')
                     ->with('info_services', $info_services)
-                    ->with('plan', $plan);
+                    ->with('plan', $plan)->with('serviciosSelect', $serviciosSelect)->with('servicesFree', $servicesFree);
     }
 }

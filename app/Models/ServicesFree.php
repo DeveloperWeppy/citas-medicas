@@ -12,6 +12,7 @@ class ServicesFree extends Model
     protected $fillable = [
         'duration_in_days',
         'service_id',
+        'plan_id',
     ];
 
     public function service(){
