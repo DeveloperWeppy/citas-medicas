@@ -10859,3 +10859,9 @@ table {
   z-index:500; 
   margin-top: -100px;
 }
+.select-department{
+  padding: 28px 20px;
+}
+.contact-form select{
+  padding: 28px 20px;
+}

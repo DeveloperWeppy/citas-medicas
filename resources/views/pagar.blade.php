@@ -32,12 +32,12 @@
      </x-slot>
      <div class="container ">
           <div class="row"  style="padding-top:20px;padding-bottom:20px">
-            <div class=" col-4"  style="display: flex;align-items: center;">
+            <div class="col-sm-4"  style="display: flex;align-items: center;">
                <img class="img-fluid" src="{{ asset('images/logo-mercado-pago.webp')}}" alt="logo banca">
             </div>
 
-              <div class=" col-8" style="display: flex;align-items: center;">
-                 <h4 style="font-weight: normal;">Hola <span style="font-weight: bold;">{{$user->name}}</span> Tu pago sera Procesado Por <span style="font-weight: bold;">Mercado Pago</span> , además la compra estará protegida.</h4>
+              <div class=" col-sm-8 mt-3" style="display: flex;align-items: center;">
+                 <h4 style="font-weight: normal;">Hola <span class="text-uppercase font-weight-bold	">{{$user->name}}</span> Tu pago sera Procesado Por <span style="font-weight: bold;">Mercado Pago</span> , además la compra estará protegida.</h4>
               </div>
           </div>
 

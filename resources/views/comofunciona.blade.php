@@ -31,6 +31,7 @@
         </section>
         <!-- |=====|| Page Title End ||=================| -->
         <!-- |==========================================| -->
+        
         <!-- |==========================================| -->
         <!-- |=====|| Counter Start ||===============| -->
         <section class="counter2">
@@ -116,7 +117,7 @@
                                 <h3 class="listo">¡Y listo! Es así de fácil.</h3>
                             </div>
                             <div class="fix mt-30">
-                                <a href="planes.php" class="btn3 d-inline-block animated fadeInUp">
+                                <a href="{{ route('front.afiliate') }}" class="btn3 d-inline-block animated fadeInUp">
                                     <span>Suscribete</span> <i class="icofont-rounded-double-right"></i>
                                 </a>
                             </div>
@@ -152,48 +153,24 @@
                                 <div class="testimonial3__wrapper">
                                     <div class="testimonial3__item">
                                         <div class="testimonial3__thumb">
-                                            <img src="assets/img/testimonial/testimonial-06.jpg" alt="Testimonial">
+                                            <img src="{{ asset('asset/img/testimonial/testimonial-06.webp') }}" alt="Testimonial">
                                         </div>
                                         <div class="testimonial3__content">
-                                            <h6>World wide Client</h6>
-                                            <h3>Why they are best medical and home <br class="d-none d-lg-inline-block">
-                                                care services provider.</h3>
-                                            <h4>Julie F Arellano <span>CEO of K.S.M</span></h4>
-                                            <p>Pleasure, but because those who do not know how to pursue pleasure
-                                                rationally
-                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
+                                            <h6>citasmedicas.es</h6>
+                                            <h4>Alex Giraldo <span>CEO of K.S.M</span></h4>
+                                            <p>Suscribirme a citas médicas fue una de las mejores opciones, los beneficios que se tiene son muy buenos.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="testimonial3__wrapper">
                                     <div class="testimonial3__item">
                                         <div class="testimonial3__thumb">
-                                            <img src="assets/img/testimonial/testimonial-07.jpg" alt="Testimonial">
+                                            <img src="{{ asset('asset/img/testimonial/testimonial-06.webp') }}" alt="Testimonial">
                                         </div>
                                         <div class="testimonial3__content">
-                                            <h6>World wide Client</h6>
-                                            <h3>Best medical & health <br class="d-none d-lg-inline-block"> service
-                                                provider.</h3>
-                                            <h4>Andrew J Prout <span>CEO of K.S.M</span></h4>
-                                            <p>Pleasure, but because those who do not know how to pursue pleasure
-                                                rationally
-                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial3__wrapper">
-                                    <div class="testimonial3__item">
-                                        <div class="testimonial3__thumb">
-                                            <img src="assets/img/testimonial/testimonial-08.jpg" alt="Testimonial">
-                                        </div>
-                                        <div class="testimonial3__content">
-                                            <h6>World wide Client</h6>
-                                            <h3>Best Dental & Eye <br class="d-none d-lg-inline-block"> service
-                                                provider.</h3>
-                                            <h4>Laverne C Avila <span>CEO of K.S.M</span></h4>
-                                            <p>Pleasure, but because those who do not know how to pursue pleasure
-                                                rationally
-                                                extremely ta sanctus est Lorem ipsum dolor sit amet.</p>
+                                            <h6>citasmedicas.es</h6>
+                                            <h4>Andrew Jimenez <span>CEO of K.S.M</span></h4>
+                                            <p>Suscribirme a citas médicas fue una de las mejores opciones, los beneficios que se tiene son muy buenos.</p>
                                         </div>
                                     </div>
                                 </div>

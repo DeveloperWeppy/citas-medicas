@@ -299,11 +299,6 @@ function agregarServicio(){
             },
             submitHandler: function(form){
                 // agregar data
-                $('#quickForm').on('submit', function(e) {
-                event.preventDefault();
-                var $thisForm = $('#quickForm');
-                    var formData = new FormData(this);
-
                     //ruta
                     var url = "{{route('usuarios.store')}}";
 
@@ -314,7 +309,7 @@ function agregarServicio(){
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: formData,
+                        data: new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',
@@ -357,7 +352,6 @@ function agregarServicio(){
                     }).fail(function(resp){
                         console.log(resp);
                     });
-                  });
             }
           });
 

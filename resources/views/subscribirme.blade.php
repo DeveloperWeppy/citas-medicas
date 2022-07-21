@@ -13,7 +13,7 @@
         <link href="{{ asset('css/stylesfront.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
         integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     </x-slot>
     <section class="pricing1 counter1__bg-01">
@@ -27,7 +27,11 @@
                     </div>
                 </div>
                 <!-------------------BLOQUE QUE CONTIENE LOS FORMULARIOS PASO A PASO PARA REALIZAR SUBSCRIPCIÓN------------------->
-                <x-bloque-de-subscripcion></x-bloque-de-subscripcion>
+                <div class="contact_page1__form">
+                  <!------- FORM OF CONTACT ------------>
+                  <x-bloque-de-subscripcion></x-bloque-de-subscripcion>
+              </div>
+                
             </div>
         </div>
     </section>
@@ -85,14 +89,21 @@
                 }
               });
            $(document).ready(function() {
-             $('.select-department').select2();
+             $('.select-department').select2({
+              language: "es"
+             });
             $('.select-department').removeClass(".select2-hidden-accessible");
              $('.select-department').removeClass(".select2-container");
              $('.select-department').removeClass(".select2-selection--single");
+
+             //Initialize Select2 Elements
+            $('.select2bs4').select2({
+            theme: 'bootstrap4'
+            });
            });
 
                //form of register of user
-       $('#quickForm').validate({
+       $('#contact-form').validate({
             rules: {
                 name: {
                 required: true,
@@ -185,22 +196,15 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#quickForm').on('submit', function(e) {
-                event.preventDefault();
-                var $thisForm = $('#quickForm');
-                    var formData = new FormData(this);
-
-                    //ruta
-                    var url = "{{route('front.store_client')}}";
-
-                    $.ajax({
-                        headers: {
+                var url = "{{route('front.store_client')}}"; 
+                $.ajax({
+                  headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: formData,
+                        data: new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',
@@ -215,7 +219,7 @@
                                     },
                             });
                         }
-                    }).done(function(respuesta){
+                }).done(function(respuesta){
                         //console.log(respuesta);
                       if (!respuesta.error) {
 
@@ -243,7 +247,6 @@
                     }).fail(function(resp){
                         console.log(resp);
                     });
-                  });
             }
           });
         </script>

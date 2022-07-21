@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="title2 mb-60 text-center">
-                        <h2>SUSCRIBIRME</h2>
+                        <h2>PAGA SEGURO</h2>
                     </div>
                 </div>
             </div>

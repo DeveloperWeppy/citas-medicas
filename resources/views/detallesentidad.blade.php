@@ -8,11 +8,33 @@
 
     <main>
 
+        <!-- |==========================================| -->
+        <!-- |=====|| Page Title Start ||===============| -->
+        <section class="page_title page_title__img-05">
+            <div class="page_title__padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="page_title__content">
+                                <h1>Convenio</h1>
+                                <div class="page_title__bread-crumb">
+                                    <ul>
+                                        <li><a href="{{route('front.inicio')}}">Inicio</a></li>
+                                        <li><a href="#">Conoce más del convenio</a> </li>
+                                    </ul>
+                                </div>
+                                <h3></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- |=====|| Page Title End ||=================| -->
+        <!-- |==========================================| -->
+
         <!------------------------- SECTION IMAGEN BANNER START -------------------->
         <section class="page_title">
-                    <div class="row">
-                           <img src="{{ env('APP_URL').$conveniodetaills->image_banner}}" class="img-fluid" alt="">
-                    </div>
                     <div class="row text-center imglogo" >
                         <div class="col-sm-12">
                             <img src="{{env('APP_URL').$user->logo}}" class="img-thumbnail" style="width: 200px; height: 200px;" alt="">
@@ -150,7 +172,7 @@
                         <div class="col-md-12">
                             <div class="title2 mb-55 text-center">
                                 <h2 class="text-uppercase">Horarios de Atención</h2>
-                                <p>Estos son los horarios de atención disponibles de este convenio </p>
+                                
                             </div>
                         </div>
                     </div>
@@ -203,7 +225,7 @@
                     <div class="row pt-20">
                         <div class="col-md-12 text-center">
                             <div class="service3__bottom-text">
-                                <p class="m-0">Join Our conference &amp; events know more us also be careful myself <a href="contact.html">Join us here</a>.</p>
+                                <p>* Tenga en cuenta que estos son los horarios de atención disponibles de este convenio *</p>
                             </div>
                         </div>
                     </div>

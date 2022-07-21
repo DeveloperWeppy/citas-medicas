@@ -1,4 +1,4 @@
-<form  id="quickForm" enctype="multipart/form-data">
+<form  id="contact-form" enctype="multipart/form-data">
     <div class="row">
         <!-------------------------------------------- FORM OF REGISTER USER ------------------------------------------------->
         <div class="col-md-8">
@@ -49,7 +49,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="departments">Departamento</label>
-                        <select class="form-control select-department" name="department"   id="departments">
+                        <select class="form-control select-department" name="department"   id="departments" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                              <option value="">Seleciona Departamento</option>
                             @foreach ($departments as $item)
                                 <option value="{{$item->id_departamento }}">{{$item->departamento}}</option>

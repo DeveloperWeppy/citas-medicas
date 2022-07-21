@@ -200,11 +200,6 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#quickForm').on('submit', function(e) {
-                event.preventDefault();
-                var $thisForm = $('#quickForm');
-                    var formData = new FormData(this);
-
                     //ruta
                     var url = "{{route('categorias.store')}}";
 
@@ -215,7 +210,7 @@
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: formData,
+                        data: new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',
@@ -258,7 +253,6 @@
                     }).fail(function(resp){
                         //console.log(resp);
                     });
-                  });
             }
           });
        
