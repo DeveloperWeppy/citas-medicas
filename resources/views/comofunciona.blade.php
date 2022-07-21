@@ -171,6 +171,8 @@
                                             <h6>citasmedicas.es</h6>
                                             <h4>Andrew Jimenez <span>CEO of K.S.M</span></h4>
                                             <p>Suscribirme a citas médicas fue una de las mejores opciones, los beneficios que se tiene son muy buenos.</p>
+
+                                            <img src="{{ asset('assets/img/testimonial/testimonial-07.jpg')}}"  alt="Testimonial">
                                         </div>
                                     </div>
                                 </div>
@@ -214,8 +216,8 @@
                                             </div>
                                             <div id="collapse_01" class="collapse" aria-labelledby="heading_01" data-parent="#accordionExample" style="">
                                                 <div class="card-body">
-                                                    <p class="text-justify">Sí. La información recolectada por El grupo empresarial CITAS MEDICAS.ES WORLD SAS; a través de sus productos y servicios digitales “El portal WEB: 
-                                                        www.citasmedicas.es tiene un tratamiento confidencial y exclusivo, de acuerdo a la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013. Por tal motivo, www.citasmedicas.es  se 
+                                                    <p class="text-justify">Sí. La información recolectada por El grupo empresarial CITAS MEDICAS.ES WORLD SAS; a través de sus productos y servicios digitales “El portal WEB:
+                                                        www.citasmedicas.es tiene un tratamiento confidencial y exclusivo, de acuerdo a la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013. Por tal motivo, www.citasmedicas.es  se
                                                         hace responsable de los datos personales proporcionados por los diferentes clientes y/o usuarios al momento de hacer uso de la plataforma.</p>
                                                 </div>
                                             </div>
@@ -244,7 +246,7 @@
                                                             <li>·  Elige el producto o servicio de tu interés, según su perfil profesional, ciudad, país, horario, disponibilidad o modalidad de atención.</li>
                                                             <li>·  Conversa directamente con nuestros proveedores de productos o servicios, haciendo valer tu código de suscripción, obteniendo el mejor precio siempre.</li>
                                                         </ul>
-    
+
                                                     </p>
                                                 </div>
                                             </div>
@@ -272,7 +274,7 @@
                                                 <h5>
                                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_04" aria-expanded="false" aria-controls="collapse_04">
                                                         <span>04.</span> ¿Puedo vincular menores de edad a Citasmedicas.es?
-                                                        
+
                                                         <i class="ti-angle-down"></i>
                                                     </a>
                                                 </h5>

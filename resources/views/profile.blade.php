@@ -29,7 +29,7 @@
         @role('Prestador')
             <x-form-profile idPrestador="{{$info_prestador->id}}"></x-form-profile>
         @endrole
-        
+
         @role('Cliente')
             <x-form-profile-client idClient="{{$info_cliente->id}}"></x-form-profile-client>
         @endrole
@@ -38,14 +38,14 @@
             <x-form-profile-client></x-form-profile-client>
         @endrole
     </div>
-    
+
 
 </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="{{env('APP_URL')}}vendor/adminlte/dist/css/adminlte.css">
+    <link rel="stylesheet" href="{{env('APP_URL')}}css/styles.css">
 @stop
 
 @section('js')
@@ -53,7 +53,7 @@
       $(document).ready(function() {
 
         });
-       
+
       /*  ==========================================
           SHOW UPLOADED IMAGE
       * ========================================== */
@@ -170,7 +170,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -305,7 +305,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -387,7 +387,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -510,7 +510,7 @@
                                     confirmButtonText: "Ok"
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         //console.log(resp);
                     });
@@ -518,7 +518,7 @@
             }
           });
 
-         
+
         $(function () {
 
         });
