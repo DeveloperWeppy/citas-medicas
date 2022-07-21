@@ -16,7 +16,9 @@ class CreateServicesFreesTable extends Migration
         Schema::create('services_frees', function (Blueprint $table) {
             $table->id();
             $table->integer('duration_in_days');
-            $table->foreignId('service_id')->unique()->references('id')->on('services');
+            $table->foreignId('plan_id')->references('id')->on('plans');
+            $table->foreignId('service_id')->references('id')->on('services');
+            $table->index(['plan_id', 'service_id']);
             $table->timestamps();
         });
     }

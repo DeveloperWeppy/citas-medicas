@@ -5,7 +5,7 @@
 @section('plugins.Datatables', true)
 @section('plugins.jqueryValidation', true)
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Select2', true)
 @section('content_header')
 <div class="container-fluid">
     <div class="row mb-2">
@@ -36,6 +36,9 @@
 
 @section('js')
     <script>
+    $(document).ready(function() {
+        refreshSelect2Value(0);
+    });
         $('#cantidad_personas').hide();
         $('#customSwitch3').change(function() {
             if($(this).is(":checked")) {

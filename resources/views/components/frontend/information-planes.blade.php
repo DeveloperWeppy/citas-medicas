@@ -20,7 +20,7 @@
              </div>
             <div class="row no-gutters pricing1__row">
                @foreach ($planes as $item)
-                <div class=" color_white plan{{$item->type_plan}}" {{$item->type_plan=="Anual"? 'style=display:none':''}}>
+                <div class=" color_white plan{{$item->type_plan}}" style="margin-bottom: 70px;{{$item->type_plan=="Anual"? 'display:none':''}}" >
 
                     <div class="pricing1__item">
                         <div class="pricing1__wrapper text-center">
@@ -31,7 +31,7 @@
                                     @else
                                         <img src="{{ asset('asset/img/png-icon/familiar.png')}}" alt="Image">
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="pricing1__content mt-85">

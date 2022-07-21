@@ -10,6 +10,7 @@ use App\Models\AttentioShedule;
 use App\Models\UserInformation;
 use App\Models\ConvenioServices;
 use App\Models\Service;
+use App\Models\ServicesFree;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -73,6 +74,7 @@ class UserController extends Controller
         $user= User::findOrFail($id);
         $serviciosSelect=array();
         $userInformation= UserInformation::where('user_id', $id)->get();
+        //$ServicesFree= ServicesFree::where('plan_id', $id)->get();
         $user_info_id=isset($userInformation[0]->id)? $userInformation[0]->id:0;
         $convenio= Convenio::where('responsable_id', $user_info_id)->get();
         $convenioServices= ConvenioServices::where('convenio_id', $convenio[0]->id)->get();

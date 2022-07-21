@@ -5,7 +5,7 @@
 @section('plugins.Datatables', true)
 @section('plugins.jqueryValidation', true)
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Select2', true)
 @section('content_header')
 <div class="container-fluid">
     <div class="row mb-2">
@@ -36,6 +36,9 @@
 
 @section('js')
     <script>
+    $(document).ready(function() {
+        refreshSelect2Value(0);
+    });
       $('#cantidad_personas').show();
           //event for switch of type of plan (group or individual)
           $('#customSwitch3').change(function() {
@@ -53,23 +56,23 @@
         $(function () {
             var texto = $('#valor').text();
             var texto2 = $('#valor_status').text();
-            
+
             if (texto == "Sí") {
                 $('#customSwitch3').prop("checked", true);
                 $('#cantidad_personas').show();
             } else {
                 $('#customSwitch3').prop("checked", false);
                 $('#cantidad_personas').hide();
-            } 
+            }
 
             if (texto2 == "Activo") {
                 $('#status').prop("checked", true);
             } else {
                 $('#status').prop("checked", false);
-            } 
+            }
         });
 
-      
+
 
         //event for switch of status of plan
         $('#status').change(function() {
@@ -180,14 +183,14 @@
                                     timer: 4000
                                 });
                             },2000);
-                        } 
+                        }
                     }).fail(function(resp){
                         console.log(resp);
                     });
                   });
             }
           });
-       
-        
+
+
         </script>
 @stop

@@ -97,6 +97,29 @@ $(document).on('change', '.formNombreServicio', function() {
       }
   }
 });
+function agregarServicioFree(){
+  var ifExist=true;
+  $(".formNombreServicioFree").each(function(){
+       if($(this).val()== $("#formNombreServicioFree").val()){
+         ifExist=false;
+       }
+  });
+  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!=""  && ifExist){
+         var divNom='<div class="row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
+         var divDay='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="duration_day[]" class="form-control" value="'+$("#formDurationDays" ).val()+'"  placeholder="Duracion en dias" autocomplete="off"></div></div>';
+         $(".despusPrinFrees").after(divNom+divDay+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
+
+         $("#formDurationDays" ).val("");
+         $("#formNombreServicioFree").val("").trigger("change");
+  }else{
+     if(ifExist){
+        alert("Completar campos");
+     }else{
+         alert("Servicio ya se encuentra agregado");
+     }
+  }
+  refreshSelect2Value(1);
+}
 function agregarServicio(){
           var ifExist=true;
           $(".formNombreServicio").each(function(){
@@ -105,7 +128,7 @@ function agregarServicio(){
                }
           });
           if($("#formNombreServicio" ).val()!="" && $("#formPrecioNormal" ).val()!="" && $("#formPrecioDescuento" ).val()!="" && ifExist){
-               var divNom='<div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicio"  name="servicio_id[]" value="'+$("#formNombreServicio" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required>  </select></div> </div>';
+               var divNom='<div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicio"  name="servicio_id[]" value="'+$("#formNombreServicio" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
                var divPre='<div class="col-sm-3"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text %class%">$</span> </div><input type="number" name="%name%" value="%value%"  class="form-control formPrecioNormal" placeholder="Precio Normal" autocomplete="off"> \n'+
                   '<div class="input-group-append cerosD"><span class="input-group-text">.00</span></div>  </div></div>';
                var divPreNom=divPre.replace('%value%',$("#formPrecioNormal" ).val()).replace('%name%', 'price_normal[]').replace('%class%', '');

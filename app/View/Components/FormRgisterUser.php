@@ -11,13 +11,14 @@ class FormRgisterUser extends Component
      *
      * @return void
      */
-    public function __construct($user=array(),$userInformation=array(),$convenio=array(),$attentioShedule=array(),$convenioServices=array())
+    public function __construct($user=array(),$userInformation=array(),$convenio=array(),$attentioShedule=array(),$convenioServices=array(),$servicesFrees=array())
     {
        $this->user=isset($user->email)? $user:(object) array('id'=>'','name'=>'','email'=>'','logo'=>'#');
        $this->userInformation=isset($userInformation->id)? $userInformation:(object) array('nit'=>'','name'=>'','address'=>'','num_phone'=>'','name_contact'=>'','num_phone_contact'=>'','email_contact'=>'','city'=>'','frame_ubication'=>'','image_banner'=>'','facebook'=>'','instagram'=>'','whatsapp'=>'');
        $this->convenio=isset($convenio->start_date)?$convenio:(object) array('start_date'=>'','end_date'=>'');
        $this->attentioShedule=$attentioShedule;
        $this->convenioServices=$convenioServices;
+       $this->servicesFrees=$servicesFrees;
     }
 
     /**
@@ -28,6 +29,6 @@ class FormRgisterUser extends Component
     public function render()
     {
         $servicios = Service::where('status', 1)->get();
-        return view('components.usuarios.form-rgister-user')->with('servicios', $servicios)->with('user', $this->user)->with('userInformation', $this->userInformation)->with('convenio', $this->convenio)->with('attentioShedule', $this->attentioShedule)->with('convenioServices', $this->convenioServices);
+        return view('components.usuarios.form-rgister-user')->with('servicios', $servicios)->with('user', $this->user)->with('userInformation', $this->userInformation)->with('convenio', $this->convenio)->with('attentioShedule', $this->attentioShedule)->with('convenioServices', $this->convenioServices)->with('servicesFrees', $this->servicesFrees);
     }
 }

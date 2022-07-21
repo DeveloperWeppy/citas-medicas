@@ -37,6 +37,7 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js" ></script>
         <script>
+
             var departamentoselected = $('#departments');
             var ciudades = $('.ciudadess');
             var span = $('#texto');
@@ -208,11 +209,7 @@
                           Swal.fire({
                                 title: 'Validando datos, espere por favor...',
                                 button: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                    didOpen: () => {
-                                        Swal.showLoading()
-                                    },
+
                             });
                         }
                     }).done(function(respuesta){

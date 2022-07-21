@@ -5,10 +5,10 @@
                <div class="card-header">
                   <h3 class="card-title"><i class="fas fa-plus"></i> Registrar un Nuevo Plan</h3>
                </div>
-  
+
                <form action="" method="post" id="quickForm">
                    <div class="card-body">
-      
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -40,12 +40,12 @@
                                             </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input type="checkbox" name="is_group" class="custom-control-input" id="customSwitch3">
-                                            <label class="custom-control-label" for="customSwitch3">¿Es Plan Grupal? 
+                                            <label class="custom-control-label" for="customSwitch3">¿Es Plan Grupal?
                                                 <span id="valor" class="badge bg-info text-white font-italic" style="font-size: 16px;">No</span></label>
                                         </div>
                                     </div>
@@ -60,12 +60,34 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <textarea class="form-control" name="description" placeholder="Descripción" id="" maxlength="499" rows="3"></textarea>
-                                        
+
                                     </div>
                                 </div>
-                                
-                            </div>
 
+                            </div>
+                            <div class="row despusPrinFrees">
+                                  <div class="col-sm-12 ">
+                                      <h4 class="mt-2">SERVICIOS GRATUITOS</h4>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group">
+                                        <select class='mi-selector form-control' id="formNombreServicioFree" name='marcas'>
+                                            <option value=''>Seleccionar un Servicio</option>
+                                        @foreach($serviciosSelect as $key => $value)
+                                            <option value='{{$value["id"]}}'>{{$value['text']}}</option>
+                                        @endforeach
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="input-group mb-3">
+                                          <input type="number" name="formDurationDays" id="formDurationDays" class="form-control " placeholder="Duracion en dias" autocomplete="off">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-1 ">
+                                   <i class="fas fa-plus-circle" onclick="agregarServicioFree()" style="font-size:40px;color:#34c2b5"></i>
+                                  </div>
+                            </div>
                             <div class="row">
                                 <p class="ml-2">Seleccione a continuación los servicios que estarán asociados a este nuevo Plan.</p>
                             </div>
@@ -89,21 +111,60 @@
                                                 @endforeach
                                             </div>
                                         @endif
-                                        
+
                                     </fieldset>
                                 </div>
                             </div>
-                            
+
                    </div>
-  
+
                    <div class="card-footer">
                     <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>
                     <button type="submit" class="btn btn-success float-right">Guardar</button>
                     </div>
                </form>
-  
+
            </div>
-          
+
         </div>
-       
+
       </div>
+<script>
+var datalistServ={!!json_encode($serviciosSelect)!!};
+function refreshSelect2Value(tipo){
+  $('.mi-selector-edit').select2({
+      width: '100%',
+      allowClear: true,
+      multiple: false,
+      placeholder: "Nombre de servicio",
+      data: datalistServ
+  });
+  $(".mi-selector-edit").each(function(){
+      $(this).val($(this).attr('value')).trigger("change");
+  });
+
+}
+function agregarServicioFree(){
+  var ifExist=true;
+  $(".formNombreServicioFree").each(function(){
+       if($(this).val()== $("#formNombreServicioFree").val()){
+         ifExist=false;
+       }
+  });
+  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!=""  && ifExist){
+         var divNom='<div class="row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
+         var divDay='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="duration_day[]" class="form-control" value="'+$("#formDurationDays" ).val()+'"  placeholder="Duracion en dias" autocomplete="off"></div></div>';
+         $(".despusPrinFrees").after(divNom+divDay+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
+
+         $("#formDurationDays" ).val("");
+         $("#formNombreServicioFree").val("").trigger("change");
+  }else{
+     if(ifExist){
+        alert("Completar campos");
+     }else{
+         alert("Servicio ya se encuentra agregado");
+     }
+  }
+  refreshSelect2Value(1);
+}
+</script>

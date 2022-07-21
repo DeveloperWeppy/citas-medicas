@@ -71,7 +71,9 @@
     </div>
   @endif
 @else
-  <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
+     @if ($plan->id !="")
+         <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
+      @endif
 @endif
 
 

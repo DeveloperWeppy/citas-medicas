@@ -446,8 +446,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
 
-      $( "#customSwitches1" ).change(function() {
-         if($("#customSwitches1").is(':checked')){
+      $( "#customSwitch1" ).change(function() {
+         if($("#customSwitch1").is(':checked')){
            $(".planMensual").css("display","block");
            $(".planAnual").css("display","none");
            $(".swith-off").css("color","#768495");
