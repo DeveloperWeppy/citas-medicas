@@ -14,6 +14,8 @@ class ServicesFree extends Model
         'service_id',
         'plan_id',
         'convenio_id',
+        'cantidad_redimido',
+
 
     ];
 

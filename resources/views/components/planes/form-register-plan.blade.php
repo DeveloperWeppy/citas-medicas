@@ -86,6 +86,11 @@
                                                   <input type="number" name="formDurationDays" id="formDurationDays" class="form-control " placeholder="Duracion en dias" autocomplete="off">
                                               </div>
                                           </div>
+                                          <div class="col-sm-3">
+                                              <div class="input-group mb-3">
+                                                  <input type="number" name="formCantidadRedimido" id="formCantidadRedimido" class="form-control " placeholder="Cantidad de Veces redimidas" autocomplete="off">
+                                              </div>
+                                          </div>
                                           <div class="col-sm-12 ">
                                             <select class="convenio_user" id="userInfMul"   value="2" multiple="multiple">
                                             </select>

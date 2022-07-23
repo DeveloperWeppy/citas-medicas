@@ -19,6 +19,7 @@ class CreateServicesFreesTable extends Migration
             $table->foreignId('plan_id')->references('id')->on('plans');
             $table->foreignId('service_id')->references('id')->on('services');
             $table->foreignId('convenio_id')->references('id')->on('convenios');
+            $table->integer('cantidad_redimido');
             $table->index(['plan_id', 'service_id','convenio_id']);
             $table->timestamps();
         });
