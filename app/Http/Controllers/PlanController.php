@@ -44,7 +44,7 @@ class PlanController extends Controller
                  $get_subscription= Subscription::find($detailSubscription[0]->suscription_id);
                  $idplan = $get_subscription->plan_id;
             }else{
-                $idplan = $verificar_subs[0]->id;
+                $idplan = $verificar_subs[0]->plan_id;
             }
             $plan = Plan::find($idplan);
 
