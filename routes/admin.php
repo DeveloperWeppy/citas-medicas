@@ -71,7 +71,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('/admin/planes/edit/{id}', 'edit')->name('plane.edit');
             Route::get('/admin/planes/detalle-plan/{id}', 'show')->name('plane.show');
             Route::post('/admin/planes/update', 'update')->name('plane.update');
-
+            Route::get('/admin/convenio/getConvenios/{id}', 'getConvenios')->name('plane.getConvenios');
             //client
             Route::get('/mi-plan', 'index_client')->name('miplan.index');
         });

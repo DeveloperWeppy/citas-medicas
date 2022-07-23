@@ -232,7 +232,12 @@
                      Swal.fire({
                            title: 'Validando datos, espere por favor...',
                            button: false,
-                           timer: 3000,
+                           showConfirmButton: false,
+                           allowOutsideClick: false,
+                           allowEscapeKey: false,
+                           showCancelButton: false,
+                           showConfirmButton: false,
+                           timer: 4000,
                            timerProgressBar: true,
                                didOpen: () => {
                                    Swal.showLoading()

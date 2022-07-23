@@ -38,8 +38,12 @@
     <script>
     $(document).ready(function() {
         refreshSelect2Value(0);
+        buscarConvenio(1);
+        $("#formNombreServicioFree" ).change(function() {
+            buscarConvenio($("#formNombreServicioFree" ).val());
+        });
     });
-      $('#cantidad_personas').show();
+    $('#cantidad_personas').show();
           //event for switch of type of plan (group or individual)
           $('#customSwitch3').change(function() {
             if($(this).is(":checked")) {
@@ -139,7 +143,7 @@
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: new FormData(form),,
+                        data: new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',

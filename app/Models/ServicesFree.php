@@ -13,6 +13,10 @@ class ServicesFree extends Model
         'duration_in_days',
         'service_id',
         'plan_id',
+        'convenio_id',
+        'cantidad_redimido',
+
+
     ];
 
     public function service(){

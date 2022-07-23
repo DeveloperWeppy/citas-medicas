@@ -69,23 +69,36 @@
                                   <div class="col-sm-12 ">
                                       <h4 class="mt-2">SERVICIOS GRATUITOS</h4>
                                   </div>
-                                  <div class="col-sm-5">
-                                      <div class="form-group">
-                                        <select class='mi-selector form-control' id="formNombreServicioFree" name='marcas'>
-                                            <option value=''>Seleccionar un Servicio</option>
-                                        @foreach($serviciosSelect as $key => $value)
-                                            <option value='{{$value["id"]}}'>{{$value['text']}}</option>
-                                        @endforeach
-                                        </select>
-                                      </div>
+
+                                  <div class="col-sm-8 row">
+                                          <div class="col-sm-5">
+                                              <div class="form-group">
+                                                <select class='mi-selector form-control' id="formNombreServicioFree" name='marcas'>
+                                                    <option value=''>Seleccionar un Servicio</option>
+                                                @foreach($serviciosSelect as $key => $value)
+                                                    <option value='{{$value["id"]}}'>{{$value['text']}}</option>
+                                                @endforeach
+                                                </select>
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-3">
+                                              <div class="input-group mb-3">
+                                                  <input type="number" name="formDurationDays" id="formDurationDays" class="form-control " placeholder="Duracion en dias" autocomplete="off">
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-3">
+                                              <div class="input-group mb-3">
+                                                  <input type="number" name="formCantidadRedimido" id="formCantidadRedimido" class="form-control " placeholder="Cantidad de Veces redimidas" autocomplete="off">
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-12 ">
+                                            <select class="convenio_user" id="userInfMul"   value="2" multiple="multiple">
+                                            </select>
+                                          </div>
+
                                   </div>
-                                  <div class="col-sm-3">
-                                      <div class="input-group mb-3">
-                                          <input type="number" name="formDurationDays" id="formDurationDays" class="form-control " placeholder="Duracion en dias" autocomplete="off">
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-1 ">
-                                   <i class="fas fa-plus-circle" onclick="agregarServicioFree()" style="font-size:40px;color:#34c2b5"></i>
+                                  <div class="col-sm-4" style="display:flex;align-items: center">
+                                         <i class="fas fa-plus-circle" onclick="agregarServicioFree()" style="font-size:40px;color:#34c2b5"></i>
                                   </div>
                             </div>
                             <div class="row">
@@ -131,7 +144,27 @@
       </div>
 <script>
 var datalistServ={!!json_encode($serviciosSelect)!!};
+var datalistCov={};
+function buscarConvenio(id){
+  $.ajax({
+    method: "GET",
+    dataType: 'json',
+    url:"{{route('plane.getConvenios',['/'])}}/"+id,
+  }).done(function( respuesta ) {
+    $('.convenio_user').select2({
+        width: '100%',
+        allowClear: true,
+        multiple: true,
+        placeholder: "Nombre de Convenio",
+        data: respuesta
+    });
+    datalistCov=respuesta;
+  }).fail(function( jqXHR ) {
+  });
+}
+
 function refreshSelect2Value(tipo){
+  buscarConvenio(1);
   $('.mi-selector-edit').select2({
       width: '100%',
       allowClear: true,
@@ -142,22 +175,33 @@ function refreshSelect2Value(tipo){
   $(".mi-selector-edit").each(function(){
       $(this).val($(this).attr('value')).trigger("change");
   });
-
+  $('.convenio_user_edit').select2({
+      width: '100%',
+      allowClear: true,
+      multiple: true,
+      placeholder: "Nombre de Convenio",
+      data: datalistCov
+  });
+  $(".convenio_user_edit").each(function(){
+       $(this).val(JSON.parse($(this).attr('value'))).trigger("change");
+  });
 }
 function agregarServicioFree(){
   var ifExist=true;
-  $(".formNombreServicioFree").each(function(){
+  $(".mi-selector-edit").each(function(){
        if($(this).val()== $("#formNombreServicioFree").val()){
          ifExist=false;
        }
   });
-  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!=""  && ifExist){
-         var divNom='<div class="row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
+  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!="" && $("#userInfMul" ).val()!=""  && ifExist){
+         var divNom='<div class="row" style="margin-top:30px"><div class="col-sm-8 row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
          var divDay='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="duration_day[]" class="form-control" value="'+$("#formDurationDays" ).val()+'"  placeholder="Duracion en dias" autocomplete="off"></div></div>';
-         $(".despusPrinFrees").after(divNom+divDay+'<div class="col-sm-1" style="display:table" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
+          var divSel='<div class="col-sm-12 "><select class="convenio_user_edit" name="userInf['+$("#formNombreServicioFree" ).val()+'][]"  value="['+$("#userInfMul" ).val()+']" multiple="multiple"></select></div></div>';
+         $(".despusPrinFrees").after(divNom+divDay+divSel+'<div class="col-sm-4 " style="display:flex;align-items: center;" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
 
          $("#formDurationDays" ).val("");
          $("#formNombreServicioFree").val("").trigger("change");
+         $("#userInfMul").val("").trigger("change");
   }else{
      if(ifExist){
         alert("Completar campos");
