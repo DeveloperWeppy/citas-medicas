@@ -140,9 +140,19 @@ function agregarServicio(){
                refreshSelect2Value(1);
            }else{
               if(ifExist){
-                 alert("Completar campos");
+                Swal.fire({
+                      title: "Completa los campos del servicio",
+                      icon: "error",
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
               }else{
-                  alert("Servicio ya se encuentra agregado");
+                Swal.fire({
+                      title: "Servicio ya se encuentra agregado",
+                      icon: "error",
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
               }
            }
        }

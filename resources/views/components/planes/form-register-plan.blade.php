@@ -193,20 +193,32 @@ function agregarServicioFree(){
          ifExist=false;
        }
   });
-  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!="" && $("#userInfMul" ).val()!=""  && ifExist){
-         var divNom='<div class="row" style="margin-top:30px"><div class="col-sm-8 row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
-         var divDay='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="duration_day[]" class="form-control" value="'+$("#formDurationDays" ).val()+'"  placeholder="Duracion en dias" autocomplete="off"></div></div>';
-          var divSel='<div class="col-sm-12 "><select class="convenio_user_edit" name="userInf['+$("#formNombreServicioFree" ).val()+'][]"  value="['+$("#userInfMul" ).val()+']" multiple="multiple"></select></div></div>';
-         $(".despusPrinFrees").after(divNom+divDay+divSel+'<div class="col-sm-4 " style="display:flex;align-items: center;" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
+  if($("#formNombreServicioFree" ).val()!="" && $("#formDurationDays" ).val()!="" && $("#userInfMul" ).val()!=""  && ifExist && $("#formCantidadRedimido" ).val()!=""){
+    var divNom='<div class="row" style="margin-top:30px"><div class="col-sm-8 row"><div class="col-sm-5 ed"><div class="form-group "><select class="form-control mi-selector-edit formNombreServicioFree"  name="free_servicio_id[]" value="'+$("#formNombreServicioFree" ).val()+'" placeholder="Nombre del Servicio" autocomplete="off" required> </select></div> </div>';
+    var divDay='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="duration_day[]" class="form-control" value="'+$("#formDurationDays" ).val()+'"  placeholder="Duracion en dias" autocomplete="off"></div></div>';
+    var divCant='<div class="col-sm-3"><div class="input-group mb-3">  <input type="number" name="cantidadRedimido[]"  value="'+$("#formCantidadRedimido" ).val()+'"  class="form-control " placeholder="Cantidad de Veces redimidas" autocomplete="off">  </div>  </div>';
+     var divSel='<div class="col-sm-12 "><select class="convenio_user_edit" name="userInf[e'+$("#formNombreServicioFree" ).val()+'][]"  value="['+$("#userInfMul" ).val()+']" multiple="multiple"></select></div></div>';
+    $(".despusPrinFrees").after(divNom+divDay+divCant+divSel+'<div class="col-sm-4 " style="display:flex;align-items: center;" onclick="$(this).parent().remove();"><i class="fas fa-trash-alt"  style="font-size:30px;color:red;margin-top:5px" ></i></div></div></div>');
 
-         $("#formDurationDays" ).val("");
-         $("#formNombreServicioFree").val("").trigger("change");
-         $("#userInfMul").val("").trigger("change");
+    $("#formDurationDays" ).val("");
+    $("#formNombreServicioFree").val("").trigger("change");
+    $("#userInfMul").val("").trigger("change");
+    $("#formCantidadRedimido" ).val("");
   }else{
      if(ifExist){
-        alert("Completar campos");
+       Swal.fire({
+             title: "Completa los campos del servicio gratuitos",
+             icon: "error",
+             showConfirmButton: false,
+             timer: 1000
+         });
      }else{
-         alert("Servicio ya se encuentra agregado");
+       Swal.fire({
+             title:"Servicio ya se encuentra agregado",
+             icon: "error",
+             showConfirmButton: false,
+             timer: 1000
+         });
      }
   }
   refreshSelect2Value(1);
