@@ -40,7 +40,7 @@ class PlanController extends Controller
 
         $verificar_subs = Subscription::where('user_id', $user_login)->get();
         $dato = '';
-        $plan=(object) array('name'=>'','id'=>'');
+        $plan=(object) array('name'=>'','id'=>'', 'is_group' => 0);
         if (count($verificar_subs) > 0) {
             $detailSubscription = DetailSubscription::where(['user_id'=>$user_login,'status_operation'=>'authorized'])->orderBy('next_payment_date', 'desc')->get();
             if(count($detailSubscription)>0){

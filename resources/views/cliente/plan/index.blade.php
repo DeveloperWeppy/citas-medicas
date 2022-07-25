@@ -15,7 +15,7 @@
 @section('content_header')
 <div class="container-fluid">
     <div class="row mb-2">
-      @if (!Session::get('ifActiveSubs'))
+      @if (Session::get('ifActiveSubs'))
         <div class="col-sm-6">
           <button class="btn btn-outline-info" onClick="history.go(-1);"><i class="fas fa-long-arrow-alt-left"></i> Volver</button>
         </div>
@@ -33,19 +33,23 @@
 @section('content')
 
 @if ($is_owner == 1)
-  @if (!Session::get('ifActiveSubs'))
+  @if (Session::get('ifActiveSubs'))
 
-  @if ($plan->is_group > 0)
+    @if ($plan->is_group > 0)
 
-      @if ($total_miembros_por_registrar > 0)
-        <x-note-members-registered cantidadmiembros="{{$plan->cant_people}}" idPlan="{{$plan->id}}"></x-note-members-registered>
+        @if ($total_miembros_por_registrar > 0)
+          <x-note-members-registered cantidadmiembros="{{$plan->cant_people}}" idPlan="{{$plan->id}}"></x-note-members-registered>
 
-        <x-register-member></x-register-member>
-      @endif
+          <x-register-member></x-register-member>
+        @endif
 
-  @endif
+    @endif
 
-    <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
+    @if ($plan->id > 0)
+      <x-view-plan idPlan="{{$plan->id}}"></x-view-plan>
+    @endif
+
+    
   @else
       <!------CONTENEDOR DE NO SUBSCRITO------->
       <div class="card card-primary card-outline">

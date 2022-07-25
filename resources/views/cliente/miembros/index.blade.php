@@ -76,7 +76,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @else
+                        @else
                             <div class="row">
                                 <div class="col-sm-12 mt-3">
                                     <div class="text-center">
@@ -86,8 +86,18 @@
                                 </div>
                             </div>
                         @endif
-                    @endif
                     @else
+                        <div class="row">
+                            <div class="col-sm-12 mt-3">
+                                <div class="text-center">
+                                    <lottie-player src="{{ asset('lottie/pay.json') }}"  background="transparent"  speed="1"  style="width: 50%; height:auto;margin:0 auto"  loop  autoplay></lottie-player>
+                                    <h3 style="text-align:center;font-weight: bold;">Ops! Parece que tu suscripción está inactiva, realiza nuevamente tu pago.<h3>
+                                    <div style="display:flex;justify-content: center;margin-top:30px"><a  href="{{ route('subscription.index') }}" class="btn8">Subscribirme</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @else
                         <div class="row">
                             <div class="col-sm-12 mt-3">
                                 <div class="text-center">
@@ -109,7 +119,7 @@
 @stop
 
 @section('js')
-
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="/js/datatable.js"></script>
     <script>
       $(document).ready(function() {
