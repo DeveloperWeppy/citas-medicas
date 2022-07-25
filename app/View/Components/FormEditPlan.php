@@ -47,7 +47,7 @@ class FormEditPlan extends Component
         foreach ($servicesFree as $key => $value) {
                $ifExist = array_search($value->service_id, array_column($convConven, 'service_id'));
                if ($ifExist === false ) {
-                  array_push($convConven,array('service_id'=>$value->service_id,'duration_in_days'=>$value->duration_in_days,'conv'=>array($value->convenio_id),'resp'=>array()));
+                  array_push($convConven,array('service_id'=>$value->service_id,'cantidad_redimido'=>$value->cantidad_redimido,'duration_in_days'=>$value->duration_in_days,'conv'=>array($value->convenio_id),'resp'=>array()));
                }else{
                    $convConven[$ifExist]['conv'][count($convConven[$ifExist]['conv'])]=$value->convenio_id;
                }
