@@ -36,19 +36,17 @@ class Controller extends BaseController
     public function validarSuscripcionClienteUsuario($id){
       $ifSubs=false;
       $ifExisteSubs=false;
-
-      $verificar_subs = Subscription::where('user_id',  $id)->get();
-             if(count($verificar_subs)>0){
-                 $ifExisteSubs=true;
-                 if ($verificar_subs[0]->next_payment >= Carbon::now('America/Bogota')->format('Y-m-d')) {
-                   $ifSubs=true;
-                 }
-             }
-
-             return array(
-              'status_subscription' => $ifSubs,
-              'is_subscribe' => $ifExisteSubs,
-             );
+      $verificar_subs = Subscription::where('user_id',$id)->orderBy('next_payment', 'desc')->get();
+       if(count($verificar_subs)>0){
+           $ifExisteSubs=true;
+           if ($verificar_subs[0]->next_payment >= Carbon::now('America/Bogota')->format('Y-m-d')) {
+             $ifSubs=true;
+           }
+       }
+       return array(
+        'status_subscription' => $ifSubs,
+        'is_subscribe' => $ifExisteSubs,
+       );
     }
    public function validarPago($preapproval_plan_id,$email,$card_token_id){
     $arrayError=['cc_rejected_high_risk'=>'La validación de la tarjeta de crédito ha fallado.Elige otro de los medios de pago','cc_rejected_bad_filled_security_code'=>

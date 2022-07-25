@@ -6,6 +6,11 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Service;
+use App\Models\Convenio;
+use App\Models\PlanServices;
+use App\Models\ServicesFree;
+use App\Models\ServiceFreeClient;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Models\CategoryService;
 use App\Models\RedeemedService;
@@ -152,26 +157,21 @@ class RedeemedServiceController extends Controller
      */
     public function redimir($id)
     {
-        $consultar_user = Client::find($id);
-        
-        $user_id = $consultar_user->user_id;
-        $name_client = $consultar_user->name;
-
-        $subscrito = '';
-        $client_id = $id;
-        $dato = array($this->validarSuscripcionClienteUsuario($user_id));
-
-        foreach ($dato as $key => $value) {
-            $estado = $value['status_subscription'];
+        $consultar_user = Client::where('user_id', $id)->get();
+        if(count($consultar_user)>0){
+            $dato =$this->validarSuscripcionClienteUsuario($id);
+            if ($dato['status_subscription']) {
+                $subscrito = 'si';
+            } else {
+                $subscrito = 'no';
+            }
+        }else{
+           $consultar_user[0]->name="";
+           $consultar_user[0]->id=0;
         }
-        if ($estado) {
-            $subscrito = 'si';
-        } else {
-            $subscrito = 'no';
-        }
-        //dd($subscrito);
+        //dd($dato);
         return view('admin.redimidos.redimir')->with('subscrito', $subscrito)
-            ->with('name_client', $name_client)->with('client_id', $client_id);
+           ->with('name_client', $consultar_user[0]->name)->with('client_id', $consultar_user[0]->id)->with('user_id', $id);
     }
 
     /**
@@ -219,6 +219,27 @@ class RedeemedServiceController extends Controller
         if ($service_redemed = RedeemedService::create($register_redeem_service)) {
             $fecha_redimido = $service_redemed->created_at;
 
+            $subscription = Subscription::where('user_id', $user_client_id)->orderBy('next_payment', 'desc')->get();
+            $convenio = Convenio::where('responsable_id',  $id_prestador)->get(['id']);
+            $servicesFree = ServicesFree::where([ 'plan_id' => $subscription[0]->plan_id,'service_id' => $id_service,'convenio_id' => $convenio[0]->id])->get();
+            if(count($servicesFree)>0){
+                  $serviceFreeClient = ServiceFreeClient::where(['id_cliente' =>$id_cliente,'id_service' => $id_service])->get();
+                  $date = Carbon::parse($subscription[0]->created_at);
+                  $fechaAct = $date->addDay($servicesFree[0]->duration_in_days);
+                  if($fechaAct >= now()->toDateString()){
+                      if(count($serviceFreeClient)>0 && $servicesFree[0]->cantidad_redimido>0){
+                           if($servicesFree[0]->cantidad_redimido>$serviceFreeClient[0]->cantidad_veces_redimir){
+                                 $cantidad=$serviceFreeClient[0]->cantidad_veces_redimir+1;
+                                 if ($ServiceFreeClient = ServiceFreeClient::findOrFail($serviceFreeClient[0]->id)->update(array('cantidad_veces_redimir'=>$cantidad))) { }
+                           }
+                      }else{
+                          if ($service_redemed =ServiceFreeClient::create(array('cantidad_veces_redimir'=>1,'id_cliente'=>$id_cliente,'id_service' => $id_service ))) {}
+                      }
+                  }
+
+
+
+            }
             //send email of subscription success
             self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
 
@@ -268,10 +289,10 @@ class RedeemedServiceController extends Controller
                 } else {
                     $error = true;
                     $mensaje = 'Error! Se presento un problema al registrar el diagnóstico del servicio, intenta de nuevo.';
-                } 
+                }
         }
-        
-      
+
+
 
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
@@ -321,7 +342,7 @@ class RedeemedServiceController extends Controller
             dd($e);
         }
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -332,7 +353,35 @@ class RedeemedServiceController extends Controller
     {
         //
     }
+    public function getservicesfrees($user_id,$service_id)
+    {
+          $consultar_user = Client::where('user_id', $user_id)->get();
+          $userInformation = UserInformation::where('user_id', Auth::user()->id)->get(['id']);
+          $convenio = Convenio::where('responsable_id',  $userInformation[0]->id)->get(['id']);
+          $totalRedimible=0;
+          $ifservicesFree=false;
+          $subscription = Subscription::where('user_id', $user_id)->orderBy('next_payment', 'desc')->get();
+          if(count($subscription)>0){
+             $servicesFree = ServicesFree::where([ 'plan_id' =>   $subscription[0]->plan_id,'service_id' => $service_id,'convenio_id' => $convenio[0]->id])->get();
+             $date = Carbon::parse($subscription[0]->created_at);
+             if(count($servicesFree)>0){
+                  $fechaAct = $date->addDay($servicesFree[0]->duration_in_days);
+                  $ifservicesFree=true;
+                  if ($fechaAct >= now()->toDateString()){
+                      $serviceFreeClient = ServiceFreeClient::where(['id_cliente' => $consultar_user[0]->id,'id_service' => $service_id])->get();
+                      if(count($serviceFreeClient)>0){
+                          $totalRedimible=$servicesFree[0]->cantidad_redimido-$serviceFreeClient[0]->cantidad_veces_redimir;
+                      }else{
+                          $totalRedimible=$servicesFree[0]->cantidad_redimido;
+                      }
+                  }
+              }
+          }
+          return json_encode(array('ifservicesFree'=>$ifservicesFree,'cantidad_redimible'=>$totalRedimible));
 
+
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
