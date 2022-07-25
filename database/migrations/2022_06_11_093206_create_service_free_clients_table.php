@@ -17,7 +17,7 @@ class CreateServiceFreeClientsTable extends Migration
             $table->id();
             $table->integer('cantidad_veces_redimir');
             $table->foreignId('id_cliente')->references('id')->on('clients');
-            $table->foreignId('id_service_free')->references('id')->on('services');
+            $table->foreignId('id_service')->references('id')->on('services');
             $table->timestamps();
         });
     }

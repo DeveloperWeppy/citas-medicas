@@ -3,7 +3,7 @@
     <div class="card card-primary card-outline">
         <div class="card-body box-profile">
             <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="{{$client->photo}}" alt="User profile picture">
+                <img class="profile-user-img img-fluid img-circle" src="{{asset($client->photo)}}" alt="User profile picture">
             </div>
                 <h3 class="profile-username text-center text-uppercase">{{$client->name}}</h3>
                 <p class="text-muted text-center">C.C. {{$client->number_identication}}</p>
@@ -15,13 +15,13 @@
             {{-- <a href="#" class="btn btn-primary btn-block"><b>VER</b></a> --}}
         </div>
     </div>
-    
+
 </div>
 
 <div class="col-md-9">
     <!--DATOS DE CLIENTE-->
     <div class="card card-primary card-outline">
-                
+
         <!--cabecera del contenedor--->
         <div class="card-header">
             <h3 class="card-title"><i class="fas fa-info-circle text-info"></i> Datos del Cliente</h3>
@@ -64,7 +64,7 @@
 
     <!--DATOS DE SERVICIOS-->
     <div class="card card-primary card-outline">
-                
+
         <!--cabecera del contenedor--->
         <div class="card-header">
             <h3 class="card-title"><i class="fas fa-check-double text-info"></i> Servicio a Redimir</h3>
@@ -90,18 +90,22 @@
                                         <div class="col-sm-4">
                                             <div class="form-group clearfix">
                                                 <div class="icheck-primary d-inline">
-                                                    <input class="" type="radio" name="id_service" id="{{$item['datos']['id']}}" value="{{$item['datos']['id']}}" checked="">
-                                                    <label for="{{$item['datos']['id']}}" >{{$item['datos']['name']}}</label>
+                                                    <input class="radio_id_service" type="radio" name="id_service" id="{{$item['id']}}" value="{{$item['id']}}" >
+                                                    <label for="{{$item['id']}}" >{{$item['name']}}</label>
+                                                    <label style="text-align: center;width:100%;color: #34c2b5;" for="{{$item['id']}}" >$ {{$item['price']}}</label>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
                             @endif
-                            
+
                         </fieldset>
                     </div>
                 </div>
+            </div>
+            <div id="ifgratis" style="display:none;padding-left:20px;margin-bottom:30px">
+                <span>  El usuario puede redimir  <span id="cantRedimible" style="font-weight: bold;">0</span>  este servicio  de manera gratuita</span>
             </div>
             <input type="hidden" name="id_client" value="{{$client->id}}">
             <input type="hidden" name="prestador_id" value="{{$id_user_information}}">

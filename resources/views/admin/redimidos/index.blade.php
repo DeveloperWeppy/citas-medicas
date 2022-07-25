@@ -29,21 +29,21 @@
     <div class="row">
       <div class="mb-3">
          <!-- Button trigger modal -->
-        
+
       </div>
-     
+
     </div>
     <div class="row">
         <div class="col-12">
 
             <!------CONTENEDOR DE TABLA------->
             <div class="card card-primary card-outline">
-                
+
                 <!--cuerpo del contenedor--->
                 <div class="card-body">
-                   
+
                     <!--tabla de datos--->
-                    <table id="listarredimidos" class="display table table-striped table-bordered " style="width:100%"> 
+                    <table id="listarredimidos" class="display table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nº</th>
@@ -65,14 +65,14 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="{{ env('APP_URL') }}/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}css/styles.css">
+    <link rel="stylesheet"  href="{{ asset('/vendor/adminlte/dist/css/adminlte.css')}} ">
+    <link rel="stylesheet"  href="{{ asset('css/styles.css')}}">
 @stop
 
 @section('js')
 
-<script src="{{ env('APP_URL') }}/js/datatable.js"></script>
-<script src="{{ env('APP_URL') }}/js/search.js" type="module"></script>
+<script src="{{ asset('js/datatable.js')}}"></script>
+<script src="{{ asset('js/search.js')}}" type="module"></script>
     <script>
          var tabla_usuarios = $('#listarredimidos').DataTable({
                 "language": {
@@ -81,7 +81,7 @@
                 "order": [[ 0, "desc" ]],
                 "ajax": "{{route('redimidos.obtener')}}",
             });
-        
+
         $(function () {
 
         });

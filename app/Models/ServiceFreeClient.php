@@ -12,7 +12,7 @@ class ServiceFreeClient extends Model
     protected $fillable = [
         'cantidad_veces_redimir',
         'id_cliente',
-        'id_service_free',
+        'id_service',
     ];
 
     public function client(){

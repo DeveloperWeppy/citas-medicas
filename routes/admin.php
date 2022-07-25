@@ -131,6 +131,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('/historial-redimidos/obtener', 'getRedimidos')->name('redimidos.obtener');
             Route::post('/historial-redimidos/buscar', 'search')->name('redimidos.search');
             Route::get('/redimimir-servicio/{id}', 'redimir')->name('redimidos.redimir');
+            Route::get('/getservicesfrees/{user_id}/{service_id}', 'getservicesfrees')->name('redimidos.getservicesfrees');
             Route::get('/redimimir-diagnostico/{id}', 'index_diagnostico')->name('redimidos.index_diagnostico');
 
             //diagnostics
