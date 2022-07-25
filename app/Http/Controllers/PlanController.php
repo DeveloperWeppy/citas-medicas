@@ -79,7 +79,6 @@ class PlanController extends Controller
             } else {
                 $grupo = 'Sí';
             }
-
             $info = [
                 $value->id,
                 '<a href="' . $ruta_view_plan . '" class="text-info">' .  $value->name .'</a>',
@@ -180,9 +179,9 @@ class PlanController extends Controller
                                'service_id' =>  $request->free_servicio_id[$index],
                                'plan_id' => $id_plan,
                                'convenio_id' =>$rowid2,
+                               'cantidad_redimido' =>$request->cantidadRedimido[$index],
                            ]);
                      }
-
                   }
                 }
                 for ($i = 0; $i < sizeof($servicios); ++$i) {
@@ -305,6 +304,7 @@ class PlanController extends Controller
                                             'service_id' =>  $request->free_servicio_id[$index],
                                             'plan_id' => $id_plan,
                                             'convenio_id' =>$rowid2,
+                                            'cantidad_redimido' =>$request->cantidadRedimido[$index],
                                         ]);
                                       }
                               }else{
@@ -321,6 +321,7 @@ class PlanController extends Controller
                                                'service_id' =>  $request->free_servicio_id[$index],
                                                'plan_id' => $id_plan,
                                                'convenio_id' =>$rowid2,
+                                               'cantidad_redimido' =>$request->cantidadRedimido[$index],
                                            ]);
                                          }
                                   }
@@ -338,6 +339,7 @@ class PlanController extends Controller
                                  }else{
                                    $register_services_free = ServicesFree::where('id',$servicesFree[$index]['id'])->update([
                                        'duration_in_days' => $request->duration_day[$ifEliminar],
+                                       'cantidad_redimido' =>$request->cantidadRedimido[$ifEliminar],
                                    ]);
                                  }
                              }
