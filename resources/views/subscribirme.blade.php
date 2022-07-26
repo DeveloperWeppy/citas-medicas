@@ -31,7 +31,7 @@
                   <!------- FORM OF CONTACT ------------>
                   <x-bloque-de-subscripcion></x-bloque-de-subscripcion>
               </div>
-                
+
             </div>
         </div>
     </section>
@@ -104,6 +104,17 @@
            });
 
                //form of register of user
+       $.validator.addMethod("dateRange", function() {
+         var toDate = new Date();
+         toDate.setFullYear(toDate.getFullYear()-18);
+         var toDatef = toDate.toISOString().slice(0,10).replace(/-/g,"/");
+         toDate= new Date(toDatef);
+         var event_date = new Date( $("input[name='date_of_birth']").val());
+         if( event_date <= toDate )
+           return true;
+         return false;
+       }, "Please specify a correct date:");
+
        $('#contact-form').validate({
             rules: {
                 name: {
@@ -117,7 +128,7 @@
                 minlength:7
               },
               date_of_birth: {
-                required: true,
+                  required: true, date: true, dateRange: true
               },
               email: {
                 required: true,
@@ -158,6 +169,7 @@
               },
               date_of_birth: {
                 required: "Seleccione la fecha de nacimiento",
+                dateRange: "Debe ser mayor de edad",
               },
               email: {
                 required: "Por favor ingrese un Correo Electrónico",
@@ -197,7 +209,7 @@
             },
             submitHandler: function(form){
                 // agregar data
-                var url = "{{route('front.store_client')}}"; 
+                var url = "{{route('front.store_client')}}";
                 $.ajax({
                   headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
