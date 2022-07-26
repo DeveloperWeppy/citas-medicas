@@ -50,6 +50,7 @@
                                 <th>Cliente</th>
                                 <th>Nº Cédula</th>
                                 <th>Servicio</th>
+                                <th>Fue Gratis</th>
                                 <th>Fecha y hora de redención</th>
                                 <th>Diagnóstico</th>
                             </tr>

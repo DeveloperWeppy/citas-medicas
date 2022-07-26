@@ -59,12 +59,17 @@ class RedeemedServiceController extends Controller
             $name_category = $category->name;
 
             $ruta_diagnosticar = route('redimidos.index_diagnostico', $value->id);
-
+            if($value->is_free==1){
+              $is_free="Si";
+            }else{
+              $is_free="No";
+            }
             $info = [
                 $value->id,
                 $value->find($value->id)->nombre_cliente->name,
                 $value->find($value->id)->nombre_cliente->number_identication,
                 $value->find($value->id)->nombre_servicio->name,
+                $is_free,
                 date_format($value->created_at, "Y-m-d,  g:i a"),
             ];
 
@@ -104,7 +109,6 @@ class RedeemedServiceController extends Controller
             } else if ($value->valor_discount == null && $porcentaje_descuento != null) {
                 $valor = $porcentaje_descuento . '%';
             }
-
             $info = [
                 $value->id,
                 $value->find($value->id)->nombre_servicio->name,
@@ -215,33 +219,35 @@ class RedeemedServiceController extends Controller
         //get data service provider
         $prestador = UserInformation::find($id_prestador);
         $name_prestador = $prestador->name;
-
+        $subscription = Subscription::where('user_id', $user_client_id)->orderBy('next_payment', 'desc')->get();
+        $convenio = Convenio::where('responsable_id',  $id_prestador)->get(['id']);
+        $servicesFree = ServicesFree::where([ 'plan_id' => $subscription[0]->plan_id,'service_id' => $id_service,'convenio_id' => $convenio[0]->id])->get();
+        $ifFree=0;
+        if(count($servicesFree)>0){
+              $serviceFreeClient = ServiceFreeClient::where(['id_cliente' =>$id_cliente,'id_service' => $id_service])->get();
+              $date = Carbon::parse($subscription[0]->created_at);
+              $fechaAct = $date->addDay($servicesFree[0]->duration_in_days);
+              if($fechaAct >= now()->toDateString()){
+                  if(count($serviceFreeClient)>0 && $servicesFree[0]->cantidad_redimido>0){
+                       if($servicesFree[0]->cantidad_redimido>$serviceFreeClient[0]->cantidad_veces_redimir){
+                             $cantidad=$serviceFreeClient[0]->cantidad_veces_redimir+1;
+                             if ($ServiceFreeClient = ServiceFreeClient::findOrFail($serviceFreeClient[0]->id)->update(array('cantidad_veces_redimir'=>$cantidad))) { }
+                             $ifFree=1;
+                       }
+                  }else{
+                      if ($serviceFreeClient =ServiceFreeClient::create(array('cantidad_veces_redimir'=>1,'id_cliente'=>$id_cliente,'id_service' => $id_service ))) {}
+                      $ifFree=1;
+                  }
+              }
+        }
+        if($ifFree==1){
+          $register_redeem_service['is_free']=1;
+        }
         if ($service_redemed = RedeemedService::create($register_redeem_service)) {
             $fecha_redimido = $service_redemed->created_at;
 
-            $subscription = Subscription::where('user_id', $user_client_id)->orderBy('next_payment', 'desc')->get();
-            $convenio = Convenio::where('responsable_id',  $id_prestador)->get(['id']);
-            $servicesFree = ServicesFree::where([ 'plan_id' => $subscription[0]->plan_id,'service_id' => $id_service,'convenio_id' => $convenio[0]->id])->get();
-            if(count($servicesFree)>0){
-                  $serviceFreeClient = ServiceFreeClient::where(['id_cliente' =>$id_cliente,'id_service' => $id_service])->get();
-                  $date = Carbon::parse($subscription[0]->created_at);
-                  $fechaAct = $date->addDay($servicesFree[0]->duration_in_days);
-                  if($fechaAct >= now()->toDateString()){
-                      if(count($serviceFreeClient)>0 && $servicesFree[0]->cantidad_redimido>0){
-                           if($servicesFree[0]->cantidad_redimido>$serviceFreeClient[0]->cantidad_veces_redimir){
-                                 $cantidad=$serviceFreeClient[0]->cantidad_veces_redimir+1;
-                                 if ($ServiceFreeClient = ServiceFreeClient::findOrFail($serviceFreeClient[0]->id)->update(array('cantidad_veces_redimir'=>$cantidad))) { }
-                           }
-                      }else{
-                          if ($service_redemed =ServiceFreeClient::create(array('cantidad_veces_redimir'=>1,'id_cliente'=>$id_cliente,'id_service' => $id_service ))) {}
-                      }
-                  }
-
-
-
-            }
             //send email of subscription success
-            self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
+          //  self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
 
             $error = false;
             $mensaje = 'Se ha redimido correctamente el servicio!';
