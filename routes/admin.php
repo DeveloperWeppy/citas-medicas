@@ -49,6 +49,7 @@ use Illuminate\Support\Facades\Route;
             //UPDATED OF CLIENT
             Route::post('/perfil/actualizar-foto', 'updatedphoto')->name('cliente.updatedphoto');
             Route::post('/perfil/actualizar-datos', 'updatedclient')->name('cliente.updatedclient');
+            Route::get('/ciudades/{id}', 'getCiudades')->name('cliente.getCiudades');
         });
 
     //ROUTES FOR MANAGEMENT MEMBERS CLIENT

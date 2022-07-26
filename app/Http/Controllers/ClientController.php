@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\MembersClient;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -292,6 +293,20 @@ class ClientController extends Controller
                 $mensaje = 'Error! Se presentó un problema al actualizar los datos, intenta de nuevo.';
          }
          echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
+    }
+    public function getCiudades($id)
+    {
+        try {
+            $ciudades = DB::select('select * from municipios where departamento_id ='.$id );
+            $arrayCiudades=array();
+            foreach ($ciudades as $value){
+             array_push($arrayCiudades,array("id"=>$value->id_municipio,"text"=>$value->municipio));
+            }
+            $response = ['data' => $arrayCiudades];
+        } catch (\Exception $exception) {
+            return response()->json(['message' => 'There was an error retrieving the records'], 500);
+        }
+        return response()->json($response);
     }
 
     /**

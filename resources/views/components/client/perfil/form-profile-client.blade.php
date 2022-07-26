@@ -3,7 +3,7 @@
 
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-portrait text-info"></i> Foto</h3>
+                <h3 class="card-title"><i class="fas fa-portrait text-info" style="margin-right:10px"></i>  Foto de Documento de Identidad</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -16,10 +16,10 @@
                     <div class="text-center">
                         <!-- Upload image input-->
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" type="file" onchange="readURL(this);" name="imgLogo" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Imágen</label>
+                            <input id="upload" type="file" onchange="readURL(this);" name="imgLogo" class="form-control border-0" >
+                            <label id="upload-label" for="upload" class="font-weight-light text-muted" style="display:none">Imágen</label>
                             <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Cambiar foto</small></label>
+                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Cambiar Foto de Documento</small></label>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
     <div class="col-md-9">
         <!--DATOS DE clienteE-->
         <div class="card card-primary card-outline">
-                    
+
             <!--cabecera del contenedor--->
             <div class="card-header">
                 <ul class="nav nav-pills">
@@ -62,59 +62,75 @@
                                         <input type="text" name="name" id="" class="form-control " value="{{$cliente->name}}" autocomplete="off">
                                     </div>
                                 </div>
-                
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Apellidos</label>
                                         <input type="text" name="last_name" id="" class="form-control " value="{{$cliente->last_name}}" autocomplete="off">
                                     </div>
                                 </div>
-                
-                                <div class="col-sm-4">
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Número de Identificación</label>
                                         <input type="text" name="number_identication" id="" class="form-control " value="{{$cliente->number_identication}}" autocomplete="off">
                                     </div>
                                 </div>
-                
-                                <div class="col-sm-4">
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Edad</label>
                                         <input type="number" name="age" id="" class="form-control " value="{{$cliente->age}}" autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="">Sexo</label>
+                                        <select class="form-control" name="gender">
+                                          <option {{$cliente->gender=="Hombre"?'selected':''}}>Hombre</option>
+                                          <option {{$cliente->gender=="Mujer"?'selected':''}}>Mujer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Fecha de Cumpleaños</label>
                                         <input type="date" name="date_of_birth" id="" class="form-control " value="{{$cliente->date_of_birth}}" autocomplete="off">
                                     </div>
                                 </div>
-                
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Dirección</label>
                                         <input type="text" name="address" id="" class="form-control " value="{{$cliente->address}}" autocomplete="off">
                                     </div>
                                 </div>
-                
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Barrio</label>
                                         <input type="text" name="neighborhood" id="" class="form-control " value="{{$cliente->neighborhood}}" autocomplete="off">
                                     </div>
                                 </div>
-                
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Departamento</label>
-                                        <input type="text" name="department" id="" class="form-control " value="{{$cliente->department}}" autocomplete="off">
+                                        <select class="form-control select-department" value="{{$cliente->department}}" name="department">
+                                          <option>Selecciona Departamento</option>
+                                          @foreach($departamentos as  $value)
+                                          <option value="{{ $value->id_departamento}}">{{$value->departamento}}</option>
+                                           @endforeach
+                                        </select>
+
                                     </div>
                                 </div>
-                
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Ciudad</label>
-                                        <input type="text" name="city" id="" class="form-control " value="{{$cliente->city}}" autocomplete="off">
+                                        <select class="form-control select-ciudades select-ciudadesS" name="city" value="{{$cliente->city}}" >
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('servicios.index') }}" class="btn btn-default">Cancelar</a>

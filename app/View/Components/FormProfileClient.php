@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Client;
 use Illuminate\View\Component;
-
+use Illuminate\Support\Facades\DB;
 class FormProfileClient extends Component
 {
     /**
@@ -25,7 +25,8 @@ class FormProfileClient extends Component
      */
     public function render()
     {
+        $departamentos = DB::select( 'select * from departamentos'  );
         $cliente = Client::find($this->idClient);
-        return view('components.client.perfil.form-profile-client')->with('cliente', $cliente);
+        return view('components.client.perfil.form-profile-client')->with('cliente', $cliente)->with('departamentos', $departamentos);
     }
 }

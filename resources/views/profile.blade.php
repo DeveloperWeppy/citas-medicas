@@ -5,7 +5,7 @@
 @section('plugins.Datatables', true)
 @section('plugins.jqueryValidation', true)
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Select2', true)
 @section('content_header')
 <div class="container-fluid">
     <div class="row mb-2">
@@ -44,16 +44,42 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="{{env('APP_URL')}}vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="{{env('APP_URL')}}css/styles.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 @stop
 
 @section('js')
     <script>
-      $(document).ready(function() {
+    var ifcargaselect=0;
+    $(document).ready(function() {
+      $('.select-department').select2();
+      $('.select-department').val($('.select-department').attr('value')).trigger("change");
+    });
+    $('.select-department').change(function() {
+          buscarCiudad($('.select-department').val());
+    });
 
-        });
-
+    function buscarCiudad(id){
+          $.ajax({
+            method: "GET",
+            dataType: 'json',
+            url:"{{route('cliente.getCiudades',['/'])}}/"+id,
+          }).done(function( respuesta ) {
+            $('.select-ciudades').empty();
+            $('.select-ciudades').select2({
+                width: '100%',
+                allowClear: true,
+                multiple: false,
+                placeholder: "Nombre de Ciudad",
+                data: respuesta.data
+            });
+            if(ifcargaselect==0){
+                ifcargaselect=1;
+                $('.select-ciudades').val($('.select-ciudades').attr('value')).trigger("change");
+            }
+          }).fail(function( jqXHR ) {
+          });
+    }
       /*  ==========================================
           SHOW UPLOADED IMAGE
       * ========================================== */
@@ -122,10 +148,8 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#updatephotoclient').on('submit', function(e) {
                 event.preventDefault();
-                var $thisForm = $('#updatephotoclient');
-                    var formData = new FormData(this);
+
 
                     //ruta
                     var url = "{{route('cliente.updatedphoto')}}";
@@ -137,7 +161,7 @@
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: formData,
+                        data:new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',
@@ -174,7 +198,6 @@
                     }).fail(function(resp){
                         //console.log(resp);
                     });
-                  });
             }
           });
 
@@ -253,10 +276,7 @@
             },
             submitHandler: function(form){
                 // agregar data
-                $('#updateclient').on('submit', function(e) {
                 event.preventDefault();
-                var $thisForm = $('#updateclient');
-                    var formData = new FormData(this);
 
                     //ruta
                     var url = "{{route('cliente.updatedclient')}}";
@@ -268,7 +288,7 @@
                         type: "post",
                         encoding:"UTF-8",
                         url: url,
-                        data: formData,
+                        data: new FormData(form),
                         processData: false,
                         contentType: false,
                         dataType:'json',
@@ -309,7 +329,6 @@
                     }).fail(function(resp){
                         //console.log(resp);
                     });
-                  });
             }
           });
 
