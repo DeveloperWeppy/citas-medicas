@@ -33,18 +33,30 @@
                         <input type="date" name="date_of_birth" class="form-control" id="" autocomplete="off"/>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label for="position">Correo</label>
                         <input type="text" name="email" class="form-control" id="" autocomplete="off"/>
                     </div>
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="sex">Sexo</label>
+                        <Select class="form-control select-department" name="gender" id="sex">
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </Select>
+                    </div>
+                </div>
+
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="position">Celular / Teléfono</label>
                         <input type="number" name="num_phone" class="form-control" id="" autocomplete="off"/>
                     </div>
                 </div>
+
 
                 <div class="col-sm-6">
                     <div class="form-group">

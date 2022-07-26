@@ -95,10 +95,10 @@ class FrontendController extends Controller
             $mail->CharSet = "UTF8";
             $mail->Subject = "Correo de Contácto";
 
-            //$mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/nuevomensaje.jpg', 'img_header', '/images/emails/nuevomensaje.jpg', 'base64', 'image/jpg');
-          //  $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            //$mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
-            // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/nuevomensaje.jpg', 'img_header', '/images/emails/nuevomensaje.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = '';
             $mail->Body = view('email.emailcontactsend', compact(
@@ -210,6 +210,7 @@ class FrontendController extends Controller
         $number_identication = $request->number_identication;
         $last_name = $request->last_name;
         $num_phone = $request->num_phone;
+        $sexo = $request->gender;
 
         $plan = Plan::find($plane);
         $group_or_not = $plan->is_group;
@@ -263,6 +264,7 @@ class FrontendController extends Controller
                     'type_identication' => 'C.C',
                     'photo' => 'null',
                     'age' => '0',
+                    'gender' => $sexo,
                     'date_of_birth' => $request->date_of_birth,
                     'address' => $request->address,
                     'neighborhood' => $request->neighborhood,

@@ -42,6 +42,7 @@ class UserSeeder extends Seeder
             'type_identication' => 'C.C',
             'photo' => '/storage/clients/user.png',
             'age' => '22',
+            'gender' => 'Masculino',
             'date_of_birth' => '1999-09-25',
             'address' => 'cuberos niño',
             'neighborhood' => 'cuberos niño',
