@@ -2,8 +2,9 @@
 
     <div class="card card-primary card-outline">
         <div class="card-body box-profile">
-            <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="{{asset($client->photo)}}" alt="User profile picture">
+            <div class="text-center" style="position: relative;">
+                <i class="fas fa-eye text-info" style="position: absolute; margin-left: 70px;  margin-top: 5px;"></i>
+                <img class="profile-user-img img-fluid abrirImg" src="{{asset($client->photo)}}" alt="User profile picture">
             </div>
                 <h3 class="profile-username text-center text-uppercase">{{$client->name}}</h3>
                 <p class="text-muted text-center">C.C. {{$client->number_identication}}</p>

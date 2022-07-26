@@ -161,9 +161,9 @@ class RedeemedServiceController extends Controller
      */
     public function redimir($id)
     {
-        $consultar_user = Client::where('user_id', $id)->get();
+        $consultar_user = Client::where('id', $id)->get();
         if(count($consultar_user)>0){
-            $dato =$this->validarSuscripcionClienteUsuario($id);
+            $dato =$this->validarSuscripcionClienteUsuario($consultar_user[0]->user_id);
             if ($dato['status_subscription']) {
                 $subscrito = 'si';
             } else {
@@ -175,7 +175,7 @@ class RedeemedServiceController extends Controller
         }
         //dd($dato);
         return view('admin.redimidos.redimir')->with('subscrito', $subscrito)
-           ->with('name_client', $consultar_user[0]->name)->with('client_id', $consultar_user[0]->id)->with('user_id', $id);
+           ->with('name_client', $consultar_user[0]->name)->with('client_id', $id)->with('user_id', $consultar_user[0]->user_id);
     }
 
     /**
@@ -247,7 +247,7 @@ class RedeemedServiceController extends Controller
             $fecha_redimido = $service_redemed->created_at;
 
             //send email of subscription success
-           self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
+             self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
 
             $error = false;
             $mensaje = 'Se ha redimido correctamente el servicio!';

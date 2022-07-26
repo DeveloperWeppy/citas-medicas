@@ -76,7 +76,16 @@
     <script>
          // agregar data
 
-
+$( ".abrirImg" ).click(function() {
+  Swal.fire({
+    html:'<img style="width:60vw;height:auto" src="'+$(this).attr('src')+'" alt="User profile picture">',
+     width: '60vw',
+      showCloseButton: true,
+     showCancelButton: false,
+     showConfirmButton: false,
+      focusConfirm: false,
+  })
+});
         $('input:radio[name=id_service]').change(function() {
               $.ajax({
                 method: "GET",
