@@ -247,7 +247,7 @@ class RedeemedServiceController extends Controller
             $fecha_redimido = $service_redemed->created_at;
 
             //send email of subscription success
-          //  self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
+           self::enviarCorreoCliente($email, $nombre_client, $name_service, $name_prestador, $fecha_redimido);
 
             $error = false;
             $mensaje = 'Se ha redimido correctamente el servicio!';
