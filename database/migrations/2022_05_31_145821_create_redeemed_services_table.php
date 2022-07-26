@@ -18,6 +18,7 @@ class CreateRedeemedServicesTable extends Migration
             $table->foreignId('prestador_id')->references('id')->on('user_information');
             $table->foreignId('client_id')->references('id')->on('clients');
             $table->foreignId('service_id')->references('id')->on('services');
+            $table->string('gender');
             $table->timestamps();
         });
     }

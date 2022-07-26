@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('type_identication');
             $table->string('photo');
             $table->string('age');
+            $table->string('gender');
             $table->date('date_of_birth');
             $table->string('address');
             $table->string('neighborhood');//barrio

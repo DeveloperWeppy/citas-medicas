@@ -13,6 +13,7 @@ class RedeemedService extends Model
         'prestador_id',
         'client_id',
         'service_id',
+        'is_free',
     ];
 
     public function prestador(){

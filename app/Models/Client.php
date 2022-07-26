@@ -17,6 +17,7 @@ class Client extends Model
         'type_identication',
         'photo',
         'age',
+        'gender',
         'date_of_birth',
         'address',
         'neighborhood',
