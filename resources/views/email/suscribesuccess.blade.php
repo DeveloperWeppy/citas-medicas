@@ -147,10 +147,6 @@
                                 <th width="30%" class="css_table_secondary_body_th">Tipo de Plan:</th>
                                 <td width="70%" class="css_table_secondary_body_td">{{ $plan->type_plan }}</td>
                              </tr>
-                             <tr style="border-bottom: 1px solid #ddd; vertical-align: top;">
-                                <th width="30%" class="css_table_secondary_body_th">Próxima fecha de cobro automático:</th>
-                                <td width="70%" class="css_table_secondary_body_td">{{ $next_payment_date }}</td>
-                             </tr>
                           </tbody>
                        </table>
                     </td>
