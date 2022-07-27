@@ -238,10 +238,10 @@ return [
         ], */
 
         // Sidebar items:
-        [
+        /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
+        ],*/
         [
             'text'        => 'Inicio',
             'url'         => 'inicio',
@@ -307,7 +307,7 @@ return [
             //'label'       => 4,
             'label_color' => 'success',
         ],
-       
+
         ['header' => 'GESTIÓN DE PLANES', 'can'         => 'usuarios.index',],
         [
             'text'        => 'PLanes',
