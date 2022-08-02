@@ -10,22 +10,7 @@
                       <h4>DATOS DE USUARIO</h4>
                       <input type="number" name="id_userprestador" value="{{$user->id}}" style="display:none">
                       <div class="row py-4">
-                            <div class="col-md-6 text-center">
-                                 <!-- Upload image input-->
-                                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                    <input id="uploadBanner" type="file" onchange="readURLBanner(this);" name="imgBanner" class="form-control border-0">
-                                    <label id="upload-label-banner" for="uploadBanner" class="font-weight-light text-muted">Imágen</label>
-                                    <div class="input-group-append">
-                                        <label for="uploadBanner" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Subir Imágen de Portada</small></label>
-                                    </div>
-                                </div>
-                                <small>Dimensiones recomendadas Ancho(1920) x Alto(420)</small>
-
-                                <!-- Uploaded image area-->
-                                <div class="image-area mt-4"><img id="imageResultBanner" src="{{$userInformation->image_banner}}"  alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                            </div>
-
-                            <div class="col-md-6 text-center">
+                            <div class="col-md-12 text-center">
                                 <!-- Upload image input-->
                                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
                                     <input id="upload" type="file" onchange="readURL(this);" name="imgLogo" class="form-control border-0">

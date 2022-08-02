@@ -16,7 +16,7 @@ class CreateUserInformationTable extends Migration
         Schema::create('user_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->references('id')->on('users');
-            $table->string('image_banner');
+            $table->string('image_banner')->nullable();
             $table->string('nit')->nullable();
             $table->string('name');
             $table->string('address');
