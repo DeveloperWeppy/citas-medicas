@@ -61,6 +61,7 @@ class UserController extends Controller
     {
       $servicios = Service::where('status', 1)->get();
       $index=0;
+      $serviciosSelect = array();
       foreach ($servicios as $value){
       $serviciosSelect[$index]['id']=$value->id;
       $serviciosSelect[$index]['text']=$value->name;
