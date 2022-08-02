@@ -26,6 +26,7 @@ class FormRegisterPlan extends Component
     {
         $services = Service::where('status', 1)->get(['id', 'name']);
         $index=0;
+        $serviciosSelect = array();
         foreach ($services as $value){
         $serviciosSelect[$index]['id']=$value->id;
         $serviciosSelect[$index]['text']=$value->name;
