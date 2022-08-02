@@ -72,7 +72,7 @@
 
 @section('js')
 
-<<script src="{{ asset('js/datatable.js')}}"></script>
+<script src="{{ asset('js/datatable.js')}}"></script>
     <script>
          // agregar data
 
