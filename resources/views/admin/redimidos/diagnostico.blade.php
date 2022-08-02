@@ -30,7 +30,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
+    <link rel="stylesheet" href="{{ asset('/vendor/adminlte/dist/css/adminlte.css') }}">
 @stop
 
 @section('js')

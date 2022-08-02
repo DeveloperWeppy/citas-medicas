@@ -114,13 +114,13 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="{{ asset('/vendor/adminlte/dist/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
 @stop
 
 @section('js')
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script src="/js/datatable.js"></script>
+<script src="{{ asset('/js/datatable.js') }}"></script>
     <script>
       $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip()

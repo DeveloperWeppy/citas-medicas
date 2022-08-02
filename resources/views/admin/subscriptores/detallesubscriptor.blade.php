@@ -40,8 +40,8 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="{{ asset('/vendor/adminlte/dist/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
 @stop
 
 @section('js')
