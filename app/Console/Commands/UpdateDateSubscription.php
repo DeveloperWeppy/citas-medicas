@@ -44,7 +44,7 @@ class UpdateDateSubscription extends Command
       $arraySuscripcionesId=array();
       foreach ($DetailSubscription as $key => $value) {
                if ($value->next_payment_date < now()->toDateString()) {
-                 $response = Http::withHeaders(['Authorization' => 'Bearer TEST-3372762080079061-062916-f3ee0273a07bfe57eec1acfaf08d3f20-148994351'])->get('https://api.mercadopago.com/preapproval/search', [
+                 $response = Http::withHeaders(['Authorization' => 'Bearer  '.env('API_MECADOPAGO_KEY')])->get('https://api.mercadopago.com/preapproval/search', [
                      'limit' => 100,
                      'q' => $value->operation_id,
                  ])->json();
