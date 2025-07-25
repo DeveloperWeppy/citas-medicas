@@ -325,9 +325,9 @@ class RedeemedServiceController extends Controller
             $mail->CharSet = "UTF8";
             $mail->Subject = "Beneficio Redimido";
 
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/emails/redimidosuccces.jpg', 'img_header', '/images/emails/redimidosuccces.jpg', 'base64', 'image/jpg');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
-            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/app/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/public/images/emails/redimidosuccces.jpg', 'img_header', '/images/emails/redimidosuccces.jpg', 'base64', 'image/jpg');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/public/images/icons/facebook.png', "correo_facebook", '/images/icons/facebook.png', 'base64', 'image/png');
+            $mail->AddEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/public/images/icons/instagram.png', "correo_instagram", '/images/icons/instagram.png', 'base64', 'image/png');
             // $mail->AddEmbeddedImage("images/icons/correo_whatsapp.png", "correo_whatsapp");
 
             $title = '';
