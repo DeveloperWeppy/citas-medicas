@@ -281,6 +281,7 @@ class UserController extends Controller
             dd($e);
         }
     }
+    
 
     public function profile()
     {
