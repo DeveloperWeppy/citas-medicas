@@ -17,6 +17,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -93,6 +94,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        
         $error = false;
         $mensaje = '';
         $discount_or_no = $request->discount_or_no;
@@ -120,10 +122,22 @@ class UserController extends Controller
             $mensaje = 'Error! Ya se encuentra registrado un usuario con este nit "' . $request->nit . '".';
         } else {
             # validamos si existe la imagen en el request
-            $image = $request->file('imgLogo')->store('public/logosPrestadores');
-            $url = Storage::url($image);
-            $imageBanner = $request->file('imgBanner')->store('public/bannerPrestadores');
-            $urlBanner = Storage::url($imageBanner);
+            //$image = $request->file('imgLogo')->store('public/logosPrestadores');
+            //$url = Storage::url($image);
+
+            if ($request->hasFile('imgLogo')) {
+                $image = $request->file('imgLogo')->store('public/logosPrestadores');
+                $url = Storage::url($image);
+            } else {
+                $url = ''; // o un valor por defecto
+            }
+
+            if ($request->hasFile('imgBanner')) {
+                $imageBanner = $request->file('imgBanner')->store('public/bannerPrestadores');
+                $urlBanner = Storage::url($imageBanner);
+            } else {
+                $urlBanner = null;
+            }
 
             $register_user = array(
                 'name' => $request->name,
@@ -196,9 +210,14 @@ class UserController extends Controller
                             ]);
                         }
                         if ($register_horario_atencion->save()) {
-                            self::enviarCorreoConvenio($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact);
+                            try {
+                                    self::enviarCorreoConvenio($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact);
+                                } catch (\Exception $e) {
+                                    // Puedes registrar el error si deseas
+                                    Log::error('Error al enviar correo de convenio: ' . $e->getMessage());
+                                }                            
                             $error = false;
-                        $mensaje = 'Registro Exitoso!';
+                            $mensaje = 'Registro Exitoso!';
                         } else {
                             $error = true;
                         $mensaje = 'Error! Se presento un problema al registrar los horarios de atención, intenta de nuevo.';
@@ -218,6 +237,8 @@ class UserController extends Controller
         }
         echo json_encode(array('error' => $error, 'mensaje' => $mensaje));
     }
+
+    
     public function enviarCorreoConvenio($email, $password, $name, $fechaconvenio, $name_contact, $num_phone_contact)
     {
         $mail = new PHPMailer(true);

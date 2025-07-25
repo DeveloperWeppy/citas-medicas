@@ -94,7 +94,7 @@
                                   </div>
                                   <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label >Iframe  oogle Maps</label>
+                                        <label >Iframe  google Maps</label>
                                         <textarea name="frame_ubication" class="form-control" id="" cols="30" rows="4"  placeholder="Ingrese el iframe de la ubicación de Google Maps">{{$userInformation->frame_ubication}}</textarea>
                                     </div>
                                 </div>

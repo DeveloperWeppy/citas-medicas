@@ -183,10 +183,12 @@ function agregarServicio(){
         var fileName = input.files[0].name;
         infoArea.textContent = 'File name: ' + fileName;
       }
-      var inputBA = document.getElementById( 'uploadBanner' );
-      var infoAreaBanner = document.getElementById( 'upload-label-banner' );
+      var inputBA = document.getElementById('uploadBanner');
+      var infoAreaBanner = document.getElementById('upload-label-banner');
 
-      inputBA.addEventListener( 'change', showFileName2);
+      if (inputBA) {
+          inputBA.addEventListener('change', showFileName2);
+      }
       function showFileName2( event ) {
         var input = event.srcElement;
         var fileName = input.files[0].name;

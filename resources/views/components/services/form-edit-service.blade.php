@@ -84,14 +84,13 @@
                                     <div class="form-group">
                                         <label>Especialidad</label>
                                         <select class="custom-select" name="specialty_id">
-                                            @foreach ($specialitys as $item)
-                                                @if ($item == null)
-                                                    <option value="{{$item->id}} {{($item->id == $service->specialty_id ) ? 'selected':'' }}">{{$item->name}}</option>
-                                                @else
-                                                    <option value="">No hay especialidades registradas</option>
-                                                @endif
-
-                                            @endforeach
+                                            @if ($specialitys->isEmpty())
+                                                <option value="">No hay especialidades registradas</option>
+                                            @else
+                                                @foreach ($specialitys as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>

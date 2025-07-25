@@ -85,6 +85,11 @@
         </div>
     </div>
 </div>
+
+@php
+    $consultar_miembros = collect($consultar_miembros);
+@endphp
+
 @if (!$consultar_miembros->isEmpty())
          <!--DATOS DE MIEMBROS-->
         <div class="col-12">
