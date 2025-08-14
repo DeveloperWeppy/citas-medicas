@@ -87,6 +87,9 @@ class FormEditPlan extends Component
               array_push($arrayIdC,array("res"=>$value->responsable_id,"id"=>$value->id));
         }
         $userInformation = UserInformation::whereIn('id', $arrayId)->get(['id','name']);
+
+       $arrayUserInf = [];
+
         foreach ($userInformation as $index =>$value){
             $ifExist = array_search($value->id, array_column($arrayIdC, 'res'));
             $arrayUserInf[$index]['id']=$arrayIdC[$ifExist]["id"];
