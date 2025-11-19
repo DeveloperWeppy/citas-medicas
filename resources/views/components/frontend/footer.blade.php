@@ -15,14 +15,14 @@
                     <div class="col-md-6 col-lg-3">
                         <nav>
                             <div class="footer1__item footer1__item--03 pt-10">
-                                <a class="white" href="#">Política de Privacidad</a>
+                                <a class="white" href="{{ route('front.politica-datos') }}">Política de Privacidad</a>
                             </div>
                         </nav>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <nav>
                             <div class="footer1__item footer1__item--03 pt-10">
-                                <a class="white" href="#">Términos y Condiciones</a>
+                                <a class="white" href="{{ route('front.terminos') }}">Términos y Condiciones</a>
                             </div>
                         </nav>
                     </div>

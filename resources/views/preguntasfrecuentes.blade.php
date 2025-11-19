@@ -39,8 +39,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <div class="title2 mb-60 text-center mt-50">
-                                <h2>Preguntas Frecuentes</h2>
+                            <div class="title2 mb-40 text-center mt-50">
+                                <h2>Preguntas frecuentes sobre CitasMedicas.es</h2>
+                                <p class="mt-10">Resuelve todas tus dudas sobre nuestra plataforma digital de salud preventiva y descubre cómo aprovechar cada beneficio.</p>
                             </div>
 
                             <!---------------- ACCORDEON START ------------->
@@ -51,16 +52,16 @@
                                         <div class="card-header" id="heading_01">
                                             <h5>
                                                 <a href="#" data-toggle="collapse" data-target="#collapse_01" aria-expanded="false" aria-controls="collapse_01" class="collapsed">
-                                                    <span>01.</span> ¿Garantizan la privacidad de mis datos personales?
+                                                    <span>01.</span> ¿Qué es CitasMedicas.es?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
-                                        <div id="collapse_01" class="collapse" aria-labelledby="heading_01" data-parent="#accordionExample" style="">
+                                        <div id="collapse_01" class="collapse" aria-labelledby="heading_01" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Sí. La información recolectada por El grupo empresarial CITAS MEDICAS.ES WORLD SAS; a través de sus productos y servicios digitales “El portal WEB:
-                                                    www.citasmedicas.es tiene un tratamiento confidencial y exclusivo, de acuerdo a la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013. Por tal motivo, www.citasmedicas.es  se
-                                                    hace responsable de los datos personales proporcionados por los diferentes clientes y/o usuarios al momento de hacer uso de la plataforma.</p>
+                                                <p class="text-justify">CitasMedicas.es es una plataforma digital de salud preventiva que facilita el acceso rápido y oportuno a productos y servicios médicos al mejor precio. Gracias a nuestras alianzas con centros médicos aliados, los usuarios reciben consultas, laboratorios, exámenes diagnósticos y procedimientos con tarifas planas preferenciales durante todo el año.</p>
+                                                <p class="text-justify">Diseñamos programas preventivos reales para que las personas ahorren en salud sin filas, sin trámites y sin deudas. No somos EPS, ARS, ARL, PAC, plan de medicina prepagada, póliza en salud, plan de hospitalización o cirugía, servicio de ambulancias o urgencias, servicio funerario, ONG ni plan de ayudas gubernamentales. Tampoco somos un seguro médico ni un modelo de suscripción.</p>
+                                                <p class="mb-0 font-italic">Mensajes institucionales oficiales: “CitasMedicas.es; es lo que es.” “Tu salud al mejor precio siempre.” “Sin EPS, sin filas, sin trámites.”</p>
                                             </div>
                                         </div>
                                     </div>
@@ -68,28 +69,21 @@
                                         <div class="card-header" id="heading_02">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_02" aria-expanded="false" aria-controls="collapse_02">
-                                                    <span>02.</span> ¿Funcionan 24 horas al día?
+                                                    <span>02.</span> ¿Cuáles son los beneficios de tener CitasMedicas.es?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_02" class="collapse" aria-labelledby="heading_02" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Sí.
-                                                    El portal web www.citasmedicas.es
-                                                    está activo las 24 horas del día, los 7 días de la semana.
-                                                    <br>
-                                                    Citasmedicas.es; permite elegir diferentes productos y servicios,
-                                                    haciendo valer tu código de suscripción,
-                                                    obteniendo el mejor precio siempre.
-                                                    <br><br>
-                                                    <ul>
-                                                        <li>·  Ingresa a nuestro portal web www.citasmedicas.es </li>
-                                                        <li>·  Elige el producto o servicio de tu interés, según su perfil profesional, ciudad, país, horario, disponibilidad o modalidad de atención.</li>
-                                                        <li>·  Conversa directamente con nuestros proveedores de productos o servicios, haciendo valer tu código de suscripción, obteniendo el mejor precio siempre.</li>
-                                                    </ul>
-
-                                                </p>
+                                                <p class="text-justify">Con un único pago de $139.900 COP accedes al Programa Integral de Promoción y Prevención en Salud Humana – CitasMedicas.es, que incluye:</p>
+                                                <ol>
+                                                    <li>Consulta médica general preventiva.</li>
+                                                    <li>Exámenes de laboratorio clínico: cuadro hemático completo (nivel IV), glicemia, colesterol total/HDL/LDL, triglicéridos, parcial de orina y coproscópico.</li>
+                                                    <li>Examen de composición corporal (InBody) para adultos y niños: peso, talla, porcentaje de grasa y músculo, tasa metabólica basal, gasto calórico y distribución corporal.</li>
+                                                </ol>
+                                                <p class="text-justify">Durante 12 meses tendrás acceso preferencial a los convenios con nuestros centros médicos aliados con descuentos exclusivos en consultas especializadas, laboratorios, ecografías, ecocardiogramas, procedimientos y programas integrales de promoción y prevención (nutrición, control de peso, síndrome metabólico, salud cardiovascular, salud mental, hábitos de sueño, actividad física y orientación médica digital preventiva).</p>
+                                                <p class="mb-0"><strong>Beneficios adicionales:</strong> precios fijos todo el año, sin trámites ni autorizaciones de EPS, atención presencial o virtual con médicos reales y cero mensualidades o deudas.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -97,17 +91,17 @@
                                         <div class="card-header" id="heading_03">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_03" aria-expanded="false" aria-controls="collapse_03">
-                                                    <span>03.</span> ¿Citasmedicas.es oferta sus productos fuera de Colombia?
+                                                    <span>03.</span> ¿Por qué nació CitasMedicas.es?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_03" class="collapse" aria-labelledby="heading_03" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">No. Actualmente nuestros clientes solo están disponibles dentro del territorio colombiano.
-                                                    Próximamente estaremos ofertando en Estados unidos y Venezuela. <br>
-                                                    Te lo haremos saber ¡
-                                                    </p>
+                                                <p class="text-justify">Nacimos como respuesta a las dificultades del modelo tradicional de salud en Colombia: filas interminables, demoras, falta de oportunidad y altos costos. Un grupo de médicos y profesionales creó una alternativa humana, eficiente y accesible para que las familias puedan acceder a atención sin EPS, sin filas y al mejor precio.</p>
+                                                <p class="text-justify">Nuestro propósito es democratizar el acceso a la salud preventiva y devolverle al paciente el control sobre su tiempo, bienestar y economía mediante un modelo simple, digital y confiable.</p>
+                                                <p><strong>Misión:</strong> promover la prevención, el diagnóstico temprano y el acompañamiento continuo, fortaleciendo el vínculo médico-paciente.</p>
+                                                <p class="mb-0"><strong>Visión:</strong> ser la plataforma líder de salud preventiva en Latinoamérica.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,17 +109,27 @@
                                         <div class="card-header" id="heading_04">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_04" aria-expanded="false" aria-controls="collapse_04">
-                                                    <span>04.</span> ¿Puedo vincular menores de edad a Citasmedicas.es?
-
+                                                    <span>04.</span> ¿Cómo funciona CitasMedicas.es?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_04" class="collapse" aria-labelledby="heading_04" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Sí. Puedes hacerlo al suscribirte como titular del plan familia. <br><br>
-                                                    Recuerda que los menores de edad sólo pueden ser vinculados por sus padres o representantes legales debidamente certificados.
-                                                    </p>
+                                                <p class="text-justify">Operamos de forma simple, segura y totalmente digital para que cualquier persona acceda a servicios médicos de calidad sin trámites ni deudas.</p>
+                                                <ol>
+                                                    <li>Ingresa a www.citasmedicas.es desde tu dispositivo y conoce los beneficios.</li>
+                                                    <li>Regístrate con tus datos para asignarte a la sede más cercana.</li>
+                                                    <li>Realiza tu pago único en línea ($139.900 COP) con tarjeta, PSE o link Wompi.</li>
+                                                    <li>Recibe confirmación inmediata por WhatsApp y correo con tu número de registro.</li>
+                                                    <li>Agenda tu cita con ayuda de nuestro equipo.</li>
+                                                    <li>Recibe consulta médica preventiva presencial o virtual.</li>
+                                                    <li>Accede a los exámenes de laboratorio incluidos.</li>
+                                                    <li>Conoce tu composición corporal (InBody) con análisis detallado.</li>
+                                                    <li>Obtén orientación médica personalizada.</li>
+                                                    <li>Disfruta descuentos preferenciales durante 12 meses en consultas, laboratorios, imágenes y programas de prevención.</li>
+                                                </ol>
+                                                <p class="mb-0"><strong>Ventajas:</strong> precios fijos, sin autorizaciones, atención presencial o virtual, sin mensualidades ni letra pequeña.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -133,23 +137,21 @@
                                         <div class="card-header" id="heading_05">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_05" aria-expanded="false" aria-controls="collapse_05">
-                                                    <span>05.</span> ¿Qué métodos de pago tiene Citasmedicas.es ?
+                                                    <span>05.</span> ¿Cuáles son los métodos de pago?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_05" class="collapse" aria-labelledby="heading_05" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Los métodos de pago están disponibles únicamente a través del pago con Tarjetas de crédito, Débito y/o cualquier medio de pago autorizados por el sistema disponible en la página web www.citasmedicas.es; las cuales deben estar franquiciadas por nuestro proveedor de crédito y débito automático a la cuenta.
-                                                   <br> Recuerda que los servicios ofertados en el portal web citasmedicas.es son prestados por terceros y son independientes del Portal WEB.
-                                                    <br><br>
-                                                    <ul>
-                                                        <li>·  Ingresa a nuestro portal web www.citasmedicas.es </li>
-                                                        <li>·  Elige el producto o servicio de tu interés, según su perfil profesional, ciudad, país, horario, disponibilidad o modalidad de atención.</li>
-                                                        <li>·  Conversa directamente con nuestros proveedores de productos o servicios, haciendo valer tu código de suscripción, obteniendo el mejor precio siempre.</li>
-                                                        <li>·   Paga en línea, a través de las diferentes plataformas de pago autorizadas por nuestros clientes.</li>
-                                                    </ul>
-                                                    </p>
+                                                <p class="text-justify">Puedes pagar de forma segura desde cualquier lugar de Colombia mediante pasarelas certificadas que protegen tus datos personales y bancarios.</p>
+                                                <ol>
+                                                    <li>Tarjeta débito o crédito (Visa, MasterCard, Amex, Diners).</li>
+                                                    <li>Transferencia PSE.</li>
+                                                    <li>Link de pago Wompi con respaldo de Bancolombia.</li>
+                                                    <li>Pago asistido por WhatsApp con acompañamiento de un asesor.</li>
+                                                </ol>
+                                                <p class="mb-0"><strong>Importante:</strong> el pago es único por año, no hay mensualidades ni deudas y recibirás confirmación inmediata por WhatsApp y correo.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -157,24 +159,22 @@
                                         <div class="card-header" id="heading_06">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_06" aria-expanded="false" aria-controls="collapse_06">
-                                                    <span>06.</span> ¿Puedo cancelar el contrato?
+                                                    <span>06.</span> ¿Cómo agendo una cita médica?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_06" class="collapse" aria-labelledby="heading_06" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Sí. <br><br> El Usuario y/o Cliente, podrá solicitar la terminación unilateral del presente contrato en cualquier momento sin pago de multa o
-                                                    sanción alguna por la terminación anticipada, debiendo cumplir en todo caso con el procedimiento señalado en el contrato.
-                                                    <br><br>
-                                                    El Usuario y/o Cliente, podrá solicitar la terminación unilateral del presente contrato enviando un correo electrónico a soporte@citasmedicas.es  donde especifique el interés de cancelar la suscripción al portal web citasmedicas.es
-                                                    <br><br>
-                                                    El correo electrónico autorizado para tal fin, debe ser del titular de la cuenta inscrita en el portal web; que se registró a la hora de realizar la inscripción y pago en la plataforma citasmedicas.es
-                                                    <br><br>
-                                                    Si no le es posible por este medio, igualmente podrá comunicarse a través de todos nuestros canales de comunicación dispuestos en la página web www.citasmedicas.es; para tal fin.
-                                                    <br><br>
-                                                    Sin importar la causa o modalidad de cancelación de la suscripción al portal web citasmedicas.es; debe hacerse con una cancelación mínima a 30 días calendario de su siguiente cobro programado.
-                                                </p>
+                                                <ol>
+                                                    <li>Recibes confirmación automática del pago vía WhatsApp y correo.</li>
+                                                    <li>En máximo 24 horas hábiles un asesor te contacta para elegir fecha, hora y sede.</li>
+                                                    <li>Atendemos en centros médicos aliados certificados con horarios de lunes a viernes 6:30 a.m. – 6:00 p.m. y sábados 6:30 a.m. – 1:00 p.m.</li>
+                                                    <li>Te enviamos recordatorios y recomendaciones.</li>
+                                                    <li>Asistes sin filas ni autorizaciones presentando tu documento.</li>
+                                                    <li>Recibes órdenes y exámenes incluidos, además de seguimiento posterior.</li>
+                                                </ol>
+                                                <p class="mb-0"><strong>Ventajas:</strong> asistencia personalizada, atención prioritaria, recordatorios automáticos y comunicación directa por WhatsApp.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -182,22 +182,15 @@
                                         <div class="card-header" id="heading_07">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_07" aria-expanded="false" aria-controls="collapse_07">
-                                                    <span>07.</span> ¿Quiénes pueden disfrutar de los códigos de descuento, para adquirir productos o servicios; en Citasmedicas.es ?
+                                                    <span>07.</span> ¿Funciona las 24 horas del día?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_07" class="collapse" aria-labelledby="heading_07" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">El titular y los beneficiarios que estén registrados, exclusivamente en nuestro portal web
-                                                    www.citasmedcicas.es
-                                                    <br><br>
-                                                    Aclarando que el respectivo pago y registro de sus datos personales se deben hacer única y exclusivamente a través del portal web citasmedicas.es,
-                                                    quien dispone de las plataformas de pago reguladas por los entes de control y ajustadas a su política y manejo de datos del Portal WEB y “LA EMPRESA”.
-                                                    <br><br>
-                                                    El Usuario y/o Cliente, conoce, entiende y acepta que este acuerdo entre usted como Usuario y/o Cliente y el Portal WEB o “LA EMPRESA”, es personal e intransferible y
-                                                    que solo beneficia al titular y los beneficiarios que han pagado y están inscritos en el portal web citasmedicas.es
-                                                </p>
+                                                <p class="text-justify">Sí. Nuestra plataforma web funciona 24/7 para que te registres, pagues y recibas confirmación en cualquier momento. Puedes ingresar a www.citasmedicas.es, hacer tu pago y recibir notificación automática al instante.</p>
+                                                <p class="text-justify">Los horarios de atención médica presencial son de lunes a viernes 6:30 a.m. – 6:00 p.m. y sábados 6:30 a.m. – 1:00 p.m. Nuestro soporte en línea y WhatsApp está disponible las 24 horas para pagos, solicitudes y agendamientos (las solicitudes fuera del horario hábil se gestionan el siguiente día hábil).</p>
                                             </div>
                                         </div>
                                     </div>
@@ -205,44 +198,14 @@
                                         <div class="card-header" id="heading_08">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_08" aria-expanded="false" aria-controls="collapse_08">
-                                                    <span>08.</span> ¿Qué pasa si, se bloquea mi acceso al portal
-                                                    Citasmedicas.es ?
+                                                    <span>08.</span> ¿En qué países funciona?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_08" class="collapse" aria-labelledby="heading_08" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">El Usuario y/o Cliente, podrá desbloquear el acceso al portal web citasmedicas.es; mediante el pago de los
-                                                    saldos adeudados ingresando a las pagina web www.citasmedica.es; zona de pagos.
-                                                    <br><br>
-                                                    Disponible únicamente a través del pago con Tarjetas de crédito, Débito y/o cualquier medio de pago autorizados por el sistema disponible en
-                                                    la página web www.citasmedicas.es; las cuales deben estar franquiciadas por nuestro proveedor y débito automático a la cuenta.
-                                                    <br><br>
-                                                    El Usuario y/o Cliente, conoce, entiende y acepta que el atraso superior a 60 días en el pago de la inscripción y de la cuota mensual de suscripción en la fecha programada o la mora del Usuario y/o Cliente, podrá conllevar a la cancelación automática del  acceso del portal web citasmedicas.es y por ende a los servicios o productos ofertados por los médicos independientes,
-                                                     prestadores de servicios de salud debidamente habilitados por los entes reguladores, así como los diferentes oferentes de productos y servicios de su elección.
-                                                     <br><br>
-                                                     El periodo empezara a contar a partir del primer pago rechazado, por nuestros medios pago autorizados por el sistema disponible en la página web www.citasmedicas.es;
-                                                     las cuales deben estar franquiciadas por nuestro proveedor y débito automático a la cuenta.
-                                                     <br><br>
-                                                     El Usuario y/o Cliente, conoce, entiende y acepta que el incumplimiento del pago de la inscripción y de la cuota mensual de suscripción en la fecha programada o la mora del Usuario y/o Cliente, podrá conllevar a el bloqueo al acceso del portal web citasmedicas.es y por ende a los servicios o productos ofertados por los médicos independientes,
-                                                     prestadores de servicios de salud debidamente habilitados por los entes reguladores, así como los diferentes oferentes de productos y servicios de su elección.
-                                                     <br><br>
-                                                     El Usuario y/o Cliente, conoce, entiende y acepta que el valor de la  inscripción y la cuota mensual de suscripción,
-                                                     pactada entre usted como como Usuario y/o Cliente y el Portal WEB o “LA EMPRESA”,  se efectuara los cinco ( 5 ) primeros días de cada mes.
-                                                      <br><br>
-                                                      Debido a que los cargos son automáticos, el Usuario y/o Cliente, titular del presente contrato se obliga a mantener la tarjeta asignada débito o crédito, con crédito o saldo suficiente, en el entendido que al registrase en la plataforma web citasmedicas.es;
-                                                      el primer rechazo al cargo el sistema bloqueara el acceso a la plataforma citasmedicas.es; y con ello a los servicios o productos ofertados por los médicos independientes, prestadores de servicios de salud debidamente habilitados por los entes reguladores, así como los diferentes oferentes de productos y servicios de su elección.
-                                                      <br><br>
-                                                      Derivado de que el Usuario y/o Cliente, titular del presente contrato, autoriza a “EL PORTAL WEB Y LA EMPRESA”,
-                                                      para aplicar los cargos de manera automática a su tarjeta de crédito o débito, el Usuario y/o Cliente titular del presente contrato, acepta que en el momento que su plástico venza y/o sea ronavado, los cargos se seguirán realizando de manera normal, sin necesidad de una nueva autorización “EL PORTAL WEB Y LA EMPRESA”.
-                                                      <br><br>
-                                                      El Usuario y/o Cliente, titular del presente contrato, podrá revocar la presente autorización enviando un correo electrónico a soporte@citasmedicas.es
-                                                      <br><br>
-                                                      El correo electrónico autorizado para tal fin, debe ser del titular de la cuenta inscrita en el portal web; que se registró a la hora de realizar la inscripción y pago en la plataforma citasmedicas.es
-                                                      <br><br>
-                                                      Si no le es posible por este medio, igualmente podrá comunicarse a través de todos nuestros canales de comunicación dispuestos en la página web www.citasmedicas.es; para tal fin
-                                                </p>
+                                                <p class="text-justify">Actualmente operamos en Colombia con cobertura nacional gracias a nuestros centros médicos aliados. Estamos preparando la expansión a nuevas ciudades y países de Latinoamérica.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -250,19 +213,14 @@
                                         <div class="card-header" id="heading_09">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_09" aria-expanded="false" aria-controls="collapse_09">
-                                                    <span>09.</span> ¿Qué hago si; tengo dudas y requiero una asesoría de Citasmedicas.es ?
-
+                                                    <span>09.</span> ¿Garantizan la privacidad de mis datos personales?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_09" class="collapse" aria-labelledby="heading_09" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Si Usted requiere información adicional o requiere un asesoramiento sobre el funcionamiento del “PORTAL citasmedicas.es”, puede contactarnos a través del correo electrónico  soporte@citasmedicas.es  o ingresando a nuestra página web en la sección:
-                                                    <br><br>
-                                                    www.citasmedicas.es/ayuda o cualquiera de los medios de comunicación digital disponibles en nuestra página web, donde uno de nuestros asesores le orientara de manera oportuna.
-
-                                                </p>
+                                                <p class="text-justify">Sí. Cumplimos con la Ley 1581 de 2012 sobre protección de datos personales. Tu información médica y personal es confidencial, segura y se utiliza únicamente con fines asistenciales autorizados. El tratamiento de datos sigue nuestra Política de Privacidad y Protección de Datos disponible en www.citasmedicas.es.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -270,17 +228,14 @@
                                         <div class="card-header" id="heading_10">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_10" aria-expanded="false" aria-controls="collapse_10">
-                                                    <span>10.</span> ¿Qué es la historia clínica?
-
+                                                    <span>10.</span> ¿Qué hago si tengo dudas o quiero una asesoría personalizada?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_10" class="collapse" aria-labelledby="heading_10" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">La historia clínica es un documento privado y obligatorio, sometido al uso exclusivo por parte de los profesionales de la salud y sus pacientes.
-                                                    En ella se ven reflejadas todas las citas médicas a las cuales ha asistido el paciente, los exámenes, así como los medicamentos y tratamientos que le hayan sido prescritos.
-                                                </p>
+                                                <p class="text-justify">Comunícate con nosotros por WhatsApp al 333 033 3455, escribe a contacto@citasmedicas.es o usa el chat en www.citasmedicas.es para recibir atención inmediata. Nuestro equipo está listo para orientarte en cada paso.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -288,26 +243,30 @@
                                         <div class="card-header" id="heading_11">
                                             <h5>
                                                 <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_11" aria-expanded="false" aria-controls="collapse_11">
-                                                    <span>11.</span> ¿Quién me entrega la historia clínica ?
-
+                                                    <span>11.</span> ¿Qué es la historia clínica?
                                                     <i class="ti-angle-down"></i>
                                                 </a>
                                             </h5>
                                         </div>
                                         <div id="collapse_11" class="collapse" aria-labelledby="heading_11" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p class="text-justify">Las historias clínicas son de uso y responsabilidad exclusiva de los médicos y los centros médicos habilitados por los entes reguladores.
-                                                    <br><br>
-                                                    Cada oferente de producto o servicio médico, tiene la obligación de custodiar y tramitar el acceso a sus datos sensibles, así como la historia clínica.
-                                                    <br><br>
-                                                    <ul>
-                                                        <li>·   Recuerda que nuestro portal web www.citasmedicas.es  no tienen injerencia en la elección de los médicos independientes, ni de los prestadores de servicios de salud o cualquier otro servicio o producto ofertado.</li>
-                                                        <li>·   Ni el portal ni la empresa tienen responsabilidad alguna sobre los dictámenes, conceptos, recomendaciones, opiniones y/o decisiones de carácter médico que se tomen durante la relación contractual entre el
-                                                             médico y/o prestador de un servicio o producto ofertado, y el paciente y/o el cliente.</li>
-                                                        <li>·   Tener en cuenta que ni el portal, ni la empresa son consideradas como empresas promotoras de salud (EPS), instituciones prestadoras de servicios de salud (IPS),
-                                                             planes de medicina prepagada, pólizas en salud, planes de atención complementaria (PAC); empresas del régimen contributivo o subsidiado, empresas que administren programas gubernamentales ni estatales, organizaciones no gubernamentales o ayudas humanitarias.</li>
-                                                    </ul>
-                                                </p>
+                                                <p class="text-justify">Es el documento confidencial donde se registra toda tu atención médica, diagnósticos, exámenes y tratamientos. Solo puede ser consultado por ti o tu médico tratante, según la normativa vigente.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="heading_12">
+                                            <h5>
+                                                <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse_12" aria-expanded="false" aria-controls="collapse_12">
+                                                    <span>12.</span> ¿Quién entrega la historia clínica?
+                                                    <i class="ti-angle-down"></i>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapse_12" class="collapse" aria-labelledby="heading_12" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p class="text-justify">La historia clínica pertenece al paciente. Puedes solicitar una copia directamente en el centro médico donde recibiste la atención, presentando tu documento de identidad. La entrega se realiza de forma inmediata o según la regulación aplicable.</p>
+                                                <p class="mb-0">Cada prestador es responsable de custodiar y tramitar el acceso a los datos sensibles. Recuerda que CitasMedicas.es no interviene en la elección del médico ni asume responsabilidad sobre los dictámenes clínicos; tampoco es EPS, IPS ni plan de medicina prepagada.</p>
                                             </div>
                                         </div>
                                     </div>

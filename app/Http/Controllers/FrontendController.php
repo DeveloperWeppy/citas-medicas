@@ -58,6 +58,16 @@ class FrontendController extends Controller
         return view('preguntasfrecuentes');
     }
 
+    public function politicadatos()
+    {
+        return view('politica-datos');
+    }
+
+    public function terminos()
+    {
+        return view('terminos-condiciones');
+    }
+
     public function subscribirme()
     {
 

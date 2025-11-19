@@ -31,6 +31,8 @@ Route::controller(FrontendController::class)
         Route::get('/planes', 'planes')->name('front.afiliate');
         Route::get('/contactanos', 'contacto')->name('front.contacto');
         Route::get('/preguntas-frecuentes', 'preguntasfrecuentes')->name('front.preguntas');
+        Route::get('/politica-tratamiento-datos', 'politicadatos')->name('front.politica-datos');
+        Route::get('/terminos-condiciones', 'terminos')->name('front.terminos');
         Route::get('/subscribirme', 'subscribirme')->name('front.subscribirme');
         Route::get('/detalles-plan/{id}', 'detallesplan')->name('front.detallesplan');
         Route::get('/convenio/{id}', 'detallesentidad')->name('front.detallesentidad');

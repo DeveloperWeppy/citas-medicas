@@ -1,0 +1,174 @@
+[25-Jul-2025 03:00:18 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:00:18 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:00:18 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[25-Jul-2025 03:00:59 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:00:59 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:00:59 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[25-Jul-2025 03:02:38 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:38 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:38 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[25-Jul-2025 03:02:48 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:48 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:48 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[25-Jul-2025 03:02:54 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:54 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:02:54 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[25-Jul-2025 03:03:24 UTC] PHP Warning:  include(/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php): Failed to open stream: No such file or directory in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:03:24 UTC] PHP Warning:  include(): Failed opening '/home/citasmedicas/public_html/vendor/composer/../../app/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/citasmedicas/public_html/vendor/composer/ClassLoader.php on line 576
+[25-Jul-2025 03:03:24 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#8 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#9 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#1 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#2 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(295): Illuminate\Foundation\Application->resolve()
+#3 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\Container\Container->Illuminate\Container\{closure}()
+#4 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build()
+#5 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve()
+#6 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve()
+#7 /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make()
+#8 /home/citasmedicas/public_html/artisan(33): Illuminate\Foundation\Application->make()
+#9 {main}
+  thrown in /home/citasmedicas/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879

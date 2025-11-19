@@ -84,6 +84,7 @@
                            <input type="email" name="cardholderEmail" value="{{$user->email}}" id="form-checkout__cardholderEmail"  class="container3"/>
                     </div>
                     <div class="form-group  col-sm-12"><label style="display: flex;align-items: baseline;"  ><input type="checkbox" name="terminosMercadoPago" value="1" id="terminosMercadoPago" class="andes-checkbox__input" style="margin-top: 3px;margin-right: 6px;margin-left: 11px;"><span class="andes-checkbox__label andes-checkbox__label-text"><div>Acepto los <a href="https://www.mercadopago.com.co/ayuda/194" target="_blank">Términos y condiciones</a> y autorizo el uso de mis datos de acuerdo a la <a href="https://www.mercadopago.com.co/privacidad" target="_blank">Declaración de Privacidad</a><a>.</a></div></span></label></div>
+                    <div class="form-group  col-sm-12"><label style="display: flex;align-items: baseline;"  ><input type="checkbox" name="autorizacionDatosPersonales" value="1" id="autorizacionDatosPersonales" class="andes-checkbox__input" style="margin-top: 3px;margin-right: 6px;margin-left: 11px;"><span class="andes-checkbox__label andes-checkbox__label-text"><div>Autorizo el tratamiento de mis datos personales conforme a la Política de Privacidad y Protección de Datos de CitasMedicas.es, disponible en <a href="https://www.citasmedicas.es" target="_blank">www.citasmedicas.es</a>. <br>Declaro que he leído y comprendido la información sobre las finalidades del tratamiento y mis derechos como titular, de acuerdo con la Ley 1581 de 2012.</div></span></label></div>
                  </div>
                  <div class="mb-30 col-lg-6 row " style="justify-content: center;padding: 0;" >
                          <div class="contact_page1__left mb-30 col-lg-8" style="padding-top:30px;height: fit-content;padding-bottom: 40px;">
@@ -128,6 +129,9 @@
      terminosMercadoPago:{
        required: true,
      },
+     autorizacionDatosPersonales:{
+       required: true,
+     },
 
    },
    messages: {
@@ -137,6 +141,7 @@
      securityCode: "Por favor ingrese Código de seguridad",
      identificationNumber: "Por favor ingrese Número de documento",
      terminosMercadoPago: "Por favor Acepta los terminos del servicio",
+     autorizacionDatosPersonales: "Debes autorizar el tratamiento de datos personales",
    },
    errorElement: 'span',
    errorPlacement: function (error, element) {
