@@ -153,6 +153,9 @@
               plane: {
                 required: true,
               },
+              acepta_terminos: {
+                required: true,
+              },
               autorizacion_politica: {
                 required: true,
               },
@@ -196,6 +199,9 @@
               },
               plane: {
                 required: "Por favor seleccione un plan",
+              },
+              acepta_terminos: {
+                required: "Debes aceptar los Términos y Condiciones",
               },
               autorizacion_politica: {
                 required: "Debes autorizar el tratamiento de datos personales",

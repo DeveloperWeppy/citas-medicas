@@ -149,6 +149,16 @@
 
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label style="display:flex;align-items:flex-start;font-size: 12px;">
+                            <input type="checkbox" name="acepta_terminos" value="1" class="mr-2" style="margin-top:5px;width: 15px;height: 15px;" required>
+                            <span>Acepto los <a href="{{ route('front.terminos') }}" target="_blank">Términos y Condiciones</a> de CitasMedicas.es</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
