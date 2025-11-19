@@ -1566,7 +1566,7 @@ a.meanmenu-reveal {
   position: fixed;
   display: none;
   bottom: 50px;
-  right: 35px;
+  right: 105px;
   z-index: 100000;
   color: #fff;
   background: #0cb8b6;
@@ -1586,7 +1586,7 @@ a.meanmenu-reveal {
 @media only screen and (max-width: 1199px) {
   .scrollToTop {
     bottom: 30px;
-    right: 30px;
+    right: 100px;
   }
 }
 
@@ -1612,7 +1612,7 @@ a.meanmenu-reveal {
 @media only screen and (max-width: 767px) {
   .scrollToTop {
     bottom: 20px;
-    right: 20px;
+    right: 85px;
     height: 50px;
     width: 50px;
     line-height: 50px;
