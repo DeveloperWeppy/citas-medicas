@@ -214,6 +214,13 @@ class FrontendController extends Controller
         $error = false;
         $mensaje = '';
 
+        if (!$request->boolean('autorizacion_politica')) {
+            return response()->json([
+                'error' => true,
+                'mensaje' => 'Debes autorizar el tratamiento de datos personales para continuar con la suscripción.'
+            ]);
+        }
+
         $nombre_client = $request->name;
         $email = $request->email;
         $plane = $request->plane;

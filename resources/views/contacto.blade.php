@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="appointment2__content">
                                     <h4>WHATSAPP</h4>
-                                    <p class="m-0"><a href="https://api.whatsapp.com/send?phone=+57&text=Hola, quisiera saber más del convenio con CitasMedicas&source=&data=&app_absent=" target="_blank">Enviar Mensaje</a></p>
+                                    <p class="m-0"><a href="https://api.whatsapp.com/send?phone=573330333455&text=Hola%20necesito%20ayuda%20en%20citasmedicas.es" target="_blank">Enviar Mensaje</a></p>
                                 </div>
                             </div>
                         </div>

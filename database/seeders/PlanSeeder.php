@@ -15,44 +15,13 @@ class PlanSeeder extends Seeder
     public function run()
     {
         Plan::create([
-            'name' => 'Plan Individual',
-            'type_plan' => 'Mensual',
+            'name' => 'Plan Anual CitasMedicas.es',
+            'type_plan' => 'Anual',
             'slug' => '2c93808481aa17bd0181aaa254490087',
-            'price' => 1600,
-            'duration_in_days' => 30,
+            'price' => 139000,
+            'duration_in_days' => 365,
             'is_group' => 0,
             'cant_people' => 1,
         ]);
-
-        Plan::create([
-            'name' => 'Plan Grupal',
-            'type_plan' => 'Mensual',
-            'slug' => 'mensual grupal',
-            'price' => 79900,
-            'duration_in_days' => 365,
-            'is_group' => 1,
-            'cant_people' => 4,
-        ]);
-
-      /* Plan::create([
-            'name' => 'Plan Individual',
-            'type_plan' => 'Anual',
-            'slug' => 'anual individual',
-            'price' => 140000,
-            'duration_in_days' => 30,
-            'is_group' => 0,
-            'cant_people' => 1,
-   ]);
-
-        Plan::create([
-            'name' => 'Plan Grupal',
-            'type_plan' => 'Anual',
-            'slug' => 'anual grupal',
-            'price' => 280000,
-            'duration_in_days' => 365,
-            'is_group' => 1,
-            'cant_people' => 4,
-        ]);
-            */
     }
 }

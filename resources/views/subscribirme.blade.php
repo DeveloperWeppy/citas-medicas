@@ -153,6 +153,9 @@
               plane: {
                 required: true,
               },
+              autorizacion_politica: {
+                required: true,
+              },
 
 
             },
@@ -193,6 +196,9 @@
               },
               plane: {
                 required: "Por favor seleccione un plan",
+              },
+              autorizacion_politica: {
+                required: "Debes autorizar el tratamiento de datos personales",
               },
 
             },
