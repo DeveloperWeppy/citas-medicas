@@ -159,17 +159,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label style="display:flex;align-items:flex-start;font-size: 12px;">
+                            <input type="checkbox" name="autorizacion_politica" value="1" class="mr-2" style="margin-top:5px;width: 15px;height: 15px;">
+                            <span>Autorizo el tratamiento de mis datos personales conforme a la <a href="{{ route('front.politica-datos') }}" target="_blank">Política de Tratamiento de Datos Personales</a> de CitasMedicas.es y declaro que he leído y comprendido mis derechos de acuerdo con la Ley 1581 de 2012.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="form-group mt-3">
-                <label style="display:flex;align-items:flex-start;">
-                    <input type="checkbox" name="autorizacion_politica" value="1" class="mr-2" style="margin-top:5px;">
-                    <span>Autorizo el tratamiento de mis datos personales conforme a la <a href="{{ route('front.politica-datos') }}" target="_blank">Política de Tratamiento de Datos Personales</a> de CitasMedicas.es y declaro que he leído y comprendido mis derechos de acuerdo con la Ley 1581 de 2012.</span>
-                </label>
-            </div>
-        </div>
         <div class="col clearfix mt-2 mb-2">
             <button onClick="history.go(-1);" class="btn8 float-left"><i class="fas fa-angle-double-left"></i> REGRESAR</button>
             <button type="submit" class="btn2 float-right">CONTINUAR<i class="icofont-rounded-double-right"></i></button>
